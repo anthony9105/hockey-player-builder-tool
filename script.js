@@ -13,12 +13,6 @@ document.getElementById('box').addEventListener('wheel', function(){
 
 */
 
-var row = document.getElementsByClassName("section1")[0];
-var cell1 = row.getElementsByClassName("numeric")[0];
-cell1.innerHTML = '81';
-console.log(cell1);
-
-
 // increase attributes
 var userPlusSelection = document.getElementsByClassName('plus');
 
