@@ -1,0 +1,82 @@
+th{
+    background-color: #555;
+    color: #fff;
+    white-space: nowrap;
+    margin-left: 0.2em;
+    font-size: 10pt;
+}
+
+th,td {
+    display: block;
+}
+
+.numeric {
+    text-align: right;
+    background-color: gray;
+    font-size: 10pt;
+}
+
+.text {
+    text-align: center;
+    font-size: 10pt;
+}
+
+.upgrade-option-default {
+    text-align: left;
+    background-color:lightgray;
+    width: 0.4em;
+    margin-right: 0.2em;
+    font-style: italic;
+    font-size: 10pt;
+}
+
+.plus{
+    text-align: left;
+    background-color: lightgoldenrodyellow;
+    width: 0.2em;
+    font-size: 10pt;
+}
+
+.minus{
+    text-align: left;
+    background-color: lightpink;
+    width: 0.2em;
+    font-size: 10pt;
+}
+
+
+p{
+    text-align: right;
+    font-style: italic;
+}
+
+table {
+    display: flex;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.4em 0.8em;
+  white-space: nowrap;
+}
+
+tbody {
+    display: flex;
+    position: relative;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    max-width: 100%;
+    /*
+    background:
+      linear-gradient(to right, white 30%, rgba(255,255,255,0)),
+      linear-gradient(to right, rgba(255,255,255,0), white 70%) 0 100%,
+      radial-gradient(farthest-side at 0% 50%, rgba(0,0,0,.4), rgba(0,0,0,0)),
+      radial-gradient(farthest-side at 100% 50%, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
+    background-repeat: no-repeat;
+    background-color: white;
+    background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
+    background-position: 0 0, 100%, 0 0, 100%;
+    background-attachment: local, local, scroll, scroll;*/
+  }
