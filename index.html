@@ -8,6 +8,31 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+
+    <!-- Player Type Selection Prompt -->
+    <label for="player-types">Choose a player build type:</label>
+
+    <!-- Player Type Selection -->
+    <select name="player-types" id="player-types">
+        <optgroup label="Forward">
+            <option value="Sniper">Sniper</option>
+            <option value="Dangler">Dangler</option>
+            <option value="Playmaker">Playmaker</option>
+            <option value="Two-way Forward">Two-way Forward</option>
+            <option value="Power Forward">Power Forward</option>
+            <option value="Grinder">Grinder</option>
+            <option value="Enforcer">Enforcer</option>
+        </optgroup>
+        <optgroup label="Defenseman">
+            <option value="Puckmoving Defenseman">Puckmoving Defenseman</option>
+            <option value="Two-way Defenseman">Two-way Defenseman</option>
+            <option value="Offensive Defenseman">Offensive Defenseman</option>
+            <option value="Defensive Defenseman">Defensive Defenseman</option>
+            <option value="Enforcer Defenseman">Enforcer Defenseman</option>
+        </optgroup>
+    </select>
+
+    <!-- Player Attribute Display -->
     <div class="table-wrapper" tabindex="0">
         <table>
         <tr>
@@ -47,6 +72,13 @@
             <td class="upgrade-option-default">0</td>
         </tr>
         <tr>
+            <td class="attribute-boost">0</td>
+            <td class="attribute-boost">0</td>
+            <td class="attribute-boost">0</td>
+            <td class="attribute-boost">0</td>
+            <td class="attribute-boost">0</td>
+        </tr>
+        <tr>
             <th>Wrist Shot Power</th>
             <th>Slapshot Power</th>
             <th>Acceleration</th>
@@ -80,6 +112,13 @@
             <td class="upgrade-option-default">0</td>
             <td class="upgrade-option-default">0</td>
             <td class="upgrade-option-default">0</td>
+        </tr>
+        <tr>
+            <td class="attribute-boost">0</td>
+            <td class="attribute-boost">0</td>
+            <td class="attribute-boost">0</td>
+            <td class="attribute-boost">0</td>
+            <td class="attribute-boost">0</td>
         </tr>
         <tr>
             <th>Passing</th>
@@ -117,6 +156,13 @@
             <td class="upgrade-option-default">0</td>
         </tr>
         <tr>
+            <td class="attribute-boost">0</td>
+            <td class="attribute-boost">0</td>
+            <td class="attribute-boost">0</td>
+            <td class="attribute-boost">0</td>
+            <td class="attribute-boost">0</td>
+        </tr>
+        <tr>
             <th>Hand-eye</th>
             <th>Strength</th>
             <th>Durability</th>
@@ -147,6 +193,12 @@
             <td class="upgrade-option-default">0</td>
         </tr>
         <tr>
+            <td class="attribute-boost">0</td>
+            <td class="attribute-boost">0</td>
+            <td class="attribute-boost">0</td>
+            <td class="attribute-boost">0</td>
+        </tr>
+        <tr>
             <th>Deking</th>
             <th>Faceoffs</th>
             <th>Discipline</th>
@@ -175,6 +227,12 @@
             <td class="upgrade-option-default">0</td>
             <td class="upgrade-option-default">0</td>
             <td class="upgrade-option-default">0</td>
+        </tr>
+        <tr>
+            <td class="attribute-boost">0</td>
+            <td class="attribute-boost">0</td>
+            <td class="attribute-boost">0</td>
+            <td class="attribute-boost">0</td>
         </tr>
         </tbody>
     </table>
