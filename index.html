@@ -6,12 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./style.css">
+
+    <header>Anthony's Hockey Player Builder Tool</header>
+    <aside>Based off NHL 22 Player Build System</aside>
 </head>
 <body>
-
-    <!-- Player Type Selection Prompt -->
-    <label for="player-types">Choose a player build type:</label>
-
     <!-- Player Type Selection -->
     <select name="player-types" id="player-types">
         <optgroup label="Forward">
@@ -34,6 +33,31 @@
 
     <!-- Confirm Player Build Button -->
     <button id="confirm-type">Confirm player type</button>
+
+    <select name="Height" id="height">
+        <option value="5'7">5'7</option>
+        <option value="5'8">5'8</option>
+        <option value="5'9">5'9</option>
+        <option value="5'10">5'10</option>
+        <option value="5'11">5'11</option>
+        <option value="6'0">6'0</option>
+        <option value="6'1">6'1</option>
+        <option value="6'2">6'2</option>
+        <option value="6'3">6'3</option>
+        <option value="6'4">6'4</option>
+        <option value="6'5">6'5</option>
+        <option value="6'6">6'6</option>
+        <option value="6'7">6'7</option>
+        <option value="6'8">6'8</option>
+        <option value="6'9">6'9</option>
+    </select>
+
+    <button id="confirm-height">Confirm height</button>
+
+
+    <label for="weight">Weight (lbs):</label>
+    <input type="number" id="weight" name="weight"></input>
+    <button id="confirm-weight">Confirm weight</button>
 
     <!-- Player Attribute Display -->
     <div class="table-wrapper" tabindex="0">
