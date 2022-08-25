@@ -13,6 +13,22 @@ document.getElementById('box').addEventListener('wheel', function(){
 
 */
 
+// When the confirm player build button is clicked 
+document.getElementById('confirm-type').addEventListener('click', function(){
+  var e = document.getElementById('player-types');
+  var value = e.options[e.selectedIndex].value;
+  var text = e.options[e.selectedIndex].text;
+  console.log(value);
+  console.log(text);
+})
+
+// assign player build starting attributes
+
+function sniperDefault()
+{
+  
+}
+
 
 // change upgrade display colour based on if it is positive (green) or negative (red)
 function changeUpgradeOptionColour(i)

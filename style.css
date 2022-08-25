@@ -74,12 +74,14 @@ td {
 select {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 10pt;
-    background-color: rgb(172, 231, 250);
+    background-color: rgb(195, 237, 251);
+    margin-bottom: 2em;
 }
 
 label {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 10pt;
+    margin-bottom: 2em;
 }
 
 
