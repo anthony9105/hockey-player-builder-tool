@@ -55,9 +55,31 @@ function setDefaultAttributes(buildName) {
             htmlAttributeTableIndex++;
           }
         }
+
+        // set default height
+        var defaultHeight = build.querySelector("Height").querySelector("default").textContent;
+        document.getElementById('height').value = defaultHeight;
+
+        // set default weight
+        var defaultWeight = build.querySelector("Weight").querySelector("default").textContent;
+        document.getElementById('weight').value = defaultWeight;
+
       }
     }
   });
+}
+
+/**
+ * resetUpgrades function.
+ * Used to reset the upgrades that may have been previously done to a build.
+ */
+function resetUpgrades() {
+  var upgradeSection = document.getElementsByClassName('upgrade-option-default');
+
+  for (var i = 0; i < upgradeSection.length; i++) {
+    upgradeSection[i].innerHTML = 0;
+    upgradeSection[i].style.color = 'lightgray';
+  }
 }
 
 // When the confirm player build button is clicked 
@@ -68,6 +90,7 @@ document.getElementById('confirm-type').addEventListener('click', function(){
 
   // set the default attributes to the html table
   setDefaultAttributes(text);
+  resetUpgrades();
 })
 
 // When the confirm height button is clicked 
@@ -119,7 +142,7 @@ for(let i = 0; i < userPlusSelection.length; i++) {
 var userMinusSelection = document.getElementsByClassName('minus');
 
 for(let i = 0; i < userMinusSelection.length; i++) {
-    userMinusSelection[i].addEventListener("click", function() {
+  userMinusSelection[i].addEventListener("click", function() {
     document.getElementsByClassName('numeric')[i].innerHTML--;
     document.getElementsByClassName('upgrade-option-default')[i].innerHTML--;
 
