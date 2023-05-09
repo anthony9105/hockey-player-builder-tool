@@ -1,4 +1,4 @@
-import {attributeSectionNames, buildDataXMLFileName} from "./constants.js";
+import {buildDataXMLFileName} from "./constants.js";
 
 
 /**
