@@ -1,8 +1,5 @@
-/**
- * Constants
- */
-const attributeSectionNames = ["Technique", "Power", "Playstyle", "Tenacity", "Tactics"];
-const buildDataXMLFileName = "build_data.xml";
+import {attributeSectionNames, buildDataXMLFileName} from "./constants.js";
+
 
 /**
  * setDefaultAttributes function.
@@ -23,7 +20,7 @@ function setDefaultAttributes(buildName) {
         console.log(nameValue);
         var defaultAttributes = build.querySelectorAll("DefaultAttributes");
 
-        for (defaultAttribute of defaultAttributes) {
+        for (var defaultAttribute of defaultAttributes) {
           var htmlAttributeTableIndex = 0;
 
           // Technique Attributes
