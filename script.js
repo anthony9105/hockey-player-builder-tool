@@ -8,58 +8,50 @@ import {attributeSectionNames, buildDataXMLFileName} from "./constants.js";
  * @param {string} buildName 
  */
 function setDefaultAttributes(buildName) {
+
+  // fetching from the build_data.xml file
   fetch(buildDataXMLFileName).then(response => {
     return response.text();
   }).then(xmlString => {
     var xmlDoc = new DOMParser().parseFromString(xmlString, "text/xml");
     var builds = xmlDoc.querySelectorAll("Build");
 
+    // for each build
     for (var build of builds) {
+
+      // get the name of the current build
       var nameValue = build.querySelector("Name").textContent;
+
+      // if the name of the current build matches with the paramaer value, buildName
       if (nameValue === buildName) {
+
         console.log(nameValue);
-        var defaultAttributes = build.querySelectorAll("DefaultAttributes");
+        var htmlAttributeTableIndex = 0;
 
-        for (var defaultAttribute of defaultAttributes) {
-          var htmlAttributeTableIndex = 0;
+        // get the default attributes of this build
+        var defaultAttributes = build.querySelector("DefaultAttributes");
 
-          // Technique Attributes
-          var attributeSection = defaultAttribute.querySelector(attributeSectionNames[0]);
+        // amount of child nodes in defaultAttributes (divided by 2 since I am not including all the "text" child nodes)
+        var amountOfAttributeSections = Math.floor(defaultAttributes.childNodes.length / 2);
+
+        // for loop for each necessary child node in defaultAttributes (not looping over the "text" nodes which is why j starts
+        // at 1 and increments by 2 until it reaches amountOfAttributeSections multiplied by 2)
+        for (var j = 1; j < amountOfAttributeSections * 2; j += 2) {
+
+          // get the current attribute section ("Technique", "Power", "Playstyle", "Tenacity", or "Tactics")
+          var attributeSection = defaultAttributes.childNodes[j];
+
+          // amount of child nodes in attributeSecton (divided by 2 since I am not including all the "text" child nodes)
           var amountOfAttributesInSection = Math.floor(attributeSection.childNodes.length / 2);
-          for (var i = 1; i < amountOfAttributesInSection * 2; i += 2) {
-            document.getElementsByClassName('numeric')[htmlAttributeTableIndex].innerHTML = attributeSection.childNodes[i].textContent;
-            htmlAttributeTableIndex++;
-          }
 
-          // Power Attributes
-          attributeSection = defaultAttribute.querySelector(attributeSectionNames[1]);
-          amountOfAttributesInSection = Math.floor(attributeSection.childNodes.length / 2);
+          // for loop for each necessary child node in attributeSection (not looping over the "text" nodes which is why i starts
+          // at 1 and increments by 2 until it reaches amountOfAttributesInSection multiplied by 2)
           for (var i = 1; i < amountOfAttributesInSection * 2; i += 2) {
-            document.getElementsByClassName('numeric')[htmlAttributeTableIndex].innerHTML = attributeSection.childNodes[i].textContent;
-            htmlAttributeTableIndex++;
-          }
 
-          // Playstyle Attributes
-          attributeSection = defaultAttribute.querySelector(attributeSectionNames[2]);
-          amountOfAttributesInSection = Math.floor(attributeSection.childNodes.length / 2);
-          for (var i = 1; i < amountOfAttributesInSection * 2; i += 2) {
+            // set the value in the html table
             document.getElementsByClassName('numeric')[htmlAttributeTableIndex].innerHTML = attributeSection.childNodes[i].textContent;
-            htmlAttributeTableIndex++;
-          }
 
-          // Tenacity Attributes
-          attributeSection = defaultAttribute.querySelector(attributeSectionNames[3]);
-          amountOfAttributesInSection = Math.floor(attributeSection.childNodes.length / 2);
-          for (var i = 1; i < amountOfAttributesInSection * 2; i += 2) {
-            document.getElementsByClassName('numeric')[htmlAttributeTableIndex].innerHTML = attributeSection.childNodes[i].textContent;
-            htmlAttributeTableIndex++;
-          }
-
-          // Tactics Attributes
-          attributeSection = defaultAttribute.querySelector(attributeSectionNames[4]);
-          amountOfAttributesInSection = Math.floor(attributeSection.childNodes.length / 2);
-          for (var i = 1; i < amountOfAttributesInSection * 2; i += 2) {
-            document.getElementsByClassName('numeric')[htmlAttributeTableIndex].innerHTML = attributeSection.childNodes[i].textContent;
+            // increment the html attribute table index
             htmlAttributeTableIndex++;
           }
         }
@@ -114,7 +106,7 @@ function changeUpgradeOptionColour(i)
 var userPlusSelection = document.getElementsByClassName('plus');
 
 for(let i = 0; i < userPlusSelection.length; i++) {
-    userPlusSelection[i].addEventListener("click", function() {
+  userPlusSelection[i].addEventListener("click", function() {
     document.getElementsByClassName('numeric')[i].innerHTML++;
     document.getElementsByClassName('upgrade-option-default')[i].innerHTML++;
 
