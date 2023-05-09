@@ -1,51 +1,84 @@
+/**
+ * Constants
+ */
+const attributeSectionNames = ["Technique", "Power", "Playstyle", "Tenacity", "Tactics"];
+const buildDataXMLFileName = "build_data.xml";
+
+/**
+ * setDefaultAttributes function.
+ * Used to set the default attributes of the specified buildName on the html attributes table.
+ * It fetches the data found in the build_data.xml file.
+ * @param {string} buildName 
+ */
+function setDefaultAttributes(buildName) {
+  fetch(buildDataXMLFileName).then(response => {
+    return response.text();
+  }).then(xmlString => {
+    var xmlDoc = new DOMParser().parseFromString(xmlString, "text/xml");
+    var builds = xmlDoc.querySelectorAll("Build");
+
+    for (var build of builds) {
+      var nameValue = build.querySelector("Name").textContent;
+      if (nameValue === buildName) {
+        console.log(nameValue);
+        var defaultAttributes = build.querySelectorAll("DefaultAttributes");
+
+        for (defaultAttribute of defaultAttributes) {
+          var htmlAttributeTableIndex = 0;
+
+          // Technique Attributes
+          var attributeSection = defaultAttribute.querySelector(attributeSectionNames[0]);
+          var amountOfAttributesInSection = Math.floor(attributeSection.childNodes.length / 2);
+          for (var i = 1; i < amountOfAttributesInSection * 2; i += 2) {
+            document.getElementsByClassName('numeric')[htmlAttributeTableIndex].innerHTML = attributeSection.childNodes[i].textContent;
+            htmlAttributeTableIndex++;
+          }
+
+          // Power Attributes
+          attributeSection = defaultAttribute.querySelector(attributeSectionNames[1]);
+          amountOfAttributesInSection = Math.floor(attributeSection.childNodes.length / 2);
+          for (var i = 1; i < amountOfAttributesInSection * 2; i += 2) {
+            document.getElementsByClassName('numeric')[htmlAttributeTableIndex].innerHTML = attributeSection.childNodes[i].textContent;
+            htmlAttributeTableIndex++;
+          }
+
+          // Playstyle Attributes
+          attributeSection = defaultAttribute.querySelector(attributeSectionNames[2]);
+          amountOfAttributesInSection = Math.floor(attributeSection.childNodes.length / 2);
+          for (var i = 1; i < amountOfAttributesInSection * 2; i += 2) {
+            document.getElementsByClassName('numeric')[htmlAttributeTableIndex].innerHTML = attributeSection.childNodes[i].textContent;
+            htmlAttributeTableIndex++;
+          }
+
+          // Tenacity Attributes
+          attributeSection = defaultAttribute.querySelector(attributeSectionNames[3]);
+          amountOfAttributesInSection = Math.floor(attributeSection.childNodes.length / 2);
+          for (var i = 1; i < amountOfAttributesInSection * 2; i += 2) {
+            document.getElementsByClassName('numeric')[htmlAttributeTableIndex].innerHTML = attributeSection.childNodes[i].textContent;
+            htmlAttributeTableIndex++;
+          }
+
+          // Tactics Attributes
+          attributeSection = defaultAttribute.querySelector(attributeSectionNames[4]);
+          amountOfAttributesInSection = Math.floor(attributeSection.childNodes.length / 2);
+          for (var i = 1; i < amountOfAttributesInSection * 2; i += 2) {
+            document.getElementsByClassName('numeric')[htmlAttributeTableIndex].innerHTML = attributeSection.childNodes[i].textContent;
+            htmlAttributeTableIndex++;
+          }
+        }
+      }
+    }
+  });
+}
 
 // When the confirm player build button is clicked 
 document.getElementById('confirm-type').addEventListener('click', function(){
   var e = document.getElementById('player-types');
   var value = e.options[e.selectedIndex].value;
   var text = e.options[e.selectedIndex].text;
-  console.log(value);
-  console.log(text);
 
-  switch (text)
-  {
-    case "Sniper":
-      sniperDefault();
-      break;
-    case "Dangler":
-      danglerDefault();
-      break;
-    case "Playmaker":
-      playmakerDefault();
-      break;
-    case "Two-way Forward":
-      twoWayFwdDefault();
-      break;
-    case "Power Forward":
-      powerFwdDefault();
-      break;
-    case "Grinder":
-      grinderDefault();
-      break;
-    case "Enforcer":
-      enforcerDefault();
-      break;
-    case "Puckmoving Defenseman":
-      puckMovingDefault();
-      break;
-    case "Two-way Defenseman":
-      twoWayDefDefault();
-      break;
-    case "Offensive Defenseman":
-      offDefDefault();
-      break;
-    case "Defensive Defenseman":
-      defDefDefault();
-      break;
-    case "Enforcer Defenseman":
-      enfDefDefault();
-      break;
-  }
+  // set the default attributes to the html table
+  setDefaultAttributes(text);
 })
 
 // When the confirm height button is clicked 
@@ -62,343 +95,6 @@ document.getElementById('confirm-weight').addEventListener('click', function(){
   var e = document.getElementById('weight');
   console.log(e.value);
 })
-
-// assign player build starting attributes for sniper
-function sniperDefault()
-{
-  document.getElementsByClassName('numeric')[0].innerHTML = 88;
-  document.getElementsByClassName('numeric')[1].innerHTML = 86;
-  document.getElementsByClassName('numeric')[2].innerHTML = 85;
-  document.getElementsByClassName('numeric')[3].innerHTML = 72;
-  document.getElementsByClassName('numeric')[4].innerHTML = 85;
-  document.getElementsByClassName('numeric')[5].innerHTML = 88;
-  document.getElementsByClassName('numeric')[6].innerHTML = 88;
-  document.getElementsByClassName('numeric')[7].innerHTML = 85;
-  document.getElementsByClassName('numeric')[8].innerHTML = 85;
-  document.getElementsByClassName('numeric')[9].innerHTML = 83;
-  document.getElementsByClassName('numeric')[10].innerHTML = 80;
-  document.getElementsByClassName('numeric')[11].innerHTML = 89;
-  document.getElementsByClassName('numeric')[12].innerHTML = 72;
-  document.getElementsByClassName('numeric')[13].innerHTML = 72;
-  document.getElementsByClassName('numeric')[14].innerHTML = 71;
-  document.getElementsByClassName('numeric')[15].innerHTML = 80;
-  document.getElementsByClassName('numeric')[16].innerHTML = 73;
-  document.getElementsByClassName('numeric')[17].innerHTML = 72;
-  document.getElementsByClassName('numeric')[18].innerHTML = 75;
-  document.getElementsByClassName('numeric')[19].innerHTML = 79;
-  document.getElementsByClassName('numeric')[20].innerHTML = 85;
-  document.getElementsByClassName('numeric')[21].innerHTML = 81;
-  document.getElementsByClassName('numeric')[22].innerHTML = 72;
-}
-
-// assign player build starting attributes for dangler
-function danglerDefault()
-{
-  document.getElementsByClassName('numeric')[0].innerHTML = 83;
-  document.getElementsByClassName('numeric')[1].innerHTML = 82;
-  document.getElementsByClassName('numeric')[2].innerHTML = 85;
-  document.getElementsByClassName('numeric')[3].innerHTML = 72;
-  document.getElementsByClassName('numeric')[4].innerHTML = 85;
-  document.getElementsByClassName('numeric')[5].innerHTML = 79;
-  document.getElementsByClassName('numeric')[6].innerHTML = 79;
-  document.getElementsByClassName('numeric')[7].innerHTML = 85;
-  document.getElementsByClassName('numeric')[8].innerHTML = 87;
-  document.getElementsByClassName('numeric')[9].innerHTML = 83;
-  document.getElementsByClassName('numeric')[10].innerHTML = 82;
-  document.getElementsByClassName('numeric')[11].innerHTML = 88;
-  document.getElementsByClassName('numeric')[12].innerHTML = 72;
-  document.getElementsByClassName('numeric')[13].innerHTML = 75;
-  document.getElementsByClassName('numeric')[14].innerHTML = 73;
-  document.getElementsByClassName('numeric')[15].innerHTML = 82;
-  document.getElementsByClassName('numeric')[16].innerHTML = 73;
-  document.getElementsByClassName('numeric')[17].innerHTML = 72;
-  document.getElementsByClassName('numeric')[18].innerHTML = 73;
-  document.getElementsByClassName('numeric')[19].innerHTML = 90;
-  document.getElementsByClassName('numeric')[20].innerHTML = 85;
-  document.getElementsByClassName('numeric')[21].innerHTML = 82;
-  document.getElementsByClassName('numeric')[22].innerHTML = 72;
-}
-
-// assign player build starting attributes for playmaker
-function playmakerDefault()
-{
-  /*
-  document.getElementsByClassName('numeric')[0].innerHTML = 83;
-  document.getElementsByClassName('numeric')[1].innerHTML = 82;
-  document.getElementsByClassName('numeric')[2].innerHTML = 80;
-  document.getElementsByClassName('numeric')[3].innerHTML = 76;
-  document.getElementsByClassName('numeric')[4].innerHTML = 80;
-  document.getElementsByClassName('numeric')[5].innerHTML = 81;
-  document.getElementsByClassName('numeric')[6].innerHTML = 81;
-  document.getElementsByClassName('numeric')[7].innerHTML = 80;
-  document.getElementsByClassName('numeric')[8].innerHTML = 84;
-  document.getElementsByClassName('numeric')[9].innerHTML = 81;
-  document.getElementsByClassName('numeric')[10].innerHTML = 85;
-  document.getElementsByClassName('numeric')[11].innerHTML = 86;
-  document.getElementsByClassName('numeric')[12].innerHTML = 76;
-  document.getElementsByClassName('numeric')[13].innerHTML = 85;
-  document.getElementsByClassName('numeric')[14].innerHTML = 88;
-  document.getElementsByClassName('numeric')[15].innerHTML = 83;
-  document.getElementsByClassName('numeric')[16].innerHTML = 78;
-  document.getElementsByClassName('numeric')[17].innerHTML = 77;
-  document.getElementsByClassName('numeric')[18].innerHTML = 85;
-  document.getElementsByClassName('numeric')[19].innerHTML = 80;
-  document.getElementsByClassName('numeric')[20].innerHTML = 85;
-  document.getElementsByClassName('numeric')[21].innerHTML = 84;
-  document.getElementsByClassName('numeric')[22].innerHTML = 75;*/
-}
-
-// assign player build starting attributes for two-way forward
-function twoWayFwdDefault()
-{
-  document.getElementsByClassName('numeric')[0].innerHTML = 83;
-  document.getElementsByClassName('numeric')[1].innerHTML = 82;
-  document.getElementsByClassName('numeric')[2].innerHTML = 80;
-  document.getElementsByClassName('numeric')[3].innerHTML = 76;
-  document.getElementsByClassName('numeric')[4].innerHTML = 80;
-  document.getElementsByClassName('numeric')[5].innerHTML = 81;
-  document.getElementsByClassName('numeric')[6].innerHTML = 81;
-  document.getElementsByClassName('numeric')[7].innerHTML = 80;
-  document.getElementsByClassName('numeric')[8].innerHTML = 84;
-  document.getElementsByClassName('numeric')[9].innerHTML = 81;
-  document.getElementsByClassName('numeric')[10].innerHTML = 85;
-  document.getElementsByClassName('numeric')[11].innerHTML = 86;
-  document.getElementsByClassName('numeric')[12].innerHTML = 76;
-  document.getElementsByClassName('numeric')[13].innerHTML = 85;
-  document.getElementsByClassName('numeric')[14].innerHTML = 88;
-  document.getElementsByClassName('numeric')[15].innerHTML = 83;
-  document.getElementsByClassName('numeric')[16].innerHTML = 78;
-  document.getElementsByClassName('numeric')[17].innerHTML = 77;
-  document.getElementsByClassName('numeric')[18].innerHTML = 85;
-  document.getElementsByClassName('numeric')[19].innerHTML = 80;
-  document.getElementsByClassName('numeric')[20].innerHTML = 85;
-  document.getElementsByClassName('numeric')[21].innerHTML = 84;
-  document.getElementsByClassName('numeric')[22].innerHTML = 75;
-}
-
-// assign player build starting attributes for power forward
-function powerFwdDefault()
-{
-  document.getElementsByClassName('numeric')[0].innerHTML = 81;
-  document.getElementsByClassName('numeric')[1].innerHTML = 83;
-  document.getElementsByClassName('numeric')[2].innerHTML = 77;
-  document.getElementsByClassName('numeric')[3].innerHTML = 84;
-  document.getElementsByClassName('numeric')[4].innerHTML = 77;
-  document.getElementsByClassName('numeric')[5].innerHTML = 83;
-  document.getElementsByClassName('numeric')[6].innerHTML = 86;
-  document.getElementsByClassName('numeric')[7].innerHTML = 77;
-  document.getElementsByClassName('numeric')[8].innerHTML = 87;
-  document.getElementsByClassName('numeric')[9].innerHTML = 78;
-  document.getElementsByClassName('numeric')[10].innerHTML = 80;
-  document.getElementsByClassName('numeric')[11].innerHTML = 86;
-  document.getElementsByClassName('numeric')[12].innerHTML = 86;
-  document.getElementsByClassName('numeric')[13].innerHTML = 80;
-  document.getElementsByClassName('numeric')[14].innerHTML = 77;
-  document.getElementsByClassName('numeric')[15].innerHTML = 80;
-  document.getElementsByClassName('numeric')[16].innerHTML = 86;
-  document.getElementsByClassName('numeric')[17].innerHTML = 86;
-  document.getElementsByClassName('numeric')[18].innerHTML = 85;
-  document.getElementsByClassName('numeric')[19].innerHTML = 78;
-  document.getElementsByClassName('numeric')[20].innerHTML = 85;
-  document.getElementsByClassName('numeric')[21].innerHTML = 84;
-  document.getElementsByClassName('numeric')[22].innerHTML = 85;
-}
-
-// assign player build starting attributes for grinder
-function grinderDefault()
-{
-  document.getElementsByClassName('numeric')[0].innerHTML = 80;
-  document.getElementsByClassName('numeric')[1].innerHTML = 80;
-  document.getElementsByClassName('numeric')[2].innerHTML = 80;
-  document.getElementsByClassName('numeric')[3].innerHTML = 76;
-  document.getElementsByClassName('numeric')[4].innerHTML = 80;
-  document.getElementsByClassName('numeric')[5].innerHTML = 82;
-  document.getElementsByClassName('numeric')[6].innerHTML = 82;
-  document.getElementsByClassName('numeric')[7].innerHTML = 80;
-  document.getElementsByClassName('numeric')[8].innerHTML = 83;
-  document.getElementsByClassName('numeric')[9].innerHTML = 81;
-  document.getElementsByClassName('numeric')[10].innerHTML = 79;
-  document.getElementsByClassName('numeric')[11].innerHTML = 83;
-  document.getElementsByClassName('numeric')[12].innerHTML = 76;
-  document.getElementsByClassName('numeric')[13].innerHTML = 88;
-  document.getElementsByClassName('numeric')[14].innerHTML = 85;
-  document.getElementsByClassName('numeric')[15].innerHTML = 86;
-  document.getElementsByClassName('numeric')[16].innerHTML = 78;
-  document.getElementsByClassName('numeric')[17].innerHTML = 77;
-  document.getElementsByClassName('numeric')[18].innerHTML = 90;
-  document.getElementsByClassName('numeric')[19].innerHTML = 75;
-  document.getElementsByClassName('numeric')[20].innerHTML = 85;
-  document.getElementsByClassName('numeric')[21].innerHTML = 88;
-  document.getElementsByClassName('numeric')[22].innerHTML = 75;
-}
-
-// assign player build starting attributes for enforcer
-function enforcerDefault()
-{
-  document.getElementsByClassName('numeric')[0].innerHTML = 80;
-  document.getElementsByClassName('numeric')[1].innerHTML = 78;
-  document.getElementsByClassName('numeric')[2].innerHTML = 77;
-  document.getElementsByClassName('numeric')[3].innerHTML = 84;
-  document.getElementsByClassName('numeric')[4].innerHTML = 77;
-  document.getElementsByClassName('numeric')[5].innerHTML = 82;
-  document.getElementsByClassName('numeric')[6].innerHTML = 83;
-  document.getElementsByClassName('numeric')[7].innerHTML = 77;
-  document.getElementsByClassName('numeric')[8].innerHTML = 82;
-  document.getElementsByClassName('numeric')[9].innerHTML = 78;
-  document.getElementsByClassName('numeric')[10].innerHTML = 79;
-  document.getElementsByClassName('numeric')[11].innerHTML = 79;
-  document.getElementsByClassName('numeric')[12].innerHTML = 86;
-  document.getElementsByClassName('numeric')[13].innerHTML = 75;
-  document.getElementsByClassName('numeric')[14].innerHTML = 75;
-  document.getElementsByClassName('numeric')[15].innerHTML = 79;
-  document.getElementsByClassName('numeric')[16].innerHTML = 86;
-  document.getElementsByClassName('numeric')[17].innerHTML = 86;
-  document.getElementsByClassName('numeric')[18].innerHTML = 80;
-  document.getElementsByClassName('numeric')[19].innerHTML = 70;
-  document.getElementsByClassName('numeric')[20].innerHTML = 85;
-  document.getElementsByClassName('numeric')[21].innerHTML = 80;
-  document.getElementsByClassName('numeric')[22].innerHTML = 85;
-}
-
-// assign player build starting attributes for puckmoving defenseman
-function puckMovingDefault()
-{
-  document.getElementsByClassName('numeric')[0].innerHTML = 81;
-  document.getElementsByClassName('numeric')[1].innerHTML = 82;
-  document.getElementsByClassName('numeric')[2].innerHTML = 85;
-  document.getElementsByClassName('numeric')[3].innerHTML = 72;
-  document.getElementsByClassName('numeric')[4].innerHTML = 85;
-  document.getElementsByClassName('numeric')[5].innerHTML = 79;
-  document.getElementsByClassName('numeric')[6].innerHTML = 79;
-  document.getElementsByClassName('numeric')[7].innerHTML = 85;
-  document.getElementsByClassName('numeric')[8].innerHTML = 88;
-  document.getElementsByClassName('numeric')[9].innerHTML = 83;
-  document.getElementsByClassName('numeric')[10].innerHTML = 87;
-  document.getElementsByClassName('numeric')[11].innerHTML = 87;
-  document.getElementsByClassName('numeric')[12].innerHTML = 72;
-  document.getElementsByClassName('numeric')[13].innerHTML = 81;
-  document.getElementsByClassName('numeric')[14].innerHTML = 85;
-  document.getElementsByClassName('numeric')[15].innerHTML = 82;
-  document.getElementsByClassName('numeric')[16].innerHTML = 73;
-  document.getElementsByClassName('numeric')[17].innerHTML = 72;
-  document.getElementsByClassName('numeric')[18].innerHTML = 80;
-  document.getElementsByClassName('numeric')[19].innerHTML = 84;
-  document.getElementsByClassName('numeric')[20].innerHTML = 80;
-  document.getElementsByClassName('numeric')[21].innerHTML = 82;
-  document.getElementsByClassName('numeric')[22].innerHTML = 72;
-}
-
-// assign player build starting attributes for two-way defenseman
-function twoWayDefDefault()
-{
-  document.getElementsByClassName('numeric')[0].innerHTML = 82;
-  document.getElementsByClassName('numeric')[1].innerHTML = 82;
-  document.getElementsByClassName('numeric')[2].innerHTML = 80;
-  document.getElementsByClassName('numeric')[3].innerHTML = 75;
-  document.getElementsByClassName('numeric')[4].innerHTML = 80;
-  document.getElementsByClassName('numeric')[5].innerHTML = 81;
-  document.getElementsByClassName('numeric')[6].innerHTML = 82;
-  document.getElementsByClassName('numeric')[7].innerHTML = 80;
-  document.getElementsByClassName('numeric')[8].innerHTML = 84;
-  document.getElementsByClassName('numeric')[9].innerHTML = 81;
-  document.getElementsByClassName('numeric')[10].innerHTML = 85;
-  document.getElementsByClassName('numeric')[11].innerHTML = 83;
-  document.getElementsByClassName('numeric')[12].innerHTML = 76;
-  document.getElementsByClassName('numeric')[13].innerHTML = 85;
-  document.getElementsByClassName('numeric')[14].innerHTML = 88;
-  document.getElementsByClassName('numeric')[15].innerHTML = 82;
-  document.getElementsByClassName('numeric')[16].innerHTML = 78;
-  document.getElementsByClassName('numeric')[17].innerHTML = 77;
-  document.getElementsByClassName('numeric')[18].innerHTML = 88;
-  document.getElementsByClassName('numeric')[19].innerHTML = 75;
-  document.getElementsByClassName('numeric')[20].innerHTML = 80;
-  document.getElementsByClassName('numeric')[21].innerHTML = 87;
-  document.getElementsByClassName('numeric')[22].innerHTML = 75;
-}
-
-// assign player build starting attributes for offensive defenseman
-function offDefDefault()
-{
-  document.getElementsByClassName('numeric')[0].innerHTML = 83;
-  document.getElementsByClassName('numeric')[1].innerHTML = 85;
-  document.getElementsByClassName('numeric')[2].innerHTML = 80;
-  document.getElementsByClassName('numeric')[3].innerHTML = 76;
-  document.getElementsByClassName('numeric')[4].innerHTML = 80;
-  document.getElementsByClassName('numeric')[5].innerHTML = 83;
-  document.getElementsByClassName('numeric')[6].innerHTML = 87;
-  document.getElementsByClassName('numeric')[7].innerHTML = 80;
-  document.getElementsByClassName('numeric')[8].innerHTML = 85;
-  document.getElementsByClassName('numeric')[9].innerHTML = 81;
-  document.getElementsByClassName('numeric')[10].innerHTML = 82;
-  document.getElementsByClassName('numeric')[11].innerHTML = 88;
-  document.getElementsByClassName('numeric')[12].innerHTML = 76;
-  document.getElementsByClassName('numeric')[13].innerHTML = 79;
-  document.getElementsByClassName('numeric')[14].innerHTML = 80;
-  document.getElementsByClassName('numeric')[15].innerHTML = 83;
-  document.getElementsByClassName('numeric')[16].innerHTML = 78;
-  document.getElementsByClassName('numeric')[17].innerHTML = 77;
-  document.getElementsByClassName('numeric')[18].innerHTML = 79;
-  document.getElementsByClassName('numeric')[19].innerHTML = 78;
-  document.getElementsByClassName('numeric')[20].innerHTML = 80;
-  document.getElementsByClassName('numeric')[21].innerHTML = 82;
-  document.getElementsByClassName('numeric')[22].innerHTML = 75;
-}
-
-// assign player build starting attributes for defensive defenseman
-function defDefDefault()
-{
-  document.getElementsByClassName('numeric')[0].innerHTML = 79;
-  document.getElementsByClassName('numeric')[1].innerHTML = 79;
-  document.getElementsByClassName('numeric')[2].innerHTML = 77;
-  document.getElementsByClassName('numeric')[3].innerHTML = 84;
-  document.getElementsByClassName('numeric')[4].innerHTML = 77;
-  document.getElementsByClassName('numeric')[5].innerHTML = 81;
-  document.getElementsByClassName('numeric')[6].innerHTML = 85;
-  document.getElementsByClassName('numeric')[7].innerHTML = 77;
-  document.getElementsByClassName('numeric')[8].innerHTML = 83;
-  document.getElementsByClassName('numeric')[9].innerHTML = 78;
-  document.getElementsByClassName('numeric')[10].innerHTML = 79;
-  document.getElementsByClassName('numeric')[11].innerHTML = 79;
-  document.getElementsByClassName('numeric')[12].innerHTML = 86;
-  document.getElementsByClassName('numeric')[13].innerHTML = 90;
-  document.getElementsByClassName('numeric')[14].innerHTML = 90;
-  document.getElementsByClassName('numeric')[15].innerHTML = 80;
-  document.getElementsByClassName('numeric')[16].innerHTML = 86;
-  document.getElementsByClassName('numeric')[17].innerHTML = 86;
-  document.getElementsByClassName('numeric')[18].innerHTML = 90;
-  document.getElementsByClassName('numeric')[19].innerHTML = 70;
-  document.getElementsByClassName('numeric')[20].innerHTML = 80;
-  document.getElementsByClassName('numeric')[21].innerHTML = 90;
-  document.getElementsByClassName('numeric')[22].innerHTML = 85;
-}
-
-// assign player build starting attributes for enforcer defenseman
-function enfDefDefault()
-{
-  document.getElementsByClassName('numeric')[0].innerHTML = 79;
-  document.getElementsByClassName('numeric')[1].innerHTML = 79;
-  document.getElementsByClassName('numeric')[2].innerHTML = 77;
-  document.getElementsByClassName('numeric')[3].innerHTML = 84;
-  document.getElementsByClassName('numeric')[4].innerHTML = 77;
-  document.getElementsByClassName('numeric')[5].innerHTML = 81;
-  document.getElementsByClassName('numeric')[6].innerHTML = 84;
-  document.getElementsByClassName('numeric')[7].innerHTML = 77;
-  document.getElementsByClassName('numeric')[8].innerHTML = 82;
-  document.getElementsByClassName('numeric')[9].innerHTML = 78;
-  document.getElementsByClassName('numeric')[10].innerHTML = 79;
-  document.getElementsByClassName('numeric')[11].innerHTML = 75;
-  document.getElementsByClassName('numeric')[12].innerHTML = 86;
-  document.getElementsByClassName('numeric')[13].innerHTML = 79;
-  document.getElementsByClassName('numeric')[14].innerHTML = 80;
-  document.getElementsByClassName('numeric')[15].innerHTML = 79;
-  document.getElementsByClassName('numeric')[16].innerHTML = 86;
-  document.getElementsByClassName('numeric')[17].innerHTML = 86;
-  document.getElementsByClassName('numeric')[18].innerHTML = 80;
-  document.getElementsByClassName('numeric')[19].innerHTML = 70;
-  document.getElementsByClassName('numeric')[20].innerHTML = 80;
-  document.getElementsByClassName('numeric')[21].innerHTML = 78;
-  document.getElementsByClassName('numeric')[22].innerHTML = 85;
-}
 
 // change upgrade display colour based on if it is positive (green) or negative (red)
 function changeUpgradeOptionColour(i)
