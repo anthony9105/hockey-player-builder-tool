@@ -1,4 +1,4 @@
-import {buildDataXMLFileName} from "./constants.js";
+import {buildDataXMLFileName, allHeights} from "./constants.js";
 
 
 /**
@@ -56,6 +56,9 @@ function setDefaultAttributes(buildName) {
           }
         }
 
+        // reset the heights
+        resetHeights();
+
         // set default height
         var defaultHeight = build.querySelector("Height").querySelector("default").textContent;
         document.getElementById('height').value = defaultHeight;
@@ -64,9 +67,89 @@ function setDefaultAttributes(buildName) {
         var defaultWeight = build.querySelector("Weight").querySelector("default").textContent;
         document.getElementById('weight').value = defaultWeight;
 
+        // minimum heights and weights
+        var minHeight = convertFeetAndInchesToCm(build.querySelector("Height").querySelector("minimum").textContent);
+        var maxHeight = convertFeetAndInchesToCm(build.querySelector("Height").querySelector("maximum").textContent);
+        var minWeight = convertFeetAndInchesToCm(build.querySelector("Weight").querySelector("minimum").textContent);
+        var maxWeight = convertFeetAndInchesToCm(build.querySelector("Weight").querySelector("maximum").textContent);
+
+        var heights = document.getElementById('height');
+
+        // for each height option
+        for (var i = 0; i < heights.length; i++) {
+          var currentHeight = convertFeetAndInchesToCm(heights[i].value);
+
+          // if the current height is less than the minimum height for the current build then remove it
+          // from the options
+          if (currentHeight < minHeight) {
+            heights[i].remove(i);
+            i--;
+          }
+          // if the current height is greater than the maximum height for the current build then remove it
+          // from the options
+          else if (currentHeight > maxHeight) {
+            heights[i].remove(i);
+            i--;
+          }
+        }
       }
     }
   });
+}
+
+/**
+ * addAllHeights function.
+ * Used to add every possible height to the html option select.
+ */
+function addAllHeights() {
+  var heights = document.getElementById('height');
+
+  for (var i = 0; i < allHeights.length; i++) {
+    var heightOption = new Option(allHeights[i], allHeights[i]);
+    heights.add(heightOption, undefined);
+  }
+}
+
+/**
+ * removeAllHeights function.
+ * Used to remove all the height options in the html option select.
+ */
+function removeAllHeights() {
+  var heights = document.getElementById('height');
+
+  while (heights.options.length > 0) {
+    heights.remove(0);
+  }
+}
+
+/**
+ * resetHeights function.
+ * Used to reset the heights on the html option select for heights.
+ * (Used when changing to a new build).
+ */
+function resetHeights() {
+  removeAllHeights();
+  addAllHeights();
+}
+
+/**
+ * convertFeetAndInchesToCm function.
+ * Used to convert imperial height (feet and inches) into
+ * centimetres.
+ * @param {string} imperialHeight (height in feet and inches.
+ *                                 Example: 5'11)
+ * @returns height in cm (centimetres)
+ */
+function convertFeetAndInchesToCm(imperialHeight) {
+  var feet = imperialHeight[0];
+
+  var inches = "";
+  for (var i = 2; i < imperialHeight.length; i++) {
+    inches += imperialHeight[i];
+  }
+  inches = parseInt(inches);
+
+  return (feet * 30.48) + (inches * 2.54);
 }
 
 /**
