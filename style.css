@@ -139,6 +139,22 @@ input {
     margin-bottom: 0.3em;
 }
 
+#points-avail1 {
+    padding-left: calc(9vw);
+}
+#points-avail2 {
+    padding-left: calc(9vw);
+}
+#points-avail3 {
+    padding-left: calc(9.5vw);
+}
+#points-avail4 {
+    padding-left: calc(8vw);
+}
+#points-avail5 {
+    padding-left: calc(7.5vw);
+}
+
 tbody {
     display: flex;
     position: relative;
