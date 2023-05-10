@@ -238,18 +238,14 @@ document.getElementById('confirm-weight').addEventListener('click', function(){
 })
 
 // change upgrade display colour based on if it is positive (green) or negative (red)
-function changeUpgradeOptionColour(i)
-{
-  if (document.getElementsByClassName('upgrade-option-default')[i].innerHTML > 0)
-  {
+function changeUpgradeOptionColour(i) {
+  if (document.getElementsByClassName('upgrade-option-default')[i].innerHTML > 0) {
     document.getElementsByClassName('upgrade-option-default')[i].style.color = 'green';
   }
-  else if (document.getElementsByClassName('upgrade-option-default')[i].innerHTML == 0)
-  {
+  else if (document.getElementsByClassName('upgrade-option-default')[i].innerHTML == 0) {
     document.getElementsByClassName('upgrade-option-default')[i].style.color = 'lightgray';
   }
-  else
-  {
+  else {
     document.getElementsByClassName('upgrade-option-default')[i].style.color = 'red';
   }
 }
@@ -257,7 +253,7 @@ function changeUpgradeOptionColour(i)
 // increase attributes
 var userPlusSelection = document.getElementsByClassName('plus');
 
-for(let i = 0; i < userPlusSelection.length; i++) {
+for (var i = 0; i < userPlusSelection.length; i++) {
   userPlusSelection[i].addEventListener("click", function() {
 
     // +5 is the maximum upgrade
@@ -274,7 +270,7 @@ for(let i = 0; i < userPlusSelection.length; i++) {
 // decrease attributes
 var userMinusSelection = document.getElementsByClassName('minus');
 
-for(let i = 0; i < userMinusSelection.length; i++) {
+for (var i = 0; i < userMinusSelection.length; i++) {
   userMinusSelection[i].addEventListener("click", function() {
 
     // the maximum downgrade is 5 (-5)
