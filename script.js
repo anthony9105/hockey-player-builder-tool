@@ -257,7 +257,8 @@ for (let i = 0; i < userPlusSelection.length; i++) {
   userPlusSelection[i].addEventListener("click", function() {
 
     // +5 is the maximum upgrade
-    if (document.getElementsByClassName('upgrade-option-default')[i].innerHTML < 5) {
+    if (document.getElementsByClassName('upgrade-option-default')[i].innerHTML < 5 && 
+    document.getElementsByClassName('numeric')[i].innerHTML < 99) {
       document.getElementsByClassName('numeric')[i].innerHTML++;
       document.getElementsByClassName('upgrade-option-default')[i].innerHTML++;
       changeUpgradeOptionColour(i);
@@ -274,7 +275,8 @@ for (let i = 0; i < userMinusSelection.length; i++) {
   userMinusSelection[i].addEventListener("click", function() {
 
     // the maximum downgrade is 5 (-5)
-    if (document.getElementsByClassName('upgrade-option-default')[i].innerHTML > -5) {
+    if (document.getElementsByClassName('upgrade-option-default')[i].innerHTML > -5 && 
+    document.getElementsByClassName('numeric')[i].innerHTML > 0) {
       document.getElementsByClassName('numeric')[i].innerHTML--;
       document.getElementsByClassName('upgrade-option-default')[i].innerHTML--;
   
