@@ -1,6 +1,5 @@
 import {buildDataXMLFileName, allHeights} from "./constants.js";
 
-
 /**
  * setDefaultAttributes function.
  * Used to set the default attributes of the specified buildName on the html attributes table.
@@ -70,8 +69,17 @@ function setDefaultAttributes(buildName) {
         // minimum heights and weights
         var minHeight = convertFeetAndInchesToCm(build.querySelector("Height").querySelector("minimum").textContent);
         var maxHeight = convertFeetAndInchesToCm(build.querySelector("Height").querySelector("maximum").textContent);
-        var minWeight = convertFeetAndInchesToCm(build.querySelector("Weight").querySelector("minimum").textContent);
-        var maxWeight = convertFeetAndInchesToCm(build.querySelector("Weight").querySelector("maximum").textContent);
+
+        var minWeight = build.querySelector("Weight").querySelector("minimum").textContent;
+        var maxWeight = build.querySelector("Weight").querySelector("maximum").textContent;
+
+        var weight = document.getElementById("weight");
+
+        weight.min = minWeight;
+        weight.max = maxWeight;
+
+        minWeight = convertFeetAndInchesToCm(minWeight);
+        maxWeight = convertFeetAndInchesToCm(maxWeight);
 
         var heights = document.getElementById('height');
 
@@ -92,6 +100,7 @@ function setDefaultAttributes(buildName) {
             i--;
           }
         }
+
       }
     }
   });
@@ -173,6 +182,8 @@ document.getElementById('confirm-type').addEventListener('click', function(){
 
   // set the default attributes to the html table
   setDefaultAttributes(text);
+
+  // reset the upgrades
   resetUpgrades();
 })
 
@@ -187,8 +198,9 @@ document.getElementById('confirm-height').addEventListener('click', function(){
 
 // When the confirm weight button is clicked 
 document.getElementById('confirm-weight').addEventListener('click', function(){
-  var e = document.getElementById('weight');
-  console.log(e.value);
+  var newWeight = document.getElementById('weight');
+  console.log(newWeight.value);
+
 })
 
 // change upgrade display colour based on if it is positive (green) or negative (red)
