@@ -5,6 +5,9 @@
 
 import {buildDataXMLFileName, allHeights} from "./constants.js";
 
+var availableUpgradePoints = [0, 0, 0, 0, 0];
+const idNames = ["points-avail1-value", "points-avail2-value", "points-avail3-value", "points-avail4-value", "points-avail5-value"];
+
 /**
  * setDefaultAttributes function.
  * Used to set the default attributes of the specified buildName on the html attributes table.
@@ -250,6 +253,10 @@ function changeUpgradeOptionColour(i) {
   }
 }
 
+function updateAvailableUpgradePoints(availUpgradePts, idName) {
+  document.getElementById(idName).innerHTML = availUpgradePts;
+}
+
 // increase attributes
 var userPlusSelection = document.getElementsByClassName('plus2');
 
@@ -262,6 +269,25 @@ for (let i = 0; i < userPlusSelection.length; i++) {
       document.getElementsByClassName('numeric')[i].innerHTML++;
       document.getElementsByClassName('upgrade-option-default')[i].innerHTML++;
       changeUpgradeOptionColour(i);
+
+      var j = 0;
+      if (i < 5) {
+        j = 0;
+      }
+      else if (i < 10) {
+        j = 1;
+      }
+      else if (i < 15) {
+        j = 2;
+      }
+      else if (i < 19) {
+        j = 3;
+      }
+      else {
+        j = 4;
+      }
+      updateAvailableUpgradePoints(10, idNames[j]);
+      
     }
 
   })
