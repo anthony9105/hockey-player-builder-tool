@@ -110,6 +110,29 @@ button {
     margin-right: 8em;
 }
 
+.plus2 {
+    position: relative;
+    width: 26px;
+    height: 25.25px;
+    bottom: 0px;
+    margin: 0px;
+    background-color: rgb(224, 252, 213);
+}
+
+.minus2 {
+    position: relative;
+    width: 26px;
+    height: 25.25px;
+    bottom: 0px;
+    margin: 0px;
+    background-color: rgb(250, 218, 218);
+}
+
+#buttontd {
+    text-align: left;
+    padding: 0em 0em;
+}
+
 input {
     background-color: rgb(195, 237, 251);
     width: 5em;

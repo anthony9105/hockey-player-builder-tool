@@ -251,7 +251,7 @@ function changeUpgradeOptionColour(i) {
 }
 
 // increase attributes
-var userPlusSelection = document.getElementsByClassName('plus');
+var userPlusSelection = document.getElementsByClassName('plus2');
 
 for (let i = 0; i < userPlusSelection.length; i++) {
   userPlusSelection[i].addEventListener("click", function() {
@@ -268,7 +268,7 @@ for (let i = 0; i < userPlusSelection.length; i++) {
 
 
 // decrease attributes
-var userMinusSelection = document.getElementsByClassName('minus');
+var userMinusSelection = document.getElementsByClassName('minus2');
 
 for (let i = 0; i < userMinusSelection.length; i++) {
   userMinusSelection[i].addEventListener("click", function() {
