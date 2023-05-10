@@ -1,6 +1,6 @@
 header {
     text-align: center;
-    font-size: 16pt;
+    font-size: calc(16pt + 0.2vw);
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: bold;
     background-color: rgb(123, 246, 246);
@@ -8,7 +8,7 @@ header {
 }
 
 aside {
-    font-size: 9pt;
+    font-size: calc(7pt + 0.2vw);
     margin-bottom: 3.5em;
 }
 
@@ -17,7 +17,7 @@ th{
     color: #fff;
     white-space: nowrap;
     margin-left: 0.2em;
-    font-size: 9.5pt;
+    font-size: calc(7pt + 0.2vw);
 }
 
 th,td {
@@ -27,30 +27,32 @@ th,td {
 .numeric {
     text-align: right;
     background-color: gray;
-    font-size: 9.5pt;
+    font-size: calc(7pt + 0.2vw);
 }
 
 .text {
     text-align: center;
-    font-size: 9.5pt;
+    font-size: calc(7pt + 0.2vw);
 }
 
 .upgrade-option-default {
     text-align: left;
     background-color:lightgray;
-    width: 0.4em;
+    width: calc(2px + 0.25vw);
     font-style: italic;
-    font-size: 9.5pt;
+    font-size: calc(7pt + 0.25vw);
+    height: calc(11.25px + 0.25vw);
     color: lightgray;
 }
 
 .attribute-boost {
     text-align: left;
     background-color:lightgray;
-    width: 0.4em;
-    margin-right: 0.2em;
+    width: calc(2px + 0.25vw);
+    margin-right: calc(2px + 0.25vw);
     font-style: italic;
-    font-size: 9.5pt;
+    font-size: calc(7pt + 0.25vw);
+    height: calc(11.25px + 0.25vw);
     color: lightgray;
 }
 
@@ -58,14 +60,14 @@ th,td {
     text-align: left;
     background-color: rgb(224, 252, 213);
     width: 0.2em;
-    font-size: 9.5pt;
+    font-size: calc(7pt + 0.25vw);
 }
 
 .minus{
     text-align: left;
     background-color: rgb(250, 218, 218);
     width: 0.2em;
-    font-size: 9.5pt;
+    font-size: calc(7pt + 0.25vw);
 }
 
 
@@ -81,48 +83,46 @@ table {
 th,
 td {
   text-align: left;
-  padding: 0.4em 0.8em;
+  padding: 8px 15px;
   white-space: nowrap;
 }
 
 #player-types {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 10pt;
+    font-size: calc(7.5pt + 0.25vw);
     background-color: rgb(195, 237, 251);
-    margin-bottom: 0.3em;
+    margin-bottom: 3px;
 }
 
 label {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 10pt;
-    margin-bottom: 2em;
+    font-size: calc(7.5pt + 0.25vw);
+    margin-bottom: 2px;
 }
 
 #height {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 10pt;
+    font-size: calc(7.5pt + 0.25vw);
     background-color: rgb(195, 237, 251);
-    margin-bottom: 0.3em;
+    margin-bottom: 3px;
 }
 
 button {
-    margin-bottom: 2em;
-    margin-right: 8em;
+    margin-bottom: calc(30px + 0.25vw);
+    margin-right: calc(80px + 0.25vw);
 }
 
 .plus2 {
-    position: relative;
-    width: 26px;
-    height: 25.25px;
+    width: calc(27.25px + 0.25vw);
+    height: calc(27.25px + 0.25vw);
     bottom: 0px;
     margin: 0px;
     background-color: rgb(224, 252, 213);
 }
 
 .minus2 {
-    position: relative;
-    width: 26px;
-    height: 25.25px;
+    width: calc(27.25px + 0.25vw);
+    height: calc(27.25px + 0.25vw);
     bottom: 0px;
     margin: 0px;
     background-color: rgb(250, 218, 218);
