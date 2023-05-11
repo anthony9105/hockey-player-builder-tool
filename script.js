@@ -3,10 +3,10 @@
  * Anthony Liscio
  */
 
-import {buildDataXMLFileName, allHeights} from "./constants.js";
+import {buildDataXMLFileName, upgradePointsXMLFileName, allHeights, idNames} from "./constants.js";
 
 var availableUpgradePoints = [0, 0, 0, 0, 0];
-const idNames = ["points-avail1-value", "points-avail2-value", "points-avail3-value", "points-avail4-value", "points-avail5-value"];
+var previousUpgradeModifier = new Array(23).fill(0);
 
 /**
  * setDefaultAttributes function.
@@ -49,8 +49,8 @@ function setupNewBuild(buildName) {
 /**
  * setDefaultAttributes function.
  * Used to set all the default attributes for the specific build
- * @param {node} build 
- * @param {string} nameValue 
+ * @param {node} build the build node
+ * @param {string} nameValue the name of the build
  */
 function setDefaultAttributes(build, nameValue) {
   console.log(nameValue);
@@ -90,7 +90,7 @@ function setDefaultAttributes(build, nameValue) {
  * Used to set the default height for specific build, and only include the height options that are allowed
  * for the specific build.  For example: a sniper can be 5'7, 5'8, 5'9, 5'10, 5'11, 6'0, or 6'1, while the 
  * allowed heights for a power forward are 6'2, 6'3, 6'4, 6'5, 6'6, 6'7.
- * @param {node} build 
+ * @param {node} build the build node
  */
 function setBuildHeights(build) {
   // set default height
@@ -182,8 +182,7 @@ function resetHeights() {
  * convertFeetAndInchesToCm function.
  * Used to convert imperial height (feet and inches) into
  * centimetres.
- * @param {string} imperialHeight (height in feet and inches.
- *                                 Example: 5'11)
+ * @param {string} imperialHeight height in feet and inches. (Example: 5'11)
  * @returns height in cm (centimetres)
  */
 function convertFeetAndInchesToCm(imperialHeight) {
@@ -240,28 +239,103 @@ document.getElementById('confirm-weight').addEventListener('click', function(){
 
 })
 
-// change upgrade display colour based on if it is positive (green) or negative (red)
+
+/**
+ * changeUpgradeOptionColour function.
+ * Used to change upgrade display colour based on if it is positive (green), negative (red),
+ * or zero (lightgray).
+ * @param {number} i the index of the attribute
+ */
 function changeUpgradeOptionColour(i) {
-  if (document.getElementsByClassName('upgrade-option-default')[i].innerHTML > 0) {
-    document.getElementsByClassName('upgrade-option-default')[i].style.color = 'green';
+  var attributeModifier = document.getElementsByClassName('upgrade-option-default');
+  if (attributeModifier[i].innerHTML > 0) {
+    attributeModifier[i].style.color = 'green';
   }
-  else if (document.getElementsByClassName('upgrade-option-default')[i].innerHTML == 0) {
-    document.getElementsByClassName('upgrade-option-default')[i].style.color = 'lightgray';
+  else if (attributeModifier[i].innerHTML == 0) {
+    attributeModifier[i].style.color = 'lightgray';
   }
   else {
-    document.getElementsByClassName('upgrade-option-default')[i].style.color = 'red';
+    attributeModifier[i].style.color = 'red';
   }
 }
 
+/**
+ * updateAvailableUpgradePoints function.
+ * Used to update the available upgrade points for the appropriate attribute section.
+ * @param {number} availUpgradePts the new available attribute points
+ * @param {string} idName the id name of html label
+ */
 function updateAvailableUpgradePoints(availUpgradePts, idName) {
   document.getElementById(idName).innerHTML = availUpgradePts;
 }
 
-// increase attributes
+/**
+ * getUpgradePointChange function.
+ * Used to get the upgrade point change, so that the available upgrade points
+ * can be updated.
+ * @param {number} i - index of the current attribute 
+ * @returns upgradePointChange
+ */
+async function getUpgradePointChange(i) {
+  var upgradePointChange = 0;
+
+  try {
+    const response = await fetch(upgradePointsXMLFileName);
+    const xmlString = await response.text();
+    const xmlDoc = new DOMParser().parseFromString(xmlString, "text/xml");
+    const attributeCosts = xmlDoc.querySelector("AttributeCosts");
+    var indexModifier = 0;
+    var currentUpgradeModifier = parseInt(document.getElementsByClassName('upgrade-option-default')[i].innerHTML);
+
+    if (currentUpgradeModifier > 0) {
+      indexModifier = 4;
+    }
+    else {
+      indexModifier = 5;
+    }
+
+    // upgradeDowngradeIndex.  For example plus1 upgrade starts at index 4, so that is why the + 4 is there.
+    // upgradeDowngradeIndex + (upgradeDowngradeIndex + 1) because there are childnodes which are #text so this will account for
+    // this and avoid them.
+    var upgradeDowngradeIndex = currentUpgradeModifier + indexModifier;
+    upgradeDowngradeIndex = upgradeDowngradeIndex + (upgradeDowngradeIndex + 1);
+
+    var j = i + (i + 1);
+
+    if (j == 0) {
+      j = 1;
+    }
+
+    upgradePointChange = parseInt(attributeCosts.childNodes[j].childNodes[upgradeDowngradeIndex].textContent);
+
+    if (previousUpgradeModifier[i] > 0 && currentUpgradeModifier < previousUpgradeModifier[i]) {
+      upgradeDowngradeIndex = previousUpgradeModifier[i] + indexModifier;
+      upgradeDowngradeIndex = upgradeDowngradeIndex + (upgradeDowngradeIndex + 1);
+      upgradePointChange = parseInt(attributeCosts.childNodes[j].childNodes[upgradeDowngradeIndex].textContent);
+      upgradePointChange *= -1;
+    }
+    else if (previousUpgradeModifier[i] < 0 && currentUpgradeModifier > previousUpgradeModifier[i] && currentUpgradeModifier != 0) {
+      upgradeDowngradeIndex = previousUpgradeModifier[i] + indexModifier;
+      upgradeDowngradeIndex = upgradeDowngradeIndex + (upgradeDowngradeIndex + 1);
+      upgradePointChange = parseInt(attributeCosts.childNodes[j].childNodes[upgradeDowngradeIndex].textContent);
+      upgradePointChange *= -1;
+    }
+  }
+  catch (error) {
+    console.error(error);
+  }
+
+  previousUpgradeModifier[i] = currentUpgradeModifier;
+  return upgradePointChange;
+}
+
+/**
+ * Increasing attributes
+ */
 var userPlusSelection = document.getElementsByClassName('plus2');
 
 for (let i = 0; i < userPlusSelection.length; i++) {
-  userPlusSelection[i].addEventListener("click", function() {
+  userPlusSelection[i].addEventListener("click", async function() {
 
     // +5 is the maximum upgrade
     if (document.getElementsByClassName('upgrade-option-default')[i].innerHTML < 5 && 
@@ -270,6 +344,7 @@ for (let i = 0; i < userPlusSelection.length; i++) {
       document.getElementsByClassName('upgrade-option-default')[i].innerHTML++;
       changeUpgradeOptionColour(i);
 
+      // getting the index for the attribute section (0-4)
       var j = 0;
       if (i < 5) {
         j = 0;
@@ -286,19 +361,21 @@ for (let i = 0; i < userPlusSelection.length; i++) {
       else {
         j = 4;
       }
-      updateAvailableUpgradePoints(10, idNames[j]);
+      availableUpgradePoints[j] += await getUpgradePointChange(i);
+      updateAvailableUpgradePoints(availableUpgradePoints[j], idNames[j]);
       
     }
 
   })
 }
 
-
-// decrease attributes
+/**
+ * Decreasing attributes
+ */
 var userMinusSelection = document.getElementsByClassName('minus2');
 
 for (let i = 0; i < userMinusSelection.length; i++) {
-  userMinusSelection[i].addEventListener("click", function() {
+  userMinusSelection[i].addEventListener("click", async function() {
 
     // the maximum downgrade is 5 (-5)
     if (document.getElementsByClassName('upgrade-option-default')[i].innerHTML > -5 && 
@@ -307,6 +384,26 @@ for (let i = 0; i < userMinusSelection.length; i++) {
       document.getElementsByClassName('upgrade-option-default')[i].innerHTML--;
   
       changeUpgradeOptionColour(i);
+
+      // getting the index for the attribute section (0-4)
+      var j = 0;
+      if (i < 5) {
+        j = 0;
+      }
+      else if (i < 10) {
+        j = 1;
+      }
+      else if (i < 15) {
+        j = 2;
+      }
+      else if (i < 19) {
+        j = 3;
+      }
+      else {
+        j = 4;
+      }
+      availableUpgradePoints[j] = availableUpgradePoints[j] + await getUpgradePointChange(i);
+      updateAvailableUpgradePoints(availableUpgradePoints[j], idNames[j]);
     }
   })
 }
