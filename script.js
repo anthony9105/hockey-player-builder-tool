@@ -3,10 +3,15 @@
  * Anthony Liscio
  */
 
-import {buildDataXMLFileName, upgradePointsXMLFileName, allHeights, idNames} from "./constants.js";
+import {buildDataXMLFileName, upgradePointsXMLFileName, physUpgradeDowngradeFileName, allHeights, idNames, allAttributeNamesInOrder} from "./constants.js";
 
 var availableUpgradePoints = [0, 0, 0, 0, 0];
 var previousUpgradeModifier = new Array(23).fill(0);
+
+var globalPreviousHeight;
+var globalPreviousWeight;
+var globalCurrentHeight;
+var globalCurrentWeight;
 
 /**
  * setDefaultAttributes function.
@@ -96,6 +101,7 @@ function setBuildHeights(build) {
   // set default height
   var defaultHeight = build.querySelector("Height").querySelector("default").textContent;
   document.getElementById('height').value = defaultHeight;
+  globalPreviousHeight = defaultHeight;
 
   // minimum and maximum heights
   var minHeight = convertFeetAndInchesToCm(build.querySelector("Height").querySelector("minimum").textContent);
@@ -132,6 +138,7 @@ function setBuildWeights(build) {
   // set default weight
   var defaultWeight = build.querySelector("Weight").querySelector("default").textContent;
   document.getElementById('weight').value = defaultWeight;
+  globalPreviousWeight = defaultWeight;
 
   // minimum and maximum weights
   var minWeight = build.querySelector("Weight").querySelector("minimum").textContent;
@@ -230,6 +237,9 @@ document.getElementById('confirm-height').addEventListener('click', function(){
   var text = e.options[e.selectedIndex].text;
   console.log(value);
   console.log(text);
+  
+  globalPreviousHeight = globalCurrentHeight;
+  globalCurrentHeight = document.getElementById('height').value;
 })
 
 // When the confirm weight button is clicked 
@@ -237,6 +247,10 @@ document.getElementById('confirm-weight').addEventListener('click', function(){
   var newWeight = document.getElementById('weight');
   console.log(newWeight.value);
 
+  globalPreviousWeight = globalCurrentWeight;
+  globalCurrentWeight = document.getElementById('weight').value;
+
+  applyWeightAttributeChanges(document.getElementById('player-types').value);
 })
 
 
@@ -329,6 +343,72 @@ async function getUpgradePointChange(i) {
   return upgradePointChange;
 }
 
+
+function applyWeightAttributeChanges(buildName) {
+  // fetching from the build_data.xml file
+  fetch(physUpgradeDowngradeFileName).then(response => {
+    return response.text();
+  }).then(xmlString => {
+    var xmlDoc = new DOMParser().parseFromString(xmlString, "text/xml");
+    var builds = xmlDoc.querySelectorAll("Build");
+    console.log(document.getElementsByClassName('numeric').length);
+
+    // for each build
+    for (var build of builds) {
+
+      // get the name of the current build
+      var nameValue = build.querySelector("Name").textContent;
+
+      // if the name of the current build matches with the paramater value, buildName
+      if (nameValue === buildName) {
+        var weights = build.querySelectorAll("Weight");
+        //var attributeName = weights[i].childNodes[]
+        // console.log(weights[0].childNodes[3].nodeName);
+        // console.log(weights[0].getElementsByTagName("Speed").item(0).textContent);
+        var attIndex = allAttributeNamesInOrder.indexOf("Speed");
+        //console.log(document.getElementsByClassName('numeric')[attIndex].textContent);
+
+        for (var i = 0; i < weights.length; i++) {
+          var currentXmlWeight = weights[i].querySelector("value").textContent;
+          // console.log(globalPreviousWeight);
+          // console.log(globalCurrentWeight);
+          // console.log(weights[0].childNodes[3]);
+          if (globalCurrentWeight > globalPreviousWeight) {
+            if (globalCurrentWeight >= currentXmlWeight && globalPreviousWeight < currentXmlWeight) {
+              // apply upgrades/downgrades
+              console.log("HEY 1");
+
+              for (var j = 3; j < weights[i].childNodes.length; j += 2) {
+                var attributeIndex = allAttributeNamesInOrder.indexOf(weights[i].childNodes[j].nodeName);
+                document.getElementsByClassName('numeric')[attributeIndex].innerHTML = parseInt(document.getElementsByClassName('numeric')[attributeIndex].innerHTML) + parseInt(weights[i].childNodes[j].textContent);
+                console.log(weights[i].childNodes[j].textContent);
+              }
+              //console.log(document.getElementsByClassName('numeric').length);
+            }
+          }
+          else if (globalCurrentWeight < globalPreviousWeight) {
+            if (globalCurrentWeight <= currentXmlWeight && globalPreviousWeight > currentXmlWeight) {
+              // apply upgrades/downgrades
+
+              /// TODO: fix when going from low weight back up
+              console.log("HEY 2");
+
+              for (var j = 3; j < weights[i].childNodes.length; j+=2) {
+                var attributeIndex = allAttributeNamesInOrder.indexOf(weights[i].childNodes[j].nodeName);
+                document.getElementsByClassName('numeric')[attributeIndex].innerHTML = parseInt(document.getElementsByClassName('numeric')[attributeIndex].innerHTML) + parseInt(weights[i].childNodes[j].textContent);
+                console.log(weights[i].childNodes[j].nodeName);
+              }
+            }
+          }
+        }
+
+        console.log(weights[1].querySelector("value").textContent);
+
+      }
+    }
+  });
+}
+
 /**
  * Increasing attributes
  */
@@ -362,8 +442,7 @@ for (let i = 0; i < userPlusSelection.length; i++) {
         j = 4;
       }
       availableUpgradePoints[j] += await getUpgradePointChange(i);
-      updateAvailableUpgradePoints(availableUpgradePoints[j], idNames[j]);
-      
+      updateAvailableUpgradePoints(availableUpgradePoints[j], idNames[j]); 
     }
 
   })
