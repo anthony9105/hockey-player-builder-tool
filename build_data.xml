@@ -9,7 +9,7 @@
         </Height>
         <Weight>
             <minimum>160</minimum>
-            <maximum>200</maximum>
+            <maximum>205</maximum>
             <default>185</default>
         </Weight>
         <DefaultPosition>Forward</DefaultPosition>
@@ -18,7 +18,7 @@
                 <WristshotAcc>88</WristshotAcc>
                 <SlapshotAcc>86</SlapshotAcc>
                 <Speed>85</Speed>
-                <Balance>72</Balance>
+                <Balance>80</Balance>
                 <Aglity>85</Aglity>
             </Technique>
             <Power>
@@ -26,26 +26,26 @@
                 <SlapshotPower>88</SlapshotPower>
                 <Acceleration>85</Acceleration>
                 <PuckControl>85</PuckControl>
-                <Endurance>83</Endurance>
+                <Endurance>85</Endurance>
             </Power>
             <Playstyle>
                 <Passing>80</Passing>
                 <OffensiveAwareness>89</OffensiveAwareness>
-                <BodyChecking>72</BodyChecking>
+                <BodyChecking>81</BodyChecking>
                 <StickChecking>72</StickChecking>
                 <DefensiveAwareness>71</DefensiveAwareness>
             </Playstyle>
             <Tenacity>
                 <Handeye>80</Handeye>
-                <Strength>73</Strength>
-                <Durability>72</Durability>
+                <Strength>81</Strength>
+                <Durability>81</Durability>
                 <ShotBlocking>75</ShotBlocking>
             </Tenacity>
             <Tactics>
                 <Deking>79</Deking>
                 <Faceoffs>85</Faceoffs>
                 <Discipline>81</Discipline>
-                <FightingSkill>72</FightingSkill>
+                <FightingSkill>80</FightingSkill>
             </Tactics>
         </DefaultAttributes>
         <ZoneAbilities>

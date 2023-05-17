@@ -368,38 +368,118 @@ function applyWeightAttributeChanges(buildName) {
         var attIndex = allAttributeNamesInOrder.indexOf("Speed");
         //console.log(document.getElementsByClassName('numeric')[attIndex].textContent);
 
+        var previousXmlWeight = -1;
+
         for (var i = 0; i < weights.length; i++) {
           var currentXmlWeight = weights[i].querySelector("value").textContent;
           // console.log(globalPreviousWeight);
           // console.log(globalCurrentWeight);
           // console.log(weights[0].childNodes[3]);
-          if (globalCurrentWeight > globalPreviousWeight) {
-            if (globalCurrentWeight >= currentXmlWeight && globalPreviousWeight < currentXmlWeight) {
-              // apply upgrades/downgrades
-              console.log("HEY 1");
 
-              for (var j = 3; j < weights[i].childNodes.length; j += 2) {
-                var attributeIndex = allAttributeNamesInOrder.indexOf(weights[i].childNodes[j].nodeName);
-                document.getElementsByClassName('numeric')[attributeIndex].innerHTML = parseInt(document.getElementsByClassName('numeric')[attributeIndex].innerHTML) + parseInt(weights[i].childNodes[j].textContent);
-                console.log(weights[i].childNodes[j].textContent);
+          console.log("current xml weight -> " + currentXmlWeight);
+          // going up weight
+          if (globalCurrentWeight > globalPreviousWeight) {
+            if (globalCurrentWeight >= currentXmlWeight && globalPreviousWeight <= currentXmlWeight) {
+
+              var isValid = true;
+
+              if (globalPreviousWeight == currentXmlWeight && currentXmlWeight != (weights[weights.length-1].querySelector("value").textContent)) {
+                console.log("OMGG 1");
+                isValid = false;
               }
-              //console.log(document.getElementsByClassName('numeric').length);
+
+              if (previousXmlWeight > currentXmlWeight && previousXmlWeight != -1) {
+                console.log("OMGG 1 v3");
+                isValid = false;
+              }
+
+              // if (currentXmlWeight == weights[0].childNodes[1].textContent && globalPreviousWeight < currentXmlWeight) {
+              //   console.log("OMGG 1 v2");
+              //   isValid = false;
+              // }
+
+              if (isValid) {
+                // apply upgrades/downgrades
+                console.log("HEY 1");
+                var upgradeModifier = 1;
+                console.log("previous weight -> " + globalPreviousWeight);
+                var weighthing = build.querySelectorAll("Weights");
+                console.log("default weight -> " + weighthing[0].getElementsByTagName("default").item(0).textContent);
+
+                // if (globalCurrentWeight < weighthing[0].getElementsByTagName("firstincreasefromdefault").item(0).textContent && globalPreviousWeight <= weighthing[0].getElementsByTagName("default").item(0).textContent) {
+                //   upgradeModifier = -1;
+                // }
+                if (weighthing[0].getElementsByTagName("firstincreasefromdefault").item(0).textContent > currentXmlWeight) {
+                  upgradeModifier = -1;
+                }
+                console.log("upgrade modifier -> " + upgradeModifier);
+
+                for (var j = 3; j < weights[i].childNodes.length; j += 2) {
+                  var attributeIndex = allAttributeNamesInOrder.indexOf(weights[i].childNodes[j].nodeName);
+                  document.getElementsByClassName('numeric')[attributeIndex].innerHTML = parseInt(document.getElementsByClassName('numeric')[attributeIndex].innerHTML) + parseInt(weights[i].childNodes[j].textContent) * upgradeModifier;
+                  console.log(weights[i].childNodes[j].nodeName + "  -> " + parseInt(weights[i].childNodes[j].textContent)*upgradeModifier);
+
+                }
+                //console.log(document.getElementsByClassName('numeric').length);
+              }
+
+              previousXmlWeight = currentXmlWeight;
+              console.log("   ");
+              console.log("   ");
             }
           }
+          // going down weight
           else if (globalCurrentWeight < globalPreviousWeight) {
-            if (globalCurrentWeight <= currentXmlWeight && globalPreviousWeight > currentXmlWeight) {
+            if (globalCurrentWeight <= currentXmlWeight && globalPreviousWeight >= currentXmlWeight) {
               // apply upgrades/downgrades
+              var isValid = true;
+
+              if (globalPreviousWeight == currentXmlWeight && currentXmlWeight != weights[0].childNodes[1].textContent) {
+                console.log("OMGG");
+                isValid = false;
+              }
+
+              if (globalCurrentWeight == weights[0].childNodes[1].textContent && globalPreviousWeight > weights[0].childNodes[1].textContent) {
+                console.log("OMGG v2");
+                isValid = false;
+              }
+
+              if (previousXmlWeight < currentXmlWeight && previousXmlWeight != -1) {
+                console.log("OMGG v3");
+                isValid = false;
+              }
 
               /// TODO: fix when going from low weight back up
-              console.log("HEY 2");
+              if (isValid) {
+                console.log("HEY 2");
 
-              for (var j = 3; j < weights[i].childNodes.length; j+=2) {
-                var attributeIndex = allAttributeNamesInOrder.indexOf(weights[i].childNodes[j].nodeName);
-                document.getElementsByClassName('numeric')[attributeIndex].innerHTML = parseInt(document.getElementsByClassName('numeric')[attributeIndex].innerHTML) + parseInt(weights[i].childNodes[j].textContent);
-                console.log(weights[i].childNodes[j].nodeName);
+                var upgradeModifier = 1;
+
+                console.log("previous weight -> " + globalPreviousWeight);
+                console.log("current weight -> "+ globalCurrentWeight);
+                var weighthing = build.querySelectorAll("Weights");
+                console.log("default weight -> " + weighthing[0].getElementsByTagName("default").item(0).textContent);
+                // if (globalCurrentWeight > weighthing[0].getElementsByTagName("firstdecreasefromdefault").item(0).textContent && globalPreviousWeight >= weighthing[0].getElementsByTagName("default").item(0).textContent && globalCurrentWeight <= weighthing[0].getElementsByTagName("default").item(0).textContent) {
+                //   upgradeModifier = -1;
+                // }
+                if (weighthing[0].getElementsByTagName("firstdecreasefromdefault").item(0).textContent < currentXmlWeight) {
+                  upgradeModifier = -1;
+                }
+                console.log("upgrade modifier -> " + upgradeModifier);
+
+                for (var j = 3; j < weights[i].childNodes.length; j+=2) {
+                  var attributeIndex = allAttributeNamesInOrder.indexOf(weights[i].childNodes[j].nodeName);
+                  document.getElementsByClassName('numeric')[attributeIndex].innerHTML = parseInt(document.getElementsByClassName('numeric')[attributeIndex].innerHTML) + parseInt(weights[i].childNodes[j].textContent) * upgradeModifier;
+                  console.log(weights[i].childNodes[j].nodeName + "  -> " + parseInt(weights[i].childNodes[j].textContent)*upgradeModifier);
+
+                }
               }
+              previousXmlWeight = currentXmlWeight;
+              console.log("   ");
+              console.log("   ");
             }
           }
+          previousXmlWeight = -1;
         }
 
         console.log(weights[1].querySelector("value").textContent);
