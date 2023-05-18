@@ -45,9 +45,12 @@ function setupNewBuild(buildName) {
         setBuildHeights(build);
 
         setBuildWeights(build);
-
       }
     }
+
+    // apply the necessary changes from the minimum weight and heights to the default weight and height
+    applyAttributeChangesFromPhysicalChanges(buildName, globalPreviousHeight, globalCurrentHeight, "Height");
+    applyAttributeChangesFromPhysicalChanges(buildName, globalPreviousWeight, globalCurrentWeight, "Weight");
   });
 }
 
@@ -101,17 +104,20 @@ function setBuildHeights(build) {
   // set default height
   var defaultHeight = build.querySelector("Height").querySelector("default").textContent;
   document.getElementById('height').value = defaultHeight;
-  globalPreviousHeight = defaultHeight;
 
   // minimum and maximum heights
-  var minHeight = convertFeetAndInchesToCm(build.querySelector("Height").querySelector("minimum").textContent);
-  var maxHeight = convertFeetAndInchesToCm(build.querySelector("Height").querySelector("maximum").textContent);
+  var minHeight = convertFeetandInchesToInches(build.querySelector("Height").querySelector("minimum").textContent);
+  var maxHeight = convertFeetandInchesToInches(build.querySelector("Height").querySelector("maximum").textContent);
+
+  // set global weight variables
+  globalPreviousHeight = minHeight;
+  globalCurrentHeight = convertFeetandInchesToInches(defaultHeight);
 
   var heights = document.getElementById('height');
 
   // for each height option
   for (var i = 0; i < heights.length; i++) {
-    var currentHeight = convertFeetAndInchesToCm(heights[i].value);
+    var currentHeight = convertFeetandInchesToInches(heights[i].value);
 
     // if the current height is less than the minimum height for the current build then remove it
     // from the options
@@ -138,7 +144,6 @@ function setBuildWeights(build) {
   // set default weight
   var defaultWeight = build.querySelector("Weight").querySelector("default").textContent;
   document.getElementById('weight').value = defaultWeight;
-  globalPreviousWeight = defaultWeight;
 
   // minimum and maximum weights
   var minWeight = build.querySelector("Weight").querySelector("minimum").textContent;
@@ -148,6 +153,10 @@ function setBuildWeights(build) {
   var weight = document.getElementById("weight");
   weight.min = minWeight;
   weight.max = maxWeight;
+
+  // make the attribute changes from the minimum weight to the default weight
+  globalPreviousWeight = minWeight;
+  globalCurrentWeight = defaultWeight;
 }
 
 /**
@@ -205,6 +214,54 @@ function convertFeetAndInchesToCm(imperialHeight) {
 }
 
 /**
+ * convertCmToFeetandInches function.
+ * Used to convert metric height (cm) to feet and inches
+ * @param {string} metricHeight height in cm
+ * @returns imperial height (height in feet and inches)
+ */
+function convertCmToFeetandInches(metricHeight) {
+  var inches = metricHeight / 2.54;
+  var feet = Math.floor(inches / 12);
+  inches = Math.round(inches - (12 * feet));
+
+  var result = "";
+  result += feet + "'" + inches; 
+
+  return result;
+}
+
+/**
+ * convertFeetandInchesToInches function.
+ * Used to convert imperial height (feet and inches) to just inches.
+ * @param {string} imperialHeight height in feet and inches
+ * @returns height in inches
+ */
+function convertFeetandInchesToInches(imperialHeight) {
+  var feet = parseInt(imperialHeight[0]);
+
+  var inches = "";
+  for (var i = 2; i < imperialHeight.length; i++) {
+    inches += imperialHeight[i];
+  }
+  inches = parseInt(inches);
+
+  return (12 * feet) + inches;
+}
+
+/**
+ * convertInchesToFeetAndInches function.
+ * Used to convert height in inches to height in feet and inches 
+ * @param {number} inches 
+ * @returns imperial height (height in feet and inches)
+ */
+function convertInchesToFeetAndInches(inches) {
+  var feet = Math.floor(inches / 12);
+  var inches = inches - (12 * 5);
+
+  return feet + "'" + inches;
+}
+
+/**
  * resetUpgrades function.
  * Used to reset the upgrades that may have been previously done to a build.
  */
@@ -219,12 +276,10 @@ function resetUpgrades() {
 
 // When the confirm player build button is clicked 
 document.getElementById('confirm-type').addEventListener('click', function(){
-  var e = document.getElementById('player-types');
-  var value = e.options[e.selectedIndex].value;
-  var text = e.options[e.selectedIndex].text;
+  var playerBuild = document.getElementById('player-types');
 
   // set the default attributes to the html table
-  setupNewBuild(text);
+  setupNewBuild(playerBuild.value);
 
   // reset the upgrades
   resetUpgrades();
@@ -239,7 +294,10 @@ document.getElementById('confirm-height').addEventListener('click', function(){
   console.log(text);
   
   globalPreviousHeight = globalCurrentHeight;
-  globalCurrentHeight = document.getElementById('height').value;
+  globalCurrentHeight = convertFeetandInchesToInches(document.getElementById('height').value);
+
+  console.log("Inside height listener button ->" + globalPreviousHeight);
+  applyAttributeChangesFromPhysicalChanges(document.getElementById('player-types').value, globalPreviousHeight, globalCurrentHeight, "Height");
 })
 
 // When the confirm weight button is clicked 
@@ -250,7 +308,7 @@ document.getElementById('confirm-weight').addEventListener('click', function(){
   globalPreviousWeight = globalCurrentWeight;
   globalCurrentWeight = document.getElementById('weight').value;
 
-  applyWeightAttributeChanges(document.getElementById('player-types').value);
+  applyAttributeChangesFromPhysicalChanges(document.getElementById('player-types').value, globalPreviousWeight, globalCurrentWeight, "Weight");
 })
 
 
@@ -344,8 +402,16 @@ async function getUpgradePointChange(i) {
 }
 
 
-function applyWeightAttributeChanges(buildName) {
-  // fetching from the build_data.xml file
+/**
+ * applyWeightAttributeChanges function.
+ * Used to apply the necessary attribute changes when a new build is created and whenever
+ * the weight is changed.
+ * @param {string} buildName name of the build
+ * @param {number} previousWeight previous weight in lbs
+ * @param {number} currentWeight current weight in lbs
+ */
+function applyWeightAttributeChanges(buildName, previousWeight, currentWeight) {
+  // fetching from the physical_upgrade_downgrade.xml file
   fetch(physUpgradeDowngradeFileName).then(response => {
     return response.text();
   }).then(xmlString => {
@@ -362,128 +428,145 @@ function applyWeightAttributeChanges(buildName) {
       // if the name of the current build matches with the paramater value, buildName
       if (nameValue === buildName) {
         var weights = build.querySelectorAll("Weight");
-        //var attributeName = weights[i].childNodes[]
-        // console.log(weights[0].childNodes[3].nodeName);
-        // console.log(weights[0].getElementsByTagName("Speed").item(0).textContent);
-        var attIndex = allAttributeNamesInOrder.indexOf("Speed");
-        //console.log(document.getElementsByClassName('numeric')[attIndex].textContent);
-
-        var previousXmlWeight = -1;
 
         for (var i = 0; i < weights.length; i++) {
           var currentXmlWeight = weights[i].querySelector("value").textContent;
-          // console.log(globalPreviousWeight);
-          // console.log(globalCurrentWeight);
-          // console.log(weights[0].childNodes[3]);
 
           console.log("current xml weight -> " + currentXmlWeight);
+
           // going up weight
-          if (globalCurrentWeight > globalPreviousWeight) {
-            if (globalCurrentWeight >= currentXmlWeight && globalPreviousWeight <= currentXmlWeight) {
+          if (currentWeight > previousWeight) {
+            if (currentWeight >= currentXmlWeight && previousWeight <= currentXmlWeight) {
 
-              var isValid = true;
+              var isValid = false;
 
-              if (globalPreviousWeight == currentXmlWeight && currentXmlWeight != (weights[weights.length-1].querySelector("value").textContent)) {
-                console.log("OMGG 1");
-                isValid = false;
+              if (previousWeight < currentXmlWeight && currentWeight >= currentXmlWeight) {
+                isValid = true;
               }
-
-              if (previousXmlWeight > currentXmlWeight && previousXmlWeight != -1) {
-                console.log("OMGG 1 v3");
-                isValid = false;
-              }
-
-              // if (currentXmlWeight == weights[0].childNodes[1].textContent && globalPreviousWeight < currentXmlWeight) {
-              //   console.log("OMGG 1 v2");
-              //   isValid = false;
-              // }
 
               if (isValid) {
                 // apply upgrades/downgrades
                 console.log("HEY 1");
-                var upgradeModifier = 1;
-                console.log("previous weight -> " + globalPreviousWeight);
-                var weighthing = build.querySelectorAll("Weights");
-                console.log("default weight -> " + weighthing[0].getElementsByTagName("default").item(0).textContent);
-
-                // if (globalCurrentWeight < weighthing[0].getElementsByTagName("firstincreasefromdefault").item(0).textContent && globalPreviousWeight <= weighthing[0].getElementsByTagName("default").item(0).textContent) {
-                //   upgradeModifier = -1;
-                // }
-                if (weighthing[0].getElementsByTagName("firstincreasefromdefault").item(0).textContent > currentXmlWeight) {
-                  upgradeModifier = -1;
-                }
-                console.log("upgrade modifier -> " + upgradeModifier);
 
                 for (var j = 3; j < weights[i].childNodes.length; j += 2) {
                   var attributeIndex = allAttributeNamesInOrder.indexOf(weights[i].childNodes[j].nodeName);
-                  document.getElementsByClassName('numeric')[attributeIndex].innerHTML = parseInt(document.getElementsByClassName('numeric')[attributeIndex].innerHTML) + parseInt(weights[i].childNodes[j].textContent) * upgradeModifier;
-                  console.log(weights[i].childNodes[j].nodeName + "  -> " + parseInt(weights[i].childNodes[j].textContent)*upgradeModifier);
+                  document.getElementsByClassName('numeric')[attributeIndex].innerHTML = parseInt(document.getElementsByClassName('numeric')[attributeIndex].innerHTML) + parseInt(weights[i].childNodes[j].textContent);
+                  console.log(weights[i].childNodes[j].nodeName + "  -> " + parseInt(weights[i].childNodes[j].textContent));
 
                 }
-                //console.log(document.getElementsByClassName('numeric').length);
               }
-
-              previousXmlWeight = currentXmlWeight;
-              console.log("   ");
-              console.log("   ");
             }
           }
           // going down weight
-          else if (globalCurrentWeight < globalPreviousWeight) {
-            if (globalCurrentWeight <= currentXmlWeight && globalPreviousWeight >= currentXmlWeight) {
+          else if (currentWeight < previousWeight) {
+            if (currentWeight <= currentXmlWeight && previousWeight >= currentXmlWeight) {
               // apply upgrades/downgrades
-              var isValid = true;
+              var isValid = false;
 
-              if (globalPreviousWeight == currentXmlWeight && currentXmlWeight != weights[0].childNodes[1].textContent) {
-                console.log("OMGG");
-                isValid = false;
-              }
-
-              if (globalCurrentWeight == weights[0].childNodes[1].textContent && globalPreviousWeight > weights[0].childNodes[1].textContent) {
-                console.log("OMGG v2");
-                isValid = false;
-              }
-
-              if (previousXmlWeight < currentXmlWeight && previousXmlWeight != -1) {
-                console.log("OMGG v3");
-                isValid = false;
+              if (previousWeight >= currentXmlWeight && currentWeight < currentXmlWeight) {
+                isValid = true;
               }
 
               /// TODO: fix when going from low weight back up
               if (isValid) {
                 console.log("HEY 2");
 
-                var upgradeModifier = 1;
-
-                console.log("previous weight -> " + globalPreviousWeight);
-                console.log("current weight -> "+ globalCurrentWeight);
-                var weighthing = build.querySelectorAll("Weights");
-                console.log("default weight -> " + weighthing[0].getElementsByTagName("default").item(0).textContent);
-                // if (globalCurrentWeight > weighthing[0].getElementsByTagName("firstdecreasefromdefault").item(0).textContent && globalPreviousWeight >= weighthing[0].getElementsByTagName("default").item(0).textContent && globalCurrentWeight <= weighthing[0].getElementsByTagName("default").item(0).textContent) {
-                //   upgradeModifier = -1;
-                // }
-                if (weighthing[0].getElementsByTagName("firstdecreasefromdefault").item(0).textContent < currentXmlWeight) {
-                  upgradeModifier = -1;
-                }
-                console.log("upgrade modifier -> " + upgradeModifier);
-
                 for (var j = 3; j < weights[i].childNodes.length; j+=2) {
                   var attributeIndex = allAttributeNamesInOrder.indexOf(weights[i].childNodes[j].nodeName);
-                  document.getElementsByClassName('numeric')[attributeIndex].innerHTML = parseInt(document.getElementsByClassName('numeric')[attributeIndex].innerHTML) + parseInt(weights[i].childNodes[j].textContent) * upgradeModifier;
-                  console.log(weights[i].childNodes[j].nodeName + "  -> " + parseInt(weights[i].childNodes[j].textContent)*upgradeModifier);
+                  document.getElementsByClassName('numeric')[attributeIndex].innerHTML = parseInt(document.getElementsByClassName('numeric')[attributeIndex].innerHTML) + parseInt(weights[i].childNodes[j].textContent) * -1;
+                  console.log(weights[i].childNodes[j].nodeName + "  -> " + parseInt(weights[i].childNodes[j].textContent) * -1);
 
                 }
               }
-              previousXmlWeight = currentXmlWeight;
-              console.log("   ");
-              console.log("   ");
             }
           }
-          previousXmlWeight = -1;
         }
 
         console.log(weights[1].querySelector("value").textContent);
 
+      }
+    }
+  });
+}
+
+/**
+ * applyAttributeChangesFromPhysicalChanges function.
+ * Used to apply the necessary attribute changes when a new build is created and whenever
+ * the height is changed.
+ * @param {string} buildName name of the build
+ * @param {number} previous previous height in inches or previous weight in lbs
+ * @param {number} current current height in inches or current weight in lbs
+ * @param {string} physicalAspect string keyword which is either "Height" or "Weight"
+ */
+function applyAttributeChangesFromPhysicalChanges(buildName, previous, current, physicalAspect) {
+  // fetching from the physical_upgrade_downgrade.xml file
+  fetch(physUpgradeDowngradeFileName).then(response => {
+    return response.text();
+  }).then(xmlString => {
+    var xmlDoc = new DOMParser().parseFromString(xmlString, "text/xml");
+    var builds = xmlDoc.querySelectorAll("Build");
+    console.log(document.getElementsByClassName('numeric').length);
+
+    // for each build
+    for (var build of builds) {
+
+      // get the name of the current build
+      var nameValue = build.querySelector("Name").textContent;
+
+      // if the name of the current build matches with the paramater value, buildName
+      if (nameValue === buildName) {
+        var physicals = build.querySelectorAll(physicalAspect);
+
+        for (var i = 0; i < physicals.length; i++) {
+
+          var currentXmlAmount = physicals[i].querySelector("value").textContent;
+
+          if (physicalAspect == "Height") {
+            currentXmlAmount = convertFeetandInchesToInches(physicals[i].querySelector("value").textContent);
+          }
+
+          // going up height/weight
+          if (current > previous) {
+            if (current >= currentXmlAmount && previous <= currentXmlAmount) {
+
+              var isValid = false;
+
+              if (previous < currentXmlAmount && current >= currentXmlAmount) {
+                isValid = true;
+              }
+
+              if (isValid) {
+                // apply upgrades/downgrades
+                for (var j = 3; j < physicals[i].childNodes.length; j += 2) {
+                  var attributeIndex = allAttributeNamesInOrder.indexOf(physicals[i].childNodes[j].nodeName);
+                  document.getElementsByClassName('numeric')[attributeIndex].innerHTML = parseInt(document.getElementsByClassName('numeric')[attributeIndex].innerHTML) + parseInt(physicals[i].childNodes[j].textContent);
+                  console.log(physicals[i].childNodes[j].nodeName + "  -> " + parseInt(physicals[i].childNodes[j].textContent));
+
+                }
+              }
+            }
+          }
+          // going down height/weight
+          else if (current < previous) {
+            if (current <= currentXmlAmount && previous >= currentXmlAmount) {
+              var isValid = false;
+
+              if (previous >= currentXmlAmount && current < currentXmlAmount) {
+                isValid = true;
+              }
+
+              if (isValid) {
+                // apply upgrades/downgrades
+                for (var j = 3; j < physicals[i].childNodes.length; j+=2) {
+                  var attributeIndex = allAttributeNamesInOrder.indexOf(physicals[i].childNodes[j].nodeName);
+                  document.getElementsByClassName('numeric')[attributeIndex].innerHTML = parseInt(document.getElementsByClassName('numeric')[attributeIndex].innerHTML) + parseInt(physicals[i].childNodes[j].textContent) * -1;
+                  console.log(physicals[i].childNodes[j].nodeName + "  -> " + parseInt(physicals[i].childNodes[j].textContent) * -1);
+
+                }
+              }
+            }
+          }
+        }
       }
     }
   });

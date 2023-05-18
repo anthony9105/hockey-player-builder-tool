@@ -5,24 +5,45 @@
         <Heights>
             <Height>
                 <value>5'10</value>
-                <Speed>1</Speed>
-                <Balance>-1</Balance>
-                <Acceleration>1</Acceleration>
-                <BodyChecking>-1</BodyChecking>
-                <Durability>-1</Durability>
-                <FightingSkill>-1</FightingSkill>
+                <Agility>-1</Agility>
             </Height>
             <Height>
-                <value>5'9</value>
-                <Agility>1</Agility>
+                <value>5'11</value>
+                <Speed>-1</Speed>
+                <Balance>1</Balance>
+                <Acceleration>-1</Acceleration>
+                <BodyChecking>1</BodyChecking>
+                <Durability>1</Durability>
+                <FightingSkill>1</FightingSkill>
             </Height>
         </Heights>
         <Weights>
-            <firstdecreasefromdefault>180</firstdecreasefromdefault>
-            <firstincreasefromdefault>195</firstincreasefromdefault>
-            <default>185</default>
             <Weight>
-                <value>200</value>
+                <value>161</value>
+                <Speed>-1</Speed>
+                <Balance>1</Balance>
+                <Agility>-1</Agility>
+                <Endurance>-1</Endurance>
+                <Strength>1</Strength>
+                <Durability>1</Durability>
+            </Weight>
+            <Weight>
+                <value>166</value>
+                <Acceleration>-1</Acceleration>
+                <BodyChecking>1</BodyChecking>
+                <FightingSkill>1</FightingSkill>
+            </Weight>
+            <Weight>
+                <value>171</value>
+                <Agility>-1</Agility>
+            </Weight>
+            <Weight>
+                <value>176</value>
+                <Endurance>-1</Endurance>
+                <Strength>1</Strength>
+            </Weight>
+            <Weight>
+                <value>181</value>
                 <Speed>-1</Speed>
                 <Balance>1</Balance>
                 <Agility>-1</Agility>
@@ -46,40 +67,16 @@
                 <FightingSkill>1</FightingSkill>
             </Weight>
             <Weight>
-                <value>180</value>
-                <Speed>1</Speed>
-                <Balance>-1</Balance>
-                <Agility>1</Agility>
-                <Acceleration>1</Acceleration>
-                <Endurance>1</Endurance>
-                <BodyChecking>-1</BodyChecking>
-                <Strength>-1</Strength>
-                <Durability>-1</Durability>
-                <FightingSkill>-1</FightingSkill>
-            </Weight>
-            <Weight>
-                <value>175</value>
-                <Endurance>1</Endurance>
-                <Strength>-1</Strength>
-            </Weight>
-            <Weight>
-                <value>170</value>
-                <Agility>1</Agility>
-            </Weight>
-            <Weight>
-                <value>165</value>
-                <Acceleration>1</Acceleration>
-                <BodyChecking>-1</BodyChecking>
-                <FightingSkill>-1</FightingSkill>
-            </Weight>
-            <Weight>
-                <value>160</value>
-                <Speed>1</Speed>
-                <Balance>-1</Balance>
-                <Agility>1</Agility>
-                <Endurance>1</Endurance>
-                <Strength>-1</Strength>
-                <Durability>-1</Durability>
+                <value>200</value>
+                <Speed>-1</Speed>
+                <Balance>1</Balance>
+                <Agility>-1</Agility>
+                <Acceleration>-1</Acceleration>
+                <Endurance>-1</Endurance>
+                <BodyChecking>1</BodyChecking>
+                <Strength>1</Strength>
+                <Durability>1</Durability>
+                <FightingSkill>1</FightingSkill>
             </Weight>
         </Weights>
     </Build>

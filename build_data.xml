@@ -17,35 +17,35 @@
             <Technique>
                 <WristshotAcc>88</WristshotAcc>
                 <SlapshotAcc>86</SlapshotAcc>
-                <Speed>85</Speed>
-                <Balance>80</Balance>
-                <Aglity>85</Aglity>
+                <Speed>88</Speed>
+                <Balance>77</Balance>
+                <Aglity>89</Aglity>
             </Technique>
             <Power>
                 <WristshotPower>88</WristshotPower>
                 <SlapshotPower>88</SlapshotPower>
-                <Acceleration>85</Acceleration>
+                <Acceleration>88</Acceleration>
                 <PuckControl>85</PuckControl>
-                <Endurance>85</Endurance>
+                <Endurance>88</Endurance>
             </Power>
             <Playstyle>
                 <Passing>80</Passing>
                 <OffensiveAwareness>89</OffensiveAwareness>
-                <BodyChecking>81</BodyChecking>
+                <BodyChecking>78</BodyChecking>
                 <StickChecking>72</StickChecking>
                 <DefensiveAwareness>71</DefensiveAwareness>
             </Playstyle>
             <Tenacity>
                 <Handeye>80</Handeye>
-                <Strength>81</Strength>
-                <Durability>81</Durability>
+                <Strength>78</Strength>
+                <Durability>78</Durability>
                 <ShotBlocking>75</ShotBlocking>
             </Tenacity>
             <Tactics>
                 <Deking>79</Deking>
                 <Faceoffs>85</Faceoffs>
                 <Discipline>81</Discipline>
-                <FightingSkill>80</FightingSkill>
+                <FightingSkill>77</FightingSkill>
             </Tactics>
         </DefaultAttributes>
         <ZoneAbilities>
