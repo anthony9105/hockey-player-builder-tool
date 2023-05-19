@@ -1,176 +1,97 @@
+html {
+    box-sizing: border-box;
+    height: 100%;
+}
+
 header {
     text-align: center;
-    font-size: calc(16pt + 0.2vw);
+    font-size: 16px;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: bold;
     background-color: rgb(123, 246, 246);
     margin-bottom: 0.4em;
 }
 
-aside {
-    font-size: calc(7pt + 0.2vw);
-    margin-bottom: 3.5em;
-}
 
-th{
-    background-color: #555;
-    color: #fff;
-    white-space: nowrap;
-    margin-left: 0.2em;
-    font-size: calc(7pt + 0.2vw);
-}
-
-th,td {
-    display: block;
-}
-
-.numeric {
-    text-align: right;
-    background-color: gray;
-    font-size: calc(7pt + 0.2vw);
-}
-
-.text {
-    text-align: center;
-    font-size: calc(7pt + 0.2vw);
-}
-
-.upgrade-option-default {
-    text-align: left;
-    background-color:lightgray;
-    width: calc(2px + 0.25vw);
-    font-style: italic;
-    font-size: calc(7pt + 0.25vw);
-    height: calc(11.25px + 0.25vw);
-    color: lightgray;
-}
-
-.attribute-boost {
-    text-align: left;
-    background-color:lightgray;
-    width: calc(2px + 0.25vw);
-    margin-right: calc(2px + 0.25vw);
-    font-style: italic;
-    font-size: calc(7pt + 0.25vw);
-    height: calc(11.25px + 0.25vw);
-    color: lightgray;
-}
-
-.plus{
-    text-align: left;
-    background-color: rgb(224, 252, 213);
-    width: 0.2em;
-    font-size: calc(7pt + 0.25vw);
-}
-
-.minus{
-    text-align: left;
-    background-color: rgb(250, 218, 218);
-    width: 0.2em;
-    font-size: calc(7pt + 0.25vw);
-}
-
-
-p{
-    text-align: right;
-    font-style: italic;
-}
-
-table {
+body {
     display: flex;
+    backdrop-filter: blur(5.5px);
+    -webkit-backdrop-filter: blur(5.5px);
+    background: linear-gradient(to bottom right, #89b6f4, #5473ef, #3a379c);
+    align-items: center;
+    justify-content: center;
+    font-family: 'Dosis', sans-serif;
+    font-display: swap;
+    height: inherit;
 }
 
-th,
-td {
-  text-align: left;
-  padding: 8px 15px;
-  white-space: nowrap;
-}
-
-#player-types {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: calc(7.5pt + 0.25vw);
-    background-color: rgb(195, 237, 251);
-    margin-bottom: 3px;
-}
-
-label {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: calc(7.5pt + 0.25vw);
-    margin-bottom: 2px;
-}
-
-#height {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: calc(7.5pt + 0.25vw);
-    background-color: rgb(195, 237, 251);
-    margin-bottom: 3px;
-}
-
-button {
-    margin-bottom: calc(30px + 0.25vw);
-    margin-right: calc(80px + 0.25vw);
-}
-
-.plus2 {
-    width: calc(27.25px + 0.25vw);
-    height: calc(27.25px + 0.25vw);
-    bottom: 0px;
-    margin: 0px;
-    background-color: rgb(224, 252, 213);
-}
-
-.minus2 {
-    width: calc(27.25px + 0.25vw);
-    height: calc(27.25px + 0.25vw);
-    bottom: 0px;
-    margin: 0px;
-    background-color: rgb(250, 218, 218);
-}
-
-#buttontd {
-    text-align: left;
-    padding: 0em 0em;
-}
-
-input {
-    background-color: rgb(195, 237, 251);
-    width: 5em;
-    margin-bottom: 0.3em;
-}
-
-#points-avail1 {
-    padding-left: calc(7vw);
-}
-#points-avail2 {
-    padding-left: calc(8vw);
-}
-#points-avail3 {
-    padding-left: calc(9vw);
-}
-#points-avail4 {
-    padding-left: calc(7vw);
-}
-#points-avail5 {
-    padding-left: calc(8vw);
-}
-
-tbody {
+.wrapper {
+    backdrop-filter: blur(5.5px);
+    -webkit-backdrop-filter: blur(5.5px);
+    background: linear-gradient(to bottom right, #000000, #3a3d46, #ebeafa);
+    border: 1px solid rgba(255, 255, 255, 0.01);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px green;
+    color: red;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    background: rgb(128, 128, 200);
+    border: 1px solid rgb(90, 11, 158);
+    justify-content:space-around;
     display: flex;
-    position: relative;
-    overflow-x: auto;
-    overflow-y: hidden;
+    flex-basis: auto;
+}
 
-    max-width: 100%;
-    /*
-    background:
-      linear-gradient(to right, white 30%, rgba(255,255,255,0)),
-      linear-gradient(to right, rgba(255,255,255,0), white 70%) 0 100%,
-      radial-gradient(farthest-side at 0% 50%, rgba(0,0,0,.4), rgba(0,0,0,0)),
-      radial-gradient(farthest-side at 100% 50%, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
-    background-repeat: no-repeat;
-    background-color: white;
-    background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
-    background-position: 0 0, 100%, 0 0, 100%;
-    background-attachment: local, local, scroll, scroll;*/
-  }
+.playertype-height-weight-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 5% 0;
+}
+
+.physical-section {
+    backdrop-filter: blur(5.5px);
+    -webkit-backdrop-filter: blur(5.5px);
+    background: green;
+    border: 1px solid black;
+    border-radius: 16px;
+    box-shadow: 0 4px 30px black;
+    padding: 10px 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 50px;
+}
+
+#selection-and-input {
+    backdrop-filter: blur(5.5px);
+    -webkit-backdrop-filter: blur(5.5px);
+    /* background: linear-gradient(to bottom, white, rgb(211, 205, 155), rgb(157, 148, 107)); */
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 0 4px 30px black;
+    padding: 7px 5px;
+    font-family: 'Dosis', sans-serif;
+    margin: 10px 10px;
+}
+
+#forward-option-group {
+    background-color: rgb(187, 217, 246);
+    font-family: 'Dosis', sans-serif;
+}
+
+#defense-option-group {
+    background-color: rgb(240, 247, 196);
+    font-family: 'Dosis', sans-serif;
+}
+
+#confirm-button {
+    backdrop-filter: blur(5.5px);
+    -webkit-backdrop-filter: blur(5.5px);
+    background: linear-gradient(to bottom, rgb(157, 148, 107), rgb(211, 205, 155), white);
+    border-radius: 10px;
+    padding: 7px 5px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-style: italic;
+    font-size: 75%;
+}

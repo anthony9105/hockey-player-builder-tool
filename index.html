@@ -7,283 +7,89 @@
     <title>Document</title>
     <link rel="stylesheet" href="./style.css">
 
-    <header>Anthony's Hockey Player Builder Tool</header>
+    <title>Anthony's Hockey Player Builder Tool</title>
     <aside>Based off NHL 23 Player Build System</aside>
 </head>
 <body>
-    <!-- Player Type Selection -->
-    <select name="player-types" id="player-types">
-        <optgroup label="Forward">
-            <option value="Sniper">Sniper</option>
-            <option value="Dangler">Dangler</option>
-            <option value="Playmaker">Playmaker</option>
-            <option value="Two-way Forward">Two-way Forward</option>
-            <option value="Power Forward">Power Forward</option>
-            <option value="Grinder">Grinder</option>
-            <option value="Enforcer">Enforcer</option>
-        </optgroup>
-        <optgroup label="Defenseman">
-            <option value="Puckmoving Defenseman">Puckmoving Defenseman</option>
-            <option value="Two-way Defenseman">Two-way Defenseman</option>
-            <option value="Offensive Defenseman">Offensive Defenseman</option>
-            <option value="Defensive Defenseman">Defensive Defenseman</option>
-            <option value="Enforcer Defenseman">Enforcer Defenseman</option>
-        </optgroup>
-    </select>
-    
+    <div class="wrapper">
+        <section class="playertype-height-weight-row">
+            <!-- Player Type Selection -->
+            <div class="physical-section">
 
-    <!-- Confirm Player Build Button -->
-    <button id="confirm-type">Confirm player type</button>
-
-
-    <!-- Player Height -->
-    <select name="Height" id="height">
-        <option value="5'7">5'7</option>
-        <option value="5'8">5'8</option>
-        <option value="5'9">5'9</option>
-        <option value="5'10">5'10</option>
-        <option value="5'11">5'11</option>
-        <option value="6'0">6'0</option>
-        <option value="6'1">6'1</option>
-        <option value="6'2">6'2</option>
-        <option value="6'3">6'3</option>
-        <option value="6'4">6'4</option>
-        <option value="6'5">6'5</option>
-        <option value="6'6">6'6</option>
-        <option value="6'7">6'7</option>
-        <option value="6'8">6'8</option>
-        <option value="6'9">6'9</option>
-    </select>
-
-    <button id="confirm-height">Confirm height</button>
+                <!-- Selection -->
+                <select id="selection-and-input">
+                    <optgroup id="forward-option-group" label="Forward">
+                        <option value="Sniper">Sniper</option>
+                        <option value="Dangler">Dangler</option>
+                        <option value="Playmaker">Playmaker</option>
+                        <option value="Two-way Forward">Two-way Forward</option>
+                        <option value="Power Forward">Power Forward</option>
+                        <option value="Grinder">Grinder</option>
+                        <option value="Enforcer">Enforcer</option>
+                    </optgroup>
+                    <optgroup id="defense-option-group" label="Defenseman">
+                        <option value="Puckmoving Defenseman">Puckmoving Defenseman</option>
+                        <option value="Two-way Defenseman">Two-way Defenseman</option>
+                        <option value="Offensive Defenseman">Offensive Defenseman</option>
+                        <option value="Defensive Defenseman">Defensive Defenseman</option>
+                        <option value="Enforcer Defenseman">Enforcer Defenseman</option>
+                    </optgroup>
+                </select>
+                
+                <!-- Button -->
+                <button id="confirm-button">Confirm player type</button>
+            </div>
 
 
-    <!-- Player Weight -->
-    <label for="weight">Weight (lbs):</label>
-    <input type="number" id="weight" name="weight" min="1" max="300"></input>
-    <button id="confirm-weight">Confirm weight</button>
+            <!-- Player Height -->
+            <div class="physical-section">
+
+                <!-- Selection -->
+                <select id="selection-and-input">
+                    <option value="5'7">5'7</option>
+                    <option value="5'8">5'8</option>
+                    <option value="5'9">5'9</option>
+                    <option value="5'10">5'10</option>
+                    <option value="5'11">5'11</option>
+                    <option value="6'0">6'0</option>
+                    <option value="6'1">6'1</option>
+                    <option value="6'2">6'2</option>
+                    <option value="6'3">6'3</option>
+                    <option value="6'4">6'4</option>
+                    <option value="6'5">6'5</option>
+                    <option value="6'6">6'6</option>
+                    <option value="6'7">6'7</option>
+                    <option value="6'8">6'8</option>
+                    <option value="6'9">6'9</option>
+                </select>
+
+                <!-- Button -->
+                <button id="confirm-button">Confirm height</button>
+            </div>
 
 
+            <!-- Player Weight -->
+            <div class="physical-section">
+                <input type="number" id="selection-and-input" name="weight" min="1" max="300"></input>
+                <button id="confirm-button">
+                    Confirm weight (lbs)
+                </button>
+            </div>
+        </section>
 
-    <!-- Player Attribute Display -->
-    <div class="table-wrapper" tabindex="0">
-        <table>
-            <label id="points-avail1">Points Available:
-                <label id="points-avail1-value">0</label>
+
+        <!-- Points Available Display -->
+        <section class="points-available">
+            <label id="points-available-label">
+                Points available label
             </label>
-        <tr>
-            <th>Wrist Shot Accuracy</th>
-            <th>Slapshot Accuracy</th>
-            <th>Speed</th>
-            <th>Balance</th>
-            <th>Agility</th>
-        </tr>
-        <tbody>
-        <tr>
-            <td id="buttontd"><button class="plus2">+</button></td>
-            <td id="buttontd"><button class="plus2">+</button></td>
-            <td id="buttontd"><button class="plus2">+</button></td>
-            <td id="buttontd"><button class="plus2">+</button></td>
-            <td id="buttontd"><button class="plus2">+</button></td>
-        </tr>
-        <tr>
-            <td id="buttontd"><button class="minus2">-</button></td>
-            <td id="buttontd"><button class="minus2">-</button></td>
-            <td id="buttontd"><button class="minus2">-</button></td>
-            <td id="buttontd"><button class="minus2">-</button></td>
-            <td id="buttontd"><button class="minus2">-</button></td>
-        </tr>
-        <tr>
-            <td class="numeric">0</td>
-            <td class="numeric">0</td>
-            <td class="numeric">0</td>
-            <td class="numeric">0</td>
-            <td class="numeric">0</td>
-        </tr>
-        <tr>
-            <td class="upgrade-option-default">0</td>
-            <td class="upgrade-option-default">0</td>
-            <td class="upgrade-option-default">0</td>
-            <td class="upgrade-option-default">0</td>
-            <td class="upgrade-option-default">0</td>
-        </tr>
-        <tr>
-            <td class="attribute-boost">0</td>
-            <td class="attribute-boost">0</td>
-            <td class="attribute-boost">0</td>
-            <td class="attribute-boost">0</td>
-            <td class="attribute-boost">0</td>
-        </tr>
-        <label id="points-avail2">Points Available:
-            <label id="points-avail2-value">0</label>
-        </label>
-        <tr>
-            <th>Wrist Shot Power</th>
-            <th>Slapshot Power</th>
-            <th>Acceleration</th>
-            <th>Puck Control</th>
-            <th>Endurance</th>
-        </tr>
-        <tr>
-            <td id="buttontd"><button class="plus2">+</button></td>
-            <td id="buttontd"><button class="plus2">+</button></td>
-            <td id="buttontd"><button class="plus2">+</button></td>
-            <td id="buttontd"><button class="plus2">+</button></td>
-            <td id="buttontd"><button class="plus2">+</button></td>
-        </tr>
-        <tr>
-            <td id="buttontd"><button class="minus2">-</button></td>
-            <td id="buttontd"><button class="minus2">-</button></td>
-            <td id="buttontd"><button class="minus2">-</button></td>
-            <td id="buttontd"><button class="minus2">-</button></td>
-            <td id="buttontd"><button class="minus2">-</button></td>
-        </tr>
-        <tr>
-            <td class="numeric">0</td>
-            <td class="numeric">0</td>
-            <td class="numeric">0</td>
-            <td class="numeric">0</td>
-            <td class="numeric">0</td>
-        </tr>
-        <tr>
-            <td class="upgrade-option-default">0</td>
-            <td class="upgrade-option-default">0</td>
-            <td class="upgrade-option-default">0</td>
-            <td class="upgrade-option-default">0</td>
-            <td class="upgrade-option-default">0</td>
-        </tr>
-        <tr>
-            <td class="attribute-boost">0</td>
-            <td class="attribute-boost">0</td>
-            <td class="attribute-boost">0</td>
-            <td class="attribute-boost">0</td>
-            <td class="attribute-boost">0</td>
-        </tr>
-        <label id="points-avail3">Points Available:
-            <label id="points-avail3-value">0</label>
-        </label>
-        <tr>
-            <th>Passing</th>
-            <th>Offensive Awareness</th>
-            <th>Body Checking</th>
-            <th>Stick Checking</th>
-            <th>Defensive Awareness</th>
-        </tr>
-        <tr>
-            <td id="buttontd"><button class="plus2">+</button></td>
-            <td id="buttontd"><button class="plus2">+</button></td>
-            <td id="buttontd"><button class="plus2">+</button></td>
-            <td id="buttontd"><button class="plus2">+</button></td>
-            <td id="buttontd"><button class="plus2">+</button></td>
-        </tr>
-        <tr>
-            <td id="buttontd"><button class="minus2">-</button></td>
-            <td id="buttontd"><button class="minus2">-</button></td>
-            <td id="buttontd"><button class="minus2">-</button></td>
-            <td id="buttontd"><button class="minus2">-</button></td>
-            <td id="buttontd"><button class="minus2">-</button></td>
-        </tr>
-        <tr>
-            <td class="numeric">0</td>
-            <td class="numeric">0</td>
-            <td class="numeric">0</td>
-            <td class="numeric">0</td>
-            <td class="numeric">0</td>
-        </tr>
-        <tr>
-            <td class="upgrade-option-default">0</td>
-            <td class="upgrade-option-default">0</td>
-            <td class="upgrade-option-default">0</td>
-            <td class="upgrade-option-default">0</td>
-            <td class="upgrade-option-default">0</td>
-        </tr>
-        <tr>
-            <td class="attribute-boost">0</td>
-            <td class="attribute-boost">0</td>
-            <td class="attribute-boost">0</td>
-            <td class="attribute-boost">0</td>
-            <td class="attribute-boost">0</td>
-        </tr>
-        <tr>
-            <th>Hand-eye</th>
-            <th>Strength</th>
-            <th>Durability</th>
-            <th>Shot Blocking</th>
-        </tr>
-        <tr>
-            <td id="buttontd"><button class="plus2">+</button></td>
-            <td id="buttontd"><button class="plus2">+</button></td>
-            <td id="buttontd"><button class="plus2">+</button></td>
-            <td id="buttontd"><button class="plus2">+</button></td>
-        </tr>
-        <tr>
-            <td id="buttontd"><button class="minus2">-</button></td>
-            <td id="buttontd"><button class="minus2">-</button></td>
-            <td id="buttontd"><button class="minus2">-</button></td>
-            <td id="buttontd"><button class="minus2">-</button></td>
-        </tr>
-        <tr>
-            <td class="numeric">0</td>
-            <td class="numeric">0</td>
-            <td class="numeric">0</td>
-            <td class="numeric">0</td>
-        </tr>
-        <tr>
-            <td class="upgrade-option-default">0</td>
-            <td class="upgrade-option-default">0</td>
-            <td class="upgrade-option-default">0</td>
-            <td class="upgrade-option-default">0</td>
-        </tr>
-        <tr>
-            <td class="attribute-boost">0</td>
-            <td class="attribute-boost">0</td>
-            <td class="attribute-boost">0</td>
-            <td class="attribute-boost">0</td>
-        </tr>
-        <label id="points-avail4">Points Available:
-            <label id="points-avail4-value">0</label>
-        </label>
-        <tr>
-            <th>Deking</th>
-            <th>Faceoffs</th>
-            <th>Discipline</th>
-            <th>Fighting Skill</th>
-        </tr>
-        <tr>
-            <td id="buttontd"><button class="plus2">+</button></td>
-            <td id="buttontd"><button class="plus2">+</button></td>
-            <td id="buttontd"><button class="plus2">+</button></td>
-            <td id="buttontd"><button class="plus2">+</button></td>
-        </tr>
-        <tr>
-            <td id="buttontd"><button class="minus2">-</button></td>
-            <td id="buttontd"><button class="minus2">-</button></td>
-            <td id="buttontd"><button class="minus2">-</button></td>
-            <td id="buttontd"><button class="minus2">-</button></td>
-        </tr>
-        <tr>
-            <td class="numeric">0</td>
-            <td class="numeric">0</td>
-            <td class="numeric">0</td>
-            <td class="numeric">0</td>
-        </tr>
-        <tr>
-            <td class="upgrade-option-default">0</td>
-            <td class="upgrade-option-default">0</td>
-            <td class="upgrade-option-default">0</td>
-            <td class="upgrade-option-default">0</td>
-        </tr>
-        <tr>
-            <td class="attribute-boost">0</td>
-            <td class="attribute-boost">0</td>
-            <td class="attribute-boost">0</td>
-            <td class="attribute-boost">0</td>
-        </tr>
-        <label id="points-avail5">Points Available:
-            <label id="points-avail5-value">0</label>
-        </label>
-        </tbody>
-    </table>
+        </section>
+
+        <!-- Attributes -->
+        <section class="attribute-section">
+            1
+        </section>
+
     </div>
     
     <script type="module" src="./script.js"></script>
