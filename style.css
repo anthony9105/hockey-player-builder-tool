@@ -150,7 +150,7 @@ body {
 
 .attribute-info {
     display: flex;
-    justify-content: center;
+    justify-content: end;
     margin-top: 15px;
     background: linear-gradient(to right, #726fdc, #3a379c, #363460);
     border-radius: 16px;
