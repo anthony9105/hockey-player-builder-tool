@@ -1,11 +1,20 @@
 html {
-    box-sizing: border-box;
-    height: 100%;
+    /* box-sizing: border-box; */
+    margin: 0;
+    width: 100%;
 }
+
+/* *,
+*::before,
+*::after{
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+} */
 
 header {
     text-align: center;
-    font-size: 16px;
+    font-size: 12px;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: bold;
     background-color: rgb(123, 246, 246);
@@ -18,40 +27,45 @@ body {
     backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px);
     background: linear-gradient(to bottom right, #89b6f4, #5473ef, #3a379c);
-    align-items: center;
+    /* align-items: center; */
     justify-content: center;
     font-family: 'Dosis', sans-serif;
     font-display: swap;
-    height: inherit;
+    /* height: inherit; */
+    display: flex;
+    min-width: 90%;
+    min-height: 100%;
 }
 
 .wrapper {
     backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px);
-    background: linear-gradient(to bottom right, #000000, #3a3d46, #ebeafa);
-    border: 1px solid rgba(255, 255, 255, 0.01);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px green;
-    color: red;
+    /* background: linear-gradient(to bottom right, #000000, #3a3d46, #ebeafa); */
+    /* border: 1px solid rgba(255, 255, 255, 0.01); */
+    border-radius: 12px;
+    /* box-shadow: 0 4px 30px green; */
+    /* color: red; */
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
-    background: rgb(128, 128, 200);
-    border: 1px solid rgb(90, 11, 158);
+    /* background: rgb(128, 128, 200); */
+    /* border: 1px solid rgb(90, 11, 158); */
     justify-content:space-around;
     display: flex;
-    flex-basis: auto;
+    flex-direction: column;
+    /* flex-basis: auto; */
+    min-width: 100%;
 }
 
 .playertype-height-weight-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin: 5% 0;
 }
 
-.physical-section {
+.physical-section{
     backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px);
-    background: green;
+    background: linear-gradient(to bottom right, rgb(110, 110, 110), rgb(179, 179, 179));
     border: 1px solid black;
     border-radius: 16px;
     box-shadow: 0 4px 30px black;
@@ -64,13 +78,18 @@ body {
 #selection-and-input {
     backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px);
-    /* background: linear-gradient(to bottom, white, rgb(211, 205, 155), rgb(157, 148, 107)); */
+    /* background: linear-gradient(to top, white, rgb(211, 205, 155), rgb(157, 148, 107)); */
     border: 1px solid black;
     border-radius: 10px;
     box-shadow: 0 4px 30px black;
     padding: 7px 5px;
     font-family: 'Dosis', sans-serif;
     margin: 10px 10px;
+    cursor: pointer;
+}
+
+#selection-and-input:hover {
+    background: linear-gradient(to bottom, rgb(103, 119, 146), rgb(139, 157, 212), white);
 }
 
 #forward-option-group {
@@ -83,6 +102,12 @@ body {
     font-family: 'Dosis', sans-serif;
 }
 
+#defense-option-group {
+    background-color: rgb(240, 247, 196);
+    font-family: 'Dosis', sans-serif;
+}
+
+
 #confirm-button {
     backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px);
@@ -94,4 +119,133 @@ body {
     margin-right: 10px;
     font-style: italic;
     font-size: 75%;
+}
+
+#confirm-button:hover {
+    cursor: pointer;
+    background: linear-gradient(to bottom, rgb(94, 88, 64), rgb(164, 160, 120), rgb(214, 211, 211))
+}
+
+
+
+.points-available{
+    display: flex;
+}
+
+
+/* Overall atribute area */
+#attribute-area {
+    display:flex;
+    margin-bottom: 20px;
+    justify-content: space-around;
+}
+
+/* Attribute Section */
+/*  */
+.attribute-section {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.attribute-info {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    background: linear-gradient(to right, #726fdc, #3a379c, #363460);
+    border-radius: 16px;
+}
+
+.attribute-meter-div {
+    justify-content: center;
+    display: flex;
+}
+
+.attribute-meter {
+    margin-top: 10px;
+    height: 30px;
+    width: 200px;
+}
+
+.attribute-name {
+    color:  rgb(38, 38, 38);
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-right: 0px;
+    font-size: 12px;
+    /* background: #3a379c; */
+    /* background: linear-gradient(to right, #726fdc, #3a379c, #1a193d); */
+}
+
+
+/* Attribute values */
+.attribute-value {
+    display: flex;
+    font-weight: bold;
+    /* background: linear-gradient(to left, #726fdc, #3a379c, #1a193d); */
+    padding: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: larger;
+}
+
+.attribute {
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 30px;
+    margin-top: 10px;
+    background: linear-gradient(to bottom right, rgb(130, 150, 251),#5473ef, rgb(39, 59, 119) ) ;
+    border-radius: 16px;
+    box-shadow: 0 4px 30px black;
+}
+
+.upgrade-value {
+    padding: 5px;
+    margin-left: 5px;
+    margin-top: 3px;
+    color:#3a379c;
+    /* background:  #3a379c; */
+    /* color: rgb(128, 128, 200); */
+}
+
+.boost-value {
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-left: 5px;
+    margin-top: 3px;
+    color:#3a379c ;
+    /* background:  #3a379c; */
+}
+/*  */
+
+
+
+
+/* Plus and minus buttons */
+.minus-button {
+    width: 25px;
+    height: 25px;
+    margin-top: 4px;
+    cursor: pointer;
+    background: inherit;
+    /* border: 1px solid red; */
+}
+
+.minus-button:hover {
+    background: linear-gradient(to bottom right, rgb(237, 185, 185),rgb(211, 114, 114) ,rgb(56, 32, 32));
+    transition: 0.2s;
+}
+
+.plus-button {
+    width: 25px;
+    height: 25px;
+    margin-top: 4px;
+    cursor: pointer;
+    background: inherit;
+    /* border: 1px solid green; */
+}
+
+.plus-button:hover {
+    background: linear-gradient(to bottom right, rgb(199, 242, 207), rgb(92, 160, 92), rgb(34, 56, 32));
+    transition: 0.2s;
 }
