@@ -14,7 +14,7 @@ html {
 
 header {
     text-align: center;
-    font-size: 12px;
+    font-size: 110%;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: bold;
     background-color: rgb(123, 246, 246);
@@ -24,8 +24,8 @@ header {
 
 body {
     display: flex;
-    backdrop-filter: blur(5.5px);
-    -webkit-backdrop-filter: blur(5.5px);
+    /* backdrop-filter: blur(5.5px);
+    -webkit-backdrop-filter: blur(5.5px); */
     background: linear-gradient(to bottom right, #89b6f4, #5473ef, #3a379c);
     /* align-items: center; */
     justify-content: center;
@@ -33,7 +33,7 @@ body {
     font-display: swap;
     /* height: inherit; */
     display: flex;
-    min-width: 90%;
+    width: 100%;
     min-height: 100%;
 }
 
@@ -133,6 +133,13 @@ body {
 }
 
 
+/* main section (available points and attributes) */
+#main-body-section {
+    display: flex;
+    flex-direction: column;
+}
+
+
 /* Overall atribute area */
 #attribute-area {
     display:flex;
@@ -168,11 +175,11 @@ body {
 }
 
 .attribute-name {
-    color:  rgb(38, 38, 38);
+    color:  rgb(24, 24, 24);
     padding-left: 10px;
-    padding-top: 10px;
+    padding-top: 8px;
     padding-right: 0px;
-    font-size: 12px;
+    font-size: 95%;
     /* background: #3a379c; */
     /* background: linear-gradient(to right, #726fdc, #3a379c, #1a193d); */
 }
@@ -183,7 +190,7 @@ body {
     display: flex;
     font-weight: bold;
     /* background: linear-gradient(to left, #726fdc, #3a379c, #1a193d); */
-    padding: 5px;
+    padding: 4.5px;
     margin-left: 5px;
     margin-right: 5px;
     font-size: larger;
@@ -248,4 +255,25 @@ body {
 .plus-button:hover {
     background: linear-gradient(to bottom right, rgb(199, 242, 207), rgb(92, 160, 92), rgb(34, 56, 32));
     transition: 0.2s;
+}
+
+
+.points-available-section {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.points-available {
+    display: flex;
+    margin-right: 1%;
+    margin-left: 0.5%;
+}
+
+.points-available-title, .points-available-value {
+    display: flex;
+    margin-right: 5px;
+    font-style: italic;
+    font-size: 85%;
 }
