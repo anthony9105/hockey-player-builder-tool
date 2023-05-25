@@ -56,13 +56,14 @@ body {
     min-width: 100%;
 }
 
-.playertype-height-weight-row {
+#playertype-height-weight-row, #abilities-and-boosts-row {
     display: flex;
     justify-content: space-around;
     margin: 5% 0;
 }
 
-.physical-section{
+
+.physical-section, .ability-section{
     backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px);
     background: linear-gradient(to bottom right, rgb(110, 110, 110), rgb(179, 179, 179));
@@ -75,7 +76,23 @@ body {
     margin-bottom: 50px;
 }
 
-#selection-and-input {
+/* changes based off the ability-section child */
+.ability-section:first-child {
+    background: linear-gradient(to right, rgb(144, 125, 20), gold, rgb(209, 205, 180));
+    box-shadow: 0 4px 30px gold;
+}
+.ability-section:first-child > .selection-and-input {
+    background: rgb(233, 221, 160);
+    font-size: 100%;
+}
+.ability-section:nth-child(2), .ability-section:nth-child(3) {
+    box-shadow: 0 4px 30px gray;
+}
+.ability-section:nth-child(2) > .selection-and-input,  .ability-section:nth-child(3) > .selection-and-input{
+    background: rgb(165, 165, 165);
+}
+
+.selection-and-input {
     backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px);
     /* background: linear-gradient(to top, white, rgb(211, 205, 155), rgb(157, 148, 107)); */
@@ -88,27 +105,23 @@ body {
     cursor: pointer;
 }
 
-#selection-and-input:hover {
+.selection-and-input:hover {
     background: linear-gradient(to bottom, rgb(103, 119, 146), rgb(139, 157, 212), white);
 }
 
-#forward-option-group {
+.forward-option-group {
     background-color: rgb(187, 217, 246);
     font-family: 'Dosis', sans-serif;
 }
 
-#defense-option-group {
-    background-color: rgb(240, 247, 196);
-    font-family: 'Dosis', sans-serif;
-}
-
-#defense-option-group {
+.defense-option-group {
     background-color: rgb(240, 247, 196);
     font-family: 'Dosis', sans-serif;
 }
 
 
-#confirm-button {
+
+.confirm-button {
     backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px);
     background: linear-gradient(to bottom, rgb(157, 148, 107), rgb(211, 205, 155), white);
@@ -121,7 +134,7 @@ body {
     font-size: 75%;
 }
 
-#confirm-button:hover {
+.confirm-button:hover {
     cursor: pointer;
     background: linear-gradient(to bottom, rgb(94, 88, 64), rgb(164, 160, 120), rgb(214, 211, 211))
 }
@@ -158,10 +171,10 @@ body {
 
 /* changing colour of the attribute background to alternating for each attribute section */
 .attribute-section:nth-child(odd) > .attribute {
-    background: linear-gradient(to top left, #fff8e8,#7c6c8d, #7b3f00 ) ;
+    background: linear-gradient(to right, #fff8e8,#7c6c8d, #7b3f00 ) ;
 }
 .attribute-section:nth-child(even) > .attribute {
-    background: linear-gradient(to top left, rgb(161, 156, 157), rgb(139, 97, 172), rgb(73, 23, 61) ) ;
+    background: linear-gradient(to right, rgb(161, 156, 157), rgb(139, 97, 172), rgb(73, 23, 61) ) ;
 }
 
 
@@ -288,4 +301,8 @@ body {
     margin-right: 5px;
     font-style: italic;
     font-size: 85%;
+}
+
+#hey {
+    justify-content: center;
 }

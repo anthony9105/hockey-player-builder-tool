@@ -11,13 +11,13 @@
 </head>
 <body>
     <div class="wrapper">
-        <section class="playertype-height-weight-row">
+        <section id="playertype-height-weight-row">
             <!-- Player Type Selection -->
             <div class="physical-section">
 
                 <!-- Selection -->
-                <select id="selection-and-input">
-                    <optgroup id="forward-option-group" label="Forward">
+                <select class="selection-and-input">
+                    <optgroup class="forward-option-group" label="Forward">
                         <option value="Sniper">Sniper</option>
                         <option value="Dangler">Dangler</option>
                         <option value="Playmaker">Playmaker</option>
@@ -26,7 +26,7 @@
                         <option value="Grinder">Grinder</option>
                         <option value="Enforcer">Enforcer</option>
                     </optgroup>
-                    <optgroup id="defense-option-group" label="Defenseman">
+                    <optgroup class="defense-option-group" label="Defenseman">
                         <option value="Puckmoving Defenseman">Puckmoving Defenseman</option>
                         <option value="Two-way Defenseman">Two-way Defenseman</option>
                         <option value="Offensive Defenseman">Offensive Defenseman</option>
@@ -36,7 +36,7 @@
                 </select>
                 
                 <!-- Button -->
-                <button id="confirm-button">Confirm player type</button>
+                <button class="confirm-button">Confirm player type</button>
             </div>
 
 
@@ -44,7 +44,7 @@
             <div class="physical-section">
 
                 <!-- Selection -->
-                <select id="selection-and-input">
+                <select class="selection-and-input">
                     <option value="5'7">5'7</option>
                     <option value="5'8">5'8</option>
                     <option value="5'9">5'9</option>
@@ -63,16 +63,120 @@
                 </select>
 
                 <!-- Button -->
-                <button id="confirm-button">Confirm height</button>
+                <button class="confirm-button">Confirm height</button>
             </div>
 
 
             <!-- Player Weight -->
             <div class="physical-section">
-                <input type="number" id="selection-and-input" name="weight" min="1" max="30"></input>
-                <button id="confirm-button">
+                <input type="number" class="selection-and-input" name="weight" min="1" max="30"></input>
+                <button class="confirm-button">
                     Confirm weight (lbs)
                 </button>
+            </div>
+        </section>
+
+        <section id="abilities-and-boosts-row">
+            <div class="ability-section">
+                <!-- Selection -->
+                <select class="selection-and-input">
+                    <option value="Ankle Breaker">Ankle Breaker</option>
+                    <option value="Back At Ya">Back At Ya</option>
+                    <option value="Big Rig">Big Rig</option>
+                    <option value="Big Tipper">Big Tipper</option>
+                    <option value="Bouncer">Bouncer</option>
+                    <option value="Close Quarters">Close Quarters</option>
+                    <option value="Crease Crasher">Crease Crasher</option>
+                    <option value="Elite Edges">Elite Edges</option>
+                    <option value="Heatseeker">Heatseeker</option>
+                    <option value="Magnetic">Magnetic</option>
+                    <option value="Make It Snappy">Make It Snappy</option>
+                    <option value="No Contest">No Contest</option>
+                    <option value="Off The Rush">Off The Rush</option>
+                    <option value="One-tee">One-tee</option>
+                    <option value="Puck On A String">Puck On A String</option>
+                    <option value="Quick Pick">Quick Pick</option>
+                    <option value="Seeying Eye">Seeying Eye</option>
+                    <option value="Send It">Send It</option>
+                    <option value="Shutdown">Shutdown</option>
+                    <option value="Stick 'Em Up">Stick 'Em Up</option>
+                    <option value="Tape To Tape">Tape To Tape</option>
+                    <option value="Third Eye">Third Eye</option>
+                    <option value="Thunderclap">Thunderclap</option>
+                    <option value="Total Eclipse">Total Eclipse</option>
+                    <option value="Truculence">Truculence</option>
+                    <option value="Unstoppable Force">Unstoppable Force</option>
+                </select>
+            </div>
+
+            <div class="ability-section">
+                <!-- Selection -->
+                <select class="selection-and-input">
+                    <option value="Ankle Breaker">Ankle Breaker</option>
+                    <option value="Back At Ya">Back At Ya</option>
+                    <option value="Big Rig">Big Rig</option>
+                    <option value="Big Tipper">Big Tipper</option>
+                    <option value="Bouncer">Bouncer</option>
+                    <option value="Close Quarters">Close Quarters</option>
+                    <option value="Crease Crasher">Crease Crasher</option>
+                    <option value="Elite Edges">Elite Edges</option>
+                    <option value="Heatseeker">Heatseeker</option>
+                    <option value="Magnetic">Magnetic</option>
+                    <option value="Make It Snappy">Make It Snappy</option>
+                    <option value="No Contest">No Contest</option>
+                    <option value="Off The Rush">Off The Rush</option>
+                    <option value="One-tee">One-tee</option>
+                    <option value="Puck On A String">Puck On A String</option>
+                    <option value="Quick Pick">Quick Pick</option>
+                    <option value="Seeying Eye">Seeying Eye</option>
+                    <option value="Send It">Send It</option>
+                    <option value="Shutdown">Shutdown</option>
+                    <option value="Stick 'Em Up">Stick 'Em Up</option>
+                    <option value="Tape To Tape">Tape To Tape</option>
+                    <option value="Third Eye">Third Eye</option>
+                    <option value="Thunderclap">Thunderclap</option>
+                    <option value="Total Eclipse">Total Eclipse</option>
+                    <option value="Truculence">Truculence</option>
+                    <option value="Unstoppable Force">Unstoppable Force</option>
+                </select>
+            </div>
+
+            <div class="ability-section">
+                <!-- Selection -->
+                <select class="selection-and-input">
+                    <option value="Ankle Breaker">Ankle Breaker</option>
+                    <option value="Back At Ya">Back At Ya</option>
+                    <option value="Big Rig">Big Rig</option>
+                    <option value="Big Tipper">Big Tipper</option>
+                    <option value="Bouncer">Bouncer</option>
+                    <option value="Close Quarters">Close Quarters</option>
+                    <option value="Crease Crasher">Crease Crasher</option>
+                    <option value="Elite Edges">Elite Edges</option>
+                    <option value="Heatseeker">Heatseeker</option>
+                    <option value="Magnetic">Magnetic</option>
+                    <option value="Make It Snappy">Make It Snappy</option>
+                    <option value="No Contest">No Contest</option>
+                    <option value="Off The Rush">Off The Rush</option>
+                    <option value="One-tee">One-tee</option>
+                    <option value="Puck On A String">Puck On A String</option>
+                    <option value="Quick Pick">Quick Pick</option>
+                    <option value="Seeying Eye">Seeying Eye</option>
+                    <option value="Send It">Send It</option>
+                    <option value="Shutdown">Shutdown</option>
+                    <option value="Stick 'Em Up">Stick 'Em Up</option>
+                    <option value="Tape To Tape">Tape To Tape</option>
+                    <option value="Third Eye">Third Eye</option>
+                    <option value="Thunderclap">Thunderclap</option>
+                    <option value="Total Eclipse">Total Eclipse</option>
+                    <option value="Truculence">Truculence</option>
+                    <option value="Unstoppable Force">Unstoppable Force</option>
+                </select>
+            </div>
+        </section>
+
+        <section id="boosts-row">
+            <div class="boosts-section">
+                <select></select>
             </div>
         </section>
 
