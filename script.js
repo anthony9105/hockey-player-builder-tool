@@ -13,6 +13,25 @@ var globalPreviousWeight;
 var globalCurrentHeight;
 var globalCurrentWeight;
 
+
+
+var dropdownButtons = document.getElementsByClassName("dropdownbutton");
+
+for (let i=0; i < dropdownButtons.length; i++) {
+  dropdownButtons[i].onclick = function() {
+    var x = document.getElementsByClassName("dropdown-content");
+
+    if (x[i].style.display === "none" || x[i].style.display == "") {
+      x[i].style.display = "flex";
+      x[i].style.overflow = "hidden";
+    }
+    else {
+      x[i].style.display = "none";
+    }
+    
+  }
+}
+
 /**
  * setDefaultAttributes function.
  * Used to set the default attributes of the specified buildName on the html attributes table.
@@ -569,80 +588,80 @@ async function increaseOrDecreaseAttribute(upgradeType, i) {
 
 increasingAndDecreasingAttributes();
 
-// /**
-//  * Increasing attributes
-//  */
-// var userPlusSelection = document.getElementsByClassName('plus2');
+/**
+ * Increasing attributes
+ */
+var userPlusSelection = document.getElementsByClassName('plus2');
 
-// for (let i = 0; i < userPlusSelection.length; i++) {
-//   userPlusSelection[i].addEventListener("click", async function() {
+for (let i = 0; i < userPlusSelection.length; i++) {
+  userPlusSelection[i].addEventListener("click", async function() {
 
-//     // +5 is the maximum upgrade
-//     if (document.getElementsByClassName('upgrade-option-default')[i].innerHTML < 5 && 
-//     document.getElementsByClassName('numeric')[i].innerHTML < 99) {
-//       document.getElementsByClassName('numeric')[i].innerHTML++;
-//       document.getElementsByClassName('upgrade-option-default')[i].innerHTML++;
-//       changeUpgradeOptionColour(i);
+    // +5 is the maximum upgrade
+    if (document.getElementsByClassName('upgrade-option-default')[i].innerHTML < 5 && 
+    document.getElementsByClassName('numeric')[i].innerHTML < 99) {
+      document.getElementsByClassName('numeric')[i].innerHTML++;
+      document.getElementsByClassName('upgrade-option-default')[i].innerHTML++;
+      changeUpgradeOptionColour(i);
 
-//       // getting the index for the attribute section (0-4)
-//       var j = 0;
-//       if (i < 5) {
-//         j = 0;
-//       }
-//       else if (i < 10) {
-//         j = 1;
-//       }
-//       else if (i < 15) {
-//         j = 2;
-//       }
-//       else if (i < 19) {
-//         j = 3;
-//       }
-//       else {
-//         j = 4;
-//       }
-//       availableUpgradePoints[j] += await getUpgradePointChange(i);
-//       updateAvailableUpgradePoints(availableUpgradePoints[j], idNames[j]); 
-//     }
+      // getting the index for the attribute section (0-4)
+      var j = 0;
+      if (i < 5) {
+        j = 0;
+      }
+      else if (i < 10) {
+        j = 1;
+      }
+      else if (i < 15) {
+        j = 2;
+      }
+      else if (i < 19) {
+        j = 3;
+      }
+      else {
+        j = 4;
+      }
+      availableUpgradePoints[j] += await getUpgradePointChange(i);
+      updateAvailableUpgradePoints(availableUpgradePoints[j], idNames[j]); 
+    }
 
-//   })
-// }
+  })
+}
 
-// /**
-//  * Decreasing attributes
-//  */
-// var userMinusSelection = document.getElementsByClassName('minus2');
+/**
+ * Decreasing attributes
+ */
+var userMinusSelection = document.getElementsByClassName('minus2');
 
-// for (let i = 0; i < userMinusSelection.length; i++) {
-//   userMinusSelection[i].addEventListener("click", async function() {
+for (let i = 0; i < userMinusSelection.length; i++) {
+  userMinusSelection[i].addEventListener("click", async function() {
 
-//     // the maximum downgrade is 5 (-5)
-//     if (document.getElementsByClassName('upgrade-option-default')[i].innerHTML > -5 && 
-//     document.getElementsByClassName('numeric')[i].innerHTML > 0) {
-//       document.getElementsByClassName('numeric')[i].innerHTML--;
-//       document.getElementsByClassName('upgrade-option-default')[i].innerHTML--;
+    // the maximum downgrade is 5 (-5)
+    if (document.getElementsByClassName('upgrade-option-default')[i].innerHTML > -5 && 
+    document.getElementsByClassName('numeric')[i].innerHTML > 0) {
+      document.getElementsByClassName('numeric')[i].innerHTML--;
+      document.getElementsByClassName('upgrade-option-default')[i].innerHTML--;
   
-//       changeUpgradeOptionColour(i);
+      changeUpgradeOptionColour(i);
 
-//       // getting the index for the attribute section (0-4)
-//       var j = 0;
-//       if (i < 5) {
-//         j = 0;
-//       }
-//       else if (i < 10) {
-//         j = 1;
-//       }
-//       else if (i < 15) {
-//         j = 2;
-//       }
-//       else if (i < 19) {
-//         j = 3;
-//       }
-//       else {
-//         j = 4;
-//       }
-//       availableUpgradePoints[j] = availableUpgradePoints[j] + await getUpgradePointChange(i);
-//       updateAvailableUpgradePoints(availableUpgradePoints[j], idNames[j]);
-//     }
-//   })
-// }
+      // getting the index for the attribute section (0-4)
+      var j = 0;
+      if (i < 5) {
+        j = 0;
+      }
+      else if (i < 10) {
+        j = 1;
+      }
+      else if (i < 15) {
+        j = 2;
+      }
+      else if (i < 19) {
+        j = 3;
+      }
+      else {
+        j = 4;
+      }
+      availableUpgradePoints[j] = availableUpgradePoints[j] + await getUpgradePointChange(i);
+      updateAvailableUpgradePoints(availableUpgradePoints[j], idNames[j]);
+    }
+  })
+}

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./style.css">
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <title>Anthony's Hockey Player Builder Tool</title>
 </head>
 <body>
@@ -76,37 +76,65 @@
             </div>
         </section>
 
+
         <section id="abilities-and-boosts-row">
+
             <div class="ability-section">
-                <!-- Selection -->
-                <select class="selection-and-input">
-                    <option value="Ankle Breaker">Ankle Breaker</option>
-                    <option value="Back At Ya">Back At Ya</option>
-                    <option value="Big Rig">Big Rig</option>
-                    <option value="Big Tipper">Big Tipper</option>
-                    <option value="Bouncer">Bouncer</option>
-                    <option value="Close Quarters">Close Quarters</option>
-                    <option value="Crease Crasher">Crease Crasher</option>
-                    <option value="Elite Edges">Elite Edges</option>
-                    <option value="Heatseeker">Heatseeker</option>
-                    <option value="Magnetic">Magnetic</option>
-                    <option value="Make It Snappy">Make It Snappy</option>
-                    <option value="No Contest">No Contest</option>
-                    <option value="Off The Rush">Off The Rush</option>
-                    <option value="One-tee">One-tee</option>
-                    <option value="Puck On A String">Puck On A String</option>
-                    <option value="Quick Pick">Quick Pick</option>
-                    <option value="Seeying Eye">Seeying Eye</option>
-                    <option value="Send It">Send It</option>
-                    <option value="Shutdown">Shutdown</option>
-                    <option value="Stick 'Em Up">Stick 'Em Up</option>
-                    <option value="Tape To Tape">Tape To Tape</option>
-                    <option value="Third Eye">Third Eye</option>
-                    <option value="Thunderclap">Thunderclap</option>
-                    <option value="Total Eclipse">Total Eclipse</option>
-                    <option value="Truculence">Truculence</option>
-                    <option value="Unstoppable Force">Unstoppable Force</option>
-                </select>
+            <div class="dropdown">
+                <button class="dropdownbutton">Main Ability</button>
+                <div class="dropdown-content">
+                    <div class="dropdown-item">
+                        <span class="material-icons" id="gold-icon">
+                            do_not_step
+                        </span>
+                        <div class="dropdown-item-text">
+                            <div class="dropdown-item-value">
+                                Ankle Breaker
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dropdown-item">
+                        <span class="material-icons" id="gold-icon">
+                            keyboard_return
+                        </span>
+                        <div class="dropdown-item-text">
+                            <div class="dropdown-item-value">
+                                Back At Ya
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dropdown-item">
+                        <span class="material-icons" id="gold-icon">
+                            shopping_cart_checkout
+                        </span>
+                        <div class="dropdown-item-text">
+                            <div class="dropdown-item-value">
+                                Big Rig
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dropdown-item">
+                        <span class="material-icons" id="gold-icon">
+                            payments
+                        </span>
+                        <div class="dropdown-item-text">
+                            <div class="dropdown-item-value">
+                                Big Tipper
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dropdown-item">
+                        <span class="material-icons" id="gold-icon">
+                            sports_mma
+                        </span>
+                        <div class="dropdown-item-text">
+                            <div class="dropdown-item-value">
+                                Bouncer
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </div>
 
             <div class="ability-section">
@@ -145,6 +173,37 @@
                 <!-- Selection -->
                 <select class="selection-and-input">
                     <option value="Ankle Breaker">Ankle Breaker</option>
+                    <option value="Back At Ya">Back At Ya</option>
+                    <option value="Big Rig">Big Rig</option>
+                    <option value="Big Tipper">Big Tipper</option>
+                    <option value="Bouncer">Bouncer</option>
+                    <option value="Close Quarters">Close Quarters</option>
+                    <option value="Crease Crasher">Crease Crasher</option>
+                    <option value="Elite Edges">Elite Edges</option>
+                    <option value="Heatseeker">Heatseeker</option>
+                    <option value="Magnetic">Magnetic</option>
+                    <option value="Make It Snappy">Make It Snappy</option>
+                    <option value="No Contest">No Contest</option>
+                    <option value="Off The Rush">Off The Rush</option>
+                    <option value="One-tee">One-tee</option>
+                    <option value="Puck On A String">Puck On A String</option>
+                    <option value="Quick Pick">Quick Pick</option>
+                    <option value="Seeying Eye">Seeying Eye</option>
+                    <option value="Send It">Send It</option>
+                    <option value="Shutdown">Shutdown</option>
+                    <option value="Stick 'Em Up">Stick 'Em Up</option>
+                    <option value="Tape To Tape">Tape To Tape</option>
+                    <option value="Third Eye">Third Eye</option>
+                    <option value="Thunderclap">Thunderclap</option>
+                    <option value="Total Eclipse">Total Eclipse</option>
+                    <option value="Truculence">Truculence</option>
+                    <option value="Unstoppable Force">Unstoppable Force</option>
+                </select>
+            </div>
+
+            <div class="ability-section">
+                <!-- Selection -->
+                <select class="selection-and-input">
                     <option value="Back At Ya">Back At Ya</option>
                     <option value="Big Rig">Big Rig</option>
                     <option value="Big Tipper">Big Tipper</option>
@@ -175,8 +234,36 @@
         </section>
 
         <section id="boosts-row">
-            <div class="boosts-section">
-                <select></select>
+            <div class="dropdown">
+                <button class="dropdownbutton">Boost</button>
+                <div class="dropdown-content">
+                    <div class="dropdown-item">
+                        <span class="material-icons" id="green-icon">
+                            ice_skating
+                        </span>
+                        <div class="dropdown-item-text">
+                            <div class="dropdown-item-value">
+                                +2 speed
+                            </div>
+                            <div class="dropdown-item-requirement">
+                                (requires minimum 78 Durability)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dropdown-item">
+                        <span class="material-icons" id="blue-icon">
+                            ice_skating
+                        </span>
+                        <div class="dropdown-item-text">
+                            <div class="dropdown-item-value">
+                                +2 speed
+                            </div>
+                            <div class="dropdown-item-requirement">
+                                (requires minimum 78 Durability)
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -529,8 +616,6 @@
             </section>
         </section>
     </div>
-    
     <script type="module" src="./script.js"></script>
-    
 </body>
 </html>
