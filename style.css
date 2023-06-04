@@ -59,7 +59,7 @@ body {
 #playertype-height-weight-row, #abilities-and-boosts-row {
     display: flex;
     justify-content: space-around;
-    margin: 5% 0;
+    margin-top: 2%;
 }
 
 
@@ -77,12 +77,12 @@ body {
 }
 
 .ability-section {
-    backdrop-filter: blur(5.5px);
+    /* backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px);
     background: linear-gradient(to bottom right, rgb(110, 110, 110), rgb(179, 179, 179));
     border: 1px solid black;
     border-radius: 4px;
-    box-shadow: 0 4px 30px black;
+    box-shadow: 0 4px 30px black; */
     padding: 10px 5px;
     margin-left: 10px;
     margin-right: 10px;
@@ -90,20 +90,24 @@ body {
 }
 
 /* changes based off the ability-section child */
-.ability-section:first-child {
+/* .ability-section:first-child{
     background: linear-gradient(to right, rgb(144, 125, 20), gold, rgb(209, 205, 180));
     box-shadow: 0 4px 30px gold;
-}
-.ability-section:first-child > .selection-and-input {
-    /* background: rgb(233, 221, 160); */
+} */
+/* .ability-section:first-child > .selection-and-input {
     font-size: 100%;
-}
-.ability-section:nth-child(2), .ability-section:nth-child(3) {
-    box-shadow: 0 4px 30px gray;
-}
-.ability-section:nth-child(2) > .selection-and-input,  .ability-section:nth-child(3) > .selection-and-input{
+} */
+/* .ability-section:nth-child(2) > .selection-and-input,  .ability-section:nth-child(3) > .selection-and-input{
     background: rgb(165, 165, 165);
+} */
+.ability-section:first-child > .dropdown > .dropdownbutton{
+    background: linear-gradient(to right, rgb(144, 125, 20), gold, rgb(209, 205, 180));
+    box-shadow: 0 4px 30px gold;
+    font-size: larger;
 }
+/* .ability-section > .dropdown > .dropdownbutton:hover {
+    box-shadow: none;
+} */
 
 .selection-and-input {
     backdrop-filter: blur(5.5px);
@@ -333,30 +337,23 @@ body {
     font-size: 85%;
 }
 
-#hey {
-    justify-content: center;
-}
-
 /* #main-ability{
     background-color: gold;
 } */
 
 .dropdownbutton {
-    background-color: inherit;
+    /* backdrop-filter: blur(5.5px);
+    -webkit-backdrop-filter: blur(5.5px); */
+    background: linear-gradient(to bottom right, rgb(110, 110, 110), rgb(179, 179, 179));
+    border: 1px solid black;
+    box-shadow: 0 4px 30px rgb(215, 215, 215);
     color: black;
     padding: 16px;
     font-size: 16px;
-    border: none;
+    /* border: none; */
     cursor: pointer;
     border-radius: 10px;
-  }
-  
- /* .dropdownbutton:hover > .ability-section {
-    background: #61633a;
-  } */
-
-  .ability-section:hover {
-    background: grey;
+    margin-top: 7%;
   }
   
   .dropdown {
@@ -385,6 +382,11 @@ body {
   #gold-icon {
     color: rgb(160, 144, 65);
   }
+
+  #black-icon {
+    color: black;
+  }
+
 
 .dropdown-item {
     display: flex;
@@ -430,3 +432,18 @@ body {
   /* .dropdown a:hover {background-color: #ddd;} */
   
   /* .show {display: block;} */
+
+  #boosts-row {
+    /* backdrop-filter: blur(5.5px);
+    -webkit-backdrop-filter: blur(5.5px); */
+    /* background: linear-gradient(to bottom right, rgb(58, 75, 121), rgb(15, 83, 240));
+    border: 1px solid black;
+    border-radius: 4px; */
+    /* box-shadow: 0 4px 30px black; */
+    padding: 10px 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: space-around;
+}
