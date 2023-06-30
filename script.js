@@ -3,7 +3,7 @@
  * Anthony Liscio
  */
 
-import {buildDataXMLFileName, upgradePointsXMLFileName, physUpgradeDowngradeFileName, allHeights, idNames, allAttributeNamesInOrder} from "./constants.js";
+import {buildDataXMLFileName, upgradePointsXMLFileName, physUpgradeDowngradeFileName, boostsXMLFileName, allHeights, idNames, allAttributeNamesInOrder} from "./constants.js";
 
 var availableUpgradePoints = [0, 0, 0, 0, 0];
 var previousUpgradeModifier = new Array(23).fill(0);
@@ -19,18 +19,135 @@ var dropdownButtons = document.getElementsByClassName("dropdownbutton");
 
 for (let i=0; i < dropdownButtons.length; i++) {
   dropdownButtons[i].onclick = function() {
-    var x = document.getElementsByClassName("dropdown-content");
 
-    if (x[i].style.display === "none" || x[i].style.display == "") {
-      x[i].style.display = "flex";
-      x[i].style.overflow = "hidden";
+    // UNFINISHED 
+    
+    // var j used for the indices of x needed to make visible/invisible.
+    // j = 0 when i = 0, or j = (i * 2) + (i - 1) for the rest of i values,
+    // because the dropdown-content is split into 2 columns for
+    // main ability and split into 3 columns for the rest for a better visual.
+    // So for example, when dropdownbutton[0] is clicked then
+    // dropdown-content[0] AND dropdown-content[1] need have the display
+    // updated to make them visible/invisible.
+    var j;
+    if (i == 0) {
+      j = 0;
     }
     else {
-      x[i].style.display = "none";
+      j = (i * 2) + (i - 1);
     }
+
+    console.log(i);
+    var x = document.getElementsByClassName("dropdown-content");
+    console.log(x);
+
+    if (i == 0) {
+      var n = j;
+      while (n <= j + 1) {
+        if (x[n].style.display === "none" || x[n].style.display == "") {
+          x[n].style.display = "flex";
+          x[n].style.overflow = "hidden";
+        }
+        else {
+          x[n].style.display = "none";
+        }
+
+        n++;
+      }
+    }
+    else {
+      var n = j;
+      while (n <= j + 2) {
+        if (x[n].style.display === "none" || x[n].style.display == "") {
+          x[n].style.display = "flex";
+          x[n].style.overflow = "hidden";
+        }
+        else {
+          x[n].style.display = "none";
+        }
+
+        n++;
+      }
+    }
+
+    // if (x[j].style.display === "none" || x[j].style.display == "") {
+    //   x[j].style.display = "flex";
+    //   x[j].style.overflow = "hidden";
+    // }
+    // else {
+    //   x[j].style.display = "none";
+    // }
+
+    // if (x[j+1].style.display === "none" || x[j+1].style.display == "") {
+    //   x[j+1].style.display = "flex";
+    //   x[j+1].style.overflow = "hidden";
+    // }
+    // else {
+    //   x[j+1].style.display = "none";
+    // }
+
+    // if (x[j+2].style.display === "none" || x[j+2].style.display == "") {
+    //   x[j+2].style.display = "flex";
+    //   x[j+2].style.overflow = "hidden";
+    // }
+    // else {
+    //   x[j+2].style.display = "none";
+    // }
     
   }
 }
+
+
+
+var sections = document.getElementsByClassName("dropdown-content");
+var boostItems = sections[2].getElementsByClassName("dropdown-item");
+console.log(boostItems[0].childNodes[1].textContent);
+boostItems[0].childNodes[1].textContent = "ice_skating";
+console.log(boostItems[0].childNodes[1].textContent);
+boostItems[0].childNodes[1].style.color = "green";
+
+try {
+  const response = await fetch(boostsXMLFileName);
+  const xmlString = await response.text();
+  const xmlDoc = new DOMParser().parseFromString(xmlString, "text/xml");
+  const attributeSections = xmlDoc.childNodes[0];
+
+  // array with the node names for later
+  var sectionNodeNames = new Array();
+  var boostNodeNames = new Array();
+
+  // first node name ("boost")
+  boostNodeNames.push(attributeSections.childNodes[1].childNodes[1].nodeName);
+
+  // for the attribute section node names ["Technique", "Power", "Playstyle", "Tenacity", "Tactics"]
+  for (var i = 1; i < attributeSections.childNodes.length; i += 2) {
+    sectionNodeNames.push(attributeSections.childNodes[i].nodeName);
+  }
+  // for the boost node names
+  for (var i = 1; i < attributeSections.childNodes[1].childNodes[1].childNodes.length; i += 2) {
+    boostNodeNames.push(attributeSections.childNodes[1].childNodes[1].childNodes[i].nodeName);
+  }
+
+  console.log(sectionNodeNames);
+  console.log(boostNodeNames);
+
+
+
+  var attributeSectionsLength = attributeSections.childNodes.length;
+  for (var i = 1; i < attributeSectionsLength; i += 2) {
+
+    var boosts = attributeSections.childNodes[i].querySelectorAll(boostNodeNames[0]);
+    for (var boost of boosts) {
+      
+    }
+
+  }
+}
+catch (error) {
+  console.error(error);
+}
+
+
 
 /**
  * setDefaultAttributes function.

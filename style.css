@@ -105,6 +105,14 @@ body {
     box-shadow: 0 4px 30px gold;
     font-size: larger;
 }
+.ability-section:first-child > .dropdown > .dropdownbutton:hover{
+    background: linear-gradient(to bottom right, rgb(32, 34, 95), rgb(179, 179, 179));
+    box-shadow: 0 4px 30px gold;
+    font-size: larger;
+}
+.dropdownbutton:hover {
+    background: linear-gradient(to bottom right, rgb(32, 34, 95), rgb(179, 179, 179));
+}
 /* .ability-section > .dropdown > .dropdownbutton:hover {
     box-shadow: none;
 } */
@@ -170,7 +178,7 @@ body {
 
 .confirm-button:hover {
     cursor: pointer;
-    background: linear-gradient(to bottom, rgb(94, 88, 64), rgb(164, 160, 120), rgb(214, 211, 211))
+    background: linear-gradient(to bottom, rgb(94, 88, 64), rgb(164, 160, 120), rgb(214, 211, 211));
 }
 
 
@@ -446,4 +454,13 @@ body {
     margin-bottom: 50px;
     display: flex;
     justify-content: space-around;
+}
+
+#horizontal-dropdown {
+    flex-direction: row;
+}
+
+.dropdown-column {
+    display: flex;
+    flex-direction: row;
 }
