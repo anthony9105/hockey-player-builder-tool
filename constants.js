@@ -11,4 +11,6 @@ const allAttributeNamesInOrder = ["WristshotAcc", "SlapshotAcc", "Speed", "Balan
                                   "Endurance", "Passing", "OffensiveAwareness", "BodyChecking", "StickChecking", "DefensiveAwareness", "Handeye", "Strength", 
                                   "Durability", "ShotBlocking", "Deking", "Faceoffs", "Discipline", "FightingSkill"];
 
-export {buildDataXMLFileName, upgradePointsXMLFileName, physUpgradeDowngradeFileName, boostsXMLFileName, allHeights, idNames, allAttributeNamesInOrder};
+const numOfAttributeSections = 5;
+
+export {buildDataXMLFileName, upgradePointsXMLFileName, physUpgradeDowngradeFileName, boostsXMLFileName, allHeights, idNames, allAttributeNamesInOrder, numOfAttributeSections};

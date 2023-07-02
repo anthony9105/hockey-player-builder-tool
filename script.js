@@ -3,7 +3,8 @@
  * Anthony Liscio
  */
 
-import {buildDataXMLFileName, upgradePointsXMLFileName, physUpgradeDowngradeFileName, boostsXMLFileName, allHeights, idNames, allAttributeNamesInOrder} from "./constants.js";
+import {buildDataXMLFileName, upgradePointsXMLFileName, physUpgradeDowngradeFileName, 
+  boostsXMLFileName, allHeights, idNames, allAttributeNamesInOrder, numOfAttributeSections} from "./constants.js";
 
 var availableUpgradePoints = [0, 0, 0, 0, 0];
 var previousUpgradeModifier = new Array(23).fill(0);
@@ -14,89 +15,67 @@ var globalCurrentHeight;
 var globalCurrentWeight;
 
 
-
+// when dropdown button is pressed
 var dropdownButtons = document.getElementsByClassName("dropdownbutton");
+var boostDropdownButtons = document.getElementsByClassName("main-boost-dropdownbutton");
+var attributeSectionBoostDropdownButtons = document.getElementsByClassName("boost-dropdownbutton");
 
-for (let i=0; i < dropdownButtons.length; i++) {
-  dropdownButtons[i].onclick = function() {
+dropdownButtonListeners(dropdownButtons);
 
-    // UNFINISHED 
-    
-    // var j used for the indices of x needed to make visible/invisible.
-    // j = 0 when i = 0, or j = (i * 2) + (i - 1) for the rest of i values,
-    // because the dropdown-content is split into 2 columns for
-    // main ability and split into 3 columns for the rest for a better visual.
-    // So for example, when dropdownbutton[0] is clicked then
-    // dropdown-content[0] AND dropdown-content[1] need have the display
-    // updated to make them visible/invisible.
-    var j;
-    if (i == 0) {
-      j = 0;
-    }
-    else {
-      j = (i * 2) + (i - 1);
-    }
-
-    console.log(i);
-    var x = document.getElementsByClassName("dropdown-content");
-    console.log(x);
-
-    if (i == 0) {
-      var n = j;
-      while (n <= j + 1) {
-        if (x[n].style.display === "none" || x[n].style.display == "") {
-          x[n].style.display = "flex";
-          x[n].style.overflow = "hidden";
-        }
-        else {
-          x[n].style.display = "none";
-        }
-
-        n++;
-      }
-    }
-    else {
-      var n = j;
-      while (n <= j + 2) {
-        if (x[n].style.display === "none" || x[n].style.display == "") {
-          x[n].style.display = "flex";
-          x[n].style.overflow = "hidden";
-        }
-        else {
-          x[n].style.display = "none";
-        }
-
-        n++;
-      }
-    }
-
-    // if (x[j].style.display === "none" || x[j].style.display == "") {
-    //   x[j].style.display = "flex";
-    //   x[j].style.overflow = "hidden";
-    // }
-    // else {
-    //   x[j].style.display = "none";
-    // }
-
-    // if (x[j+1].style.display === "none" || x[j+1].style.display == "") {
-    //   x[j+1].style.display = "flex";
-    //   x[j+1].style.overflow = "hidden";
-    // }
-    // else {
-    //   x[j+1].style.display = "none";
-    // }
-
-    // if (x[j+2].style.display === "none" || x[j+2].style.display == "") {
-    //   x[j+2].style.display = "flex";
-    //   x[j+2].style.overflow = "hidden";
-    // }
-    // else {
-    //   x[j+2].style.display = "none";
-    // }
-    
+function hideOrRevealDropdown(allDropdownContent, k) {
+  if (allDropdownContent[k].style.display === "none" || allDropdownContent[k].style.display == "") {
+    allDropdownContent[k].style.display = "flex";
+    allDropdownContent[k].style.overflow = "hidden";
+  }
+  else {
+    allDropdownContent[k].style.display = "none";
   }
 }
 
+function boostDropdownButtonListeners(boostDropdownButtons, dropdownContentElementClassName, isBoostButton) {
+  for (let i=0; i < boostDropdownButtons.length; i++) {
+    boostDropdownButtons[i].addEventListener("click", function() {
+      console.log(i);
+
+      var allDropdownContent = document.getElementsByClassName(dropdownContentElementClassName);
+
+      hideOrRevealDropdown(allDropdownContent, i);
+
+    });
+  }
+}
+
+// var allDropdownContent = document.getElementsByClassName("boost-buttons-content");
+// hideOrRevealDropdown(allDropdownContent, 1);
+boostDropdownButtonListeners(boostDropdownButtons, "boost-buttons-content", true);
+boostDropdownButtonListeners(attributeSectionBoostDropdownButtons, "boost-dropdown-content", false);
+
+function dropdownButtonListeners(dropdownButtons) {
+  for (let i=0; i < dropdownButtons.length; i++) {
+    dropdownButtons[i].addEventListener("click", function() {
+
+      var j = i * 2.5;
+      var numOfDropdowns = 3;
+
+      if (i == 1) {
+        j = 3;
+        numOfDropdowns = 2;
+      }
+
+      // console.log(i);
+      var allDropdownContent = document.getElementsByClassName("dropdown-content");
+      //console.log(allDropdownContent);
+      // console.log(j);
+
+
+      for (var k = j; k < j + numOfDropdowns; k++) {
+        hideOrRevealDropdown(allDropdownContent, k);
+      }
+      
+    });
+  }
+
+}
 
 
 var sections = document.getElementsByClassName("dropdown-content");
