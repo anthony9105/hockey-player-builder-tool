@@ -15,45 +15,136 @@ var globalCurrentHeight;
 var globalCurrentWeight;
 
 
-// when dropdown button is pressed
-var dropdownButtons = document.getElementsByClassName("dropdownbutton");
-var boostDropdownButtons = document.getElementsByClassName("main-boost-dropdownbutton");
-var attributeSectionBoostDropdownButtons = document.getElementsByClassName("boost-dropdownbutton");
+var previousDropdown = [false];
 
-dropdownButtonListeners(dropdownButtons);
 
-function hideOrRevealDropdown(allDropdownContent, k) {
-  if (allDropdownContent[k].style.display === "none" || allDropdownContent[k].style.display == "") {
-    allDropdownContent[k].style.display = "flex";
-    allDropdownContent[k].style.overflow = "hidden";
+/**
+ * hideOrRevealDropdown function which hides or reveals the dropdown (whichever is appropriate)
+ * @param {Object} dropdownContent the dropdown content to hide/reveal
+ * @param {Number} i the index of the dropdownContent Object to hide/reveal
+ */
+function hideOrRevealDropdown(dropdownContent, i) {
+  if (dropdownContent[i].style.display === "none" || dropdownContent[i].style.display == "") {
+    dropdownContent[i].style.display = "flex";
+    dropdownContent[i].style.overflow = "hidden";
   }
   else {
-    allDropdownContent[k].style.display = "none";
+    dropdownContent[i].style.display = "none";
   }
 }
 
-function boostDropdownButtonListeners(boostDropdownButtons, dropdownContentElementClassName, isBoostButton) {
+/**
+ * hideDropdown function which hides the dropdown
+ * @param {Object} dropdownContent the dropdown content to hide
+ * @param {Number} i the index of the dropdownContent to hide
+ */
+function hideDropdown(dropdownContent, i) {
+  dropdownContent[i].style.display = "none";
+}
+
+/**
+ * revealDropdown function which reveals the dropdown
+ * @param {Object} dropdownContent the dropdown content to reveal
+ * @param {Number} i the index of the dropdownContent to reveal 
+ */
+function revealDropdown(dropdownContent, i) {
+  dropdownContent[i].style.display = "flex";
+  dropdownContent[i].style.overflow = "hidden";
+}
+
+/**
+ * boostDropdownButtonListeners function used to add event listeners for each "Boost" button.
+ * The event listener here is used to hide/reveal the next dropdown section (with the 5 attribute
+ * section buttons below) when the "Boost" button is clicked.
+ * @param {Object} boostDropdownButtons all the "Boost" buttons
+ */
+function boostDropdownButtonListeners(boostDropdownButtons) {
   for (let i=0; i < boostDropdownButtons.length; i++) {
     boostDropdownButtons[i].addEventListener("click", function() {
-      console.log(i);
 
-      var allDropdownContent = document.getElementsByClassName(dropdownContentElementClassName);
+      // dropdown which opens underneath the "Boost" buttons and is the 5 buttons for each attribute section
+      var attributeSectionBoostContent = document.getElementsByClassName("boost-buttons-content");
 
-      hideOrRevealDropdown(allDropdownContent, i);
+      // boost dropdown content which opens underneath the attributeSectionBoostContent buttons 
+      var boostDropdownContent = document.getElementsByClassName("boost-dropdown-content");
+
+      // hide/reveal the dropdown
+      hideOrRevealDropdown(attributeSectionBoostContent, i);
+
+      // if there was a previous dropdown that is currently open/visible.  Hide it
+      if (previousDropdown[0]) {
+        for (var k = 1; k < previousDropdown.length; k++) {
+          hideDropdown(boostDropdownContent, previousDropdown[k]);
+        }
+
+        // reset previousDropdown
+        previousDropdown = [false];
+      }
 
     });
   }
 }
 
-// var allDropdownContent = document.getElementsByClassName("boost-buttons-content");
-// hideOrRevealDropdown(allDropdownContent, 1);
-boostDropdownButtonListeners(boostDropdownButtons, "boost-buttons-content", true);
-boostDropdownButtonListeners(attributeSectionBoostDropdownButtons, "boost-dropdown-content", false);
+/**
+ * attributeSectionBoostDropdownButtons function used to add event listeners for each attribute section
+ * button. The event listener here is used to hide/reveal the boosts corresponding to which attribute
+ * section button is clicked.
+ * @param {Object} attributeSectionBoostDropdownButtons all the 5 attribute section buttons (which
+ * appear below the "Boost" buttons)  
+ */
+function attributeSectionBoostDropdownButtonListeners(attributeSectionBoostDropdownButtons) {
+  for (let i=0; i < attributeSectionBoostDropdownButtons.length; i++) {
+    attributeSectionBoostDropdownButtons[i].addEventListener("click", function() {
 
-function dropdownButtonListeners(dropdownButtons) {
-  for (let i=0; i < dropdownButtons.length; i++) {
-    dropdownButtons[i].addEventListener("click", function() {
+      // boost dropdown content which opens underneath the attributeSectionBoostContent buttons 
+      var boostDropdownContent = document.getElementsByClassName("boost-dropdown-content");
 
+      // variable for if the same attribute section button was just pressed previously
+      var sameButtonPressed = previousDropdown[1] == i;
+
+      // if there was a previous dropdown that is currently open/visible.  Hide it
+      if (previousDropdown[0]) {
+        for (var k = 1; k < previousDropdown.length; k++) {
+          hideDropdown(boostDropdownContent, previousDropdown[k]);
+        }
+
+        // reset previousDropdown
+        previousDropdown = [false];
+      }
+
+      // if the same button was just previously pressed and the content is currently hidden
+      if (!sameButtonPressed && (boostDropdownContent[i].style.display === "none" || boostDropdownContent[i].style.display == "")) {
+        revealDropdown(boostDropdownContent, i);
+        previousDropdown[0] = true;
+        previousDropdown[1] = i;
+      }
+      else {
+        hideDropdown(boostDropdownContent, i);
+        previousDropdown = [false];
+      }
+
+    });
+  }
+}
+
+
+/**
+ * abilityButtonListeners function used to add event listeners for each ability button.
+ * These event listeners reveal/hide the dropdown content when the corresponding ability
+ * button clicked.
+ * @param {Object} abilityButtons all the ability buttons
+ */
+function abilityButtonListeners(abilityButtons) {
+  for (let i=0; i < abilityButtons.length; i++) {
+    abilityButtons[i].addEventListener("click", function() {
+
+      // The 2 grey ability buttons (the first and the third ability buttons) reveal the
+      // dropdown content in 3 columns, while the gold ability button (the second ability
+      // button) reveals the dropdown content in 2 columns.
+      // So numOfDropdowns accounts for this so that the right amount of columns are
+      // revealed or hidden.
+      // j is used for the correct starting index of the corresponding dropdown column to
+      // reveal/hide.
       var j = i * 2.5;
       var numOfDropdowns = 3;
 
@@ -62,14 +153,12 @@ function dropdownButtonListeners(dropdownButtons) {
         numOfDropdowns = 2;
       }
 
-      // console.log(i);
-      var allDropdownContent = document.getElementsByClassName("dropdown-content");
-      //console.log(allDropdownContent);
-      // console.log(j);
+      // all the ability dropdown content
+      var abilityDropdownContent = document.getElementsByClassName("dropdown-content");
 
-
+      // reveal/hide each column that needs to be revealed/hidden
       for (var k = j; k < j + numOfDropdowns; k++) {
-        hideOrRevealDropdown(allDropdownContent, k);
+        hideOrRevealDropdown(abilityDropdownContent, k);
       }
       
     });
@@ -78,6 +167,17 @@ function dropdownButtonListeners(dropdownButtons) {
 }
 
 
+// for when the ability buttons and boost buttons are pressed
+var abilityButtons = document.getElementsByClassName("dropdownbutton");
+var boostDropdownButtons = document.getElementsByClassName("main-boost-dropdownbutton");
+var attributeSectionBoostDropdownButtons = document.getElementsByClassName("boost-dropdownbutton");
+
+abilityButtonListeners(abilityButtons);
+boostDropdownButtonListeners(boostDropdownButtons);
+attributeSectionBoostDropdownButtonListeners(attributeSectionBoostDropdownButtons);
+
+
+// testing stuff
 var sections = document.getElementsByClassName("dropdown-content");
 var boostItems = sections[2].getElementsByClassName("dropdown-item");
 console.log(boostItems[0].childNodes[1].textContent);
@@ -125,6 +225,7 @@ try {
 catch (error) {
   console.error(error);
 }
+// end of testing stuff
 
 
 
