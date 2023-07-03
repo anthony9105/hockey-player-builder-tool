@@ -412,22 +412,22 @@ body {
   }
 
 
-.dropdown-item {
+.dropdown-item, .boost-dropdown-item {
     display: flex;
 }
 
-.dropdown-item:hover {
+.dropdown-item:hover, .boost-dropdown-item:hover {
     background-color: grey;
     cursor: pointer;
 }
 
-.dropdown-item-value {
+.dropdown-item-value, .boost-dropdown-item-value {
     padding-top: 1%;
     padding-left: 5%;
     white-space: nowrap;
 }
 
-.dropdown-item-requirement {
+.dropdown-item-requirement, .boost-dropdown-item-requirement {
     padding-top: 3%;
     padding-left: 5%;
     font-size: 0;
@@ -439,7 +439,7 @@ body {
     color: yellow;
 }
 
-.dropdown-item-text {
+.dropdown-item-text, .boost-dropdown-item-text {
     display: flex;
     flex-direction: column;
 }
