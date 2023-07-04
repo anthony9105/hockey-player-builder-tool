@@ -434,7 +434,7 @@ body {
     color: white;
 }
 
-.dropdown-item:hover > .dropdown-item-text > .dropdown-item-requirement {
+.dropdown-item:hover > .dropdown-item-text > .dropdown-item-requirement,  .boost-dropdown-item:hover > .boost-dropdown-item-text > .boost-dropdown-item-requirement{
     font-size: x-small;
     color: yellow;
 }

@@ -4,7 +4,7 @@
  */
 
 import {buildDataXMLFileName, upgradePointsXMLFileName, physUpgradeDowngradeFileName, 
-  boostsXMLFileName, allHeights, idNames, allAttributeNamesInOrder, numOfAttributeSections} from "./constants.js";
+  boostsXMLFileName, allHeights, idNames, allAttributeNamesInOrder, numOfAttributeSections, boostInfoNodeNames, indexOfFirstRegularBoostIcon} from "./constants.js";
 
 var availableUpgradePoints = [0, 0, 0, 0, 0];
 var previousUpgradeModifier = new Array(23).fill(0);
@@ -16,7 +16,6 @@ var globalCurrentWeight;
 
 
 var previousDropdown = [false];
-
 
 /**
  * hideOrRevealDropdown function which hides or reveals the dropdown (whichever is appropriate)
@@ -167,6 +166,24 @@ function abilityButtonListeners(abilityButtons) {
 }
 
 
+/**
+ * isElementNode function used to return the node only if
+ * the node is an element node.  (The purpose of this is to
+ * not include #text childNodes).
+ * 
+ * Used with the filter function.
+ * @param {Object} node 
+ * @returns node or nothing
+ */
+function isElementNode(node) {
+  if (node.nodeType == Node.ELEMENT_NODE) {
+    return node;
+  }
+  else {
+    return;
+  }
+}
+
 // for when the ability buttons and boost buttons are pressed
 var abilityButtons = document.getElementsByClassName("dropdownbutton");
 var boostDropdownButtons = document.getElementsByClassName("main-boost-dropdownbutton");
@@ -177,56 +194,70 @@ boostDropdownButtonListeners(boostDropdownButtons);
 attributeSectionBoostDropdownButtonListeners(attributeSectionBoostDropdownButtons);
 
 
-// testing stuff
-var sections = document.getElementsByClassName("dropdown-content");
-var boostItems = sections[2].getElementsByClassName("dropdown-item");
-console.log(boostItems[0].childNodes[1].textContent);
-boostItems[0].childNodes[1].textContent = "ice_skating";
-console.log(boostItems[0].childNodes[1].textContent);
-boostItems[0].childNodes[1].style.color = "green";
+/**
+ * fillBoostOptions function used to fill the boost options using the information in the 
+ * boosts.xml file.
+ */
+async function fillBoostOptions() {
+  try {
+    const response = await fetch(boostsXMLFileName);
+    const xmlString = await response.text();
+    const xmlDoc = new DOMParser().parseFromString(xmlString, "text/xml");
+    const attributeSections = xmlDoc.childNodes[0];
 
-try {
-  const response = await fetch(boostsXMLFileName);
-  const xmlString = await response.text();
-  const xmlDoc = new DOMParser().parseFromString(xmlString, "text/xml");
-  const attributeSections = xmlDoc.childNodes[0];
+    var j = 0;
+    var k = indexOfFirstRegularBoostIcon;
 
-  // array with the node names for later
-  var sectionNodeNames = new Array();
-  var boostNodeNames = new Array();
+    // all html boost values, boost requirements, and icons
+    var boostValues = document.getElementsByClassName("boost-dropdown-item-value");
+    var boostRequirements = document.getElementsByClassName("boost-dropdown-item-requirement");
+    var boostsAndAbilityIcons = document.getElementsByClassName("material-icons");
 
-  // first node name ("boost")
-  boostNodeNames.push(attributeSections.childNodes[1].childNodes[1].nodeName);
+    // for each attribute section
+    for (var i = 1; i < attributeSections.childNodes.length; i+=2) {
+      var boosts = attributeSections.childNodes[i].querySelectorAll("Boost");
 
-  // for the attribute section node names ["Technique", "Power", "Playstyle", "Tenacity", "Tactics"]
-  for (var i = 1; i < attributeSections.childNodes.length; i += 2) {
-    sectionNodeNames.push(attributeSections.childNodes[i].nodeName);
-  }
-  // for the boost node names
-  for (var i = 1; i < attributeSections.childNodes[1].childNodes[1].childNodes.length; i += 2) {
-    boostNodeNames.push(attributeSections.childNodes[1].childNodes[1].childNodes[i].nodeName);
-  }
+      // for each boost
+      for (var boost of boosts) {
+        var boostInfo = Object.values(boost.childNodes).filter(isElementNode);
 
-  console.log(sectionNodeNames);
-  console.log(boostNodeNames);
+        // remove the AttributeMinimum value because it has several more childnodes inside of it
+        // so it would be easier/make more sense to remove it from here and include it in its own
+        // var
+        var attributeMinimumInfo = boostInfo.splice(3, 1);
+        var minimumRequirements = Object.values(attributeMinimumInfo[0].childNodes).filter(isElementNode);
 
+        // fill the boost values (the attribute to upgrade and by how much)
+        boostValues[j].textContent = "+" + boostInfo[1].textContent + " " + boostInfo[0].textContent;   // for the left boost section
+        boostValues[j + boostValues.length / 2].textContent = "+" + boostInfo[1].textContent + " " + boostInfo[0].textContent;  // for the right boost section
 
+        // fill the boost requirements
+        boostRequirements[j].textContent = "(requires a minimum of " + minimumRequirements[1].textContent + " " + minimumRequirements[0].textContent + ")";
+        boostRequirements[j + boostValues.length / 2].textContent = "(requires a minimum of " + minimumRequirements[1].textContent + " " + minimumRequirements[0].textContent + ")";
 
-  var attributeSectionsLength = attributeSections.childNodes.length;
-  for (var i = 1; i < attributeSectionsLength; i += 2) {
+        // fill the boost icons
+        boostsAndAbilityIcons[k].textContent = boostInfo[3].textContent;
+        boostsAndAbilityIcons[k + boostValues.length / 2 + 1].textContent = boostInfo[3].textContent;
 
-    var boosts = attributeSections.childNodes[i].querySelectorAll(boostNodeNames[0]);
-    for (var boost of boosts) {
-      
+        // fill the boost icons colours
+        boostsAndAbilityIcons[k].style.color = boostInfo[2].textContent;
+        boostsAndAbilityIcons[k + boostValues.length / 2 + 1].style.color = boostInfo[2].textContent;
+
+        j++;
+        k++;
+      }
+
     }
 
   }
-}
-catch (error) {
-  console.error(error);
-}
-// end of testing stuff
+  catch (error) {
+    console.error(error);
+  }
 
+}
+
+
+fillBoostOptions();
 
 
 /**

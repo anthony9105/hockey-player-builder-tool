@@ -278,7 +278,7 @@
         <Boost>
             <AttributeToUpgrade>Stick Checking</AttributeToUpgrade>
             <UpgradeAmount>4</UpgradeAmount>
-            <Colour>Blue</Colour>
+            <Colour>Green</Colour>
             <AttributeMinimum>
                 <AttributeName>Discipline</AttributeName>
                 <MinimumValue>78</MinimumValue>

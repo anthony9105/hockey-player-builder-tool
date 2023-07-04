@@ -12,5 +12,8 @@ const allAttributeNamesInOrder = ["WristshotAcc", "SlapshotAcc", "Speed", "Balan
                                   "Durability", "ShotBlocking", "Deking", "Faceoffs", "Discipline", "FightingSkill"];
 
 const numOfAttributeSections = 5;
+const boostInfoNodeNames = ["AttributeToUpgrade", "UpgradeAmount", "Colour", "AttributeName", "MinimumValue", "IconName"];
+const indexOfFirstRegularBoostIcon = 58;
 
-export {buildDataXMLFileName, upgradePointsXMLFileName, physUpgradeDowngradeFileName, boostsXMLFileName, allHeights, idNames, allAttributeNamesInOrder, numOfAttributeSections};
+export {buildDataXMLFileName, upgradePointsXMLFileName, physUpgradeDowngradeFileName, boostsXMLFileName, allHeights, idNames, allAttributeNamesInOrder,
+    numOfAttributeSections, boostInfoNodeNames, indexOfFirstRegularBoostIcon};
