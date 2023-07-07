@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<Builds>
+    <Build>
+        <BuildName>Sniper</BuildName>
+        <MainAbilities>
+            <AbilityName>Close Quarters</AbilityName>
+            <AbilityName>Heatseeker</AbilityName>
+            <AbilityName>Magnetic</AbilityName>
+            <AbilityName>Make It Snappy</AbilityName>
+            <AbilityName>One Tee</AbilityName>
+        </MainAbilities>
+    </Build>
+    <Build>
+        <BuildName>Dangler</BuildName>
+        <MainAbilities>
+            <AbilityName>Ankle Breaker</AbilityName>
+            <AbilityName>Close Quarters</AbilityName>
+            <AbilityName>Elite Edges</AbilityName>
+            <AbilityName>Magnetic</AbilityName>
+            <AbilityName>Puck Control</AbilityName>
+        </MainAbilities>
+    </Build>
+    <Build>
+        <BuildName>Playmaker</BuildName>
+        <MainAbilities>
+            <AbilityName>Elite Edges</AbilityName>
+            <AbilityName>Magnetic</AbilityName>
+            <AbilityName>Puck On A String</AbilityName>
+            <AbilityName>Tape To Tape</AbilityName>
+            <AbilityName>Third Eye</AbilityName>
+        </MainAbilities>
+    </Build>
+    <Build>
+        <BuildName>Two-way Forward</BuildName>
+        <MainAbilities>
+            <AbilityName>Heatseeker</AbilityName>
+            <AbilityName>No Contest</AbilityName>
+            <AbilityName>Quick Pick</AbilityName>
+            <AbilityName>Stick 'Em Up</AbilityName>
+            <AbilityName>Yoink</AbilityName>
+        </MainAbilities>
+    </Build>
+    <Build>
+        <BuildName>Power Forward</BuildName>
+        <MainAbilities>
+            <AbilityName>Big Rig</AbilityName>
+            <AbilityName>Crease Crasher</AbilityName>
+            <AbilityName>Off The Rush</AbilityName>
+            <AbilityName>Truculence</AbilityName>
+            <AbilityName>Unstoppable Force</AbilityName>
+        </MainAbilities>
+    </Build>
+    <Build>
+        <BuildName>Grinder</BuildName>
+        <MainAbilities>
+            <AbilityName>Big Tipper</AbilityName>
+            <AbilityName>Crease Crasher</AbilityName>
+            <AbilityName>No Contest</AbilityName>
+            <AbilityName>Stick 'Em Up</AbilityName>
+            <AbilityName>Total Eclipse</AbilityName>
+        </MainAbilities>
+    </Build>
+    <Build>
+        <BuildName>Enforcer</BuildName>
+        <MainAbilities>
+            <AbilityName>Back At Ya</AbilityName>
+            <AbilityName>No Contest</AbilityName>
+            <AbilityName>Total Eclipse</AbilityName>
+            <AbilityName>Truculence</AbilityName>
+            <AbilityName>Unstoppable Force</AbilityName>
+        </MainAbilities>
+    </Build>
+    <Build>
+        <BuildName>Puckmoving Defenseman</BuildName>
+        <MainAbilities>
+            <AbilityName>Elite Edges</AbilityName>
+            <AbilityName>Magnetic</AbilityName>
+            <AbilityName>Seeying Eye</AbilityName>
+            <AbilityName>Send It</AbilityName>
+            <AbilityName>Tape To Tape</AbilityName>
+        </MainAbilities>
+    </Build>
+    <Build>
+        <BuildName>Two-way Defenseman</BuildName>
+        <MainAbilities>
+            <AbilityName>Heatseeker</AbilityName>
+            <AbilityName>No Contest</AbilityName>
+            <AbilityName>Quick Pick</AbilityName>
+            <AbilityName>Shutdown</AbilityName>
+            <AbilityName>Stick 'Em Up</AbilityName>
+        </MainAbilities>
+    </Build>
+    <Build>
+        <BuildName>Offensive Defenseman</BuildName>
+        <MainAbilities>
+            <AbilityName>Heatseeker</AbilityName>
+            <AbilityName>No Contest</AbilityName>
+            <AbilityName>One Tee</AbilityName>
+            <AbilityName>Seeying Eye</AbilityName>
+            <AbilityName>Thunderclap</AbilityName>
+        </MainAbilities>
+    </Build>
+    <Build>
+        <BuildName>Defensive Defenseman</BuildName>
+        <MainAbilities>
+            <AbilityName>Bouncer</AbilityName>
+            <AbilityName>Quick Pick</AbilityName>
+            <AbilityName>Shutdown</AbilityName>
+            <AbilityName>Stick 'Em Up</AbilityName>
+            <AbilityName>Truculence</AbilityName>
+        </MainAbilities>
+    </Build>
+    <Build>
+        <BuildName>Enforcer Defenseman</BuildName>
+        <MainAbilities>
+            <AbilityName>Back At Ya</AbilityName>
+            <AbilityName>Bouncer</AbilityName>
+            <AbilityName>No Contest</AbilityName>
+            <AbilityName>Truculence</AbilityName>
+            <AbilityName>Unstoppable Force</AbilityName>
+        </MainAbilities>
+    </Build>
+</Builds>

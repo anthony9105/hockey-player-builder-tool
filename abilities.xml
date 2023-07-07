@@ -1,0 +1,605 @@
+<?xml version="1.0"?>
+<AbilityGroups>
+    <AbilityGroup>
+        <GroupName>Offensive</GroupName>
+        <Ability>
+            <AbilityName>All Alone</AbilityName>
+            <Description>Enhanced shooting power and accuracy on penalty shots and breakaways</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Deking</AttributeName>
+                    <MinimumValue>75</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Puck Control</AttributeName>
+                    <MinimumValue>82</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>self_improvement</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Ankle Breaker</AbilityName>
+            <Description>Enhanced deking ability at high speeds</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Deking</AttributeName>
+                    <MinimumValue>75</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Agility</AttributeName>
+                    <MinimumValue>82</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>do_not_step</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Big Rig</AbilityName>
+            <Description>Enhanced strength and agility when driving to the net protecting the puck</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Puck Control</AttributeName>
+                    <MinimumValue>84</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Balance</AttributeName>
+                    <MinimumValue>85</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>shopping_cart_checkout</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Big Tipper</AbilityName>
+            <Description>Enhanced ability to deflect shots</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Hand-Eye</AttributeName>
+                    <MinimumValue>80</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Balance</AttributeName>
+                    <MinimumValue>75</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>payments</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Beauty Backhand</AbilityName>
+            <Description>Enhanced power and accuracy on backhand shots</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Wristshot Accuracy</AttributeName>
+                    <MinimumValue>80</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Wristshot Power</AttributeName>
+                    <MinimumValue>82</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>back_hand</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Close Quarters</AbilityName>
+            <Description>Enhanced power and accuracy on forehand shots close to the net</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Wristshot Accuracy</AttributeName>
+                    <MinimumValue>80</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Puck Control</AttributeName>
+                    <MinimumValue>82</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>diversity_3</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Crease Crasher</AbilityName>
+            <Description>Enhanced puck control, shooting power and accuracy off a rebound</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Puck Control</AttributeName>
+                    <MinimumValue>82</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Balance</AttributeName>
+                    <MinimumValue>75</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>car_crash</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Heatseeker</AbilityName>
+            <Description>Enhanced power and accuracy on forehand shots taken far away from the net</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Wristshot Accuracy</AttributeName>
+                    <MinimumValue>80</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Wristshot Power</AttributeName>
+                    <MinimumValue>82</MinimumValue>
+                </Requirement>
+                <IconName>rocket_launch</IconName>
+            </Requirements>
+        </Ability>
+        <Ability>
+            <AbilityName>It's Tricky</AbilityName>
+            <Description>Enhanced ability to perform trick dekes, aswell as enhanced shot accuracy off trick dekes</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Deking</AttributeName>
+                    <MinimumValue>75</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Puck Control</AttributeName>
+                    <MinimumValue>82</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>stars</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Magnetic</AbilityName>
+            <Description>Enhanced ability to recieve bouncing pucks and tough passes with speed</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Hand-Eye</AttributeName>
+                    <MinimumValue>80</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Puck Control</AttributeName>
+                    <MinimumValue>82</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>markunread_mailbox</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Make It Snappy</AbilityName>
+            <Description>Enhanced power and accuracy on snapshots while skating</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Wristshot Accuracy</AttributeName>
+                    <MinimumValue>80</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Puck Control</AttributeName>
+                    <MinimumValue>82</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>swipe_up_alt</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Off The Rush</AbilityName>
+            <Description>Enhanced power and accuracy on slapshots while skating</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Slapshot Power</AttributeName>
+                    <MinimumValue>82</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Balance</AttributeName>
+                    <MinimumValue>75</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>directions_rush</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>One Tee</AbilityName>
+            <Description>Enhanced power and accuracy on one timers, aswell as performing a one timer on an inaccurate pass</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Hand-Eye</AttributeName>
+                    <MinimumValue>80</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Slapshot Power</AttributeName>
+                    <MinimumValue>82</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>airline_stops</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Puck On A String</AbilityName>
+            <Description>Enhanced toe drag and stickhandling speed, aswell as other dekes at low skating speeds</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Deking</AttributeName>
+                    <MinimumValue>75</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Puck Control</AttributeName>
+                    <MinimumValue>82</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>swipe_down_alt</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Relentless</AbilityName>
+            <Description>Enhanced ability to perform desperation and off balance plays with the puck, including enhanced shot and pass accuracy when performing these plays</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Puck Control</AttributeName>
+                    <MinimumValue>82</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Balance</AttributeName>
+                    <MinimumValue>75</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>sports_martial_arts</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Seeying Eye</AbilityName>
+            <Description>Enhanced power and accuracy on shots where the goalie is screened.  Also lowers the goalies reaction time</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Wristshot Accuracy</AttributeName>
+                    <MinimumValue>80</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Slapshot Accuracy</AttributeName>
+                    <MinimumValue>78</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>visibility</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Send It</AbilityName>
+            <Description>Enhanced pass assist and added ability to auto saucer pass long passes</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Passing</AttributeName>
+                    <MinimumValue>80</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Offensive Awareness</AttributeName>
+                    <MinimumValue>80</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>send</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Shnipe</AbilityName>
+            <Description>Enhanced power and accuracy on wristshots when the puck is settled</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Wristshot Accuracy</AttributeName>
+                    <MinimumValue>80</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Puck Control</AttributeName>
+                    <MinimumValue>82</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>upgrade</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Shock And Awe</AbilityName>
+            <Description>Enhanced power and accuracy on shots shortly after doing a deke</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Wristshot Accuracy</AttributeName>
+                    <MinimumValue>80</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Deking</AttributeName>
+                    <MinimumValue>75</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>switch_access_shortcut</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Skilled Up</AbilityName>
+            <Description>Enhanced ability to perform lacrosse moves</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Deking</AttributeName>
+                    <MinimumValue>75</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Puck Control</AttributeName>
+                    <MinimumValue>82</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>military_tech</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Spin-o-rama</AbilityName>
+            <Description>Enhanced speed and puck control when performing a spin-o-rama deke, aswell as enhanced pass and shot accuracy coming out of the spin</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Deking</AttributeName>
+                    <MinimumValue>75</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Puck Control</AttributeName>
+                    <MinimumValue>82</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>track_changes</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Tape To Tape</AbilityName>
+            <Description>Enhanced pass power and accuracy on backhand and auto saucer passes within the player's vision</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Passing</AttributeName>
+                    <MinimumValue>80</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Offensive Awareness</AttributeName>
+                    <MinimumValue>80</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>sync_alt</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Third Eye</AbilityName>
+            <Description>Enhanced pass assist and ability to auto saucer passes out of a player's vision</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Passing</AttributeName>
+                    <MinimumValue>80</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Offensive Awareness</AttributeName>
+                    <MinimumValue>80</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>preview</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Thunderclap</AbilityName>
+            <Description>Enhanced slapshot power and accuracy from the point</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Slapshot Power</AttributeName>
+                    <MinimumValue>82</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Strength</AttributeName>
+                    <MinimumValue>78</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>bolt</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Total Eclipse</AbilityName>
+            <Description>Enhanced ability to screen a goalie and block their view, reducing the goalie's reaction time</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Strength</AttributeName>
+                    <MinimumValue>78</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Balance</AttributeName>
+                    <MinimumValue>75</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>sunny</IconName>
+        </Ability>
+    </AbilityGroup>
+    <AbilityGroup>
+        <GroupName>Defensive</GroupName>
+        <Ability>
+            <AbilityName>Bouncer</AbilityName>
+            <Description>Enhanced skill at battles near the net.  Stability, stick tension, and strength increased around the net, and opponents take longer to recover from these battles</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Strength</AttributeName>
+                    <MinimumValue>78</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Balance</AttributeName>
+                    <MinimumValue>75</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>sports_mma</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Ice Pack</AbilityName>
+            <Description>Enhanced shot blocking, recovery after blocking a shot, and reduced chance of injuries and being staggered</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Durability</AttributeName>
+                    <MinimumValue>71</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Shot Blocking</AttributeName>
+                    <MinimumValue>76</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>block</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>No Contest</AbilityName>
+            <Description>Enhanced stick tension and strength in picking up loose pucks, making battling for the puck more successful</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Stick Checking</AttributeName>
+                    <MinimumValue>76</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Puck Control</AttributeName>
+                    <MinimumValue>82</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>close</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Quick Pick</AbilityName>
+            <Description>Enhanced ability to intercept pucks off the ice and the range to successfully intercept pucks</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Stick Checking</AttributeName>
+                    <MinimumValue>73</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Defensive Awareness</AttributeName>
+                    <MinimumValue>74</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>library_add</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Shutdown</AbilityName>
+            <Description>Enhanced poke checking against momentum or in a 1-on-1.  Also enhances body checking and shot blocking in 1-on-1s</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Stick Checking</AttributeName>
+                    <MinimumValue>76</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Body Checking</AttributeName>
+                    <MinimumValue>75</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>lock</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Stick 'Em Up</AbilityName>
+            <Description>Enhanced defensive stick speed, accuracy on poke checks against momentum or at speed, and reduces penalty chances</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Stick Checking</AttributeName>
+                    <MinimumValue>75</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Defensive Awareness</AttributeName>
+                    <MinimumValue>72</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>sports_hockey</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Truculence</AbilityName>
+            <Description>Enhanced stability and accuracy on body checks, and enhanced chance of knocking over an opponent and reducing their energy</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Acceleration</AttributeName>
+                    <MinimumValue>82</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Body Checking</AttributeName>
+                    <MinimumValue>84</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>local_shipping</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Yoink</AbilityName>
+            <Description>Enhanced accuracy on stick lifts against momentum or at speed, aswell as opponents take longer to recover from being stick lifted</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Stick Checking</AttributeName>
+                    <MinimumValue>75</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Defensive Awareness</AttributeName>
+                    <MinimumValue>72</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>forklift</IconName>
+        </Ability>
+    </AbilityGroup>
+    <AbilityGroup>
+        <GroupName>Athleticism</GroupName>
+        <Ability>
+            <AbilityName>Born Leader</AbilityName>
+            <Description>Provides all skater teammates a large energy boost after this player scores a goal</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Wristshot Accuracy</AttributeName>
+                    <MinimumValue>80</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Offensive Awareness</AttributeName>
+                    <MinimumValue>78</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>groups_3</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Bounce Back</AbilityName>
+            <Description>Reduced chance of being injured and enhanced recovery when injured.  Can only be injured at most once a game</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Durability</AttributeName>
+                    <MinimumValue>77</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Endurance</AttributeName>
+                    <MinimumValue>82</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>healing</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Elite Edges</AbilityName>
+            <Description>Enhanced skating by being able to turn tight corners and still retain high speeds</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Agility</AttributeName>
+                    <MinimumValue>82</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Acceleration</AttributeName>
+                    <MinimumValue>82</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>flip_camera_android</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>In Reverse</AbilityName>
+            <Description>Enhanced speed and acceleration when back skating, including enhanced ability to pivot from forward to backward skating</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Agility</AttributeName>
+                    <MinimumValue>82</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Speed</AttributeName>
+                    <MinimumValue>82</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>keyboard_double_arrow_down</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Shrug It Off</AbilityName>
+            <Description>Reduces energy lost when hit and reduce chance of getting winded when knocked down</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Endurance</AttributeName>
+                    <MinimumValue>82</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Balance</AttributeName>
+                    <MinimumValue>75</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>restart_alt</IconName>
+        </Ability>
+        <Ability>
+            <AbilityName>Unstoppable Force</AbilityName>
+            <Description>Enhanced strength with the puck and enhanced ability to retain control of the puck when off balance</Description>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Puck Control</AttributeName>
+                    <MinimumValue>84</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Balance</AttributeName>
+                    <MinimumValue>85</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>dangerous</IconName>
+        </Ability>
+    </AbilityGroup>
+    <AbilityGroup>
+        <GroupName>Only available as main ability</GroupName>
+        <Ability>
+            <AbilityName>Back At Ya</AbilityName>
+            <Description>Enables player to reverse hit opponents, aswell as an increased chance of knocking an opponent off balance</Description>
+            <IconName>keyboard_return</IconName>
+        </Ability>
+    </AbilityGroup>
+</AbilityGroups>
