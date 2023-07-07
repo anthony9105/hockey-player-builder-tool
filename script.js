@@ -4,7 +4,8 @@
  */
 
 import {buildDataXMLFileName, upgradePointsXMLFileName, physUpgradeDowngradeFileName, 
-  boostsXMLFileName, allHeights, idNames, allAttributeNamesInOrder, numOfAttributeSections, boostInfoNodeNames, indexOfFirstRegularBoostIcon} from "./constants.js";
+  boostsXMLFileName, allHeights, idNames, allAttributeNamesInOrder, numOfAttributeSections,
+  boostInfoNodeNames, indexOfFirstRegularBoostIcon, mainAbilitiesXMLFileName, abilitiesXMLFileName} from "./constants.js";
 
 var availableUpgradePoints = [0, 0, 0, 0, 0];
 var previousUpgradeModifier = new Array(23).fill(0);
@@ -144,26 +145,44 @@ function abilityButtonListeners(abilityButtons) {
       // revealed or hidden.
       // j is used for the correct starting index of the corresponding dropdown column to
       // reveal/hide.
-      var j = i * 2.5;
-      var numOfDropdowns = 3;
+      // var j = i * 2.5;
+      // var numOfDropdowns = 3;
 
+      // if (i == 1) {
+      //   j = 3;
+      //   numOfDropdowns = 2;
+      // }
+
+      // // all the ability dropdown content
+      // var abilityDropdownContent = document.getElementsByClassName("dropdown-content");
+
+      // // reveal/hide each column that needs to be revealed/hidden
+      // for (var k = j; k < j + numOfDropdowns; k++) {
+      //   hideOrRevealDropdown(abilityDropdownContent, k);
+      // }
+
+
+
+      // for the main ability dropdown button
       if (i == 1) {
-        j = 3;
-        numOfDropdowns = 2;
+        var mainAbilityDropdownContent = document.getElementsByClassName("main-ability-section")[0].getElementsByClassName("dropdown-content");
+
+        for (var k = 0; k < mainAbilityDropdownContent.length; k++) {
+          hideOrRevealDropdown(mainAbilityDropdownContent, k);
+        }
       }
+      // for the regular ability dropdown buttons
+      else {
+        var abilityButtonDropdown = document.getElementsByClassName("ability-section")[i - i/2].getElementsByClassName("ability-button-content");
 
-      // all the ability dropdown content
-      var abilityDropdownContent = document.getElementsByClassName("dropdown-content");
-
-      // reveal/hide each column that needs to be revealed/hidden
-      for (var k = j; k < j + numOfDropdowns; k++) {
-        hideOrRevealDropdown(abilityDropdownContent, k);
+        hideOrRevealDropdown(abilityButtonDropdown, 0);
       }
       
     });
   }
 
 }
+
 
 
 /**
@@ -256,9 +275,98 @@ async function fillBoostOptions() {
 
 }
 
+var boostsAndAbilityIcons = document.getElementsByClassName("material-icons");
+boostsAndAbilityIcons[0].textContent = "healing";
 
 fillBoostOptions();
 
+async function setMainAbilityOptions(buildName) {
+  try {
+    const response = await fetch(mainAbilitiesXMLFileName);
+    const xmlString = await response.text();
+    const xmlDoc = new DOMParser().parseFromString(xmlString, "text/xml");
+    const builds = xmlDoc.childNodes[0];
+
+    // console.log(builds.childNodes[1]);
+    buildName = "Dangler";
+
+    var buildsAbilityInfo = Object.values(builds.childNodes).filter(isElementNode);
+
+    for (var build of buildsAbilityInfo) {
+      if (buildName == build.querySelector("BuildName").textContent) {
+        var mainAbilities  = build.querySelectorAll("AbilityName");
+
+        console.log(mainAbilities[0].textContent);
+
+        // all html boost values, boost requirements, and icons
+        var abilityValues = document.getElementsByClassName("dropdown-item-value");
+        var boostsAndAbilityIcons = document.getElementsByClassName("material-icons");
+
+        for (var i = 0; i < 5; i++) {
+          abilityValues[i + 27].textContent = mainAbilities[i].textContent;
+          // boostsAndAbilityIcons[i + 27].textContent = 
+        }
+
+      }
+
+    }
+
+  }
+  catch (error) {
+    console.error(error);
+  }
+}
+
+setMainAbilityOptions("hey");
+
+async function setAbilityOptions() {
+  try {
+    const response = await fetch(abilitiesXMLFileName);
+    const xmlString = await response.text();
+    const xmlDoc = new DOMParser().parseFromString(xmlString, "text/xml");
+    const builds = xmlDoc.childNodes[0];
+
+    // console.log(builds.childNodes[1]);
+    // buildName = "Dangler";
+
+    var abilityGroupsInfo = builds.querySelectorAll("AbilityGroup");
+    console.log(abilityGroupsInfo);
+
+    var abilityNames = abilityGroupsInfo[0].querySelectorAll("AbilityName");
+    var abilityDescriptions  = abilityGroupsInfo[0].querySelectorAll("Description");
+    var abilityRequirementNames = abilityGroupsInfo[0].querySelectorAll("AttributeName");
+    var abilityRequirementValues = abilityGroupsInfo[0].querySelectorAll("MinimumValue");
+    var abilityIconNames = abilityGroupsInfo[0].querySelectorAll("IconName");
+
+    var abilityDropdownNames = document.getElementsByClassName("ability-name");
+    var abilityDropdownDescriptions = document.getElementsByClassName("ability-description");
+    var abilityDropdownRequirements = document.getElementsByClassName("ability-requirement");
+    var abilitySection = document.getElementsByClassName("ability-section");
+    var abilityDropdownIconNames = abilitySection[0].getElementsByClassName("material-icons");
+
+    var j = 0;
+    
+    for (var i = 0; i < abilityNames.length; i++) {
+      abilityDropdownNames[i].textContent = abilityNames[i].textContent;
+      abilityDropdownNames[i].style.fontWeight = "bold";
+
+      abilityDropdownDescriptions[i].textContent = abilityDescriptions[i].textContent;
+
+      abilityDropdownRequirements[j].textContent = "(requires minimum " + abilityRequirementValues[j].textContent + " " + abilityRequirementNames[j].textContent + ")";
+      abilityDropdownRequirements[j+1].textContent = "(requires minimum " + abilityRequirementValues[j+1].textContent + " " + abilityRequirementNames[j+1].textContent + ")"; 
+
+      abilityDropdownIconNames[i+1].textContent = abilityIconNames[i].textContent;
+
+      j += 2;
+    }
+
+  }
+  catch (error) {
+    console.error(error);
+  }
+}
+
+setAbilityOptions();
 
 /**
  * setDefaultAttributes function.

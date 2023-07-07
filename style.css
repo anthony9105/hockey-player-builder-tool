@@ -76,7 +76,7 @@ body {
     margin-bottom: 50px;
 }
 
-.ability-section {
+.ability-section, .main-ability-section {
     /* backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px);
     background: linear-gradient(to bottom right, rgb(110, 110, 110), rgb(179, 179, 179));
@@ -100,12 +100,14 @@ body {
 /* .ability-section:nth-child(2) > .selection-and-input,  .ability-section:nth-child(3) > .selection-and-input{
     background: rgb(165, 165, 165);
 } */
-.ability-section:nth-child(2) > .dropdown > .dropdownbutton{
+/* .ability-section:nth-child(2) > .dropdown > .dropdownbutton{ */
+.main-ability-section > .dropdown > .dropdownbutton {
     background: linear-gradient(to right, rgb(144, 125, 20), gold, rgb(209, 205, 180));
     box-shadow: 0 4px 30px gold;
     font-size: larger;
 }
-.ability-section:nth-child(2) > .dropdown > .dropdownbutton:hover{
+/* .ability-section:nth-child(2) > .dropdown > .dropdownbutton:hover{ */
+.main-ability-section > .dropdown > .dropdownbutton:hover {
     background: linear-gradient(to bottom right, rgb(32, 34, 95), rgb(179, 179, 179));
     box-shadow: 0 4px 30px gold;
     font-size: larger;
@@ -134,7 +136,6 @@ body {
     background-repeat: no-repeat;
     background-position: 100% 0%; */
 }
-
 
 .material-symbols-outlined {
   font-variation-settings:
@@ -349,7 +350,7 @@ body {
     background-color: gold;
 } */
 
-.dropdownbutton, .boost-dropdownbutton {
+.dropdownbutton, .boost-dropdownbutton, .ability-dropdownbutton {
     /* backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px); */
     background: linear-gradient(to bottom right, rgb(110, 110, 110), rgb(179, 179, 179));
@@ -362,7 +363,8 @@ body {
     cursor: pointer;
     border-radius: 10px;
     margin-top: 7%;
-  }
+}
+
 
   .boost-dropdownbutton, .main-boost-dropdownbutton {
     /* backdrop-filter: blur(5.5px);
@@ -384,16 +386,20 @@ body {
     display: inline-block;
   }
   
-  .dropdown-content, .boost-dropdown-content, .boost-buttons-content {
+  .dropdown-content, .boost-dropdown-content, .boost-buttons-content, .ability-button-content {
     /* background-color: #f1f1f1; */
     background-color: transparent;
-    min-width: 160px;
+    min-width: 250px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     flex-direction: column;
     border-radius: 4px;
     display: none;
   }
+
+  .ability-button-content {
+    flex-direction: row;
+}
 
   #green-icon {
     color: green;
@@ -405,41 +411,57 @@ body {
 
   #gold-icon {
     color: rgb(160, 144, 65);
+    font-size: 30pt;
   }
+
 
   #black-icon {
     color: black;
   }
 
 
-.dropdown-item, .boost-dropdown-item {
+.main-ability-item, .boost-dropdown-item, .ability-item {
     display: flex;
 }
 
-.dropdown-item:hover, .boost-dropdown-item:hover {
+.ability-item {
+    padding-right: inherit;
+}
+
+.ability-description {
+    max-width: 220px;
+}
+
+.dropdown-item:hover, .boost-dropdown-item:hover, .main-ability-item:hover, .ability-item:hover {
     background-color: grey;
     cursor: pointer;
 }
 
-.dropdown-item-value, .boost-dropdown-item-value {
+.dropdown-item-value, .boost-dropdown-item-value, .ability-name {
     padding-top: 1%;
     padding-left: 5%;
     white-space: nowrap;
 }
 
-.dropdown-item-requirement, .boost-dropdown-item-requirement {
+.dropdown-item-requirement, .boost-dropdown-item-requirement, .ability-requirement, .ability-description {
     padding-top: 3%;
     padding-left: 5%;
     font-size: 0;
     color: white;
 }
 
-.dropdown-item:hover > .dropdown-item-text > .dropdown-item-requirement,  .boost-dropdown-item:hover > .boost-dropdown-item-text > .boost-dropdown-item-requirement{
+.ability-item:hover > .ability-text > .ability-description {
+    font-size: small;
+}
+
+.dropdown-item:hover > .dropdown-item-text > .dropdown-item-requirement,  
+.boost-dropdown-item:hover > .boost-dropdown-item-text > .boost-dropdown-item-requirement,
+.ability-item:hover > .ability-text > .ability-requirement {
     font-size: x-small;
     color: yellow;
 }
 
-.dropdown-item-text, .boost-dropdown-item-text {
+.dropdown-item-text, .boost-dropdown-item-text, .ability-text {
     display: flex;
     flex-direction: column;
 }

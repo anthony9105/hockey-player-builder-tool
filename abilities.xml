@@ -180,7 +180,7 @@
                     <MinimumValue>75</MinimumValue>
                 </Requirement>
             </Requirements>
-            <IconName>directions_rush</IconName>
+            <IconName>directions_run</IconName>
         </Ability>
         <Ability>
             <AbilityName>One Tee</AbilityName>
