@@ -594,12 +594,11 @@
             <IconName>dangerous</IconName>
         </Ability>
     </AbilityGroup>
-    <AbilityGroup>
-        <GroupName>Only available as main ability</GroupName>
+    <OnlyUnderMainAbilities>
         <Ability>
             <AbilityName>Back At Ya</AbilityName>
             <Description>Enables player to reverse hit opponents, aswell as an increased chance of knocking an opponent off balance</Description>
             <IconName>keyboard_return</IconName>
         </Ability>
-    </AbilityGroup>
+    </OnlyUnderMainAbilities>
 </AbilityGroups>
