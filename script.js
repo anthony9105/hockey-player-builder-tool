@@ -5,7 +5,7 @@
 
 import {buildDataXMLFileName, upgradePointsXMLFileName, physUpgradeDowngradeFileName, 
   boostsXMLFileName, allHeights, idNames, allAttributeNamesInOrder, numOfAttributeSections,
-  boostInfoNodeNames, indexOfFirstRegularBoostIcon, mainAbilitiesXMLFileName, abilitiesXMLFileName} from "./constants.js";
+  boostInfoNodeNames, indexOfFirstRegularBoostIcon, mainAbilitiesXMLFileName, abilitiesXMLFileName, abilityOptionSectionIdNames} from "./constants.js";
 
 var availableUpgradePoints = [0, 0, 0, 0, 0];
 var previousUpgradeModifier = new Array(23).fill(0);
@@ -165,7 +165,7 @@ function abilityButtonListeners(abilityButtons) {
 
       // for the main ability dropdown button
       if (i == 1) {
-        var mainAbilityDropdownContent = document.getElementsByClassName("main-ability-section")[0].getElementsByClassName("dropdown-content");
+        var mainAbilityDropdownContent = document.getElementById("main-ability-section").getElementsByClassName("dropdown-content");
 
         for (var k = 0; k < mainAbilityDropdownContent.length; k++) {
           hideOrRevealDropdown(mainAbilityDropdownContent, k);
@@ -183,7 +183,37 @@ function abilityButtonListeners(abilityButtons) {
 
 }
 
+/**
+ * abilityButtonContentListeners function used to add event listeners for each ability content section buttons
+ * @param {Object} abilityContentButtons the "Offense", "Defense", "Athleticism" buttons used to reveal ablities
+ * for the appropriate section.
+ */
+function abilityButtonContentListeners(abilityContentButtons) {
+  for (let i = 0; i < abilityContentButtons.length; i++) {
+    abilityContentButtons[i].addEventListener("click", function() {
+      var abilityOptionSectionIdNamesIndex = i;
+      var abilityOptionSectionIdSuffix = 1;
 
+      if (i > 2) {
+        abilityOptionSectionIdNamesIndex = i - 3;
+        abilityOptionSectionIdSuffix = 2; 
+      }
+      var dropdownIdName = abilityOptionSectionIdNames[abilityOptionSectionIdNamesIndex] + "-" + abilityOptionSectionIdSuffix;
+
+      var dropdownSection = document.getElementById(dropdownIdName);
+      console.log(dropdownIdName);
+      console.log(dropdownSection);
+      var dropdownsToHideOrReveal = dropdownSection.getElementsByClassName("dropdown-content");
+
+      for (var j = 0; j < dropdownsToHideOrReveal.length; j++) {
+        hideOrRevealDropdown(dropdownsToHideOrReveal, j);
+      }
+    })
+  }
+}
+
+var abilityContentButtons = document.getElementsByClassName("ability-dropdownbutton");
+abilityButtonContentListeners(abilityContentButtons);
 
 /**
  * isElementNode function used to return the node only if
@@ -225,12 +255,15 @@ async function fillBoostOptions() {
     const attributeSections = xmlDoc.childNodes[0];
 
     var j = 0;
-    var k = indexOfFirstRegularBoostIcon;
+    //var k = indexOfFirstRegularBoostIcon;
+    var k = 1;
 
     // all html boost values, boost requirements, and icons
-    var boostValues = document.getElementsByClassName("boost-dropdown-item-value");
-    var boostRequirements = document.getElementsByClassName("boost-dropdown-item-requirement");
-    var boostsAndAbilityIcons = document.getElementsByClassName("material-icons");
+    var boostValues = document.getElementsByClassName("boost-item-value");
+    var boostRequirements = document.getElementsByClassName("boost-item-requirement");
+
+    var boostSection = document.getElementById("boosts-row");
+    var boostsAndAbilityIcons = boostSection.getElementsByClassName("material-icons");
 
     // for each attribute section
     for (var i = 1; i < attributeSections.childNodes.length; i+=2) {
@@ -280,86 +313,174 @@ boostsAndAbilityIcons[0].textContent = "healing";
 
 fillBoostOptions();
 
+/**
+ * setMainAbilityOptions function used to set the main abilities based off which build is selected
+ * @param {String} buildName the name of the selected build
+ */
 async function setMainAbilityOptions(buildName) {
   try {
-    const response = await fetch(mainAbilitiesXMLFileName);
-    const xmlString = await response.text();
-    const xmlDoc = new DOMParser().parseFromString(xmlString, "text/xml");
-    const builds = xmlDoc.childNodes[0];
+    // for the main_abilities.xml file
+    const mainAbilitiesXmlDoc = await fetchFromXMLFile(mainAbilitiesXMLFileName);
+    const builds = mainAbilitiesXmlDoc.childNodes[0];
 
-    // console.log(builds.childNodes[1]);
-    buildName = "Dangler";
+    let mainBuildsAbilityInfo = Object.values(builds.childNodes).filter(isElementNode);
 
-    var buildsAbilityInfo = Object.values(builds.childNodes).filter(isElementNode);
+    // for the abilities.xml file
+    const abilitiesXmlDoc = await fetchFromXMLFile(abilitiesXMLFileName);
+    const abilityGroups = abilitiesXmlDoc.querySelectorAll("AbilityGroup");
 
-    for (var build of buildsAbilityInfo) {
+    // main ability names, and ability group names for the selected/current build
+    let currentBuildMainAbilityNames, currentBuildMainAbilityGroups;
+
+    // values to change
+    let abilityNames = document.getElementsByClassName("main-ability-name");
+    let mainAbilityIcons = document.getElementById("main-ability-section").getElementsByClassName("material-icons");
+    let mainAbilityDescriptions = document.getElementsByClassName("main-ability-description");
+
+    // for each main ability
+    mainBuildsAbilityInfo.forEach( (build) => {
+      // if the current/selected build name is the same as the current build element
       if (buildName == build.querySelector("BuildName").textContent) {
-        var mainAbilities  = build.querySelectorAll("AbilityName");
+        currentBuildMainAbilityNames = build.querySelectorAll("AbilityName");
+        currentBuildMainAbilityGroups = build.querySelectorAll("AbilityGroup");
 
-        console.log(mainAbilities[0].textContent);
-
-        // all html boost values, boost requirements, and icons
-        var abilityValues = document.getElementsByClassName("dropdown-item-value");
-        var boostsAndAbilityIcons = document.getElementsByClassName("material-icons");
-
-        for (var i = 0; i < 5; i++) {
-          abilityValues[i + 27].textContent = mainAbilities[i].textContent;
-          // boostsAndAbilityIcons[i + 27].textContent = 
-        }
-
+        // break/return out of the forEach function
+        return;
       }
+    });
 
+    // if currentBuildMainAbilityNames is not empty (since the previous forEach, shouldn't but could
+    // end up never running the code inside the if statement)
+    if (currentBuildMainAbilityNames != undefined) {
+
+      // for each ability group
+      abilityGroups.forEach( (currentAbilityGroup) => {
+        
+        currentBuildMainAbilityNames.forEach( (currentMainAbilityName, index) => {
+          // set main ability name
+          abilityNames[index].textContent = currentMainAbilityName.textContent;
+          abilityNames[index].style.fontWeight = "bold";
+
+          const currentAbilityGroupName = currentAbilityGroup.querySelector("GroupName").textContent;
+
+          // if the current ability's ability group is the same as the currentBuildMainAbilityGroups
+          if (currentAbilityGroupName == currentBuildMainAbilityGroups[index].textContent) {
+
+            // each ability from the abilities.xml file
+            const abilitiesInfo = currentAbilityGroup.querySelectorAll("Ability");
+
+            // for each ability
+            abilitiesInfo.forEach( (currentAbilityInfo) => {
+              const currentAbilityName = currentAbilityInfo.querySelector("AbilityName").textContent;
+
+              if (currentAbilityName == currentMainAbilityName.textContent) {
+                // set main ability icon
+                const currentAbilityIcon = currentAbilityInfo.querySelector("IconName").textContent;
+                mainAbilityIcons[index + 1].textContent = currentAbilityIcon;
+
+                // set main ability description
+                const currentAbilityDescription = currentAbilityInfo.querySelector("Description").textContent;
+                mainAbilityDescriptions[index].textContent = currentAbilityDescription;
+                
+                // break/return out of the forEach function 
+                return;
+              }
+            });
+          }
+        });
+      });
     }
-
   }
   catch (error) {
     console.error(error);
   }
 }
 
-setMainAbilityOptions("hey");
+setMainAbilityOptions("Power Forward");
 
-async function setAbilityOptions() {
+/**
+ * fetchFromXMLFile function used to fetch and return the "Document"
+ * from the specific XML file provided.  This way the needed information
+ * can be used from the XML file in various different areas.
+ * @param {String} filePath 
+ * @returns Document (or undefined if fetch was unsuccessful)
+ */
+async function fetchFromXMLFile(filePath) {
   try {
-    const response = await fetch(abilitiesXMLFileName);
+    const response = await fetch(filePath);
     const xmlString = await response.text();
     const xmlDoc = new DOMParser().parseFromString(xmlString, "text/xml");
-    const builds = xmlDoc.childNodes[0];
-
-    // console.log(builds.childNodes[1]);
-    // buildName = "Dangler";
-
-    var abilityGroupsInfo = builds.querySelectorAll("AbilityGroup");
-    console.log(abilityGroupsInfo);
-
-    var abilityNames = abilityGroupsInfo[0].querySelectorAll("AbilityName");
-    var abilityDescriptions  = abilityGroupsInfo[0].querySelectorAll("Description");
-    var abilityRequirementNames = abilityGroupsInfo[0].querySelectorAll("AttributeName");
-    var abilityRequirementValues = abilityGroupsInfo[0].querySelectorAll("MinimumValue");
-    var abilityIconNames = abilityGroupsInfo[0].querySelectorAll("IconName");
-
-    var abilityDropdownNames = document.getElementsByClassName("ability-name");
-    var abilityDropdownDescriptions = document.getElementsByClassName("ability-description");
-    var abilityDropdownRequirements = document.getElementsByClassName("ability-requirement");
-    var abilitySection = document.getElementsByClassName("ability-section");
-    var abilityDropdownIconNames = abilitySection[0].getElementsByClassName("material-icons");
-
-    var j = 0;
     
-    for (var i = 0; i < abilityNames.length; i++) {
-      abilityDropdownNames[i].textContent = abilityNames[i].textContent;
-      abilityDropdownNames[i].style.fontWeight = "bold";
+    return xmlDoc;
+  }
+  catch (error) {
+    console.error(error);
+    return undefined;
+  }
+}
 
-      abilityDropdownDescriptions[i].textContent = abilityDescriptions[i].textContent;
+/**
+ * setAbilityOptions function used to set all the regular ability options with the correct values recieved from the
+ * appropriate xml file.
+ */
+async function setAbilityOptions() {
+  try {
+    const xmlDoc = await fetchFromXMLFile(abilitiesXMLFileName);
+    const abilityGroups = xmlDoc.querySelectorAll("AbilityGroup");
 
-      abilityDropdownRequirements[j].textContent = "(requires minimum " + abilityRequirementValues[j].textContent + " " + abilityRequirementNames[j].textContent + ")";
-      abilityDropdownRequirements[j+1].textContent = "(requires minimum " + abilityRequirementValues[j+1].textContent + " " + abilityRequirementNames[j+1].textContent + ")"; 
+    // indices
+    let j = 0;
+    let i = 0;
 
-      abilityDropdownIconNames[i+1].textContent = abilityIconNames[i].textContent;
+    // values to change
+    let abilityNames = document.getElementsByClassName("ability-name");
+    let abilityIconsSectionOne = document.getElementsByClassName("ability-section")[0].getElementsByClassName("material-icons");
+    let abilityIconsSectionTwo = document.getElementsByClassName("ability-section")[1].getElementsByClassName("material-icons");
+    let abilityDescriptions = document.getElementsByClassName("ability-description");
+    let abilityRequirements = document.getElementsByClassName("ability-requirement");
 
-      j += 2;
-    }
+    // for each ability group
+    abilityGroups.forEach( (currentAbilityGroup) => {
+      let currentAbilityGroupName = currentAbilityGroup.querySelector("GroupName").textContent;
 
+      const totalAmountOfAbilities = abilityNames.length;
+      const totalAmountOfAbilityRequirements = abilityRequirements.length;
+
+      const abilityInfo = currentAbilityGroup.querySelectorAll("Ability");
+
+      // for each ability
+      abilityInfo.forEach( (currentAbility) => {
+
+        // set ability name
+        const currentAbilityName = currentAbility.querySelector("AbilityName").textContent;
+        abilityNames[i].textContent = currentAbilityName;
+        abilityNames[i + totalAmountOfAbilities / 2].textContent = currentAbilityName;
+        abilityNames[i].style.fontWeight = "bold";
+        abilityNames[i + totalAmountOfAbilities / 2].style.fontWeight = "bold";
+
+        // set ability icon
+        const currentAbilityIcon = currentAbility.querySelector("IconName").textContent;
+        abilityIconsSectionOne[i + 1].textContent = currentAbilityIcon;
+        abilityIconsSectionTwo[i + 1].textContent = currentAbilityIcon;
+
+        // set ability requirements
+        const currentAbilityRequirementsAttributeNames = currentAbility.querySelectorAll("AttributeName");
+        const currentAbilityRequirementsMinimumValues = currentAbility.querySelectorAll("MinimumValue");
+        abilityRequirements[j].textContent = "(requires minimum " + currentAbilityRequirementsMinimumValues[0].textContent + " " + currentAbilityRequirementsAttributeNames[0].textContent + ")";
+        abilityRequirements[j + totalAmountOfAbilityRequirements / 2].textContent = "(requires minimum " + currentAbilityRequirementsMinimumValues[0].textContent + " " + currentAbilityRequirementsAttributeNames[0].textContent + ")";
+        abilityRequirements[j + 1].textContent = "(requires minimum " + currentAbilityRequirementsMinimumValues[1].textContent + " " + currentAbilityRequirementsAttributeNames[1].textContent + ")";
+        abilityRequirements[j + 1 + totalAmountOfAbilityRequirements / 2].textContent = "(requires minimum " + currentAbilityRequirementsMinimumValues[1].textContent + " " + currentAbilityRequirementsAttributeNames[1].textContent + ")";
+
+        // set ability description
+        const currentAbilityDescription = currentAbility.querySelector("Description").textContent;
+        abilityDescriptions[i].textContent = currentAbilityDescription;
+        abilityDescriptions[i + totalAmountOfAbilities / 2].textContent = currentAbilityDescription;
+
+        // increment indices
+        j += 2;
+        i++;
+      });
+    });
   }
   catch (error) {
     console.error(error);

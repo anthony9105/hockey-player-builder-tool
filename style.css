@@ -76,7 +76,7 @@ body {
     margin-bottom: 50px;
 }
 
-.ability-section, .main-ability-section {
+.ability-section, #main-ability-section {
     /* backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px);
     background: linear-gradient(to bottom right, rgb(110, 110, 110), rgb(179, 179, 179));
@@ -101,13 +101,13 @@ body {
     background: rgb(165, 165, 165);
 } */
 /* .ability-section:nth-child(2) > .dropdown > .dropdownbutton{ */
-.main-ability-section > .dropdown > .dropdownbutton {
+#main-ability-section > .dropdown > .dropdownbutton {
     background: linear-gradient(to right, rgb(144, 125, 20), gold, rgb(209, 205, 180));
     box-shadow: 0 4px 30px gold;
     font-size: larger;
 }
 /* .ability-section:nth-child(2) > .dropdown > .dropdownbutton:hover{ */
-.main-ability-section > .dropdown > .dropdownbutton:hover {
+#main-ability-section > .dropdown > .dropdownbutton:hover {
     background: linear-gradient(to bottom right, rgb(32, 34, 95), rgb(179, 179, 179));
     box-shadow: 0 4px 30px gold;
     font-size: larger;
@@ -420,7 +420,7 @@ body {
   }
 
 
-.main-ability-item, .boost-dropdown-item, .ability-item {
+.main-ability-item, .boost-item, .ability-item {
     display: flex;
 }
 
@@ -432,36 +432,38 @@ body {
     max-width: 220px;
 }
 
-.dropdown-item:hover, .boost-dropdown-item:hover, .main-ability-item:hover, .ability-item:hover {
+.dropdown-item:hover, .boost-item:hover, .main-ability-item:hover, .ability-item:hover {
     background-color: grey;
     cursor: pointer;
 }
 
-.dropdown-item-value, .boost-dropdown-item-value, .ability-name {
+.dropdown-item-value, .boost-item-value, .ability-name {
     padding-top: 1%;
     padding-left: 5%;
     white-space: nowrap;
 }
 
-.dropdown-item-requirement, .boost-dropdown-item-requirement, .ability-requirement, .ability-description {
+.dropdown-item-requirement, .boost-item-requirement, .ability-requirement, .ability-description, .main-ability-description {
     padding-top: 3%;
     padding-left: 5%;
     font-size: 0;
     color: white;
 }
 
-.ability-item:hover > .ability-text > .ability-description {
+.ability-item:hover > .ability-text > .ability-description,
+.main-ability-item:hover > .main-ability-text > .main-ability-description {
     font-size: small;
 }
 
 .dropdown-item:hover > .dropdown-item-text > .dropdown-item-requirement,  
-.boost-dropdown-item:hover > .boost-dropdown-item-text > .boost-dropdown-item-requirement,
-.ability-item:hover > .ability-text > .ability-requirement {
+.boost-item:hover > .boost-item-text > .boost-item-requirement,
+.ability-item:hover > .ability-text > .ability-requirement,
+.main-ability-item:hover > .main-ability-text > .main-ability-requirement {
     font-size: x-small;
     color: yellow;
 }
 
-.dropdown-item-text, .boost-dropdown-item-text, .ability-text {
+.dropdown-item-text, .boost-item-text, .ability-text {
     display: flex;
     flex-direction: column;
 }

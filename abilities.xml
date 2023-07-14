@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <AbilityGroups>
     <AbilityGroup>
-        <GroupName>Offensive</GroupName>
+        <GroupName>Offense</GroupName>
         <Ability>
             <AbilityName>All Alone</AbilityName>
             <Description>Enhanced shooting power and accuracy on penalty shots and breakaways</Description>
@@ -379,7 +379,7 @@
         </Ability>
     </AbilityGroup>
     <AbilityGroup>
-        <GroupName>Defensive</GroupName>
+        <GroupName>Defense</GroupName>
         <Ability>
             <AbilityName>Bouncer</AbilityName>
             <Description>Enhanced skill at battles near the net.  Stability, stick tension, and strength increased around the net, and opponents take longer to recover from these battles</Description>
