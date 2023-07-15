@@ -16,7 +16,12 @@ var globalCurrentHeight;
 var globalCurrentWeight;
 
 
-var previousDropdown = [false];
+var boostPreviousDropdown = [false];
+var boostButtonSelected = [false];
+var abilityPreviousDropdown = {
+  previousDropdownOpen: false,
+  dropdownSectionIndex: -1,
+}
 
 /**
  * hideOrRevealDropdown function which hides or reveals the dropdown (whichever is appropriate)
@@ -61,6 +66,8 @@ function revealDropdown(dropdownContent, i) {
 function boostDropdownButtonListeners(boostDropdownButtons) {
   for (let i=0; i < boostDropdownButtons.length; i++) {
     boostDropdownButtons[i].addEventListener("click", function() {
+      // hide main ability content (if it isn't already hidden)
+      hideMainAbilityDropdownContent();
 
       // dropdown which opens underneath the "Boost" buttons and is the 5 buttons for each attribute section
       var attributeSectionBoostContent = document.getElementsByClassName("boost-buttons-content");
@@ -72,13 +79,20 @@ function boostDropdownButtonListeners(boostDropdownButtons) {
       hideOrRevealDropdown(attributeSectionBoostContent, i);
 
       // if there was a previous dropdown that is currently open/visible.  Hide it
-      if (previousDropdown[0]) {
-        for (var k = 1; k < previousDropdown.length; k++) {
-          hideDropdown(boostDropdownContent, previousDropdown[k]);
+      if (boostPreviousDropdown[0]) {
+        for (var k = 1; k < boostPreviousDropdown.length; k++) {
+          // hide the boost dropdown (the boost options)
+          hideDropdown(boostDropdownContent, boostPreviousDropdown[k]);
+
+          // hide the boost button dropdown (the dropdown with the "Technique", "Power", etc buttons)
+          let boostContent = boostDropdownContent[boostPreviousDropdown[k]];
+          let boostButtonsDropdown = boostContent.parentElement.getElementsByClassName("boost-buttons-content");
+          hideDropdown(boostButtonsDropdown, 0); // 0 because there is only 1 element in boostButtonsDropdown
+          
         }
 
-        // reset previousDropdown
-        previousDropdown = [false];
+        // reset boostPreviousDropdown
+        boostPreviousDropdown = [false];
       }
 
     });
@@ -100,27 +114,25 @@ function attributeSectionBoostDropdownButtonListeners(attributeSectionBoostDropd
       var boostDropdownContent = document.getElementsByClassName("boost-dropdown-content");
 
       // variable for if the same attribute section button was just pressed previously
-      var sameButtonPressed = previousDropdown[1] == i;
+      var sameButtonPressed = boostPreviousDropdown[1] == i;
 
       // if there was a previous dropdown that is currently open/visible.  Hide it
-      if (previousDropdown[0]) {
-        for (var k = 1; k < previousDropdown.length; k++) {
-          hideDropdown(boostDropdownContent, previousDropdown[k]);
-        }
+      if (boostPreviousDropdown[0]) {
+        hideDropdown(boostDropdownContent, boostPreviousDropdown[1]);
 
-        // reset previousDropdown
-        previousDropdown = [false];
+        // reset boostPreviousDropdown
+        boostPreviousDropdown = [false];
       }
 
-      // if the same button was just previously pressed and the content is currently hidden
+      // if the same button was not just previously pressed and the content is currently hidden
       if (!sameButtonPressed && (boostDropdownContent[i].style.display === "none" || boostDropdownContent[i].style.display == "")) {
         revealDropdown(boostDropdownContent, i);
-        previousDropdown[0] = true;
-        previousDropdown[1] = i;
+        boostPreviousDropdown[0] = true;
+        boostPreviousDropdown[1] = i;
       }
       else {
         hideDropdown(boostDropdownContent, i);
-        previousDropdown = [false];
+        boostPreviousDropdown = [false];
       }
 
     });
@@ -138,30 +150,7 @@ function abilityButtonListeners(abilityButtons) {
   for (let i=0; i < abilityButtons.length; i++) {
     abilityButtons[i].addEventListener("click", function() {
 
-      // The 2 grey ability buttons (the first and the third ability buttons) reveal the
-      // dropdown content in 3 columns, while the gold ability button (the second ability
-      // button) reveals the dropdown content in 2 columns.
-      // So numOfDropdowns accounts for this so that the right amount of columns are
-      // revealed or hidden.
-      // j is used for the correct starting index of the corresponding dropdown column to
-      // reveal/hide.
-      // var j = i * 2.5;
-      // var numOfDropdowns = 3;
-
-      // if (i == 1) {
-      //   j = 3;
-      //   numOfDropdowns = 2;
-      // }
-
-      // // all the ability dropdown content
-      // var abilityDropdownContent = document.getElementsByClassName("dropdown-content");
-
-      // // reveal/hide each column that needs to be revealed/hidden
-      // for (var k = j; k < j + numOfDropdowns; k++) {
-      //   hideOrRevealDropdown(abilityDropdownContent, k);
-      // }
-
-
+      var abilityContentSection = document.getElementsByClassName("ability-dropdown-section");
 
       // for the main ability dropdown button
       if (i == 1) {
@@ -173,14 +162,43 @@ function abilityButtonListeners(abilityButtons) {
       }
       // for the regular ability dropdown buttons
       else {
+        // hide main ability content (if it isn't already hidden)
+        hideMainAbilityDropdownContent();
+
         var abilityButtonDropdown = document.getElementsByClassName("ability-section")[i - i/2].getElementsByClassName("ability-button-content");
 
         hideOrRevealDropdown(abilityButtonDropdown, 0);
+      }
+
+      // if there was a previous dropdown that is currently open/visible.  Hide it
+      if (abilityPreviousDropdown.previousDropdownOpen && abilityPreviousDropdown.dropdownSectionIndex != -1) {
+
+        var abilityContentDropdown = abilityContentSection[abilityPreviousDropdown.dropdownSectionIndex].getElementsByClassName("dropdown-content");
+        for (var k = 0; k < abilityContentDropdown.length; k++) {
+          hideDropdown(abilityContentDropdown, k);
+        }
+
+        // reset abilityPreviousDropdown
+        abilityPreviousDropdown.previousDropdownOpen = false;
+        abilityPreviousDropdown.dropdownSectionIndex = -1;
       }
       
     });
   }
 
+}
+
+/**
+ * hideMainAbilityDropdownContent function used to hide the main ability dropdown content (if it is not already hidden)
+ */
+function hideMainAbilityDropdownContent() {
+  let mainAbilityDropdownContent = document.getElementsByClassName("main-ability-dropdown-section")[0].getElementsByClassName("dropdown-content");
+
+  for (let i = 0; i < mainAbilityDropdownContent.length; i++) {
+    if (mainAbilityDropdownContent[i].style.display !== "none" && mainAbilityDropdownContent[i].style.display != "") {
+      mainAbilityDropdownContent[i].style.display = "none";
+    }
+  }
 }
 
 /**
@@ -191,24 +209,44 @@ function abilityButtonListeners(abilityButtons) {
 function abilityButtonContentListeners(abilityContentButtons) {
   for (let i = 0; i < abilityContentButtons.length; i++) {
     abilityContentButtons[i].addEventListener("click", function() {
-      var abilityOptionSectionIdNamesIndex = i;
-      var abilityOptionSectionIdSuffix = 1;
 
-      if (i > 2) {
-        abilityOptionSectionIdNamesIndex = i - 3;
-        abilityOptionSectionIdSuffix = 2; 
+      // variable for if the same attribute section button was just pressed previously
+      let sameButtonPressed = abilityPreviousDropdown.dropdownSectionIndex == i;
+
+      // var dropdownSection = document.getElementById(dropdownIdName);
+      let dropdownSection = document.getElementsByClassName("ability-dropdown-section")[i];
+      let dropdownsToHideOrReveal = dropdownSection.getElementsByClassName("dropdown-content");
+
+      // if there was a previous dropdown that is currently open/visible.  Hide it
+      if (abilityPreviousDropdown.previousDropdownOpen && abilityPreviousDropdown.dropdownSectionIndex != -1) {
+
+        let previousAbilityDropdownSection = document.getElementsByClassName("ability-dropdown-section")[abilityPreviousDropdown.dropdownSectionIndex];
+        let previousContentToHide = previousAbilityDropdownSection.getElementsByClassName("dropdown-content");
+
+        for (let k = 0; k < previousContentToHide.length; k++) {
+          hideDropdown(previousContentToHide, k);
+        }
+
+        // reset abilityPreviousDropdown
+        abilityPreviousDropdown.previousDropdownOpen = false;
+        abilityPreviousDropdown.dropdownSectionIndex = -1;
       }
-      var dropdownIdName = abilityOptionSectionIdNames[abilityOptionSectionIdNamesIndex] + "-" + abilityOptionSectionIdSuffix;
 
-      var dropdownSection = document.getElementById(dropdownIdName);
-      console.log(dropdownIdName);
-      console.log(dropdownSection);
-      var dropdownsToHideOrReveal = dropdownSection.getElementsByClassName("dropdown-content");
-
-      for (var j = 0; j < dropdownsToHideOrReveal.length; j++) {
-        hideOrRevealDropdown(dropdownsToHideOrReveal, j);
+      for (let j = 0; j < dropdownsToHideOrReveal.length; j++) {
+        // if the same button was not just previously pressed and the content is currently hidden
+        if (!sameButtonPressed && (dropdownsToHideOrReveal[j].style.display === "none" || dropdownsToHideOrReveal[j].style.display == "")) {
+          revealDropdown(dropdownsToHideOrReveal, j);
+          abilityPreviousDropdown.previousDropdownOpen = true;
+          abilityPreviousDropdown.dropdownSectionIndex = i;
+        }
+        else {
+          hideDropdown(dropdownsToHideOrReveal, j);
+          abilityPreviousDropdown.previousDropdownOpen = false;
+          abilityPreviousDropdown.dropdownSectionIndex = -1;
+        }
       }
-    })
+
+    });
   }
 }
 
@@ -377,6 +415,7 @@ async function setMainAbilityOptions(buildName) {
                 // set main ability icon
                 const currentAbilityIcon = currentAbilityInfo.querySelector("IconName").textContent;
                 mainAbilityIcons[index + 1].textContent = currentAbilityIcon;
+                mainAbilityIcons[index + 1].style.color = "rgb(190, 171, 0)";
 
                 // set main ability description
                 const currentAbilityDescription = currentAbilityInfo.querySelector("Description").textContent;

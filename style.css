@@ -390,6 +390,7 @@ body {
     /* background-color: #f1f1f1; */
     background-color: transparent;
     min-width: 250px;
+    max-width: 300px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     flex-direction: column;
@@ -400,25 +401,6 @@ body {
   .ability-button-content {
     flex-direction: row;
 }
-
-  #green-icon {
-    color: green;
-  }
-
-  #blue-icon {
-    color: blue;
-  }
-
-  #gold-icon {
-    color: rgb(160, 144, 65);
-    font-size: 30pt;
-  }
-
-
-  #black-icon {
-    color: black;
-  }
-
 
 .main-ability-item, .boost-item, .ability-item {
     display: flex;
@@ -432,9 +414,24 @@ body {
     max-width: 220px;
 }
 
-.dropdown-item:hover, .boost-item:hover, .main-ability-item:hover, .ability-item:hover {
+.dropdown-item:hover, .boost-item:hover, .ability-item:hover {
     background-color: grey;
     cursor: pointer;
+}
+
+.main-ability-item:hover {
+    background-color: rgb(97, 97, 27);
+    cursor: pointer;
+}
+
+.main-ability-item > .material-icons {
+    /* width: 50% !important;
+    height: 50% !important; */
+    /* margin-top: 8%;
+    margin-left: 7.5%; */
+    font-size: 200%;
+    padding-right: 1%;
+    background-size: 120%;
 }
 
 .dropdown-item-value, .boost-item-value, .ability-name {
@@ -457,13 +454,12 @@ body {
 
 .dropdown-item:hover > .dropdown-item-text > .dropdown-item-requirement,  
 .boost-item:hover > .boost-item-text > .boost-item-requirement,
-.ability-item:hover > .ability-text > .ability-requirement,
-.main-ability-item:hover > .main-ability-text > .main-ability-requirement {
+.ability-item:hover > .ability-text > .ability-requirement {
     font-size: x-small;
     color: yellow;
 }
 
-.dropdown-item-text, .boost-item-text, .ability-text {
+.dropdown-item-text, .boost-item-text, .ability-text, .main-ability-text {
     display: flex;
     flex-direction: column;
 }
@@ -500,7 +496,7 @@ body {
     flex-direction: row;
 }
 
-.dropdown-column {
+.ability-dropdown-section, .main-ability-dropdown-section {
     display: flex;
     flex-direction: row;
 }
