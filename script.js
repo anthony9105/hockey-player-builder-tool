@@ -435,8 +435,6 @@ async function setMainAbilityOptions(buildName) {
   }
 }
 
-setMainAbilityOptions("Power Forward");
-
 /**
  * fetchFromXMLFile function used to fetch and return the "Document"
  * from the specific XML file provided.  This way the needed information
@@ -526,8 +524,6 @@ async function setAbilityOptions() {
   }
 }
 
-setAbilityOptions();
-
 /**
  * setDefaultAttributes function.
  * Used to set the default attributes of the specified buildName on the html attributes table.
@@ -560,6 +556,10 @@ function setupNewBuild(buildName) {
         setBuildHeights(build);
 
         setBuildWeights(build);
+
+        setMainAbilityOptions(nameValue);
+
+        setAbilityOptions();
       }
     }
 
