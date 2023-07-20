@@ -18,7 +18,7 @@
             <div class="physical-section">
 
                 <!-- Selection -->
-                <select class="selection-and-input">
+                <select class="selection-and-input" id="player-type-selection">
                     <optgroup class="forward-option-group" label="Forward">
                         <option value="Sniper">Sniper</option>
                         <option value="Dangler">Dangler</option>
@@ -38,7 +38,7 @@
                 </select>
                 
                 <!-- Button -->
-                <button class="confirm-button">Confirm player type</button>
+                <button class="confirm-button" id="confirm-player-type-button">Confirm player type</button>
             </div>
 
 
@@ -46,7 +46,7 @@
             <div class="physical-section">
 
                 <!-- Selection -->
-                <select class="selection-and-input">
+                <select class="selection-and-input" id="height-selection">
                     <option value="5'7">5'7</option>
                     <option value="5'8">5'8</option>
                     <option value="5'9">5'9</option>
@@ -65,14 +65,14 @@
                 </select>
 
                 <!-- Button -->
-                <button class="confirm-button">Confirm height</button>
+                <button class="confirm-button" id="confirm-height-button">Confirm height</button>
             </div>
 
 
             <!-- Player Weight -->
             <div class="physical-section">
-                <input type="number" class="selection-and-input" name="weight" min="1" max="30"></input>
-                <button class="confirm-button">
+                <input type="number" class="selection-and-input" id="weight-selection" min="1" max="30"></input>
+                <button class="confirm-button" id="confirm-weight-button">
                     Confirm weight (lbs)
                 </button>
             </div>
