@@ -23,6 +23,13 @@ var abilityPreviousDropdown = {
   dropdownSectionIndex: -1,
 }
 
+// global variables used throughout
+let heights = document.getElementById("height-selection");
+let weights = document.getElementById("weight-selection");
+let playerTypes = document.getElementById("player-type-selection");
+let attributeValues = document.getElementsByClassName("attribute-value");
+let upgradeValues = document.getElementsByClassName("upgrade-value");
+
 /**
  * hideOrRevealDropdown function which hides or reveals the dropdown (whichever is appropriate)
  * @param {Object} dropdownContent the dropdown content to hide/reveal
@@ -530,20 +537,16 @@ async function setAbilityOptions() {
  * It fetches the data found in the build_data.xml file.
  * @param {string} buildName 
  */
-function setupNewBuild(buildName) {
-
-  // fetching from the build_data.xml file
-  fetch(buildDataXMLFileName).then(response => {
-    return response.text();
-  }).then(xmlString => {
-    var xmlDoc = new DOMParser().parseFromString(xmlString, "text/xml");
-    var builds = xmlDoc.querySelectorAll("Build");
+async function setupNewBuild(buildName) {
+  try {
+    const xmlDoc = await fetchFromXMLFile(buildDataXMLFileName);
+    const builds = xmlDoc.querySelectorAll("Build");
 
     // for each build
     for (var build of builds) {
 
       // get the name of the current build
-      var nameValue = build.querySelector("Name").textContent;
+      const nameValue = build.querySelector("Name").textContent;
 
       // if the name of the current build matches with the paramaer value, buildName
       if (nameValue === buildName) {
@@ -566,7 +569,10 @@ function setupNewBuild(buildName) {
     // apply the necessary changes from the minimum weight and heights to the default weight and height
     applyAttributeChangesFromPhysicalChanges(buildName, globalPreviousHeight, globalCurrentHeight, "Height");
     applyAttributeChangesFromPhysicalChanges(buildName, globalPreviousWeight, globalCurrentWeight, "Weight");
-  });
+  }
+  catch (error) {
+    console.error(error);
+  }
 }
 
 /**
@@ -584,8 +590,6 @@ function setDefaultAttributes(build, nameValue) {
 
   // amount of child nodes in defaultAttributes (divided by 2 since I am not including all the "text" child nodes)
   var amountOfAttributeSections = Math.floor(defaultAttributes.childNodes.length / 2);
-
-  let attributeValues = document.getElementsByClassName("attribute-value");
 
   // for loop for each necessary child node in defaultAttributes (not looping over the "text" nodes which is why j starts
   // at 1 and increments by 2 until it reaches amountOfAttributeSections multiplied by 2)
@@ -620,7 +624,7 @@ function setDefaultAttributes(build, nameValue) {
 function setBuildHeights(build) {
   // set default height
   var defaultHeight = build.querySelector("Height").querySelector("default").textContent;
-  document.getElementById('height-selection').value = defaultHeight;
+  heights.value = defaultHeight;
 
   // minimum and maximum heights
   var minHeight = convertFeetandInchesToInches(build.querySelector("Height").querySelector("minimum").textContent);
@@ -629,8 +633,6 @@ function setBuildHeights(build) {
   // set global weight variables
   globalPreviousHeight = minHeight;
   globalCurrentHeight = convertFeetandInchesToInches(defaultHeight);
-
-  var heights = document.getElementById('height-selection');
 
   // for each height option
   for (var i = 0; i < heights.length; i++) {
@@ -660,16 +662,15 @@ function setBuildHeights(build) {
 function setBuildWeights(build) {
   // set default weight
   var defaultWeight = build.querySelector("Weight").querySelector("default").textContent;
-  document.getElementById('weight-selection').value = defaultWeight;
+  weights.value = defaultWeight;
 
   // minimum and maximum weights
   var minWeight = build.querySelector("Weight").querySelector("minimum").textContent;
   var maxWeight = build.querySelector("Weight").querySelector("maximum").textContent;
 
   // set the minimum and maximum weights for the html input box 
-  var weight = document.getElementById("weight-selection");
-  weight.min = minWeight;
-  weight.max = maxWeight;
+  weights.min = minWeight;
+  weights.max = maxWeight;
 
   // make the attribute changes from the minimum weight to the default weight
   globalPreviousWeight = minWeight;
@@ -681,8 +682,6 @@ function setBuildWeights(build) {
  * Used to add every possible height to the html option select.
  */
 function addAllHeights() {
-  var heights = document.getElementById('height-selection');
-
   for (var i = 0; i < allHeights.length; i++) {
     var heightOption = new Option(allHeights[i], allHeights[i]);
     heights.add(heightOption, undefined);
@@ -694,8 +693,6 @@ function addAllHeights() {
  * Used to remove all the height options in the html option select.
  */
 function removeAllHeights() {
-  var heights = document.getElementById('height-selection');
-
   while (heights.options.length > 0) {
     heights.remove(0);
   }
@@ -783,11 +780,10 @@ function convertInchesToFeetAndInches(inches) {
  * Used to reset the upgrades that may have been previously done to a build.
  */
 function resetUpgrades() {
-  var upgradeSection = document.getElementsByClassName('upgrade-option-default');
 
-  for (var i = 0; i < upgradeSection.length; i++) {
-    upgradeSection[i].innerHTML = 0;
-    upgradeSection[i].style.color = 'lightgray';
+  for (var i = 0; i < upgradeValues.length; i++) {
+    upgradeValues[i].innerHTML = 0;
+    upgradeValues[i].style.color = '#3a379c';
   }
 }
 
@@ -795,10 +791,9 @@ function resetUpgrades() {
 let confirmPlayerTypeButton = document.getElementById("confirm-player-type-button");
 
 confirmPlayerTypeButton.addEventListener('click', function(){
-  var playerBuild = document.getElementById("player-type-selection");
 
   // set the default attributes to the html table
-  setupNewBuild(playerBuild.value);
+  setupNewBuild(playerTypes.value);
 
   // reset the upgrades
   resetUpgrades();
@@ -812,12 +807,10 @@ confirmHeightButton.addEventListener('click', function(){
   
   // set global variables for previous and current heights
   globalPreviousHeight = globalCurrentHeight;
-  globalCurrentHeight = convertFeetandInchesToInches(document.getElementById("height-selection").value);
+  globalCurrentHeight = convertFeetandInchesToInches(heights.value);
 
-  let playerBuildType = document.getElementById("player-type-selection").value;
-
-  applyAttributeChangesFromPhysicalChanges(playerBuildType, globalPreviousHeight, globalCurrentHeight, "Height");
-})
+  applyAttributeChangesFromPhysicalChanges(playerTypes.value, globalPreviousHeight, globalCurrentHeight, "Height");
+});
 
 
 // When the confirm weight button is clicked 
@@ -826,12 +819,10 @@ confirmWeightButton.addEventListener('click', function(){
 
   // set global variables for previous and current weights
   globalPreviousWeight = globalCurrentWeight;
-  globalCurrentWeight = document.getElementById("weight-selection").value;
+  globalCurrentWeight = weights.value;
 
-  let playerBuildType = document.getElementById("player-type-selection").value;
-
-  applyAttributeChangesFromPhysicalChanges(playerBuildType, globalPreviousWeight, globalCurrentWeight, "Weight");
-})
+  applyAttributeChangesFromPhysicalChanges(playerTypes.value, globalPreviousWeight, globalCurrentWeight, "Weight");
+});
 
 
 /**
@@ -841,15 +832,14 @@ confirmWeightButton.addEventListener('click', function(){
  * @param {number} i the index of the attribute
  */
 function changeUpgradeOptionColour(i) {
-  var attributeModifier = document.getElementsByClassName('upgrade-value');
-  if (attributeModifier[i].innerHTML > 0) {
-    attributeModifier[i].style.color = 'green';
+  if (upgradeValues[i].innerHTML > 0) {
+    upgradeValues[i].style.color = 'green';
   }
-  else if (attributeModifier[i].innerHTML == 0) {
-    attributeModifier[i].style.color = '#3a379c';
+  else if (upgradeValues[i].innerHTML == 0) {
+    upgradeValues[i].style.color = '#3a379c';
   }
   else {
-    attributeModifier[i].style.color = 'red';
+    upgradeValues[i].style.color = 'red';
   }
 }
 
@@ -882,7 +872,7 @@ async function getUpgradePointChange(i) {
     const attributeCosts = xmlDoc.querySelector("AttributeCosts");
 
     var indexModifier = 0;
-    var currentUpgradeModifier = parseInt(document.getElementsByClassName('upgrade-value')[i].innerHTML);
+    var currentUpgradeModifier = parseInt(upgradeValues[i].innerHTML);
 
     if (currentUpgradeModifier > 0) {
       indexModifier = 4;
@@ -935,22 +925,18 @@ async function getUpgradePointChange(i) {
  * @param {number} current current height in inches or current weight in lbs
  * @param {string} physicalAspect string keyword which is either "Height" or "Weight"
  */
-function applyAttributeChangesFromPhysicalChanges(buildName, previous, current, physicalAspect) {
-  // fetching from the physical_upgrade_downgrade.xml file
-  fetch(physUpgradeDowngradeFileName).then(response => {
-    return response.text();
-  }).then(xmlString => {
-    var xmlDoc = new DOMParser().parseFromString(xmlString, "text/xml");
-    var builds = xmlDoc.querySelectorAll("Build");
-    console.log(document.getElementsByClassName('attribute-value').length);
+async function applyAttributeChangesFromPhysicalChanges(buildName, previous, current, physicalAspect) {
 
-    let attributeValues = document.getElementsByClassName("attribute-value");
+  try {
+    const xmlDoc = await fetchFromXMLFile(physUpgradeDowngradeFileName);
+    const builds = xmlDoc.querySelectorAll("Build");
+    // console.log(document.getElementsByClassName('attribute-value').length);
 
     // for each build
-    for (var build of builds) {
+    for (const build of builds) {
 
       // get the name of the current build
-      var nameValue = build.querySelector("Name").textContent;
+      const nameValue = build.querySelector("Name").textContent;
 
       // if the name of the current build matches with the paramater value, buildName
       if (nameValue === buildName) {
@@ -968,11 +954,9 @@ function applyAttributeChangesFromPhysicalChanges(buildName, previous, current, 
           if (current > previous) {
             if (current >= currentXmlAmount && previous <= currentXmlAmount) {
 
-              var isValid = false;
-
-              if (previous < currentXmlAmount && current >= currentXmlAmount) {
-                isValid = true;
-              }
+              // var isValid = false;
+              // if (previous < currentXmlAmount && current >= currentXmlAmount) {isValid = true;}
+              let isValid = previous < currentXmlAmount && current >= currentXmlAmount ? true : false;
 
               if (isValid) {
                 // apply upgrades/downgrades
@@ -988,11 +972,9 @@ function applyAttributeChangesFromPhysicalChanges(buildName, previous, current, 
           // going down height/weight
           else if (current < previous) {
             if (current <= currentXmlAmount && previous >= currentXmlAmount) {
-              var isValid = false;
-
-              if (previous >= currentXmlAmount && current < currentXmlAmount) {
-                isValid = true;
-              }
+              // var isValid = false;
+              // if (previous >= currentXmlAmount && current < currentXmlAmount) {isValid = true;}
+              let isValid = previous >= currentXmlAmount && current < currentXmlAmount ? true : false;
 
               if (isValid) {
                 // apply upgrades/downgrades
@@ -1000,15 +982,19 @@ function applyAttributeChangesFromPhysicalChanges(buildName, previous, current, 
                   var attributeIndex = allAttributeNamesInOrder.indexOf(physicals[i].childNodes[j].nodeName);
                   attributeValues[attributeIndex].innerHTML = parseInt(attributeValues[attributeIndex].innerHTML) + parseInt(physicals[i].childNodes[j].textContent) * -1;
                   console.log(physicals[i].childNodes[j].nodeName + "  -> " + parseInt(physicals[i].childNodes[j].textContent) * -1);
-
                 }
               }
+
             }
-          }
+          } // end of else if (current < previous)
+
         }
       }
     }
-  });
+  }
+  catch (error) {
+    console.error(error);
+  }
 }
 
 /**
@@ -1016,15 +1002,15 @@ function applyAttributeChangesFromPhysicalChanges(buildName, previous, current, 
  * Used to create the eventListeners for the plus button and the minus button.
  */
 function increasingAndDecreasingAttributes() {
-  var plusSelection = document.getElementsByClassName('plus2');
-  var minusSelection = document.getElementsByClassName('minus2');
+  var plusSelection = document.getElementsByClassName('plus-button');
+  var minusSelection = document.getElementsByClassName('minus-button');
 
   // for the plus button
   for (let i = 0; i < plusSelection.length; i++) {
 
     plusSelection[i].addEventListener("click", async function() {
-      var currentUpgradeModifier = document.getElementsByClassName('upgrade-value')[i].innerHTML;
-      var currentAttributeValue = document.getElementsByClassName('attribute-value')[i].innerHTML;
+      var currentUpgradeModifier = upgradeValues[i].innerHTML;
+      var currentAttributeValue = attributeValues[i].innerHTML;
 
       // +5 is the maximum upgrade
       if (currentUpgradeModifier < 5 && currentAttributeValue < 99) {
@@ -1037,8 +1023,8 @@ function increasingAndDecreasingAttributes() {
   for (let i = 0; i < minusSelection.length; i++) {
 
     minusSelection[i].addEventListener("click", async function() {
-      var currentUpgradeModifier = document.getElementsByClassName('upgrade-value')[i].innerHTML;
-      var currentAttributeValue = document.getElementsByClassName('attribute-value')[i].innerHTML;
+      var currentUpgradeModifier = upgradeValues[i].innerHTML;
+      var currentAttributeValue = attributeValues[i].innerHTML;
 
       // the maximum downgrade is 5 (-5)
       if (currentUpgradeModifier > -5 && currentAttributeValue > 0) {
@@ -1068,9 +1054,6 @@ async function increaseOrDecreaseAttribute(upgradeType, i) {
   else {
     console.error("Invalid value for variable: upgradeType");
   }
-
-  let attributeValues = document.getElementsByClassName("attribute-value");
-  let upgradeValues = document.getElementsByClassName("upgrade-values");
 
   // increase/decrease the attribute and the current upgrade modifier
   attributeValues[i].innerHTML = parseInt(attributeValues[i].innerHTML) + upgradeAmount;
@@ -1104,83 +1087,83 @@ async function increaseOrDecreaseAttribute(upgradeType, i) {
 
 increasingAndDecreasingAttributes();
 
-/**
- * Increasing attributes
- */
-var userPlusSelection = document.getElementsByClassName('plus-button');
+// /**
+//  * Increasing attributes
+//  */
+// var userPlusSelection = document.getElementsByClassName('plus-button');
 
-let attributeValues = document.getElementsByClassName("attribute-value");
-let upgradeValues = document.getElementsByClassName("upgrade-value");
+// let attributeValues = document.getElementsByClassName("attribute-value");
+// let upgradeValues = document.getElementsByClassName("upgrade-value");
 
-for (let i = 0; i < userPlusSelection.length; i++) {
-  userPlusSelection[i].addEventListener("click", async function() {
+// for (let i = 0; i < userPlusSelection.length; i++) {
+//   userPlusSelection[i].addEventListener("click", async function() {
 
-    // +5 is the maximum upgrade
-    if (upgradeValues[i].innerHTML < 5 && attributeValues[i].innerHTML < 99) {
+//     // +5 is the maximum upgrade
+//     if (upgradeValues[i].innerHTML < 5 && attributeValues[i].innerHTML < 99) {
 
-      attributeValues[i].innerHTML++;
-      upgradeValues[i].innerHTML++;
-      changeUpgradeOptionColour(i);
+//       attributeValues[i].innerHTML++;
+//       upgradeValues[i].innerHTML++;
+//       changeUpgradeOptionColour(i);
 
-      // getting the index for the attribute section (0-4)
-      var j = 0;
-      if (i < 5) {
-        j = 0;
-      }
-      else if (i < 10) {
-        j = 1;
-      }
-      else if (i < 15) {
-        j = 2;
-      }
-      else if (i < 19) {
-        j = 3;
-      }
-      else {
-        j = 4;
-      }
-      availableUpgradePoints[j] += await getUpgradePointChange(i);
-      updateAvailableUpgradePoints(availableUpgradePoints[j], j); 
-    }
+//       // getting the index for the attribute section (0-4)
+//       var j = 0;
+//       if (i < 5) {
+//         j = 0;
+//       }
+//       else if (i < 10) {
+//         j = 1;
+//       }
+//       else if (i < 15) {
+//         j = 2;
+//       }
+//       else if (i < 19) {
+//         j = 3;
+//       }
+//       else {
+//         j = 4;
+//       }
+//       availableUpgradePoints[j] += await getUpgradePointChange(i);
+//       updateAvailableUpgradePoints(availableUpgradePoints[j], j); 
+//     }
 
-  })
-}
+//   })
+// }
 
-/**
- * Decreasing attributes
- */
-var userMinusSelection = document.getElementsByClassName('minus-button');
+// /**
+//  * Decreasing attributes
+//  */
+// var userMinusSelection = document.getElementsByClassName('minus-button');
 
-for (let i = 0; i < userMinusSelection.length; i++) {
-  userMinusSelection[i].addEventListener("click", async function() {
+// for (let i = 0; i < userMinusSelection.length; i++) {
+//   userMinusSelection[i].addEventListener("click", async function() {
 
-    // the maximum downgrade is 5 (-5)
-    if (upgradeValues[i].innerHTML > -5 && attributeValues[i].innerHTML > 0) {
+//     // the maximum downgrade is 5 (-5)
+//     if (upgradeValues[i].innerHTML > -5 && attributeValues[i].innerHTML > 0) {
 
-      attributeValues[i].innerHTML--;
-      upgradeValues[i].innerHTML--;
+//       attributeValues[i].innerHTML--;
+//       upgradeValues[i].innerHTML--;
   
-      changeUpgradeOptionColour(i);
+//       changeUpgradeOptionColour(i);
 
-      // getting the index for the attribute section (0-4)
-      var j = 0;
-      if (i < 5) {
-        j = 0;
-      }
-      else if (i < 10) {
-        j = 1;
-      }
-      else if (i < 15) {
-        j = 2;
-      }
-      else if (i < 19) {
-        j = 3;
-      }
-      else {
-        j = 4;
-      }
-      availableUpgradePoints[j] = availableUpgradePoints[j] + await getUpgradePointChange(i);
-      updateAvailableUpgradePoints(availableUpgradePoints[j], j);
-    }
-  })
-}
+//       // getting the index for the attribute section (0-4)
+//       var j = 0;
+//       if (i < 5) {
+//         j = 0;
+//       }
+//       else if (i < 10) {
+//         j = 1;
+//       }
+//       else if (i < 15) {
+//         j = 2;
+//       }
+//       else if (i < 19) {
+//         j = 3;
+//       }
+//       else {
+//         j = 4;
+//       }
+//       availableUpgradePoints[j] = availableUpgradePoints[j] + await getUpgradePointChange(i);
+//       updateAvailableUpgradePoints(availableUpgradePoints[j], j);
+//     }
+//   })
+// }

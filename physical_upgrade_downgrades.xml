@@ -80,48 +80,4 @@
             </Weight>
         </Weights>
     </Build>
-    <Build>
-        <Name>Dangler</Name>
-        <Height>
-            <five-ten>
-                <Speed>1</Speed>
-                <Balance>-1</Balance>
-                <Acceleration>1</Acceleration>
-                <BodyChecking>-1</BodyChecking>
-                <Durability>-1</Durability>
-                <FightingSkill>-1</FightingSkill>
-            </five-ten>
-            <five-nine>
-                <Agility>1</Agility>
-            </five-nine>
-        </Height>
-        <Weight>
-            <one-eighty>
-                <Speed>1</Speed>
-                <Balance>-1</Balance>
-                <Agility>1</Agility>
-                <Acceleration>1</Acceleration>
-                <Endurance>1</Endurance>
-                <BodyChecking>-1</BodyChecking>
-                <Strength>-1</Strength>
-                <Durability>-1</Durability>
-                <FightingSkill>-1</FightingSkill>
-            </one-eighty>
-            <one-seventy-five>
-                <Endurance>1</Endurance>
-                <Strength>-1</Strength>
-            </one-seventy-five>
-            <one-seventy>
-                <Agility>1</Agility>
-            </one-seventy>
-            <one-sixty>
-                <Speed>1</Speed>
-                <Balance>-1</Balance>
-                <Agility>1</Agility>
-                <Endurance>1</Endurance>
-                <Strength>-1</Strength>
-                <Durability>-1</Durability>
-            </one-sixty>
-        </Weight>
-    </Build>
 </Builds>
