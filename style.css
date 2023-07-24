@@ -496,7 +496,7 @@ body {
     flex-direction: row;
 }
 
-.ability-dropdown-section, .main-ability-dropdown-section {
+.ability-dropdown-section, #main-ability-dropdown-section {
     display: flex;
     flex-direction: row;
 }

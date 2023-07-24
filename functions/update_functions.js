@@ -1,5 +1,15 @@
-import * as Variables from "./global_variables.js";
-import * as Constants from "./constants.js";
+/**
+ * 2022-2023
+ * Anthony Liscio
+ * 
+ * update_functions.js
+ * 
+ *    Used for functions that update or change parts of the website.
+ */
+
+
+import * as Variables from "../variables/global_variables.js";
+import * as Constants from "../variables/constants.js";
 import * as UtilityFunctions from "./utility_functions.js";
 
 
@@ -15,14 +25,14 @@ import * as UtilityFunctions from "./utility_functions.js";
 export async function applyAttributeChangesFromPhysicalChanges(buildName, previous, current, physicalAspect) {
   try {
     const xmlDoc = await UtilityFunctions.fetchFromXMLFile(Constants.PHYS_UPGRADE_DOWNGRADE_XML);
-    const builds = xmlDoc.querySelectorAll("Build");
+    const builds = xmlDoc.querySelectorAll(Constants.XML_BUILD_NODE);
     // console.log(document.getElementsByClassName('attribute-value').length);
 
     // for each build
     for (const build of builds) {
 
       // get the name of the current build
-      const nameValue = build.querySelector("Name").textContent;
+      const nameValue = build.querySelector(Constants.XML_NAME_NODE).textContent;
 
       // if the name of the current build matches with the paramater value, buildName
       if (nameValue === buildName) {
@@ -30,10 +40,10 @@ export async function applyAttributeChangesFromPhysicalChanges(buildName, previo
 
         for (var i = 0; i < physicals.length; i++) {
 
-          var currentXmlAmount = physicals[i].querySelector("value").textContent;
+          var currentXmlAmount = physicals[i].querySelector(Constants.XML_VALUE_NODE).textContent;
 
           if (physicalAspect == "Height") {
-            currentXmlAmount = UtilityFunctions.convertFeetandInchesToInches(physicals[i].querySelector("value").textContent);
+            currentXmlAmount = UtilityFunctions.convertFeetandInchesToInches(physicals[i].querySelector(Constants.XML_VALUE_NODE).textContent);
           }
 
           // going up height/weight
@@ -129,7 +139,7 @@ export async function increaseOrDecreaseAttribute(upgradeType, i) {
   }
 
   // update available upgrade points
-  Variables.availableUpgradePoints[j] += await getUpgradePointChange(i);
+  Variables.availableUpgradePoints[j] += await UtilityFunctions.getUpgradePointChange(i);
   updateAvailableUpgradePoints(Variables.availableUpgradePoints[j], j); 
 }
 
