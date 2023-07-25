@@ -49,9 +49,9 @@ async function setMainAbilityOptions(buildName) {
     if (currentBuildMainAbilityNames != undefined) {
 
       // for each ability group
-      abilityGroups.forEach( (currentAbilityGroup) => {
+      abilityGroups.forEach(currentAbilityGroup => {
         
-        currentBuildMainAbilityNames.forEach( (currentMainAbilityName, index) => {
+        currentBuildMainAbilityNames.forEach((currentMainAbilityName, index) => {
           // set main ability name
           Variables.mainAbilityNames[index].textContent = currentMainAbilityName.textContent;
           Variables.mainAbilityNames[index].style.fontWeight = "bold";
@@ -65,7 +65,7 @@ async function setMainAbilityOptions(buildName) {
             const abilitiesInfo = currentAbilityGroup.querySelectorAll(Constants.XML_ABILITY_NODE);
 
             // for each ability
-            abilitiesInfo.forEach( (currentAbilityInfo) => {
+            abilitiesInfo.forEach(currentAbilityInfo => {
               const currentAbilityName = currentAbilityInfo.querySelector(Constants.XML_ABILITY_NAME_NODE).textContent;
 
               if (currentAbilityName == currentMainAbilityName.textContent) {
@@ -109,47 +109,53 @@ async function setAbilityOptions() {
     let abilityIconsSectionOne = document.getElementsByClassName(Constants.ABILITY_SECTION_CLASSNAME)[0].getElementsByClassName(Constants.ICONS_CLASSNAME);
     let abilityIconsSectionTwo = document.getElementsByClassName(Constants.ABILITY_SECTION_CLASSNAME)[1].getElementsByClassName(Constants.ICONS_CLASSNAME);
 
-    // for each ability group
-    abilityGroups.forEach( (currentAbilityGroup) => {
-      let currentAbilityGroupName = currentAbilityGroup.querySelector(Constants.XML_GROUPNAME_NODE).textContent;
+    const totalAmountOfAbilities = Variables.abilityNames.length;
+    const totalAmountOfAbilityRequirements = Variables.abilityRequirements.length;
 
-      const totalAmountOfAbilities = Variables.abilityNames.length;
-      const totalAmountOfAbilityRequirements = Variables.abilityRequirements.length;
+    // ability info
+    const allAbilityInfo = xmlDoc.querySelectorAll(Constants.XML_ABILITY_NODE);
 
-      const abilityInfo = currentAbilityGroup.querySelectorAll(Constants.XML_ABILITY_NODE);
+    // filter used to remove the ability "Back At Ya" from this because that ability is only used as a main ability and not a regular ability,
+    // like the rest of the abilities are.
+    const abilityInfo = Object.values(allAbilityInfo).filter(ability => {
+      const validRegularAbility = ability.querySelector(Constants.XML_ABILITY_NAME_NODE).textContent != Constants.XML_BACKATYA_NODE;
+      return validRegularAbility;
+    });
 
-      // for each ability
-      abilityInfo.forEach( (currentAbility) => {
+    // for each ability
+    abilityInfo.forEach(currentAbility => {
+      // set ability name
+      const currentAbilityName = currentAbility.querySelector(Constants.XML_ABILITY_NAME_NODE).textContent;
+      Variables.abilityNames[i].textContent = currentAbilityName;
+      Variables.abilityNames[i + totalAmountOfAbilities / 2].textContent = currentAbilityName;
+      Variables.abilityNames[i].style.fontWeight = "bold";
+      Variables.abilityNames[i + totalAmountOfAbilities / 2].style.fontWeight = "bold";
 
-        // set ability name
-        const currentAbilityName = currentAbility.querySelector(Constants.XML_ABILITY_NAME_NODE).textContent;
-        Variables.abilityNames[i].textContent = currentAbilityName;
-        Variables.abilityNames[i + totalAmountOfAbilities / 2].textContent = currentAbilityName;
-        Variables.abilityNames[i].style.fontWeight = "bold";
-        Variables.abilityNames[i + totalAmountOfAbilities / 2].style.fontWeight = "bold";
+      // set ability icon
+      const currentAbilityIcon = currentAbility.querySelector(Constants.XML_ICON_NAME_NODE).textContent;
+      abilityIconsSectionOne[i + 1].textContent = currentAbilityIcon;
+      abilityIconsSectionTwo[i + 1].textContent = currentAbilityIcon;
 
-        // set ability icon
-        const currentAbilityIcon = currentAbility.querySelector(Constants.XML_ICON_NAME_NODE).textContent;
-        abilityIconsSectionOne[i + 1].textContent = currentAbilityIcon;
-        abilityIconsSectionTwo[i + 1].textContent = currentAbilityIcon;
+      // set ability requirements
+      const currentAbilityRequirementsAttributeNames = currentAbility.querySelectorAll(Constants.XML_ATT_NAME_NODE);
+      const currentAbilityRequirementsMinimumValues = currentAbility.querySelectorAll(Constants.XML_MIN_VAL_NODE);
+      Variables.abilityRequirements[j].textContent = 
+        "(requires minimum " + currentAbilityRequirementsMinimumValues[0].textContent + " " + currentAbilityRequirementsAttributeNames[0].textContent + ")";
+      Variables.abilityRequirements[j + totalAmountOfAbilityRequirements / 2].textContent = 
+        "(requires minimum " + currentAbilityRequirementsMinimumValues[0].textContent + " " + currentAbilityRequirementsAttributeNames[0].textContent + ")";
+      Variables.abilityRequirements[j + 1].textContent = 
+        "(requires minimum " + currentAbilityRequirementsMinimumValues[1].textContent + " " + currentAbilityRequirementsAttributeNames[1].textContent + ")";
+      Variables.abilityRequirements[j + 1 + totalAmountOfAbilityRequirements / 2].textContent = 
+        "(requires minimum " + currentAbilityRequirementsMinimumValues[1].textContent + " " + currentAbilityRequirementsAttributeNames[1].textContent + ")";
 
-        // set ability requirements
-        const currentAbilityRequirementsAttributeNames = currentAbility.querySelectorAll(Constants.XML_ATT_NAME_NODE);
-        const currentAbilityRequirementsMinimumValues = currentAbility.querySelectorAll(Constants.XML_MIN_VAL_NODE);
-        Variables.abilityRequirements[j].textContent = "(requires minimum " + currentAbilityRequirementsMinimumValues[0].textContent + " " + currentAbilityRequirementsAttributeNames[0].textContent + ")";
-        Variables.abilityRequirements[j + totalAmountOfAbilityRequirements / 2].textContent = "(requires minimum " + currentAbilityRequirementsMinimumValues[0].textContent + " " + currentAbilityRequirementsAttributeNames[0].textContent + ")";
-        Variables.abilityRequirements[j + 1].textContent = "(requires minimum " + currentAbilityRequirementsMinimumValues[1].textContent + " " + currentAbilityRequirementsAttributeNames[1].textContent + ")";
-        Variables.abilityRequirements[j + 1 + totalAmountOfAbilityRequirements / 2].textContent = "(requires minimum " + currentAbilityRequirementsMinimumValues[1].textContent + " " + currentAbilityRequirementsAttributeNames[1].textContent + ")";
+      // set ability description
+      const currentAbilityDescription = currentAbility.querySelector(Constants.XML_DESCRIP_NODE).textContent;
+      Variables.abilityDescriptions[i].textContent = currentAbilityDescription;
+      Variables.abilityDescriptions[i + totalAmountOfAbilities / 2].textContent = currentAbilityDescription;
 
-        // set ability description
-        const currentAbilityDescription = currentAbility.querySelector(Constants.XML_DESCRIP_NODE).textContent;
-        Variables.abilityDescriptions[i].textContent = currentAbilityDescription;
-        Variables.abilityDescriptions[i + totalAmountOfAbilities / 2].textContent = currentAbilityDescription;
-
-        // increment indices
-        j += 2;
-        i++;
-      });
+      // increment indices
+      j += 2;
+      i++;
     });
   }
   catch (error) {
@@ -210,35 +216,27 @@ export async function setupNewBuild(buildName) {
  */
 function setDefaultAttributes(build, nameValue) {
   console.log(nameValue);
-  var attributeIndex = 0;
+  let attributeIndex = 0;
 
   // get the default attributes of this build
-  var defaultAttributes = build.querySelector(Constants.XML_DEFAULTATT_NODE);
+  const defaultAttributes = build.querySelector(Constants.XML_DEFAULTATT_NODE);
 
-  // amount of child nodes in defaultAttributes (divided by 2 since I am not including all the "text" child nodes)
-  var amountOfAttributeSections = Math.floor(defaultAttributes.childNodes.length / 2);
+  // attribute sections of this build
+  const attributeSections = Object.values(defaultAttributes.childNodes).filter(UtilityFunctions.isElementNode);
 
-  // for loop for each necessary child node in defaultAttributes (not looping over the "text" nodes which is why j starts
-  // at 1 and increments by 2 until it reaches amountOfAttributeSections multiplied by 2)
-  for (var j = 1; j < amountOfAttributeSections * 2; j += 2) {
-
-    // get the current attribute section ("Technique", "Power", "Playstyle", "Tenacity", or "Tactics")
-    var attributeSection = defaultAttributes.childNodes[j];
-
-    // amount of child nodes in attributeSecton (divided by 2 since I am not including all the "text" child nodes)
-    var amountOfAttributesInSection = Math.floor(attributeSection.childNodes.length / 2);
-
-    // for loop for each necessary child node in attributeSection (not looping over the "text" nodes which is why i starts
-    // at 1 and increments by 2 until it reaches amountOfAttributesInSection multiplied by 2)
-    for (var i = 1; i < amountOfAttributesInSection * 2; i += 2) {
-
+  // for each attribute section
+  attributeSections.forEach(attributeSection => {
+    // the attribute values in the current attribute section
+    const attributes = Object.values(attributeSection.childNodes).filter(UtilityFunctions.isElementNode);
+    
+    // for each attribute
+    attributes.forEach(attribute => {
       // set the attribute values
-      Variables.attributeValues[attributeIndex].innerHTML = attributeSection.childNodes[i].textContent;
-
-      // increment the attribute index
+      Variables.attributeValues[attributeIndex].innerHTML = attribute.textContent;
       attributeIndex++;
-    }
-  }
+    });
+
+  });
 }
 
 /**
@@ -248,55 +246,50 @@ function setDefaultAttributes(build, nameValue) {
 export async function fillBoostOptions() {
   try {
     const xmlDoc = await UtilityFunctions.fetchFromXMLFile(Constants.BOOSTS_XML);
-    const attributeSections = xmlDoc.childNodes[0];
 
-    var j = 0;
-    var k = 1;
+    // indices
+    let j = 0;
+    let k = 1;
 
-    // icons
-    var boostsAndAbilityIcons = Variables.boostSection.getElementsByClassName(Constants.ICONS_CLASSNAME);
+    // boost icons
+    let boostIcons = Variables.boostSection.getElementsByClassName(Constants.ICONS_CLASSNAME);
 
-    // for each attribute section
-    for (var i = 1; i < attributeSections.childNodes.length; i+=2) {
-      var boosts = attributeSections.childNodes[i].querySelectorAll(Constants.XML_BOOST_NODE);
+    // all the boosts
+    const boosts = xmlDoc.querySelectorAll(Constants.XML_BOOST_NODE);
+    
+    // for each boost
+    boosts.forEach(boost => {
+      const boostInfo = Object.values(boost.childNodes).filter(UtilityFunctions.isElementNode);
 
-      // for each boost
-      for (var boost of boosts) {
-        var boostInfo = Object.values(boost.childNodes).filter(UtilityFunctions.isElementNode);
+      // remove the AttributeMinimum value because it has several more childnodes inside of it
+      // so it would be easier/make more sense to remove it from here and include it in its own variable
+      const attributeMinimumInfo = boostInfo.splice(3, 1);
+      const minimumRequirements = Object.values(attributeMinimumInfo[0].childNodes).filter(UtilityFunctions.isElementNode);
 
-        // remove the AttributeMinimum value because it has several more childnodes inside of it
-        // so it would be easier/make more sense to remove it from here and include it in its own
-        // var
-        var attributeMinimumInfo = boostInfo.splice(3, 1);
-        var minimumRequirements = Object.values(attributeMinimumInfo[0].childNodes).filter(UtilityFunctions.isElementNode);
+      // fill the boost values (the attribute to upgrade and by how much)
+      Variables.boostValues[j].textContent = "+" + boostInfo[1].textContent + " " + boostInfo[0].textContent;   // for the left boost section
+      Variables.boostValues[j + Variables.boostValues.length / 2].textContent = "+" + boostInfo[1].textContent + " " + boostInfo[0].textContent;  // for the right boost section
 
-        // fill the boost values (the attribute to upgrade and by how much)
-        Variables.boostValues[j].textContent = "+" + boostInfo[1].textContent + " " + boostInfo[0].textContent;   // for the left boost section
-        Variables.boostValues[j + Variables.boostValues.length / 2].textContent = "+" + boostInfo[1].textContent + " " + boostInfo[0].textContent;  // for the right boost section
+      // fill the boost requirements
+      Variables.boostRequirements[j].textContent = "(requires a minimum of " + minimumRequirements[1].textContent + " " + minimumRequirements[0].textContent + ")";
+      Variables.boostRequirements[j + Variables.boostValues.length / 2].textContent = "(requires a minimum of " + minimumRequirements[1].textContent + " " + minimumRequirements[0].textContent + ")";
 
-        // fill the boost requirements
-        Variables.boostRequirements[j].textContent = "(requires a minimum of " + minimumRequirements[1].textContent + " " + minimumRequirements[0].textContent + ")";
-        Variables.boostRequirements[j + Variables.boostValues.length / 2].textContent = "(requires a minimum of " + minimumRequirements[1].textContent + " " + minimumRequirements[0].textContent + ")";
+      // fill the boost icons
+      boostIcons[k].textContent = boostInfo[3].textContent;
+      boostIcons[k + Variables.boostValues.length / 2 + 1].textContent = boostInfo[3].textContent;
 
-        // fill the boost icons
-        boostsAndAbilityIcons[k].textContent = boostInfo[3].textContent;
-        boostsAndAbilityIcons[k + Variables.boostValues.length / 2 + 1].textContent = boostInfo[3].textContent;
+      // fill the boost icons colours
+      boostIcons[k].style.color = boostInfo[2].textContent;
+      boostIcons[k + Variables.boostValues.length / 2 + 1].style.color = boostInfo[2].textContent;
 
-        // fill the boost icons colours
-        boostsAndAbilityIcons[k].style.color = boostInfo[2].textContent;
-        boostsAndAbilityIcons[k + Variables.boostValues.length / 2 + 1].style.color = boostInfo[2].textContent;
-
-        j++;
-        k++;
-      }
-
-    }
-
+      // increment indices
+      j++;
+      k++;
+    });
   }
   catch (error) {
     console.error(error);
   }
-
 }
 
 /**
@@ -343,23 +336,21 @@ function setBuildHeights(build) {
   Variables.setGlobalPreviousHeight(minHeight);
   Variables.setGlobalCurrentHeight(UtilityFunctions.convertFeetandInchesToInches(defaultHeight));
 
-  // for each height option
-  for (var i = 0; i < Variables.heights.length; i++) {
-    var currentHeight = UtilityFunctions.convertFeetandInchesToInches(Variables.heights[i].value);
-
+  // for each height
+  Object.values(Variables.heights).forEach((height, index) => {
+    const currentHeight = UtilityFunctions.convertFeetandInchesToInches(height.value);
+    
     // if the current height is less than the minimum height for the current build then remove it
     // from the options
     if (currentHeight < minHeight) {
-      Variables.heights[i].remove(i);
-      i--;
+      height.remove(index);
     }
     // if the current height is greater than the maximum height for the current build then remove it
     // from the options
     else if (currentHeight > maxHeight) {
-      Variables.heights[i].remove(i);
-      i--;
+      height.remove(index);
     }
-  }
+  });
 }
 
 /**
@@ -367,10 +358,10 @@ function setBuildHeights(build) {
  * Used to add every possible height to the html option select.
  */
 function addAllHeights() {
-  for (var i = 0; i < Constants.ALL_HEIGHTS.length; i++) {
-    var heightOption = new Option(Constants.ALL_HEIGHTS[i], Constants.ALL_HEIGHTS[i]);
+  Constants.ALL_HEIGHTS.forEach(currentHeight => {
+    const heightOption = new Option(currentHeight, currentHeight);
     Variables.heights.add(heightOption, undefined);
-  }
+  });
 }
 
 /**

@@ -29,10 +29,10 @@ export const ABILITIES_XML = "../build-information/abilities.xml";
     // buttons
     export const PLUS_BUTTONS_CLASSNAME = "plus-button";
     export const MINUS_BUTTONS_CLASSNAME = "minus-button";
-
-    // dropdown button content sections
     export const ABILITY_BUTTON_CLASSNAME = "dropdownbutton";
     export const MAIN_BOOST_BUTTON_CLASSNAME = "main-boost-dropdownbutton";
+
+    // dropdown button content sections
     export const BOOST_BUTTONS_DROPDOWN_CLASSNAME = "boost-buttons-content";
     export const ABILITY_BUTTONS_DROPDOWN_CONTENT_CLASSNAME = "ability-button-content";
 
@@ -46,7 +46,6 @@ export const ABILITIES_XML = "../build-information/abilities.xml";
 
     // sections
     export const ABILITY_SECTION_CLASSNAME = "ability-section";
-
 
     // items, values, requirements, descriptions, icons
     export const BOOST_ITEM_VALUE_CLASSNAME = "boost-item-value";
@@ -103,6 +102,7 @@ export const XML_ATT_NAME_NODE = "AttributeName";
 export const XML_MIN_VAL_NODE = "MinimumValue";
 export const XML_DESCRIP_NODE = "Description";
 export const XML_BUILDNAME_NODE = "BuildName";
+export const XML_BACKATYA_NODE = "Back At Ya";
 
 
 /**
@@ -112,3 +112,4 @@ export const ALL_HEIGHTS = ["5'7", "5'8", "5'9", "5'10", "5'11", "6'0", "6'1", "
 export const ALL_ATTRIBUTES_INORDER = ["WristshotAcc", "SlapshotAcc", "Speed", "Balance", "Agility", "WristshotPower", "SlapshotPower", "Acceleration", "PuckControl",
                                   "Endurance", "Passing", "OffensiveAwareness", "BodyChecking", "StickChecking", "DefensiveAwareness", "Handeye", "Strength", 
                                   "Durability", "ShotBlocking", "Deking", "Faceoffs", "Discipline", "FightingSkill"];
+
