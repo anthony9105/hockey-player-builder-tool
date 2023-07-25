@@ -279,35 +279,32 @@ export function confirmHeightWeightButtonListener(confirmButton, physicalAspect)
  * Used to create the eventListeners for both the plus button and the minus button.
  */
 export function increasingAndDecreasingAttributesListeners() {
-  let plusSelection = document.getElementsByClassName(Constants.PLUS_BUTTONS_CLASSNAME);
-  let minusSelection = document.getElementsByClassName(Constants.MINUS_BUTTONS_CLASSNAME);
+  let plusButtons = document.getElementsByClassName(Constants.PLUS_BUTTONS_CLASSNAME);
+  let minusButtons = document.getElementsByClassName(Constants.MINUS_BUTTONS_CLASSNAME);
 
-  // for the plus button
-  for (let i = 0; i < plusSelection.length; i++) {
-
-    plusSelection[i].addEventListener("click", async function() {
-      let currentUpgradeModifier = Variables.upgradeValues[i].innerHTML;
-      let currentAttributeValue = Variables.attributeValues[i].innerHTML;
+  // plus button listeners
+  Object.values(plusButtons).forEach((plusButton, index) => {
+    plusButton.addEventListener("click", async function() {
+      let currentUpgradeModifier = Variables.upgradeValues[index].innerHTML;
+      let currentAttributeValue = Variables.attributeValues[index].innerHTML;
 
       // +5 is the maximum upgrade
       if (currentUpgradeModifier < 5 && currentAttributeValue < 99) {
-        UpdateFunctions.increaseOrDecreaseAttribute("increase", i);
+        UpdateFunctions.increaseOrDecreaseAttribute("increase", index);
       }
-    })
-  }
+    });
+  });
 
-  // for the minus button
-  for (let i = 0; i < minusSelection.length; i++) {
-
-    minusSelection[i].addEventListener("click", async function() {
-      let currentUpgradeModifier = Variables.upgradeValues[i].innerHTML;
-      let currentAttributeValue = Variables.attributeValues[i].innerHTML;
+  // minus button listeners
+  Object.values(minusButtons).forEach((minusButton, index) => {
+    minusButton.addEventListener("click", async function() {
+      let currentUpgradeModifier = Variables.upgradeValues[index].innerHTML;
+      let currentAttributeValue = Variables.attributeValues[index].innerHTML;
 
       // the maximum downgrade is 5 (-5)
       if (currentUpgradeModifier > -5 && currentAttributeValue > 0) {
-        UpdateFunctions.increaseOrDecreaseAttribute("decrease", i);
+        UpdateFunctions.increaseOrDecreaseAttribute("decrease", index);
       }
-    })
-  }
-  
+    });
+  });
 }
