@@ -38,7 +38,6 @@ export const ABILITIES_XML = "../build-information/abilities.xml";
 
     // dropdown content sections
     export const ABILITY_DROPDOWN_CONTENT_BUTTON_CLASSNAME = "ability-dropdownbutton";
-    export const ABILITY_DROPDOWN_SECTION_CLASSNAME = "ability_dropdown_section";
     export const BOOST_DROPDOWN_CONTENT_BUTTON_CLASSNAME = "boost-dropdownbutton";
     export const BOOST_DROPDOWN_CONTENT_CLASSNAME = "boost-dropdown-content";
     export const ABILITY_DROPDOWN_CONTENT_COLUMN_CLASSNAME = "dropdown-content";

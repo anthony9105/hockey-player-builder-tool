@@ -32,7 +32,7 @@ export function abilityButtonListeners(abilityButtons) {
   for (let i=0; i < abilityButtons.length; i++) {
     abilityButtons[i].addEventListener("click", function() {
 
-      var abilityContentSection = document.getElementsByClassName(Constants.ABILITY_DROPDOWN_SECTION_CLASSNAME);
+      var abilityContentSection = document.getElementsByClassName(Constants.ABILITY_DROPDOWN_CONTENT_CLASSNAME);
 
       // for the main ability dropdown button
       if (i == 1) {
@@ -54,7 +54,6 @@ export function abilityButtonListeners(abilityButtons) {
 
       // if there was a previous dropdown that is currently open/visible.  Hide it
       if (abilityPreviousDropdown.previousDropdownOpen && abilityPreviousDropdown.dropdownSectionIndex != -1) {
-
         let abilityContentDropdown = abilityContentSection[abilityPreviousDropdown.dropdownSectionIndex].getElementsByClassName(Constants.ABILITY_DROPDOWN_CONTENT_COLUMN_CLASSNAME);
         for (let k = 0; k < abilityContentDropdown.length; k++) {
           UpdateFunctions.hideDropdown(abilityContentDropdown, k);
