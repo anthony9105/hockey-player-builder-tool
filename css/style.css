@@ -500,3 +500,29 @@ body {
     display: flex;
     flex-direction: row;
 }
+
+.ability-display-item {
+    background-color: rgba(115, 116, 116, 0.3);
+    box-shadow: 0px 0px 50px rgba(116, 116, 116, 0.7);
+    color: rgb(50, 50, 50);
+    padding-bottom: 7%;
+    padding-right: 2%;
+    padding-left: 2%;
+    text-align: center;
+    border-radius: 12px;
+}
+
+.main-ability-display-item {
+    background-color: rgba(253, 245, 5, 0.3);
+    box-shadow: 0px 0px 50px rgba(253, 245, 5, 0.7);
+    color: rgb(50, 50, 50);
+    padding-bottom: 7%;
+    padding-right: 2%;
+    padding-left: 2%;
+    text-align: center;
+    border-radius: 12px;
+}
+
+.ability-display-name {
+    color: inherit;
+}

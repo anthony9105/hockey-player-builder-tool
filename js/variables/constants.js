@@ -55,6 +55,13 @@ export const ABILITIES_XML = "../build-information/abilities.xml";
     export const ABILITY_REQ_CLASSNAME = "ability-requirement";
     export const MAIN_ABILITY_NAME_CLASSNAME = "main-ability-name";
     export const ABILITY_NAME_CLASSNAME = "ability-name";
+    export const ABILITY_DISPLAY_ITEM_CLASSNAME = "ability-display-item";
+    export const ABILITY_DISPLAY_NAME_CLASSNAME = "ability-display-name";
+    export const ABILITY_DISPLAY_DESC_CLASSNAME = "ability-display-description";
+    export const ABILITY_DISPLAY_REQ_CLASSNAME = "ability-display-requirement";
+    export const MAIN_ABILITY_DISPLAY_ITEM_CLASSNAME = "main-ability-display-item";
+    export const MAIN_ABILITY_DISPLAY_NAME_CLASSNAME = "main-ability-display-name";
+    export const MAIN_ABILITY_DISPLAY_DESC_CLASSNAME = "main-ability-display-description";
 
 
 /**
@@ -112,3 +119,4 @@ export const ALL_ATTRIBUTES_INORDER = ["WristshotAcc", "SlapshotAcc", "Speed", "
                                   "Endurance", "Passing", "OffensiveAwareness", "BodyChecking", "StickChecking", "DefensiveAwareness", "Handeye", "Strength", 
                                   "Durability", "ShotBlocking", "Deking", "Faceoffs", "Discipline", "FightingSkill"];
 
+export const UNSELECTED_ABILITY_NAME = "No ability currently selected";

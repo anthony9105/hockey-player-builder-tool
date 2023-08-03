@@ -29,6 +29,9 @@ export let abilityNames = document.getElementsByClassName(Constants.ABILITY_NAME
 export let abilityDescriptions = document.getElementsByClassName(Constants.ABILITY_DESCRIPTION_CLASSNAME);
 export let abilityRequirements = document.getElementsByClassName(Constants.ABILITY_REQ_CLASSNAME);
 
+export let abilityDisplayItems = document.getElementsByClassName(Constants.ABILITY_DISPLAY_ITEM_CLASSNAME);
+export let mainAbilityDisplayItem = document.getElementsByClassName(Constants.MAIN_ABILITY_DISPLAY_ITEM_CLASSNAME)[0];
+
 
 
 export let globalPreviousHeight;

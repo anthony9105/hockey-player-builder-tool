@@ -373,3 +373,35 @@ function removeAllHeights() {
     Variables.heights.remove(0);
   }
 }
+
+export function setAbilityOptionToUnselected(index) {
+  let abilityDisplayName = Variables.abilityDisplayItems[index].getElementsByClassName(Constants.ABILITY_DISPLAY_NAME_CLASSNAME)[0];
+  let abilityDisplayDescription = Variables.abilityDisplayItems[index].getElementsByClassName(Constants.ABILITY_DISPLAY_DESC_CLASSNAME)[0];
+  let abilityDisplayRequirements = Variables.abilityDisplayItems[index].getElementsByClassName(Constants.ABILITY_DISPLAY_REQ_CLASSNAME);
+  let abilityDisplayIcon = Variables.abilityDisplayItems[index].getElementsByClassName(Constants.ICONS_CLASSNAME)[0];
+
+  abilityDisplayName.textContent = Constants.UNSELECTED_ABILITY_NAME;
+  abilityDisplayName.style.fontStyle = "italic";
+
+  // set the description, requirements, and icon to be empty
+  abilityDisplayDescription.textContent = "";
+
+  Object.values(abilityDisplayRequirements).forEach(abilityDisplayRequirement => {
+    abilityDisplayRequirement.textContent = "";
+  });
+
+  abilityDisplayIcon.textContent = "";
+}
+
+export function setMainAbilityOptionToUnselected() {
+  let mainAbilityDisplayName = Variables.mainAbilityDisplayItem.getElementsByClassName(Constants.MAIN_ABILITY_DISPLAY_NAME_CLASSNAME)[0];
+  let mainAbilityDisplayDescription = Variables.mainAbilityDisplayItem.getElementsByClassName(Constants.MAIN_ABILITY_DISPLAY_DESC_CLASSNAME)[0];
+  let mainAbilityDisplayIcon = Variables.mainAbilityDisplayItem.getElementsByClassName(Constants.ICONS_CLASSNAME)[0];
+
+  mainAbilityDisplayName.textContent = Constants.UNSELECTED_ABILITY_NAME;
+  mainAbilityDisplayName.style.fontStyle = "italic";
+
+  mainAbilityDisplayDescription.textContent = "";
+
+  mainAbilityDisplayIcon.textContent = "";
+}

@@ -9,6 +9,9 @@ import * as ListenerFunctions from "./functions/listeners.js";
 import * as InitializerFunctions from "./functions/initializers.js";
 import * as Constants from "./variables/constants.js";
 
+InitializerFunctions.setAbilityOptionToUnselected(0);
+InitializerFunctions.setAbilityOptionToUnselected(1);
+InitializerFunctions.setMainAbilityOptionToUnselected();
 
 /**
  * ABILITIES

@@ -225,3 +225,23 @@ export function resetUpgrades(upgradeValues) {
     Variables.upgradeValues[i].style.color = '#3a379c';
   }
 }
+
+
+
+
+export function setSelectedAbilityValues(displayItemIndex, abilityName, abilityDescription, abilityRequirements, abilityIcon) {
+  let displayAbilityName = Variables.abilityDisplayItems[displayItemIndex].getElementsByClassName(Constants.ABILITY_DISPLAY_NAME_CLASSNAME)[0];
+  displayAbilityName.textContent = abilityName;
+  displayAbilityName.style.fontStyle = "bold";
+
+  let displayAbilityDescription = Variables.abilityDisplayItems[displayItemIndex].getElementsByClassName(Constants.ABILITY_DISPLAY_DESC_CLASSNAME)[0];
+  displayAbilityDescription.textContent = abilityDescription;
+
+  let displayAbilityRequirements = Variables.abilityDisplayItems[displayItemIndex].getElementsByClassName(Constants.ABILITY_DISPLAY_REQ_CLASSNAME);
+  Object.values(displayAbilityRequirements).forEach((displayAbilityRequirement, index) => {
+    displayAbilityRequirement.textContent = abilityRequirements[index].textContent;
+  });
+
+  let displayAbilityIcon = Variables.abilityDisplayItems[displayItemIndex].getElementsByClassName(Constants.ICONS_CLASSNAME)[0];
+  displayAbilityIcon.textContent = abilityIcon;
+}

@@ -131,6 +131,13 @@ export function hideMainAbilityDropdownContent() {
   }
 }
 
+export function abilitySelectListeners() {
+  
+}
+
+export function abilitySelectConfirmListeners() {
+
+}
 
 
 /**
