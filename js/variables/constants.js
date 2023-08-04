@@ -65,6 +65,7 @@ export const ABILITIES_XML = "../build-information/abilities.xml";
     export const BOOST_DISPLAY_ITEM_CLASSNAME = "boost-display-item";
     export const BOOST_DISPLAY_VALUE_CLASSNAME = "boost-display-item-value";
     export const BOOST_DISPLAY_REQ_CLASSNAME = "boost-display-requirement";
+    export const ABILITY_ITEM_CLASSNAME = "ability-item";
 
 
 /**

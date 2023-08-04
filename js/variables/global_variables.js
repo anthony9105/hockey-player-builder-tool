@@ -26,6 +26,7 @@ export let mainAbilityNames = document.getElementsByClassName(Constants.MAIN_ABI
 export let mainAbilityDescriptions = document.getElementsByClassName(Constants.MAIN_ABILITY_DESCRIPTION_CLASSNAME);
 export let mainAbilityIcons = document.getElementById(Constants.MAIN_ABILITY_SECTION_ID).getElementsByClassName(Constants.ICONS_CLASSNAME);
 
+export let abilityItems = document.getElementsByClassName(Constants.ABILITY_ITEM_CLASSNAME);
 export let abilityNames = document.getElementsByClassName(Constants.ABILITY_NAME_CLASSNAME);
 export let abilityDescriptions = document.getElementsByClassName(Constants.ABILITY_DESCRIPTION_CLASSNAME);
 export let abilityRequirements = document.getElementsByClassName(Constants.ABILITY_REQ_CLASSNAME);

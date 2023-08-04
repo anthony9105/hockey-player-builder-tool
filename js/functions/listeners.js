@@ -19,6 +19,13 @@ let abilityPreviousDropdown = {
   dropdownSectionIndex: -1,
 }
 
+function doComplete() {
+  callback(true);
+}
+
+function doCancel() {
+  callback(false);
+}
 /**
  * ABILITIES
  */
@@ -132,7 +139,43 @@ export function hideMainAbilityDropdownContent() {
 }
 
 export function abilitySelectListeners() {
-  
+  Object.values(Variables.abilityItems).forEach((abilityItem, index) => {
+    abilityItem.addEventListener("click", function() {
+      const confirmResponse = window.confirm("Select this as your ability?");
+
+      if (confirmResponse) {
+        // set selected ability
+        let selectedAbilityName = abilityItem.getElementsByClassName(Constants.ABILITY_NAME_CLASSNAME)[0];
+        let selectedAbilityDescription = abilityItem.getElementsByClassName(Constants.ABILITY_DESCRIPTION_CLASSNAME)[0];
+        let selectedAbilityRequirements = abilityItem.getElementsByClassName(Constants.ABILITY_REQ_CLASSNAME);
+        let selectedAbilityIcon = abilityItem.getElementsByClassName(Constants.ICONS_CLASSNAME)[0];
+
+        let i = 0;
+        if (index < Variables.abilityItems.length / 2) {
+          i = 0;
+        }
+        else {
+          i = 1;
+        }
+
+        let abilityDisplayName = Variables.abilityDisplayItems[i].getElementsByClassName(Constants.ABILITY_DISPLAY_NAME_CLASSNAME)[0];
+        let abilityDisplayDescription = Variables.abilityDisplayItems[i].getElementsByClassName(Constants.ABILITY_DISPLAY_DESC_CLASSNAME)[0];
+        let abilityDisplayRequirements = Variables.abilityDisplayItems[i].getElementsByClassName(Constants.ABILITY_DISPLAY_REQ_CLASSNAME);
+        let abilityDisplayIcon = Variables.abilityDisplayItems[i].getElementsByClassName(Constants.ICONS_CLASSNAME)[0];
+
+        abilityDisplayName.textContent = selectedAbilityName.textContent;
+        abilityDisplayName.style.fontStyle = "normal";
+        abilityDisplayName.style.fontWeight = "bold";
+        abilityDisplayDescription.textContent = selectedAbilityDescription.textContent;
+        abilityDisplayIcon.textContent = selectedAbilityIcon.textContent;
+        
+        Object.values(selectedAbilityRequirements).forEach((selectedAbilityRequirement, j) => {
+          abilityDisplayRequirements[j].textContent = selectedAbilityRequirement.textContent;
+        });
+      }
+
+    });
+  });
 }
 
 export function abilitySelectConfirmListeners() {

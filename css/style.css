@@ -431,7 +431,7 @@ body {
     max-width: 220px;
 }
 
-.boost-item:hover, .ability-item:hover {
+.boost-item:hover, .ability-item:hover, .ability-display-item, .boost-display-item {
     background-color: grey;
     cursor: pointer;
 }
@@ -451,13 +451,13 @@ body {
     background-size: 120%;
 }
 
-.boost-item-value, .ability-name {
+.boost-item-value, .ability-name, .ability-display-name {
     padding-top: 1%;
     padding-left: 5%;
     white-space: nowrap;
 }
 
-.boost-item-requirement, .ability-requirement, .ability-description, .main-ability-description {
+.boost-item-requirement, .ability-requirement, .ability-description, .main-ability-description, .ability-display-description, .ability-display-requirement {
     padding-top: 3%;
     padding-left: 5%;
     font-size: 0;
@@ -465,13 +465,15 @@ body {
 }
 
 .ability-item:hover > .ability-text > .ability-description,
+.ability-display-item:hover > .ability-display-text > .ability-display-description,
 .main-ability-item:hover > .main-ability-text > .main-ability-description {
     font-size: x-small;
     max-width: 150px;
 }
  
 .boost-item:hover > .boost-item-text > .boost-item-requirement,
-.ability-item:hover > .ability-text > .ability-requirement {
+.ability-item:hover > .ability-text > .ability-requirement,
+.ability-display-item:hover > .ability-display-text > .ability-display-requirement {
     font-size: xx-small;
     color: yellow;
 }

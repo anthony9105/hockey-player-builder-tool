@@ -14,6 +14,7 @@ InitializerFunctions.setAbilityOptionToUnselected(1);
 InitializerFunctions.setMainAbilityOptionToUnselected();
 InitializerFunctions.setBoostToUnselected(0);
 InitializerFunctions.setBoostToUnselected(1);
+ListenerFunctions.abilitySelectListeners();
 
 /**
  * ABILITIES
