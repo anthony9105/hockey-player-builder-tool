@@ -365,7 +365,6 @@ body {
     margin-top: 7%;
 }
 
-
   .boost-dropdownbutton, .main-boost-dropdownbutton {
     /* backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px); */
@@ -382,24 +381,42 @@ body {
   }
   
   .dropdown {
-    position: relative;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    /* position: relative; */
+    /* display: inline-block; */
   }
   
   .dropdown-content, .boost-dropdown-content, .boost-buttons-content, .ability-button-content {
     /* background-color: #f1f1f1; */
-    background-color: transparent;
-    min-width: 250px;
-    max-width: 300px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    background: transparent;
+    min-width: 220px;
+    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
     z-index: 1;
     flex-direction: column;
-    border-radius: 4px;
     display: none;
+    border-radius: 4px;
+    font-size: small
+    /* align-items: end;
+    justify-items: end; */
   }
 
   .ability-button-content {
     flex-direction: row;
+    justify-items: end;
+    align-items: end;
+}
+
+.dropdown-content {
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(55, 66, 84, 0.2);
+}
+
+.ability-dropdownbutton {
+    font-size: small;
 }
 
 .main-ability-item, .boost-item, .ability-item {
@@ -414,7 +431,7 @@ body {
     max-width: 220px;
 }
 
-.dropdown-item:hover, .boost-item:hover, .ability-item:hover {
+.boost-item:hover, .ability-item:hover {
     background-color: grey;
     cursor: pointer;
 }
@@ -434,13 +451,13 @@ body {
     background-size: 120%;
 }
 
-.dropdown-item-value, .boost-item-value, .ability-name {
+.boost-item-value, .ability-name {
     padding-top: 1%;
     padding-left: 5%;
     white-space: nowrap;
 }
 
-.dropdown-item-requirement, .boost-item-requirement, .ability-requirement, .ability-description, .main-ability-description {
+.boost-item-requirement, .ability-requirement, .ability-description, .main-ability-description {
     padding-top: 3%;
     padding-left: 5%;
     font-size: 0;
@@ -449,17 +466,17 @@ body {
 
 .ability-item:hover > .ability-text > .ability-description,
 .main-ability-item:hover > .main-ability-text > .main-ability-description {
-    font-size: small;
+    font-size: x-small;
+    max-width: 150px;
 }
-
-.dropdown-item:hover > .dropdown-item-text > .dropdown-item-requirement,  
+ 
 .boost-item:hover > .boost-item-text > .boost-item-requirement,
 .ability-item:hover > .ability-text > .ability-requirement {
-    font-size: x-small;
+    font-size: xx-small;
     color: yellow;
 }
 
-.dropdown-item-text, .boost-item-text, .ability-text, .main-ability-text {
+.boost-item-text, .ability-text, .main-ability-text {
     display: flex;
     flex-direction: column;
 }
@@ -501,7 +518,7 @@ body {
     flex-direction: row;
 }
 
-.ability-display-item {
+.ability-display-item, .boost-display-item {
     background-color: rgba(115, 116, 116, 0.3);
     box-shadow: 0px 0px 50px rgba(116, 116, 116, 0.7);
     color: rgb(50, 50, 50);
@@ -523,6 +540,6 @@ body {
     border-radius: 12px;
 }
 
-.ability-display-name {
+.ability-display-name, .boost-display-name {
     color: inherit;
 }
