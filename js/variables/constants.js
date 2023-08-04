@@ -62,6 +62,9 @@ export const ABILITIES_XML = "../build-information/abilities.xml";
     export const MAIN_ABILITY_DISPLAY_ITEM_CLASSNAME = "main-ability-display-item";
     export const MAIN_ABILITY_DISPLAY_NAME_CLASSNAME = "main-ability-display-name";
     export const MAIN_ABILITY_DISPLAY_DESC_CLASSNAME = "main-ability-display-description";
+    export const BOOST_DISPLAY_ITEM_CLASSNAME = "boost-display-item";
+    export const BOOST_DISPLAY_VALUE_CLASSNAME = "boost-display-item-value";
+    export const BOOST_DISPLAY_REQ_CLASSNAME = "boost-display-requirement";
 
 
 /**
@@ -120,3 +123,4 @@ export const ALL_ATTRIBUTES_INORDER = ["WristshotAcc", "SlapshotAcc", "Speed", "
                                   "Durability", "ShotBlocking", "Deking", "Faceoffs", "Discipline", "FightingSkill"];
 
 export const UNSELECTED_ABILITY_NAME = "No ability currently selected";
+export const UNSELECTED_BOOST_NAME = "No boost currently selected";

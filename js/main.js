@@ -12,6 +12,8 @@ import * as Constants from "./variables/constants.js";
 InitializerFunctions.setAbilityOptionToUnselected(0);
 InitializerFunctions.setAbilityOptionToUnselected(1);
 InitializerFunctions.setMainAbilityOptionToUnselected();
+InitializerFunctions.setBoostToUnselected(0);
+InitializerFunctions.setBoostToUnselected(1);
 
 /**
  * ABILITIES

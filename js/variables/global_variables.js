@@ -20,6 +20,7 @@ export let boostValues = document.getElementsByClassName(Constants.BOOST_ITEM_VA
 export let boostRequirements = document.getElementsByClassName(Constants.BOOST_REQUIREMENT_CLASSNAME);
 
 export let boostSection = document.getElementById(Constants.BOOST_SECTION_ID);
+export let boostDisplayItems = document.getElementsByClassName(Constants.BOOST_DISPLAY_ITEM_CLASSNAME);
 
 export let mainAbilityNames = document.getElementsByClassName(Constants.MAIN_ABILITY_NAME_CLASSNAME);
 export let mainAbilityDescriptions = document.getElementsByClassName(Constants.MAIN_ABILITY_DESCRIPTION_CLASSNAME);
