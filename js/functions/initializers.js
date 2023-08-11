@@ -271,8 +271,8 @@ export async function fillBoostOptions() {
       Variables.boostValues[j + Variables.boostValues.length / 2].textContent = "+" + boostInfo[1].textContent + " " + boostInfo[0].textContent;  // for the right boost section
 
       // fill the boost requirements
-      Variables.boostRequirements[j].textContent = "(requires a minimum of " + minimumRequirements[1].textContent + " " + minimumRequirements[0].textContent + ")";
-      Variables.boostRequirements[j + Variables.boostValues.length / 2].textContent = "(requires a minimum of " + minimumRequirements[1].textContent + " " + minimumRequirements[0].textContent + ")";
+      Variables.boostRequirements[j].textContent = "(requires minimum " + minimumRequirements[1].textContent + " " + minimumRequirements[0].textContent + ")";
+      Variables.boostRequirements[j + Variables.boostValues.length / 2].textContent = "(requires minimum " + minimumRequirements[1].textContent + " " + minimumRequirements[0].textContent + ")";
 
       // fill the boost icons
       boostIcons[k].textContent = boostInfo[3].textContent;

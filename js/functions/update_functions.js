@@ -262,6 +262,7 @@ export function setDisplayItem(k, displayName, newName, displayDescription, newD
   if (newRequirements != undefined && displayRequirements != undefined) {
     Object.values(newRequirements).forEach((newRequirement, j) => {
       displayRequirements[j].textContent = newRequirement.textContent;
+      displayRequirements[j].style.color = "green";
     });
   }
 

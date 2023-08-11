@@ -26,7 +26,7 @@
             <UpgradeAmount>2</UpgradeAmount>
             <Colour>Blue</Colour>
             <AttributeMinimum>
-                <AttributeName>Hand-eye</AttributeName>
+                <AttributeName>Hand-Eye</AttributeName>
                 <MinimumValue>80</MinimumValue>
             </AttributeMinimum>
             <IconName>ice_skating</IconName>
@@ -56,7 +56,7 @@
             <UpgradeAmount>2</UpgradeAmount>
             <Colour>Green</Colour>
             <AttributeMinimum>
-                <AttributeName>Stength</AttributeName>
+                <AttributeName>Strength</AttributeName>
                 <MinimumValue>78</MinimumValue>
             </AttributeMinimum>
             <IconName>ice_skating</IconName>
@@ -96,7 +96,7 @@
             <UpgradeAmount>2</UpgradeAmount>
             <Colour>Green</Colour>
             <AttributeMinimum>
-                <AttributeName>Stength</AttributeName>
+                <AttributeName>Strength</AttributeName>
                 <MinimumValue>78</MinimumValue>
             </AttributeMinimum>
             <IconName>ice_skating</IconName>

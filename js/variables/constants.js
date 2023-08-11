@@ -131,6 +131,9 @@ export const ALL_HEIGHTS = ["5'7", "5'8", "5'9", "5'10", "5'11", "6'0", "6'1", "
 export const ALL_ATTRIBUTES_INORDER = ["WristshotAcc", "SlapshotAcc", "Speed", "Balance", "Agility", "WristshotPower", "SlapshotPower", "Acceleration", "PuckControl",
                                   "Endurance", "Passing", "OffensiveAwareness", "BodyChecking", "StickChecking", "DefensiveAwareness", "Handeye", "Strength", 
                                   "Durability", "ShotBlocking", "Deking", "Faceoffs", "Discipline", "FightingSkill"];
+export const ALL_ATTRIBUTES_INORDER_FULLSPELLING = ["Wristshot Accuracy", "Slapshot Accuracy", "Speed", "Balance", "Agility", "Wristshot Power", "Slapshot Power", "Acceleration", "Puck Control",
+                                                    "Endurance", "Passing", "Offensive Awareness", "Body Checking", "Stick Checking", "Defensive Awareness", "Hand-Eye", "Strength", 
+                                                    "Durability", "Shot Blocking", "Deking", "Faceoffs", "Discipline", "Fighting Skill"];
 
 export const UNSELECTED_ABILITY_NAME = "No ability currently selected";
 export const UNSELECTED_BOOST_NAME = "No boost currently selected";

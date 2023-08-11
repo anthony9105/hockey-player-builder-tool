@@ -143,11 +143,16 @@ export function abilitySelectListeners() {
 
       let abilityDisplayName = Variables.abilityDisplayItems[i].getElementsByClassName(Constants.ABILITY_DISPLAY_NAME_CLASSNAME)[0];
       let selectedAbilityName = abilityItem.getElementsByClassName(Constants.ABILITY_NAME_CLASSNAME)[0];
+      let selectedAbilityRequirements = abilityItem.getElementsByClassName(Constants.ABILITY_REQ_CLASSNAME);
       let confirmResponse = true;
       
       if (abilityDisplayName.textContent == selectedAbilityName.textContent) {
         confirmResponse = false;
         window.alert("This ability is already selected");
+      }
+      else if (!UtilityFunctions.meetsRequirement(selectedAbilityRequirements[0].textContent) || !UtilityFunctions.meetsRequirement(selectedAbilityRequirements[1].textContent)) {
+        confirmResponse = false;
+        window.alert("1 or more of the minimum requirements for this ability are not met");
       }
       else if (abilityDisplayName.textContent != Constants.UNSELECTED_ABILITY_NAME) {
         confirmResponse = window.confirm(`Are you sure you want to replace "${abilityDisplayName.textContent}" with "${selectedAbilityName.textContent}"?`);
@@ -156,7 +161,6 @@ export function abilitySelectListeners() {
       if (confirmResponse) {
         // set selected ability
         let selectedAbilityDescription = abilityItem.getElementsByClassName(Constants.ABILITY_DESCRIPTION_CLASSNAME)[0];
-        let selectedAbilityRequirements = abilityItem.getElementsByClassName(Constants.ABILITY_REQ_CLASSNAME);
         let selectedAbilityIcon = abilityItem.getElementsByClassName(Constants.ICONS_CLASSNAME)[0];
 
         let abilityDisplayDescription = Variables.abilityDisplayItems[i].getElementsByClassName(Constants.ABILITY_DISPLAY_DESC_CLASSNAME)[0];
@@ -228,6 +232,23 @@ export function unselectButtonListeners() {
 
     });
   });
+}
+
+export function abilityHoverListeners() {
+  Object.values(Variables.abilityItems).forEach((abilityItem, index) => {
+    abilityItem.addEventListener("mouseenter", function() {
+      let abilityRequirements = abilityItem.getElementsByClassName(Constants.ABILITY_REQ_CLASSNAME);
+      Object.values(abilityRequirements).forEach(abilityRequirement => {
+        if (UtilityFunctions.meetsRequirement(abilityRequirement.textContent)) {
+          abilityRequirement.style.color = "green";
+        }
+        else {
+          abilityRequirement.style.color = "red";
+        }
+      });
+
+    });
+  });  
 }
 
 
@@ -326,6 +347,7 @@ export function boostSelectListeners() {
 
       let selectedBoostName = boostItem.getElementsByClassName(Constants.BOOST_VALUE_CLASSNAME)[0];
       let selectedBoostIcon = boostItem.getElementsByClassName(Constants.ICONS_CLASSNAME)[0];
+      let selectedBoostRequirement = boostItem.getElementsByClassName(Constants.BOOST_REQ_CLASSNAME);
       const selectedIconColour = selectedBoostIcon.style.color;
 
       let confirmResponse = true;
@@ -334,6 +356,10 @@ export function boostSelectListeners() {
         confirmResponse = false;
         window.alert("This boost is already selected");
       }
+      else if (!UtilityFunctions.meetsRequirement(selectedBoostRequirement[0].textContent)) {
+        confirmResponse = false;
+        window.alert("The minimum requirement for this boost is not met");
+      }
       else if (boostDisplayName.textContent != Constants.UNSELECTED_BOOST_NAME || (boostDisplayName.textContent == selectedBoostName.textContent && displayIconColour != selectedIconColour)) {
         confirmResponse = window.confirm(
           `Are you sure you want to replace "${boostDisplayName.textContent} (${displayIconColour})" with "${selectedBoostName.textContent} (${selectedIconColour})"?`
@@ -341,9 +367,6 @@ export function boostSelectListeners() {
       } 
 
       if (confirmResponse) {
-        // set selected ability
-        let selectedBoostRequirement = boostItem.getElementsByClassName(Constants.BOOST_REQ_CLASSNAME);
-
         let boostDisplayRequirement = Variables.boostDisplayItems[i].getElementsByClassName(Constants.BOOST_DISPLAY_REQ_CLASSNAME);
 
         UpdateFunctions.setDisplayItem(i + 3, boostDisplayName, selectedBoostName, undefined, undefined,
@@ -355,6 +378,22 @@ export function boostSelectListeners() {
   });
 }
 
+export function boostHoverListeners() {
+  Object.values(Variables.boostItems).forEach((boostItem, index) => {
+    boostItem.addEventListener("mouseenter", function() {
+      let boostRequirements = boostItem.getElementsByClassName(Constants.BOOST_REQ_CLASSNAME);
+      Object.values(boostRequirements).forEach(boostRequirement => {
+        if (UtilityFunctions.meetsRequirement(boostRequirement.textContent)) {
+          boostRequirement.style.color = "green";
+        }
+        else {
+          boostRequirement.style.color = "red";
+        }
+      });
+
+    });
+  });  
+}
 
 
 /**

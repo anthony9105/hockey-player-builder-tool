@@ -18,6 +18,8 @@ ListenerFunctions.abilitySelectListeners();
 ListenerFunctions.mainAbilitySelectListeners();
 ListenerFunctions.unselectButtonListeners();
 ListenerFunctions.boostSelectListeners();
+ListenerFunctions.boostHoverListeners();
+ListenerFunctions.abilityHoverListeners();
 
 /**
  * ABILITIES

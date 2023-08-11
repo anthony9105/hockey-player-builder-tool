@@ -128,3 +128,20 @@ export async function getUpgradePointChange(i) {
 
   return upgradePointChange;
 }
+
+export function meetsRequirement(requirementMessage) {
+  const temp1 = requirementMessage.split("(requires minimum ").pop();
+  const temp2 = temp1.replace(")", "");
+
+  // split by the first space only
+  const requirement = temp2.split(/ (.*)/);
+
+  const currentAttributeValue = Variables.attributeValues[Constants.ALL_ATTRIBUTES_INORDER_FULLSPELLING.indexOf(requirement[1])];
+  
+  if (currentAttributeValue.textContent >= requirement[0]) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
