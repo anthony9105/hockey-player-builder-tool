@@ -35,6 +35,8 @@ export let abilityRequirements = document.getElementsByClassName(Constants.ABILI
 export let abilityDisplayItems = document.getElementsByClassName(Constants.ABILITY_DISPLAY_ITEM_CLASSNAME);
 export let mainAbilityDisplayItem = document.getElementsByClassName(Constants.MAIN_ABILITY_DISPLAY_ITEM_CLASSNAME)[0];
 
+export let unselectButtons = document.getElementsByClassName(Constants.UNSELECT_BUTTON_CLASSNAME);
+
 
 
 export let globalPreviousHeight;

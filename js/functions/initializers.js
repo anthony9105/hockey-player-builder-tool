@@ -382,6 +382,7 @@ export function setAbilityOptionToUnselected(index) {
 
   abilityDisplayName.textContent = Constants.UNSELECTED_ABILITY_NAME;
   abilityDisplayName.style.fontStyle = "italic";
+  abilityDisplayName.style.fontWeight = "normal";
 
   // set the description, requirements, and icon to be empty
   abilityDisplayDescription.textContent = "";
@@ -391,6 +392,12 @@ export function setAbilityOptionToUnselected(index) {
   });
 
   abilityDisplayIcon.textContent = "";
+
+  let j = 0;
+  if (index == 1) {
+    j = 2;
+  }
+  Variables.unselectButtons[j].style.display = "none";
 }
 
 export function setMainAbilityOptionToUnselected() {
@@ -400,10 +407,13 @@ export function setMainAbilityOptionToUnselected() {
 
   mainAbilityDisplayName.textContent = Constants.UNSELECTED_ABILITY_NAME;
   mainAbilityDisplayName.style.fontStyle = "italic";
+  mainAbilityDisplayName.style.fontWeight = "normal";
 
   mainAbilityDisplayDescription.textContent = "";
 
   mainAbilityDisplayIcon.textContent = "";
+
+  Variables.unselectButtons[1].style.display = "none";
 }
 
 export function setBoostToUnselected(boostSectionIndex) {
@@ -416,4 +426,6 @@ export function setBoostToUnselected(boostSectionIndex) {
 
   let boostDisplayRequirement = Variables.boostDisplayItems[boostSectionIndex].getElementsByClassName(Constants.BOOST_DISPLAY_REQ_CLASSNAME);
   boostDisplayRequirement.textContent = "";
+
+  Variables.unselectButtons[3 + boostSectionIndex].style.display = "none";
 }

@@ -19,13 +19,6 @@ let abilityPreviousDropdown = {
   dropdownSectionIndex: -1,
 }
 
-function doComplete() {
-  callback(true);
-}
-
-function doCancel() {
-  callback(false);
-}
 /**
  * ABILITIES
  */
@@ -141,39 +134,39 @@ export function hideMainAbilityDropdownContent() {
 export function abilitySelectListeners() {
   Object.values(Variables.abilityItems).forEach((abilityItem, index) => {
     abilityItem.addEventListener("click", function() {
-      const confirmResponse = window.confirm("Select this as your ability?");
+      let i = 0;
+      let k = 0;
+      if (index >= Variables.abilityItems.length / 2) {
+        i = 1;
+        k = 2;
+      }
+
+      let abilityDisplayName = Variables.abilityDisplayItems[i].getElementsByClassName(Constants.ABILITY_DISPLAY_NAME_CLASSNAME)[0];
+      let selectedAbilityName = abilityItem.getElementsByClassName(Constants.ABILITY_NAME_CLASSNAME)[0];
+      let confirmResponse = true;
+      
+      if (abilityDisplayName.textContent == selectedAbilityName.textContent) {
+        confirmResponse = false;
+        window.alert("This ability is already selected");
+      }
+      else if (abilityDisplayName.textContent != Constants.UNSELECTED_ABILITY_NAME) {
+        confirmResponse = window.confirm(`Are you sure you want to replace "${abilityDisplayName.textContent}" with "${selectedAbilityName.textContent}"?`);
+      } 
 
       if (confirmResponse) {
         // set selected ability
-        let selectedAbilityName = abilityItem.getElementsByClassName(Constants.ABILITY_NAME_CLASSNAME)[0];
         let selectedAbilityDescription = abilityItem.getElementsByClassName(Constants.ABILITY_DESCRIPTION_CLASSNAME)[0];
         let selectedAbilityRequirements = abilityItem.getElementsByClassName(Constants.ABILITY_REQ_CLASSNAME);
         let selectedAbilityIcon = abilityItem.getElementsByClassName(Constants.ICONS_CLASSNAME)[0];
 
-        let i = 0;
-        let k = 0;
-        if (index >= Variables.abilityItems.length / 2) {
-          i = 1;
-          k = 2;
-        }
-
-        let abilityDisplayName = Variables.abilityDisplayItems[i].getElementsByClassName(Constants.ABILITY_DISPLAY_NAME_CLASSNAME)[0];
         let abilityDisplayDescription = Variables.abilityDisplayItems[i].getElementsByClassName(Constants.ABILITY_DISPLAY_DESC_CLASSNAME)[0];
         let abilityDisplayRequirements = Variables.abilityDisplayItems[i].getElementsByClassName(Constants.ABILITY_DISPLAY_REQ_CLASSNAME);
         let abilityDisplayIcon = Variables.abilityDisplayItems[i].getElementsByClassName(Constants.ICONS_CLASSNAME)[0];
 
-        abilityDisplayName.textContent = selectedAbilityName.textContent;
-        abilityDisplayName.style.fontStyle = "normal";
-        abilityDisplayName.style.fontWeight = "bold";
-        abilityDisplayDescription.textContent = selectedAbilityDescription.textContent;
-        abilityDisplayIcon.textContent = selectedAbilityIcon.textContent;
+        setDisplayItem(k, abilityDisplayName, selectedAbilityName, abilityDisplayDescription, selectedAbilityDescription, 
+          abilityDisplayIcon, selectedAbilityIcon, abilityDisplayRequirements, selectedAbilityRequirements
+        );
         
-        Object.values(selectedAbilityRequirements).forEach((selectedAbilityRequirement, j) => {
-          abilityDisplayRequirements[j].textContent = selectedAbilityRequirement.textContent;
-        });
-
-        let unselectButtons = document.getElementsByClassName(Constants.UNSELECT_BUTTON_CLASSNAME);
-        unselectButtons[k].style.display = "inline-block";
       }
 
     });
@@ -183,33 +176,77 @@ export function abilitySelectListeners() {
 export function mainAbilitySelectListeners() {
   Object.values(Variables.mainAbilityItems).forEach((mainAbilityItem, index) => {
     mainAbilityItem.addEventListener("click", function() {
-      const confirmResponse = window.confirm("Select this as your main ability?");
+      
+      let abilityDisplayName = Variables.mainAbilityDisplayItem.getElementsByClassName(Constants.MAIN_ABILITY_DISPLAY_NAME_CLASSNAME)[0];
+      let selectedAbilityName = mainAbilityItem.getElementsByClassName(Constants.MAIN_ABILITY_NAME_CLASSNAME)[0];
+      let confirmResponse = true;
+      
+      if (abilityDisplayName.textContent == selectedAbilityName.textContent) {
+        confirmResponse = false;
+        window.alert("This main ability is already selected");
+      }
+      else if (abilityDisplayName.textContent != Constants.UNSELECTED_ABILITY_NAME) {
+        confirmResponse = window.confirm(`Are you sure you want to replace "${abilityDisplayName.textContent}" with "${selectedAbilityName.textContent}"?`);
+      } 
 
       if (confirmResponse) {
         // set selected ability
-        let selectedAbilityName = mainAbilityItem.getElementsByClassName(Constants.MAIN_ABILITY_NAME_CLASSNAME)[0];
         let selectedAbilityDescription = mainAbilityItem.getElementsByClassName(Constants.MAIN_ABILITY_DESCRIPTION_CLASSNAME)[0];
         let selectedAbilityIcon = mainAbilityItem.getElementsByClassName(Constants.ICONS_CLASSNAME)[0];
 
         const k = 1;
 
-        let abilityDisplayName = Variables.mainAbilityDisplayItem.getElementsByClassName(Constants.MAIN_ABILITY_DISPLAY_NAME_CLASSNAME)[0];
         let abilityDisplayDescription = Variables.mainAbilityDisplayItem.getElementsByClassName(Constants.MAIN_ABILITY_DISPLAY_DESC_CLASSNAME)[0];
         let abilityDisplayIcon = Variables.mainAbilityDisplayItem.getElementsByClassName(Constants.ICONS_CLASSNAME)[0];
 
-        abilityDisplayName.textContent = selectedAbilityName.textContent;
-        abilityDisplayName.style.fontStyle = "normal";
-        abilityDisplayName.style.fontWeight = "bold";
-        abilityDisplayDescription.textContent = selectedAbilityDescription.textContent;
-        abilityDisplayIcon.textContent = selectedAbilityIcon.textContent;
-
-        let unselectButtons = document.getElementsByClassName(Constants.UNSELECT_BUTTON_CLASSNAME);
-        unselectButtons[k].style.display = "inline-block";
+        setDisplayItem(k, abilityDisplayName, selectedAbilityName, abilityDisplayDescription, selectedAbilityDescription, abilityDisplayIcon, selectedAbilityIcon);
       }
     });
   });
 }
 
+export function unselectButtonListeners() {
+  Object.values(Variables.unselectButtons).forEach((unselectButton, index) => {
+    unselectButton.addEventListener("click", function() {
+
+      // unselect main ability
+      if (index == 1) {
+        InitializerFunctions.setMainAbilityOptionToUnselected();
+      }
+      // unselect regular ability
+      else if (index == 0 || index == 2) {
+        let j = 0;
+        if (index == 2) {
+          j = 1;
+        }
+        InitializerFunctions.setAbilityOptionToUnselected(j);
+      }
+      // unselect boost
+      else {
+        InitializerFunctions.setBoostToUnselected(index - 3);
+      }
+
+    });
+  });
+}
+
+function setDisplayItem(k, displayName, newName, displayDescription, newDescription, displayIcon, newIcon, displayRequirements, newRequirements) {
+
+  displayName.textContent = newName.textContent;
+  displayName.style.fontStyle = "normal";
+  displayName.style.fontWeight = "bold";
+
+  displayDescription.textContent = newDescription.textContent;
+  displayIcon.textContent = newIcon.textContent;
+
+  if (displayRequirements != undefined) {
+    Object.values(newRequirements).forEach((newRequirement, j) => {
+      displayRequirements[j].textContent = newRequirement.textContent;
+    });
+  }
+
+  Variables.unselectButtons[k].style.display = "inline-block";
+}
 
 /**
  * BOOSTS
