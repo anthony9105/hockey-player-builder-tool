@@ -25,6 +25,7 @@ export let boostDisplayItems = document.getElementsByClassName(Constants.BOOST_D
 export let mainAbilityNames = document.getElementsByClassName(Constants.MAIN_ABILITY_NAME_CLASSNAME);
 export let mainAbilityDescriptions = document.getElementsByClassName(Constants.MAIN_ABILITY_DESCRIPTION_CLASSNAME);
 export let mainAbilityIcons = document.getElementById(Constants.MAIN_ABILITY_SECTION_ID).getElementsByClassName(Constants.ICONS_CLASSNAME);
+export let mainAbilityItems = document.getElementsByClassName(Constants.MAIN_ABILITY_ITEM_CLASSNAME);
 
 export let abilityItems = document.getElementsByClassName(Constants.ABILITY_ITEM_CLASSNAME);
 export let abilityNames = document.getElementsByClassName(Constants.ABILITY_NAME_CLASSNAME);

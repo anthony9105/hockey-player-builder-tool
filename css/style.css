@@ -529,6 +529,7 @@ body {
     padding-left: 2%;
     text-align: center;
     border-radius: 12px;
+    cursor: default;
 }
 
 .main-ability-display-item {
@@ -542,6 +543,31 @@ body {
     border-radius: 12px;
 }
 
+.main-ability-display-description {
+    display: none;
+}
+
+.main-ability-display-item:hover > .main-ability-display-text > .main-ability-display-description {
+    display: flex;
+    max-width: 220px;
+    font-size: x-small;
+    color: rgb(59, 59, 59);
+}
+
 .ability-display-name, .boost-display-name {
     color: inherit;
 }
+
+.unselect-button {
+    background-color: rgba(255, 0, 0, 0.15);
+    display: none;
+    margin: 8px;
+    font-size: 130%;
+    border-radius: 8px;
+}
+
+.unselect-button:hover {
+    cursor: pointer;
+    background-color: rgba(255, 0, 0, 0.5);
+}
+

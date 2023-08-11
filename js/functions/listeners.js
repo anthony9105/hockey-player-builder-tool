@@ -151,11 +151,10 @@ export function abilitySelectListeners() {
         let selectedAbilityIcon = abilityItem.getElementsByClassName(Constants.ICONS_CLASSNAME)[0];
 
         let i = 0;
-        if (index < Variables.abilityItems.length / 2) {
-          i = 0;
-        }
-        else {
+        let k = 0;
+        if (index >= Variables.abilityItems.length / 2) {
           i = 1;
+          k = 2;
         }
 
         let abilityDisplayName = Variables.abilityDisplayItems[i].getElementsByClassName(Constants.ABILITY_DISPLAY_NAME_CLASSNAME)[0];
@@ -172,14 +171,43 @@ export function abilitySelectListeners() {
         Object.values(selectedAbilityRequirements).forEach((selectedAbilityRequirement, j) => {
           abilityDisplayRequirements[j].textContent = selectedAbilityRequirement.textContent;
         });
+
+        let unselectButtons = document.getElementsByClassName(Constants.UNSELECT_BUTTON_CLASSNAME);
+        unselectButtons[k].style.display = "inline-block";
       }
 
     });
   });
 }
 
-export function abilitySelectConfirmListeners() {
+export function mainAbilitySelectListeners() {
+  Object.values(Variables.mainAbilityItems).forEach((mainAbilityItem, index) => {
+    mainAbilityItem.addEventListener("click", function() {
+      const confirmResponse = window.confirm("Select this as your main ability?");
 
+      if (confirmResponse) {
+        // set selected ability
+        let selectedAbilityName = mainAbilityItem.getElementsByClassName(Constants.MAIN_ABILITY_NAME_CLASSNAME)[0];
+        let selectedAbilityDescription = mainAbilityItem.getElementsByClassName(Constants.MAIN_ABILITY_DESCRIPTION_CLASSNAME)[0];
+        let selectedAbilityIcon = mainAbilityItem.getElementsByClassName(Constants.ICONS_CLASSNAME)[0];
+
+        const k = 1;
+
+        let abilityDisplayName = Variables.mainAbilityDisplayItem.getElementsByClassName(Constants.MAIN_ABILITY_DISPLAY_NAME_CLASSNAME)[0];
+        let abilityDisplayDescription = Variables.mainAbilityDisplayItem.getElementsByClassName(Constants.MAIN_ABILITY_DISPLAY_DESC_CLASSNAME)[0];
+        let abilityDisplayIcon = Variables.mainAbilityDisplayItem.getElementsByClassName(Constants.ICONS_CLASSNAME)[0];
+
+        abilityDisplayName.textContent = selectedAbilityName.textContent;
+        abilityDisplayName.style.fontStyle = "normal";
+        abilityDisplayName.style.fontWeight = "bold";
+        abilityDisplayDescription.textContent = selectedAbilityDescription.textContent;
+        abilityDisplayIcon.textContent = selectedAbilityIcon.textContent;
+
+        let unselectButtons = document.getElementsByClassName(Constants.UNSELECT_BUTTON_CLASSNAME);
+        unselectButtons[k].style.display = "inline-block";
+      }
+    });
+  });
 }
 
 
