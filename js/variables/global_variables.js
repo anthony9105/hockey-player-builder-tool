@@ -16,8 +16,8 @@ export let playerTypes = document.getElementById(Constants.PLAYERTYPE_ID);
 
 export let attributeValues = document.getElementsByClassName(Constants.ATTRIBUTE_VALUES_CLASSNAME);
 export let upgradeValues = document.getElementsByClassName(Constants.UPGRADE_VALUES_CLASSNAME);
-export let boostValues = document.getElementsByClassName(Constants.BOOST_ITEM_VALUE_CLASSNAME);
-export let boostRequirements = document.getElementsByClassName(Constants.BOOST_REQUIREMENT_CLASSNAME);
+export let boostValues = document.getElementsByClassName(Constants.BOOST_VALUE_CLASSNAME);
+export let boostRequirements = document.getElementsByClassName(Constants.BOOST_REQ_CLASSNAME);
 
 export let boostSection = document.getElementById(Constants.BOOST_SECTION_ID);
 export let boostDisplayItems = document.getElementsByClassName(Constants.BOOST_DISPLAY_ITEM_CLASSNAME);
@@ -31,6 +31,8 @@ export let abilityItems = document.getElementsByClassName(Constants.ABILITY_ITEM
 export let abilityNames = document.getElementsByClassName(Constants.ABILITY_NAME_CLASSNAME);
 export let abilityDescriptions = document.getElementsByClassName(Constants.ABILITY_DESCRIPTION_CLASSNAME);
 export let abilityRequirements = document.getElementsByClassName(Constants.ABILITY_REQ_CLASSNAME);
+
+export let boostItems = document.getElementsByClassName(Constants.BOOST_ITEM_CLASSNAME);
 
 export let abilityDisplayItems = document.getElementsByClassName(Constants.ABILITY_DISPLAY_ITEM_CLASSNAME);
 export let mainAbilityDisplayItem = document.getElementsByClassName(Constants.MAIN_ABILITY_DISPLAY_ITEM_CLASSNAME)[0];

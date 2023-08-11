@@ -17,6 +17,7 @@ InitializerFunctions.setBoostToUnselected(1);
 ListenerFunctions.abilitySelectListeners();
 ListenerFunctions.mainAbilitySelectListeners();
 ListenerFunctions.unselectButtonListeners();
+ListenerFunctions.boostSelectListeners();
 
 /**
  * ABILITIES

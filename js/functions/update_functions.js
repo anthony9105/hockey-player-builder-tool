@@ -229,19 +229,41 @@ export function resetUpgrades(upgradeValues) {
 
 
 
-export function setSelectedAbilityValues(displayItemIndex, abilityName, abilityDescription, abilityRequirements, abilityIcon) {
-  let displayAbilityName = Variables.abilityDisplayItems[displayItemIndex].getElementsByClassName(Constants.ABILITY_DISPLAY_NAME_CLASSNAME)[0];
-  displayAbilityName.textContent = abilityName;
-  displayAbilityName.style.fontStyle = "bold";
+// export function setSelectedAbilityValues(displayItemIndex, abilityName, abilityDescription, abilityRequirements, abilityIcon) {
+//   let displayAbilityName = Variables.abilityDisplayItems[displayItemIndex].getElementsByClassName(Constants.ABILITY_DISPLAY_NAME_CLASSNAME)[0];
+//   displayAbilityName.textContent = abilityName;
+//   displayAbilityName.style.fontStyle = "bold";
 
-  let displayAbilityDescription = Variables.abilityDisplayItems[displayItemIndex].getElementsByClassName(Constants.ABILITY_DISPLAY_DESC_CLASSNAME)[0];
-  displayAbilityDescription.textContent = abilityDescription;
+//   let displayAbilityDescription = Variables.abilityDisplayItems[displayItemIndex].getElementsByClassName(Constants.ABILITY_DISPLAY_DESC_CLASSNAME)[0];
+//   displayAbilityDescription.textContent = abilityDescription;
 
-  let displayAbilityRequirements = Variables.abilityDisplayItems[displayItemIndex].getElementsByClassName(Constants.ABILITY_DISPLAY_REQ_CLASSNAME);
-  Object.values(displayAbilityRequirements).forEach((displayAbilityRequirement, index) => {
-    displayAbilityRequirement.textContent = abilityRequirements[index].textContent;
-  });
+//   let displayAbilityRequirements = Variables.abilityDisplayItems[displayItemIndex].getElementsByClassName(Constants.ABILITY_DISPLAY_REQ_CLASSNAME);
+//   Object.values(displayAbilityRequirements).forEach((displayAbilityRequirement, index) => {
+//     displayAbilityRequirement.textContent = abilityRequirements[index].textContent;
+//   });
 
-  let displayAbilityIcon = Variables.abilityDisplayItems[displayItemIndex].getElementsByClassName(Constants.ICONS_CLASSNAME)[0];
-  displayAbilityIcon.textContent = abilityIcon;
+//   let displayAbilityIcon = Variables.abilityDisplayItems[displayItemIndex].getElementsByClassName(Constants.ICONS_CLASSNAME)[0];
+//   displayAbilityIcon.textContent = abilityIcon;
+// }
+
+export function setDisplayItem(k, displayName, newName, displayDescription, newDescription, displayIcon, newIcon, displayRequirements, newRequirements) {
+
+  displayName.textContent = newName.textContent;
+  displayName.style.fontStyle = "normal";
+  displayName.style.fontWeight = "bold";
+
+  if (newDescription != undefined && displayDescription != undefined) {
+    displayDescription.textContent = newDescription.textContent;
+  }
+
+  displayIcon.textContent = newIcon.textContent;
+  displayIcon.style.color = newIcon.style.color;
+
+  if (newRequirements != undefined && displayRequirements != undefined) {
+    Object.values(newRequirements).forEach((newRequirement, j) => {
+      displayRequirements[j].textContent = newRequirement.textContent;
+    });
+  }
+
+  Variables.unselectButtons[k].style.display = "inline-block";
 }

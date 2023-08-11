@@ -163,10 +163,10 @@ export function abilitySelectListeners() {
         let abilityDisplayRequirements = Variables.abilityDisplayItems[i].getElementsByClassName(Constants.ABILITY_DISPLAY_REQ_CLASSNAME);
         let abilityDisplayIcon = Variables.abilityDisplayItems[i].getElementsByClassName(Constants.ICONS_CLASSNAME)[0];
 
-        setDisplayItem(k, abilityDisplayName, selectedAbilityName, abilityDisplayDescription, selectedAbilityDescription, 
+        UpdateFunctions.setDisplayItem(k, abilityDisplayName, selectedAbilityName, abilityDisplayDescription, selectedAbilityDescription, 
           abilityDisplayIcon, selectedAbilityIcon, abilityDisplayRequirements, selectedAbilityRequirements
         );
-        
+
       }
 
     });
@@ -199,7 +199,7 @@ export function mainAbilitySelectListeners() {
         let abilityDisplayDescription = Variables.mainAbilityDisplayItem.getElementsByClassName(Constants.MAIN_ABILITY_DISPLAY_DESC_CLASSNAME)[0];
         let abilityDisplayIcon = Variables.mainAbilityDisplayItem.getElementsByClassName(Constants.ICONS_CLASSNAME)[0];
 
-        setDisplayItem(k, abilityDisplayName, selectedAbilityName, abilityDisplayDescription, selectedAbilityDescription, abilityDisplayIcon, selectedAbilityIcon);
+        UpdateFunctions.setDisplayItem(k, abilityDisplayName, selectedAbilityName, abilityDisplayDescription, selectedAbilityDescription, abilityDisplayIcon, selectedAbilityIcon);
       }
     });
   });
@@ -230,23 +230,6 @@ export function unselectButtonListeners() {
   });
 }
 
-function setDisplayItem(k, displayName, newName, displayDescription, newDescription, displayIcon, newIcon, displayRequirements, newRequirements) {
-
-  displayName.textContent = newName.textContent;
-  displayName.style.fontStyle = "normal";
-  displayName.style.fontWeight = "bold";
-
-  displayDescription.textContent = newDescription.textContent;
-  displayIcon.textContent = newIcon.textContent;
-
-  if (displayRequirements != undefined) {
-    Object.values(newRequirements).forEach((newRequirement, j) => {
-      displayRequirements[j].textContent = newRequirement.textContent;
-    });
-  }
-
-  Variables.unselectButtons[k].style.display = "inline-block";
-}
 
 /**
  * BOOSTS
@@ -327,6 +310,49 @@ export function attributeSectionBoostDropdownButtonListeners(attributeSectionBoo
       }
     });
   }
+}
+
+export function boostSelectListeners() {
+  Object.values(Variables.boostItems).forEach((boostItem, index) => {
+    boostItem.addEventListener("click", function() {
+      let i = 0;
+      if (index >= Variables.boostItems.length / 2) {
+        i = 1;
+      }
+
+      let boostDisplayName = Variables.boostDisplayItems[i].getElementsByClassName(Constants.BOOST_DISPLAY_VALUE_CLASSNAME)[0];
+      let boostDisplayIcon = Variables.boostDisplayItems[i].getElementsByClassName(Constants.ICONS_CLASSNAME)[0];
+      const displayIconColour = boostDisplayIcon.style.color;
+
+      let selectedBoostName = boostItem.getElementsByClassName(Constants.BOOST_VALUE_CLASSNAME)[0];
+      let selectedBoostIcon = boostItem.getElementsByClassName(Constants.ICONS_CLASSNAME)[0];
+      const selectedIconColour = selectedBoostIcon.style.color;
+
+      let confirmResponse = true;
+      
+      if (boostDisplayName.textContent == selectedBoostName.textContent && displayIconColour == selectedIconColour) {
+        confirmResponse = false;
+        window.alert("This boost is already selected");
+      }
+      else if (boostDisplayName.textContent != Constants.UNSELECTED_BOOST_NAME || (boostDisplayName.textContent == selectedBoostName.textContent && displayIconColour != selectedIconColour)) {
+        confirmResponse = window.confirm(
+          `Are you sure you want to replace "${boostDisplayName.textContent} (${displayIconColour})" with "${selectedBoostName.textContent} (${selectedIconColour})"?`
+        );
+      } 
+
+      if (confirmResponse) {
+        // set selected ability
+        let selectedBoostRequirement = boostItem.getElementsByClassName(Constants.BOOST_REQ_CLASSNAME);
+
+        let boostDisplayRequirement = Variables.boostDisplayItems[i].getElementsByClassName(Constants.BOOST_DISPLAY_REQ_CLASSNAME);
+
+        UpdateFunctions.setDisplayItem(i + 3, boostDisplayName, selectedBoostName, undefined, undefined,
+           boostDisplayIcon, selectedBoostIcon, boostDisplayRequirement, selectedBoostRequirement
+        ); 
+
+      }
+    });
+  });
 }
 
 

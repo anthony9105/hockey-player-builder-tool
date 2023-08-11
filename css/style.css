@@ -457,7 +457,7 @@ body {
     white-space: nowrap;
 }
 
-.boost-item-requirement, .ability-requirement, .ability-description, .main-ability-description, .ability-display-description, .ability-display-requirement {
+.boost-item-requirement, .ability-requirement, .ability-description, .main-ability-description, .ability-display-description, .ability-display-requirement, .boost-display-item-requirement {
     padding-top: 3%;
     padding-left: 5%;
     font-size: 0;
@@ -473,7 +473,8 @@ body {
  
 .boost-item:hover > .boost-item-text > .boost-item-requirement,
 .ability-item:hover > .ability-text > .ability-requirement,
-.ability-display-item:hover > .ability-display-text > .ability-display-requirement {
+.ability-display-item:hover > .ability-display-text > .ability-display-requirement,
+.boost-display-item:hover > .boost-display-item-text > .boost-display-item-requirement {
     font-size: xx-small;
     color: yellow;
 }

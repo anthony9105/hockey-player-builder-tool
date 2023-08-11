@@ -420,11 +420,12 @@ export function setBoostToUnselected(boostSectionIndex) {
   let boostDisplayValue = document.getElementsByClassName(Constants.BOOST_DISPLAY_VALUE_CLASSNAME)[boostSectionIndex];
   boostDisplayValue.textContent = Constants.UNSELECTED_BOOST_NAME;
   boostDisplayValue.style.fontStyle = "italic";
+  boostDisplayValue.style.fontWeight = "normal";
 
   let boostDisplayIcon = Variables.boostDisplayItems[boostSectionIndex].getElementsByClassName(Constants.ICONS_CLASSNAME)[0];
   boostDisplayIcon.textContent = "";
 
-  let boostDisplayRequirement = Variables.boostDisplayItems[boostSectionIndex].getElementsByClassName(Constants.BOOST_DISPLAY_REQ_CLASSNAME);
+  let boostDisplayRequirement = Variables.boostDisplayItems[boostSectionIndex].getElementsByClassName(Constants.BOOST_DISPLAY_REQ_CLASSNAME)[0];
   boostDisplayRequirement.textContent = "";
 
   Variables.unselectButtons[3 + boostSectionIndex].style.display = "none";

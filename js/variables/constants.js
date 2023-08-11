@@ -47,26 +47,32 @@ export const ABILITIES_XML = "../build-information/abilities.xml";
     export const ABILITY_SECTION_CLASSNAME = "ability-section";
 
     // items, values, requirements, descriptions, icons
-    export const BOOST_ITEM_VALUE_CLASSNAME = "boost-item-value";
-    export const BOOST_REQUIREMENT_CLASSNAME = "boost-item-requirement";
     export const ICONS_CLASSNAME = "material-icons";
     export const MAIN_ABILITY_DESCRIPTION_CLASSNAME = "main-ability-description";
     export const ABILITY_DESCRIPTION_CLASSNAME = "ability-description";
     export const ABILITY_REQ_CLASSNAME = "ability-requirement";
     export const MAIN_ABILITY_NAME_CLASSNAME = "main-ability-name";
     export const ABILITY_NAME_CLASSNAME = "ability-name";
+
     export const ABILITY_DISPLAY_ITEM_CLASSNAME = "ability-display-item";
     export const ABILITY_DISPLAY_NAME_CLASSNAME = "ability-display-name";
     export const ABILITY_DISPLAY_DESC_CLASSNAME = "ability-display-description";
     export const ABILITY_DISPLAY_REQ_CLASSNAME = "ability-display-requirement";
+
+    export const BOOST_DISPLAY_ITEM_CLASSNAME = "boost-display-item";
+    export const BOOST_DISPLAY_VALUE_CLASSNAME = "boost-display-item-value";
+    export const BOOST_DISPLAY_DESC_CLASSNAME = "boost-display-description";
+    export const BOOST_DISPLAY_REQ_CLASSNAME = "boost-display-item-requirement";
+
+    export const BOOST_VALUE_CLASSNAME = "boost-item-value";
+    export const BOOST_REQ_CLASSNAME = "boost-item-requirement";
+
     export const MAIN_ABILITY_DISPLAY_ITEM_CLASSNAME = "main-ability-display-item";
     export const MAIN_ABILITY_DISPLAY_NAME_CLASSNAME = "main-ability-display-name";
     export const MAIN_ABILITY_DISPLAY_DESC_CLASSNAME = "main-ability-display-description";
-    export const BOOST_DISPLAY_ITEM_CLASSNAME = "boost-display-item";
-    export const BOOST_DISPLAY_VALUE_CLASSNAME = "boost-display-item-value";
-    export const BOOST_DISPLAY_REQ_CLASSNAME = "boost-display-requirement";
     export const ABILITY_ITEM_CLASSNAME = "ability-item";
     export const MAIN_ABILITY_ITEM_CLASSNAME = "main-ability-item";
+    export const BOOST_ITEM_CLASSNAME = "boost-item";
 
     export const UNSELECT_BUTTON_CLASSNAME = "unselect-button";
 
