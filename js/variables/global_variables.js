@@ -66,4 +66,11 @@ export function setGlobalCurrentWeight(newValue) {
   globalCurrentWeight = newValue;
 }
 
+export function resetAvailableUpgradePoints() {
+  availableUpgradePoints = [0, 0, 0, 0, 0];
+}
+
+export function resetPreviousUpgradeModifier() {
+  previousUpgradeModifier = Array(23).fill(0);
+}
 					

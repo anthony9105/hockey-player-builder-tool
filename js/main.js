@@ -9,21 +9,20 @@ import * as ListenerFunctions from "./functions/listeners.js";
 import * as InitializerFunctions from "./functions/initializers.js";
 import * as Constants from "./variables/constants.js";
 
-InitializerFunctions.setAbilityOptionToUnselected(0);
-InitializerFunctions.setAbilityOptionToUnselected(1);
-InitializerFunctions.setMainAbilityOptionToUnselected();
-InitializerFunctions.setBoostToUnselected(0);
-InitializerFunctions.setBoostToUnselected(1);
-ListenerFunctions.abilitySelectListeners();
-ListenerFunctions.mainAbilitySelectListeners();
-ListenerFunctions.unselectButtonListeners();
-ListenerFunctions.boostSelectListeners();
-ListenerFunctions.boostHoverListeners();
-ListenerFunctions.abilityHoverListeners();
 
 /**
  * ABILITIES
  */
+// setting ability display slots
+InitializerFunctions.setAbilityOptionToUnselected(0);
+InitializerFunctions.setAbilityOptionToUnselected(1);
+InitializerFunctions.setMainAbilityOptionToUnselected();
+
+// ability item mouseenter and click listeners
+ListenerFunctions.abilitySelectListeners();
+ListenerFunctions.mainAbilitySelectListeners();
+ListenerFunctions.abilityHoverListeners();
+
 // "Ability" button listeners for when the ability buttons and boost buttons are pressed.  When clicked it will reveal/hide the
 // "Offense", "Defense", and "Athleticism" buttons below.
 let abilityButtons = document.getElementsByClassName(Constants.ABILITY_BUTTON_CLASSNAME);
@@ -38,8 +37,16 @@ ListenerFunctions.abilityButtonContentListeners(abilityContentButtons);
 /**
  * BOOSTS
  */
+// setting boost display slots
+InitializerFunctions.setBoostToUnselected(0);
+InitializerFunctions.setBoostToUnselected(1);
+
 // Fill all the boost options
 InitializerFunctions.fillBoostOptions();
+
+// boost item mouseenter and click listeners
+ListenerFunctions.boostSelectListeners();
+ListenerFunctions.boostHoverListeners();
 
 // "Boost" button listeners.  When clicked it will reveal/hide the "Technique", "Power", "Playstyle", "Tenacity" buttons below.
 let boostDropdownButtons = document.getElementsByClassName(Constants.MAIN_BOOST_BUTTON_CLASSNAME);
@@ -49,6 +56,12 @@ ListenerFunctions.boostDropdownButtonListeners(boostDropdownButtons);
 let attributeSectionBoostDropdownButtons = document.getElementsByClassName(Constants.BOOST_DROPDOWN_CONTENT_BUTTON_CLASSNAME);
 ListenerFunctions.attributeSectionBoostDropdownButtonListeners(attributeSectionBoostDropdownButtons)
 
+
+/**
+ * OTHER
+ */
+// unselect/remove button listeners (for unselecting/removing ability, main ability, or boost item from the respective display slot)
+ListenerFunctions.unselectButtonListeners();
 
 
 /**

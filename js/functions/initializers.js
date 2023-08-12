@@ -374,6 +374,10 @@ function removeAllHeights() {
   }
 }
 
+/**
+ * setAbilityOptionToUnselected function used to set a display slot for an ability to the default "No ability currently selected".
+ * @param {number} index index of the display ability slot (0 or 1)
+ */
 export function setAbilityOptionToUnselected(index) {
   let abilityDisplayName = Variables.abilityDisplayItems[index].getElementsByClassName(Constants.ABILITY_DISPLAY_NAME_CLASSNAME)[0];
   let abilityDisplayDescription = Variables.abilityDisplayItems[index].getElementsByClassName(Constants.ABILITY_DISPLAY_DESC_CLASSNAME)[0];
@@ -400,6 +404,9 @@ export function setAbilityOptionToUnselected(index) {
   Variables.unselectButtons[j].style.display = "none";
 }
 
+/**
+ * setAbilityOptionToUnselected function used to set the display slot for the main ability to the default "No ability currently selected".
+ */
 export function setMainAbilityOptionToUnselected() {
   let mainAbilityDisplayName = Variables.mainAbilityDisplayItem.getElementsByClassName(Constants.MAIN_ABILITY_DISPLAY_NAME_CLASSNAME)[0];
   let mainAbilityDisplayDescription = Variables.mainAbilityDisplayItem.getElementsByClassName(Constants.MAIN_ABILITY_DISPLAY_DESC_CLASSNAME)[0];
@@ -416,6 +423,10 @@ export function setMainAbilityOptionToUnselected() {
   Variables.unselectButtons[1].style.display = "none";
 }
 
+/**
+ * setBoostToUnselected function used to set a display slot for a boost to the default "No boost currently selected".
+ * @param {number} boostSectionIndex index of the display boost slot (0 or 1)
+ */
 export function setBoostToUnselected(boostSectionIndex) {
   let boostDisplayValue = document.getElementsByClassName(Constants.BOOST_DISPLAY_VALUE_CLASSNAME)[boostSectionIndex];
   boostDisplayValue.textContent = Constants.UNSELECTED_BOOST_NAME;

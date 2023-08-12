@@ -131,6 +131,11 @@ export function hideMainAbilityDropdownContent() {
   }
 }
 
+/**
+ * abilitySelectListeners function used to add event listeners for each ability item.
+ * When an abilityItem is clicked the ability display slot is set with that ability, if
+ * it meets the requirements.
+ */
 export function abilitySelectListeners() {
   Object.values(Variables.abilityItems).forEach((abilityItem, index) => {
     abilityItem.addEventListener("click", function() {
@@ -177,8 +182,12 @@ export function abilitySelectListeners() {
   });
 }
 
+/**
+ * mainAbilitySelectListeners function used to add event listeners for when each
+ * mainAbilityItem is clicked.  When clicked the main ability display slot is set.
+ */
 export function mainAbilitySelectListeners() {
-  Object.values(Variables.mainAbilityItems).forEach((mainAbilityItem, index) => {
+  Object.values(Variables.mainAbilityItems).forEach((mainAbilityItem) => {
     mainAbilityItem.addEventListener("click", function() {
       
       let abilityDisplayName = Variables.mainAbilityDisplayItem.getElementsByClassName(Constants.MAIN_ABILITY_DISPLAY_NAME_CLASSNAME)[0];
@@ -209,6 +218,10 @@ export function mainAbilitySelectListeners() {
   });
 }
 
+/**
+ * unselectButtonListeners function used to unselect/remove a selected ability, 
+ * main ability, or boost.
+ */
 export function unselectButtonListeners() {
   Object.values(Variables.unselectButtons).forEach((unselectButton, index) => {
     unselectButton.addEventListener("click", function() {
@@ -234,8 +247,13 @@ export function unselectButtonListeners() {
   });
 }
 
+/**
+ * abilityHoverListeners function used to add "mouseenter" (hover) event listeners for each abilityItem.
+ * Each ability item that is hovered over with the mouse will have the requirement text be set to green
+ * if the requirements are met or red if the requirements are not met.
+ */
 export function abilityHoverListeners() {
-  Object.values(Variables.abilityItems).forEach((abilityItem, index) => {
+  Object.values(Variables.abilityItems).forEach((abilityItem) => {
     abilityItem.addEventListener("mouseenter", function() {
       let abilityRequirements = abilityItem.getElementsByClassName(Constants.ABILITY_REQ_CLASSNAME);
       Object.values(abilityRequirements).forEach(abilityRequirement => {
@@ -333,17 +351,28 @@ export function attributeSectionBoostDropdownButtonListeners(attributeSectionBoo
   }
 }
 
+/**
+ * boostSelectListeners function used to add event listeners for when a boost item is selected (clicked).
+ * The selected boost item is added to the boost display slot if it meets requirements.
+ */
 export function boostSelectListeners() {
   Object.values(Variables.boostItems).forEach((boostItem, index) => {
     boostItem.addEventListener("click", function() {
+      // i used as the boost section index (0 for the first half and 1 for the second half)
       let i = 0;
       if (index >= Variables.boostItems.length / 2) {
         i = 1;
       }
 
+      // index for the other selected boost item
+      let otherIndex = i == 0 ? 1 : 0; 
+
       let boostDisplayName = Variables.boostDisplayItems[i].getElementsByClassName(Constants.BOOST_DISPLAY_VALUE_CLASSNAME)[0];
+      let otherBoostDisplayName = Variables.boostDisplayItems[otherIndex].getElementsByClassName(Constants.BOOST_DISPLAY_VALUE_CLASSNAME)[0];
       let boostDisplayIcon = Variables.boostDisplayItems[i].getElementsByClassName(Constants.ICONS_CLASSNAME)[0];
+      let otherBoostDisplayIcon = Variables.boostDisplayItems[otherIndex].getElementsByClassName(Constants.ICONS_CLASSNAME)[0];
       const displayIconColour = boostDisplayIcon.style.color;
+      const otherDisplayIconColour = otherBoostDisplayIcon.style.color;
 
       let selectedBoostName = boostItem.getElementsByClassName(Constants.BOOST_VALUE_CLASSNAME)[0];
       let selectedBoostIcon = boostItem.getElementsByClassName(Constants.ICONS_CLASSNAME)[0];
@@ -352,34 +381,44 @@ export function boostSelectListeners() {
 
       let confirmResponse = true;
       
-      if (boostDisplayName.textContent == selectedBoostName.textContent && displayIconColour == selectedIconColour) {
+      // if the boost item is already selected in either the current slot or the other boost slot
+      if ((boostDisplayName.textContent == selectedBoostName.textContent && displayIconColour == selectedIconColour) || 
+          (otherBoostDisplayName.textContent == selectedBoostName.textContent && otherDisplayIconColour == selectedIconColour)) {
         confirmResponse = false;
         window.alert("This boost is already selected");
       }
+      // if both the boost requirements are not met
       else if (!UtilityFunctions.meetsRequirement(selectedBoostRequirement[0].textContent)) {
         confirmResponse = false;
         window.alert("The minimum requirement for this boost is not met");
       }
+      // if another boost is already selected but it is not the same boost as just clicked right now
       else if (boostDisplayName.textContent != Constants.UNSELECTED_BOOST_NAME || (boostDisplayName.textContent == selectedBoostName.textContent && displayIconColour != selectedIconColour)) {
         confirmResponse = window.confirm(
           `Are you sure you want to replace "${boostDisplayName.textContent} (${displayIconColour})" with "${selectedBoostName.textContent} (${selectedIconColour})"?`
         );
       } 
 
+      // setting the display item
       if (confirmResponse) {
         let boostDisplayRequirement = Variables.boostDisplayItems[i].getElementsByClassName(Constants.BOOST_DISPLAY_REQ_CLASSNAME);
 
         UpdateFunctions.setDisplayItem(i + 3, boostDisplayName, selectedBoostName, undefined, undefined,
            boostDisplayIcon, selectedBoostIcon, boostDisplayRequirement, selectedBoostRequirement
         ); 
-
       }
+
     });
   });
 }
 
+/**
+ * boostHoverListeners function used to add "mouseenter" (hover) event listeners for each boost item.
+ * The event listener is used to set the requirement colours to green if the requirements are met
+ * or red if the requirements are not met.
+ */
 export function boostHoverListeners() {
-  Object.values(Variables.boostItems).forEach((boostItem, index) => {
+  Object.values(Variables.boostItems).forEach((boostItem) => {
     boostItem.addEventListener("mouseenter", function() {
       let boostRequirements = boostItem.getElementsByClassName(Constants.BOOST_REQ_CLASSNAME);
       Object.values(boostRequirements).forEach(boostRequirement => {
@@ -411,6 +450,9 @@ export function confirmPlayerTypeButtonListener(confirmPlayerTypeButton) {
 
     // reset the upgrades
     UpdateFunctions.resetUpgrades(Variables.upgradeValues);
+
+    // reset the upgrade points available
+    UpdateFunctions.resetUpgradePoints();
   });
 }
 
@@ -421,28 +463,47 @@ export function confirmPlayerTypeButtonListener(confirmPlayerTypeButton) {
  * @param {String} physicalAspect string keyword which is either "Height" or "Weight"
  */
 export function confirmHeightWeightButtonListener(confirmButton, physicalAspect) {
-  confirmButton.addEventListener('click', function(){
-  
-    if (physicalAspect == "Height") {
-      // set global variables for previous and current heights
-      Variables.setGlobalPreviousHeight(Variables.globalCurrentHeight);
-      Variables.setGlobalCurrentHeight(UtilityFunctions.convertFeetandInchesToInches(Variables.heights.value));
-      UpdateFunctions.applyAttributeChangesFromPhysicalChanges(Variables.playerTypes.value, Variables.globalPreviousHeight, Variables.globalCurrentHeight, "Height");
-    }
-    else {
-      if (Variables.weights.value < Variables.weights.min) {
-        Variables.weights.value = Variables.weights.min;
-        console.warn("Invalid weight entered.  (This value was below the minimum weight).  The value has now been set to the minimum value instead of what was entered.");
+  confirmButton.addEventListener('click', function() {
+    const continueWithChanges = window.confirm("Any abilities or boosts selected will be reset by changing the height or weight");
+
+    if (continueWithChanges) {
+      if (physicalAspect == "Height") {
+        // set global variables for previous and current heights
+        Variables.setGlobalPreviousHeight(Variables.globalCurrentHeight);
+        Variables.setGlobalCurrentHeight(UtilityFunctions.convertFeetandInchesToInches(Variables.heights.value));
+        UpdateFunctions.applyAttributeChangesFromPhysicalChanges(Variables.playerTypes.value, Variables.globalPreviousHeight, Variables.globalCurrentHeight, "Height");
       }
-      else if (Variables.weights.value > Variables.weights.max) {
-        Variables.weights.value = Variables.weights.max;
-        console.warn("Invalid weight entered.  (This value was above the maximum weight).  The value has now been set the maximum value instead of what was entered.");
+      else {
+        if (Variables.weights.value < Variables.weights.min) {
+          Variables.weights.value = Variables.weights.min;
+          console.warn("Invalid weight entered.  (This value was below the minimum weight).  The value has now been set to the minimum value instead of what was entered.");
+        }
+        else if (Variables.weights.value > Variables.weights.max) {
+          Variables.weights.value = Variables.weights.max;
+          console.warn("Invalid weight entered.  (This value was above the maximum weight).  The value has now been set the maximum value instead of what was entered.");
+        }
+  
+        // set global variables for previous and current weights
+        Variables.setGlobalPreviousWeight(Variables.globalCurrentWeight);
+        Variables.setGlobalCurrentWeight(Variables.weights.value);
+        UpdateFunctions.applyAttributeChangesFromPhysicalChanges(Variables.playerTypes.value, Variables.globalPreviousWeight, Variables.globalCurrentWeight, "Weight");
       }
 
-      // set global variables for previous and current weights
-      Variables.setGlobalPreviousWeight(Variables.globalCurrentWeight);
-      Variables.setGlobalCurrentWeight(Variables.weights.value);
-      UpdateFunctions.applyAttributeChangesFromPhysicalChanges(Variables.playerTypes.value, Variables.globalPreviousWeight, Variables.globalCurrentWeight, "Weight");
+      // reset all the abilities and boosts
+      InitializerFunctions.setAbilityOptionToUnselected(0);
+      InitializerFunctions.setAbilityOptionToUnselected(1);
+      InitializerFunctions.setMainAbilityOptionToUnselected();
+      InitializerFunctions.setBoostToUnselected(0);
+      InitializerFunctions.setBoostToUnselected(1);
+    }
+    // setting the height or weight back to what it was before cancelling
+    else {
+      if (physicalAspect == "Height") {
+        Variables.heights.value = UtilityFunctions.convertInchesToFeetAndInches(Variables.globalCurrentHeight);
+      }
+      else {
+        Variables.weights.value = Variables.globalCurrentWeight;
+      }
     }
 
   });

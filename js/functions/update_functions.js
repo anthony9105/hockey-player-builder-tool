@@ -113,34 +113,46 @@ export async function increaseOrDecreaseAttribute(upgradeType, i) {
     console.error("Invalid value for variable: upgradeType");
   }
 
-  // increase/decrease the attribute and the current upgrade modifier
-  Variables.attributeValues[i].innerHTML = parseInt(Variables.attributeValues[i].innerHTML) + upgradeAmount;
-  Variables.upgradeValues[i].innerHTML = parseInt(Variables.upgradeValues[i].innerHTML) + upgradeAmount;
-  
-  // change the upgrade modifier colour
-  changeUpgradeOptionColour(i);
+  const continueWithAttributeChange = UtilityFunctions.checkSelectedRequirementsIfAttributeChangeDone(upgradeAmount, i);
 
-  // getting the index for the attribute section (0-4)
-  var j = 0;
-  if (i < 5) {
-    j = 0;
-  }
-  else if (i < 10) {
-    j = 1;
-  }
-  else if (i < 15) {
-    j = 2;
-  }
-  else if (i < 19) {
-    j = 3;
-  }
-  else {
-    j = 4;
+  if (continueWithAttributeChange) {
+    // increase/decrease the attribute and the current upgrade modifier
+    Variables.attributeValues[i].innerHTML = parseInt(Variables.attributeValues[i].innerHTML) + upgradeAmount;
+    Variables.upgradeValues[i].innerHTML = parseInt(Variables.upgradeValues[i].innerHTML) + upgradeAmount;
+    
+    // used to check if an increase in attribute will make a previously 
+    //invalid selected ability or boost to now be valid
+    if (upgradeType == "increase") {
+      UtilityFunctions.checkIfInvalidBoostOrAbilityIsNowValid();
+    }
+
+    // change the upgrade modifier colour
+    changeUpgradeOptionColour(i);
+
+    // getting the index for the attribute section (0-4)
+    var j = 0;
+    if (i < 5) {
+      j = 0;
+    }
+    else if (i < 10) {
+      j = 1;
+    }
+    else if (i < 15) {
+      j = 2;
+    }
+    else if (i < 19) {
+      j = 3;
+    }
+    else {
+      j = 4;
+    }
+
+
+    // update available upgrade points
+    Variables.availableUpgradePoints[j] += await UtilityFunctions.getUpgradePointChange(i);
+    updateAvailableUpgradePoints(Variables.availableUpgradePoints[j], j); 
   }
 
-  // update available upgrade points
-  Variables.availableUpgradePoints[j] += await UtilityFunctions.getUpgradePointChange(i);
-  updateAvailableUpgradePoints(Variables.availableUpgradePoints[j], j); 
 }
 
 /**
@@ -171,6 +183,18 @@ function updateAvailableUpgradePoints(availUpgradePts, i) {
   let availablePointsValues = document.getElementsByClassName(Constants.POINTS_AVAIL_CLASSNAME);
 
   availablePointsValues[i].innerHTML = availUpgradePts;
+}
+
+/**
+ * resetUpgradePoints function used to reset the upgrade points to 0
+ */
+export function resetUpgradePoints() {
+  let availablePointsValues = document.getElementsByClassName(Constants.POINTS_AVAIL_CLASSNAME);
+  Object.values(availablePointsValues).forEach(availablePointsValue => {
+    availablePointsValue.textContent = 0;
+    Variables.resetAvailableUpgradePoints();
+    Variables.resetPreviousUpgradeModifier();
+  });  
 }
 
 
@@ -227,27 +251,19 @@ export function resetUpgrades(upgradeValues) {
 }
 
 
-
-
-// export function setSelectedAbilityValues(displayItemIndex, abilityName, abilityDescription, abilityRequirements, abilityIcon) {
-//   let displayAbilityName = Variables.abilityDisplayItems[displayItemIndex].getElementsByClassName(Constants.ABILITY_DISPLAY_NAME_CLASSNAME)[0];
-//   displayAbilityName.textContent = abilityName;
-//   displayAbilityName.style.fontStyle = "bold";
-
-//   let displayAbilityDescription = Variables.abilityDisplayItems[displayItemIndex].getElementsByClassName(Constants.ABILITY_DISPLAY_DESC_CLASSNAME)[0];
-//   displayAbilityDescription.textContent = abilityDescription;
-
-//   let displayAbilityRequirements = Variables.abilityDisplayItems[displayItemIndex].getElementsByClassName(Constants.ABILITY_DISPLAY_REQ_CLASSNAME);
-//   Object.values(displayAbilityRequirements).forEach((displayAbilityRequirement, index) => {
-//     displayAbilityRequirement.textContent = abilityRequirements[index].textContent;
-//   });
-
-//   let displayAbilityIcon = Variables.abilityDisplayItems[displayItemIndex].getElementsByClassName(Constants.ICONS_CLASSNAME)[0];
-//   displayAbilityIcon.textContent = abilityIcon;
-// }
-
+/**
+ * setDisplayItems function used to set/update a display slot for an ability, boost, or main ability
+ * @param {number} k index of the unselect button to set/update
+ * @param {*} displayName old name of the ability/boost to be updated
+ * @param {*} newName name of the new ability/boost that displayName will be set to
+ * @param {*} displayDescription old description of the ability to set (will be undefined for boosts since they do not have descriptions)
+ * @param {*} newDescription description of the new ability that displayDescription will be set to (will be undefined for boosts since they do not have descriptions)
+ * @param {*} displayIcon old icon of the ability/boost to be updated 
+ * @param {*} newIcon new icon of the ability/boost that displayIcon will be set to
+ * @param {*} displayRequirements old requirement(s) of the ability/boost to be updated (will be undefined for main ability since it does not have requirements as it is build specific already)
+ * @param {*} newRequirements new requirement(s) of the ability/boost that displayRequirements will be set to (will be undefined for main ability since it does not have requirements as it is build specific already)
+ */
 export function setDisplayItem(k, displayName, newName, displayDescription, newDescription, displayIcon, newIcon, displayRequirements, newRequirements) {
-
   displayName.textContent = newName.textContent;
   displayName.style.fontStyle = "normal";
   displayName.style.fontWeight = "bold";

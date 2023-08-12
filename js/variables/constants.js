@@ -137,3 +137,9 @@ export const ALL_ATTRIBUTES_INORDER_FULLSPELLING = ["Wristshot Accuracy", "Slaps
 
 export const UNSELECTED_ABILITY_NAME = "No ability currently selected";
 export const UNSELECTED_BOOST_NAME = "No boost currently selected";
+
+/**
+ * COLOURS
+ */
+export const INVALID_BOOST_OR_ABILITY_RGBA = "rgba(255, 0, 0, 0.25)";
+export const DISPLAY_SLOT_BACKGROUND_RGBA = "rgba(115, 116, 116, 0.3)";
