@@ -240,7 +240,19 @@ export function unselectButtonListeners() {
       }
       // unselect boost
       else {
-        InitializerFunctions.setBoostToUnselected(index - 3);
+
+        const selectedBoostIndex = index - 3;
+
+        const selectedBoostName = document.getElementsByClassName(Constants.BOOST_DISPLAY_VALUE_CLASSNAME)[selectedBoostIndex].textContent;
+        const selectedBoostInfo = UtilityFunctions.getBoostUpgradeInfo(selectedBoostName);
+        selectedBoostInfo[0] = parseInt(selectedBoostInfo[0]) * -1; // multiply value by -1 since the boost is being unapplyed/unselected here
+
+        // taking into account that if this boost is unselected it might cause already selected abilities or boosts to become unvalid
+        const continueWithAttributeChange = UtilityFunctions.checkSelectedRequirementsIfAttributeChangeDone(selectedBoostInfo[0], Constants.ALL_ATTRIBUTES_INORDER_FULLSPELLING.indexOf(selectedBoostInfo[1]));
+        if (continueWithAttributeChange) {
+          UpdateFunctions.applyBoostUpgradeOrDowngrade(selectedBoostInfo[1], selectedBoostInfo[0]);
+          InitializerFunctions.setBoostToUnselected(selectedBoostIndex);
+        }
       }
 
     });
@@ -380,12 +392,17 @@ export function boostSelectListeners() {
       const selectedIconColour = selectedBoostIcon.style.color;
 
       let confirmResponse = true;
+      let replacingAnotherBoost = false;
       
-      // if the boost item is already selected in either the current slot or the other boost slot
-      if ((boostDisplayName.textContent == selectedBoostName.textContent && displayIconColour == selectedIconColour) || 
-          (otherBoostDisplayName.textContent == selectedBoostName.textContent && otherDisplayIconColour == selectedIconColour)) {
+      // if the boost item is already selected in the current slot
+      if ((boostDisplayName.textContent == selectedBoostName.textContent && displayIconColour == selectedIconColour)) {
         confirmResponse = false;
         window.alert("This boost is already selected");
+      }
+      // if the boost item in the other boost slot is the same or is upgrading the same attribute
+      else if (otherBoostDisplayName.textContent == selectedBoostName.textContent) {
+        confirmResponse = false;
+        window.alert("This boost cannot be selected at this time because the other selected boost is already upgrading the same attribute");
       }
       // if both the boost requirements are not met
       else if (!UtilityFunctions.meetsRequirement(selectedBoostRequirement[0].textContent)) {
@@ -397,15 +414,28 @@ export function boostSelectListeners() {
         confirmResponse = window.confirm(
           `Are you sure you want to replace "${boostDisplayName.textContent} (${displayIconColour})" with "${selectedBoostName.textContent} (${selectedIconColour})"?`
         );
+        replacingAnotherBoost = true;
       } 
 
       // setting the display item
       if (confirmResponse) {
+        // remove the upgrades from the boost to be replaced (if there is a boost to be replaced)
+        if (replacingAnotherBoost) {
+          const oldBoostAttributeUprgadeInfo = UtilityFunctions.getRequirementValueAndAttributeName(boostDisplayName.textContent);
+          oldBoostAttributeUprgadeInfo[0] = parseInt(oldBoostAttributeUprgadeInfo[0]) * -1;
+          UpdateFunctions.applyBoostUpgradeOrDowngrade(oldBoostAttributeUprgadeInfo[1], oldBoostAttributeUprgadeInfo[0]);
+        }
+
         let boostDisplayRequirement = Variables.boostDisplayItems[i].getElementsByClassName(Constants.BOOST_DISPLAY_REQ_CLASSNAME);
 
         UpdateFunctions.setDisplayItem(i + 3, boostDisplayName, selectedBoostName, undefined, undefined,
            boostDisplayIcon, selectedBoostIcon, boostDisplayRequirement, selectedBoostRequirement
         ); 
+
+        const boostAttributeUprgadeInfo = UtilityFunctions.getRequirementValueAndAttributeName(selectedBoostName.textContent);
+        UpdateFunctions.applyBoostUpgradeOrDowngrade(boostAttributeUprgadeInfo[1], parseInt(boostAttributeUprgadeInfo[0]));
+
+        UtilityFunctions.checkIfInvalidBoostOrAbilityIsNowValid();
       }
 
     });

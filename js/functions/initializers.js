@@ -379,6 +379,8 @@ function removeAllHeights() {
  * @param {number} index index of the display ability slot (0 or 1)
  */
 export function setAbilityOptionToUnselected(index) {
+  Variables.abilityDisplayItems[index].style.backgroundColor = Constants.DISPLAY_ITEM_COLOUR;
+
   let abilityDisplayName = Variables.abilityDisplayItems[index].getElementsByClassName(Constants.ABILITY_DISPLAY_NAME_CLASSNAME)[0];
   let abilityDisplayDescription = Variables.abilityDisplayItems[index].getElementsByClassName(Constants.ABILITY_DISPLAY_DESC_CLASSNAME)[0];
   let abilityDisplayRequirements = Variables.abilityDisplayItems[index].getElementsByClassName(Constants.ABILITY_DISPLAY_REQ_CLASSNAME);
@@ -428,7 +430,9 @@ export function setMainAbilityOptionToUnselected() {
  * @param {number} boostSectionIndex index of the display boost slot (0 or 1)
  */
 export function setBoostToUnselected(boostSectionIndex) {
-  let boostDisplayValue = document.getElementsByClassName(Constants.BOOST_DISPLAY_VALUE_CLASSNAME)[boostSectionIndex];
+  Variables.boostDisplayItems[boostSectionIndex].style.backgroundColor = Constants.DISPLAY_ITEM_COLOUR;
+
+  let boostDisplayValue = Variables.boostDisplayItems[boostSectionIndex].getElementsByClassName(Constants.BOOST_DISPLAY_VALUE_CLASSNAME)[0];
   boostDisplayValue.textContent = Constants.UNSELECTED_BOOST_NAME;
   boostDisplayValue.style.fontStyle = "italic";
   boostDisplayValue.style.fontWeight = "normal";

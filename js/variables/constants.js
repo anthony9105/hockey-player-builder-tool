@@ -74,6 +74,8 @@ export const ABILITIES_XML = "../build-information/abilities.xml";
     export const MAIN_ABILITY_ITEM_CLASSNAME = "main-ability-item";
     export const BOOST_ITEM_CLASSNAME = "boost-item";
 
+    export const BOOST_UPGRADE_VALUES_CLASSNAME = "boost-value";
+
     export const UNSELECT_BUTTON_CLASSNAME = "unselect-button";
 
 
@@ -143,3 +145,6 @@ export const UNSELECTED_BOOST_NAME = "No boost currently selected";
  */
 export const INVALID_BOOST_OR_ABILITY_RGBA = "rgba(255, 0, 0, 0.25)";
 export const DISPLAY_SLOT_BACKGROUND_RGBA = "rgba(115, 116, 116, 0.3)";
+export const ZERO_UPGRADE_VALUE_COLOUR = "#3a379c";
+export const BOOST_UPGRADE_VALUE_COLOUR = "rgb(76, 165, 238)";
+export const DISPLAY_ITEM_COLOUR = "rgba(115, 116, 116, 0.3)";

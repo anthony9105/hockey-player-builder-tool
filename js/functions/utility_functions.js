@@ -150,7 +150,7 @@ export async function getUpgradePointChange(i) {
  * @param {string} requirementMessage full requirement message.  Example: (requires minimum 80 Hand-Eye) 
  * @returns a list with the minimum attribute value and attribute name.  Example: ['80', 'Hand-Eye']
  */
-function getRequirementValueAndAttributeName(requirementMessage) {
+export function getRequirementValueAndAttributeName(requirementMessage) {
   const temp1 = requirementMessage.split("(requires minimum ").pop();
   const temp2 = temp1.replace(")", "");
 
@@ -172,7 +172,7 @@ export function meetsRequirement(requirementMessage, upgradeAmount) {
   }
 
   const currentAttributeValue = parseInt(Variables.attributeValues[Constants.ALL_ATTRIBUTES_INORDER_FULLSPELLING.indexOf(requirement[1])].textContent) + upgradeAmount;
-  
+
   if (currentAttributeValue >= requirement[0]) {
     return true;
   }
@@ -291,4 +291,15 @@ export function checkIfInvalidBoostOrAbilityIsNowValid() {
       }
     });
   });
+}
+
+/**
+ * getBoostUpgradeInfo function used to get the upgrade info
+ * (upgrade amount and the attribute to be upgraded).
+ * @param {string} boostName full name of the boost.  Example: +4 shot blocking.
+ * @returns upgrade amount and name of the attribute to be upgraded.  Example: ["4", "Shot Blocking"].
+ */
+export function getBoostUpgradeInfo(boostName) {
+  const temp = boostName.replace("+", "");
+  return temp.split(/ (.*)/);
 }
