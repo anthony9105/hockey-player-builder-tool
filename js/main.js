@@ -8,7 +8,15 @@
 import * as ListenerFunctions from "./functions/listeners.js";
 import * as InitializerFunctions from "./functions/initializers.js";
 import * as Constants from "./variables/constants.js";
+import * as UpdateFunctions from "./functions/update_functions.js";
+import { attributeValues } from "./variables/global_variables.js";
 
+// export let attributeIndexes = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22];
+
+// attributeIndexes.forEach(index => {
+//   // set the attribute meter values
+//   UpdateFunctions.updateAttributeMeter(85, index);
+// });
 
 /**
  * ABILITIES
@@ -87,3 +95,4 @@ ListenerFunctions.confirmHeightWeightButtonListener(confirmWeightButton, "Weight
  */
 // Listeners for when the + and - buttons are clicked, which are used to increase/decrease attributes
 ListenerFunctions.increasingAndDecreasingAttributesListeners();
+

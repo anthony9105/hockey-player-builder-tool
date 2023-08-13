@@ -235,7 +235,7 @@ function setDefaultAttributes(build, nameValue) {
       Variables.attributeValues[attributeIndex].innerHTML = attribute.textContent;
 
       // set the attribute meter values
-      Variables.attributeMeters[attributeIndex].value = attribute.textContent;
+      UpdateFunctions.updateAttributeMeter(parseInt(attribute.textContent), attributeIndex);
 
       attributeIndex++;
     });

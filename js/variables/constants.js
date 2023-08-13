@@ -79,6 +79,7 @@ export const ABILITIES_XML = "../build-information/abilities.xml";
     export const UNSELECT_BUTTON_CLASSNAME = "unselect-button";
 
     export const ATTRIBUTE_METER_CLASSNAME = "attribute-meter";
+    export const ATTRIBUTE_METER_FILL_CLASSNAME = "attribute-meter-fill";
 
 
 /**
@@ -150,3 +151,8 @@ export const DISPLAY_SLOT_BACKGROUND_RGBA = "rgba(115, 116, 116, 0.3)";
 export const ZERO_UPGRADE_VALUE_COLOUR = "#3a379c";
 export const BOOST_UPGRADE_VALUE_COLOUR = "rgb(76, 165, 238)";
 export const DISPLAY_ITEM_COLOUR = "rgba(115, 116, 116, 0.3)";
+export const GOOD_ATTRIBUTE_COLOUR = "rgb(59, 148, 81)";
+export const SOLID_ATTRIBUTE_COLOUR = "rgb(90, 128, 0)";
+export const VERY_EXCELLENT_ATTRIBUTE_COLOUR = "rgb(0, 255, 0)";
+export const AVG_ATTRIBUTE_COLOUR = "rgb(206, 206, 1)";
+export const BELOW_AVG_ATTRIBUTE_COLOUR = "rgb(194, 126, 0)";

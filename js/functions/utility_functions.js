@@ -303,3 +303,34 @@ export function getBoostUpgradeInfo(boostName) {
   const temp = boostName.replace("+", "");
   return temp.split(/ (.*)/);
 }
+
+export function getColourForMeterValue(value) {
+  // extremely excellent best attribute
+  if (value >= 94) {
+    return Constants.VERY_EXCELLENT_ATTRIBUTE_COLOUR;
+  }
+  // excellent attribute
+  else if (value >= 88) {
+    return "green";
+  }
+  // very good attribute
+  else if (value >= 85) {
+    return Constants.GOOD_ATTRIBUTE_COLOUR;
+  }
+  // solid attribute
+  else if (value >= 82) {
+    return Constants.SOLID_ATTRIBUTE_COLOUR;
+  }
+  // average attribute
+  else if (value >= 78) {
+    return Constants.AVG_ATTRIBUTE_COLOUR;
+  }
+  // below average attribute
+  else if (value >= 75) {
+    return Constants.BELOW_AVG_ATTRIBUTE_COLOUR;
+  }
+  // weak attribute
+  else {
+    return "red";
+  }
+}

@@ -59,7 +59,9 @@ export async function applyAttributeChangesFromPhysicalChanges(buildName, previo
                 for (var j = 3; j < physicals[i].childNodes.length; j += 2) {
                   var attributeIndex = Constants.ALL_ATTRIBUTES_INORDER.indexOf(physicals[i].childNodes[j].nodeName);
                   Variables.attributeValues[attributeIndex].innerHTML = parseInt(Variables.attributeValues[attributeIndex].innerHTML) + parseInt(physicals[i].childNodes[j].textContent);
-                  Variables.attributeMeters[attributeIndex].value += parseInt(physicals[i].childNodes[j].textContent);
+
+                  updateAttributeMeter(Variables.attributeValues[attributeIndex].textContent, attributeIndex);
+                  // Variables.attributeMeters[attributeIndex].value += parseInt(physicals[i].childNodes[j].textContent);
                   // console.log(physicals[i].childNodes[j].nodeName + "  -> " + parseInt(physicals[i].childNodes[j].textContent));
 
                 }
@@ -78,7 +80,8 @@ export async function applyAttributeChangesFromPhysicalChanges(buildName, previo
                 for (var j = 3; j < physicals[i].childNodes.length; j+=2) {
                   var attributeIndex = Constants.ALL_ATTRIBUTES_INORDER.indexOf(physicals[i].childNodes[j].nodeName);
                   Variables.attributeValues[attributeIndex].innerHTML = parseInt(Variables.attributeValues[attributeIndex].innerHTML) + parseInt(physicals[i].childNodes[j].textContent) * -1;
-                  Variables.attributeMeters[attributeIndex].value += parseInt(physicals[i].childNodes[j].textContent);
+                  updateAttributeMeter(Variables.attributeValues[attributeIndex].textContent, attributeIndex);
+                  // Variables.attributeMeters[attributeIndex].value += parseInt(physicals[i].childNodes[j].textContent);
                   // console.log(physicals[i].childNodes[j].nodeName + "  -> " + parseInt(physicals[i].childNodes[j].textContent) * -1);
                 }
               }
@@ -93,6 +96,22 @@ export async function applyAttributeChangesFromPhysicalChanges(buildName, previo
   catch (error) {
     console.error(error);
   }
+}
+
+export function updateAttributeMeter(newAttributeValue, attributeIndex) {
+  const attributeMeter = Variables.attributeMeters[attributeIndex];
+
+  // update attribute meter value
+  attributeMeter.value = newAttributeValue;
+
+  // update attribute meter fill
+  const attributeMeterFill = document.getElementsByClassName(Constants.ATTRIBUTE_METER_FILL_CLASSNAME)[attributeIndex];
+  const meterColour = UtilityFunctions.getColourForMeterValue(attributeMeter.value);
+  const range = attributeMeter.max - attributeMeter.min;
+  const ratio = (attributeMeter.value - attributeMeter.min) / range;
+
+  attributeMeterFill.style.width = `${ratio * 100}%`;
+  attributeMeterFill.style.backgroundColor = meterColour;
 }
 
 /**
@@ -123,7 +142,7 @@ export async function increaseOrDecreaseAttribute(upgradeType, i) {
     Variables.upgradeValues[i].innerHTML = parseInt(Variables.upgradeValues[i].innerHTML) + upgradeAmount;
 
     // increase/decrease the attribute meter value
-    Variables.attributeMeters[i].value += upgradeAmount;
+    updateAttributeMeter(Variables.attributeValues[i].textContent, i);
     
     // used to check if an increase in attribute will make a previously 
     //invalid selected ability or boost to now be valid
@@ -219,7 +238,8 @@ export function applyBoostUpgradeOrDowngrade(attributeAffected, boostUpgradeAmou
   Variables.attributeValues[attributeIndex].textContent = parseInt(Variables.attributeValues[attributeIndex].textContent) + boostUpgradeAmount;
 
   // attribute meter changes
-  Variables.attributeMeters[attributeIndex].value += boostUpgradeAmount;
+  const newAttributeValue = parseInt(Variables.attributeValues[attributeIndex].textContent) + boostUpgradeAmount;
+  updateAttributeMeter(newAttributeValue, attributeIndex);
 }
 
 
