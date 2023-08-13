@@ -78,6 +78,8 @@ export const ABILITIES_XML = "../build-information/abilities.xml";
 
     export const UNSELECT_BUTTON_CLASSNAME = "unselect-button";
 
+    export const ATTRIBUTE_METER_CLASSNAME = "attribute-meter";
+
 
 /**
  * ID NAMES

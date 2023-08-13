@@ -40,6 +40,8 @@ export let mainAbilityDisplayItem = document.getElementsByClassName(Constants.MA
 export let unselectButtons = document.getElementsByClassName(Constants.UNSELECT_BUTTON_CLASSNAME);
 export let boostUpgradeValues = document.getElementsByClassName(Constants.BOOST_UPGRADE_VALUES_CLASSNAME);
 
+export let attributeMeters = document.getElementsByClassName(Constants.ATTRIBUTE_METER_CLASSNAME);
+
 
 
 export let globalPreviousHeight;

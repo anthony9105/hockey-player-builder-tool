@@ -521,6 +521,7 @@ body {
     flex-direction: row;
 }
 
+
 .ability-display-item, .boost-display-item {
     background-color: rgba(115, 116, 116, 0.3);
     box-shadow: 0px 0px 50px rgba(116, 116, 116, 0.7);

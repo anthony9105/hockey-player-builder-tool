@@ -59,6 +59,7 @@ export async function applyAttributeChangesFromPhysicalChanges(buildName, previo
                 for (var j = 3; j < physicals[i].childNodes.length; j += 2) {
                   var attributeIndex = Constants.ALL_ATTRIBUTES_INORDER.indexOf(physicals[i].childNodes[j].nodeName);
                   Variables.attributeValues[attributeIndex].innerHTML = parseInt(Variables.attributeValues[attributeIndex].innerHTML) + parseInt(physicals[i].childNodes[j].textContent);
+                  Variables.attributeMeters[attributeIndex].value += parseInt(physicals[i].childNodes[j].textContent);
                   // console.log(physicals[i].childNodes[j].nodeName + "  -> " + parseInt(physicals[i].childNodes[j].textContent));
 
                 }
@@ -77,6 +78,7 @@ export async function applyAttributeChangesFromPhysicalChanges(buildName, previo
                 for (var j = 3; j < physicals[i].childNodes.length; j+=2) {
                   var attributeIndex = Constants.ALL_ATTRIBUTES_INORDER.indexOf(physicals[i].childNodes[j].nodeName);
                   Variables.attributeValues[attributeIndex].innerHTML = parseInt(Variables.attributeValues[attributeIndex].innerHTML) + parseInt(physicals[i].childNodes[j].textContent) * -1;
+                  Variables.attributeMeters[attributeIndex].value += parseInt(physicals[i].childNodes[j].textContent);
                   // console.log(physicals[i].childNodes[j].nodeName + "  -> " + parseInt(physicals[i].childNodes[j].textContent) * -1);
                 }
               }
@@ -119,6 +121,9 @@ export async function increaseOrDecreaseAttribute(upgradeType, i) {
     // increase/decrease the attribute and the current upgrade modifier
     Variables.attributeValues[i].innerHTML = parseInt(Variables.attributeValues[i].innerHTML) + upgradeAmount;
     Variables.upgradeValues[i].innerHTML = parseInt(Variables.upgradeValues[i].innerHTML) + upgradeAmount;
+
+    // increase/decrease the attribute meter value
+    Variables.attributeMeters[i].value += upgradeAmount;
     
     // used to check if an increase in attribute will make a previously 
     //invalid selected ability or boost to now be valid
@@ -212,6 +217,9 @@ export function applyBoostUpgradeOrDowngrade(attributeAffected, boostUpgradeAmou
 
   // attribute value changes
   Variables.attributeValues[attributeIndex].textContent = parseInt(Variables.attributeValues[attributeIndex].textContent) + boostUpgradeAmount;
+
+  // attribute meter changes
+  Variables.attributeMeters[attributeIndex].value += boostUpgradeAmount;
 }
 
 

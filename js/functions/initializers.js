@@ -233,6 +233,10 @@ function setDefaultAttributes(build, nameValue) {
     attributes.forEach(attribute => {
       // set the attribute values
       Variables.attributeValues[attributeIndex].innerHTML = attribute.textContent;
+
+      // set the attribute meter values
+      Variables.attributeMeters[attributeIndex].value = attribute.textContent;
+
       attributeIndex++;
     });
 
