@@ -40,40 +40,35 @@ body {
 .wrapper {
     backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px);
-    /* background: linear-gradient(to bottom right, #000000, #3a3d46, #ebeafa); */
-    /* border: 1px solid rgba(255, 255, 255, 0.01); */
     border-radius: 12px;
-    /* box-shadow: 0 4px 30px green; */
-    /* color: red; */
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
-    /* background: rgb(128, 128, 200); */
-    /* border: 1px solid rgb(90, 11, 158); */
     justify-content:space-around;
     display: flex;
     flex-direction: column;
-    /* flex-basis: auto; */
     min-width: 100%;
 }
 
 #playertype-height-weight-row, #abilities-and-boosts-row {
     display: flex;
     justify-content: space-around;
-    margin-top: 2%;
+}
+#playertype-height-weight-row {
+    margin-top: 1%;
 }
 
 
 .physical-section {
     backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px);
-    background: linear-gradient(to bottom right, rgb(110, 110, 110), rgb(179, 179, 179));
+    background: linear-gradient(to bottom right, rgba(110, 110, 110, 0.497), rgba(179, 179, 179, 0.851));
     border: 1px solid black;
     border-radius: 16px;
     box-shadow: 0 4px 30px black;
     padding: 10px 5px;
     margin-left: 10px;
     margin-right: 10px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 .ability-section, #main-ability-section {
@@ -86,7 +81,7 @@ body {
     padding: 10px 5px;
     margin-left: 10px;
     margin-right: 10px;
-    margin-bottom: 50px;
+    margin-bottom: -10px;
 }
 
 /* changes based off the ability-section child */
@@ -112,8 +107,16 @@ body {
     box-shadow: 0 4px 30px gold;
     font-size: larger;
 }
-.dropdownbutton:hover {
+.dropdownbutton:hover, .main-boost-dropdownbutton:hover, .boost-dropdownbutton:hover, .ability-dropdownbutton:hover {
     background: linear-gradient(to bottom right, rgb(32, 34, 95), rgb(179, 179, 179));
+}
+/* short colour blink when button is clicked */
+.dropdownbutton:active, .main-boost-dropdownbutton:active, .boost-dropdownbutton:active, .ability-dropdownbutton:active {
+    animation-duration: 2s;
+    animation-name: blink;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    background: rgb(101, 101, 101);
 }
 /* .ability-section > .dropdown > .dropdownbutton:hover {
     box-shadow: none;
@@ -208,16 +211,18 @@ body {
 .attribute-section {
     display: flex;
     flex-direction: column;
-    margin: 10px;
+    margin: 5px;
 }
 
 
 /* changing colour of the attribute background to alternating for each attribute section */
 .attribute-section:nth-child(odd) > .attribute {
-    background: linear-gradient(to right, #fff8e8,#7c6c8d, #7b3f00 ) ;
+    background: linear-gradient(to right, #fff8e8d0,#8b7c9b82, #3e3e3e6a ) ;
+    /* background: linear-gradient(to right, #fff8e8,#7c6c8d, #7b3f00 ) ; */
 }
 .attribute-section:nth-child(even) > .attribute {
-    background: linear-gradient(to right, rgb(161, 156, 157), rgb(139, 97, 172), rgb(73, 23, 61) ) ;
+    background: linear-gradient(to left, #fff8e8d0,#8b7c9b82, #3e3e3e6a ) ;
+    /* background: linear-gradient(to right, rgb(161, 156, 157), rgb(139, 97, 172), rgb(73, 23, 61) ) ; */
 }
 
 
@@ -225,7 +230,7 @@ body {
 .attribute-info {
     display: flex;
     justify-content: end;
-    margin-top: 15px;
+    margin-top: 10px;
     background: linear-gradient(to right, #726fdc, #3a379c, #363460);
     border-radius: 16px;
 }
@@ -242,11 +247,11 @@ body {
 }
 
 .attribute-name {
-    color:  rgb(24, 24, 24);
+    color:  black;
     padding-left: 10px;
     padding-top: 8px;
     padding-right: 0px;
-    font-size: 95%;
+    font-size: 96%;
     font-weight: bold;
     /* background: #3a379c; */
     /* background: linear-gradient(to right, #726fdc, #3a379c, #1a193d); */
@@ -267,9 +272,10 @@ body {
 .attribute {
     padding-left: 5px;
     padding-right: 5px;
-    padding-bottom: 30px;
-    margin-top: 10px;
-    background: linear-gradient(to bottom right, rgb(130, 150, 251),#5473ef, rgb(39, 59, 119) ) ;
+    padding-bottom: 20px;
+    margin-top: 8px;
+    /* background: linear-gradient(to bottom right, rgb(130, 150, 251),#5473ef, rgb(39, 59, 119) ) ; */
+    /* background: linear-gradient(to bottom right, rgb(130, 150, 251),#5473ef, rgb(39, 59, 119) ) ; */
     border-radius: 16px;
     box-shadow: 0 4px 30px black;
 }
@@ -368,7 +374,8 @@ body {
   .boost-dropdownbutton, .main-boost-dropdownbutton {
     /* backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px); */
-    background: linear-gradient(to bottom, rgb(48, 55, 105), rgb(179, 179, 179));
+    background: linear-gradient(to bottom right, rgb(110, 110, 110), rgb(179, 179, 179));
+    /* background: linear-gradient(to bottom, rgb(48, 55, 105), rgb(179, 179, 179)); */
     border: 1px solid black;
     box-shadow: 0 4px 30px rgb(215, 215, 215);
     color: black;
@@ -505,9 +512,9 @@ body {
     border-radius: 4px; */
     /* box-shadow: 0 4px 30px black; */
     padding: 10px 5px;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-bottom: 50px;
+    margin-left: 12%;
+    margin-right: 12%;
+    margin-bottom: 2%;
     display: flex;
     justify-content: space-around;
 }
