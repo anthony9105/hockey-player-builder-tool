@@ -51,7 +51,7 @@ body {
 
 #playertype-height-weight-row, #abilities-and-boosts-row {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 #playertype-height-weight-row {
     margin-top: 1%;
@@ -635,3 +635,34 @@ body {
     background-color: rgba(255, 0, 0, 0.5);
 }
 
+#complete-build-button {
+    font-weight: bold;
+    font-style: italic;
+    background: linear-gradient(to right, rgba(255, 255, 0, 0.5), rgba(83, 154, 16, 0.5));
+    border-radius: 12px;
+    font-size: large;
+    height: 50px;
+    width: 180px;
+}
+#complete-build-button:hover {
+    cursor: pointer;
+    background: linear-gradient(to right, rgba(191, 191, 2, 0.5), rgba(47, 86, 9, 0.5));
+}
+#reset-button {
+    font-weight: bold;
+    font-style: italic;
+    background: linear-gradient(to right, rgba(255, 208, 0, 0.5), rgba(154, 32, 16, 0.5));
+    border-radius: 12px;
+    font-size: large;
+    height: 50px;
+    width: 180px;
+}
+#reset-button:hover {
+    cursor: pointer;
+    background: linear-gradient(to right, rgba(154, 126, 2, 0.5), rgba(80, 17, 9, 0.5));
+}
+
+#other-action-buttons {
+    margin-left: 8%;
+    display: flex;
+}
