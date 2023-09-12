@@ -523,8 +523,14 @@ export function confirmHeightWeightButtonListener(confirmButton, physicalAspect)
       InitializerFunctions.setAbilityOptionToUnselected(0);
       InitializerFunctions.setAbilityOptionToUnselected(1);
       InitializerFunctions.setMainAbilityOptionToUnselected();
-      InitializerFunctions.setBoostToUnselected(0);
-      InitializerFunctions.setBoostToUnselected(1);
+
+      for (let i = 0; i < 2; i++) {
+        let boostDisplayName = Variables.boostDisplayItems[i].getElementsByClassName(Constants.BOOST_DISPLAY_VALUE_CLASSNAME)[0];
+        const boostAttributeUprgadeInfo = UtilityFunctions.getRequirementValueAndAttributeName(boostDisplayName.textContent);
+        boostAttributeUprgadeInfo[0] *= -1;
+        UpdateFunctions.applyBoostUpgradeOrDowngrade(boostAttributeUprgadeInfo[1], boostAttributeUprgadeInfo[0]);
+        InitializerFunctions.setBoostToUnselected(i);
+      }
     }
     // setting the height or weight back to what it was before cancelling
     else {

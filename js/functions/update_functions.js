@@ -238,8 +238,7 @@ export function applyBoostUpgradeOrDowngrade(attributeAffected, boostUpgradeAmou
   Variables.attributeValues[attributeIndex].textContent = parseInt(Variables.attributeValues[attributeIndex].textContent) + boostUpgradeAmount;
 
   // attribute meter changes
-  const newAttributeValue = parseInt(Variables.attributeValues[attributeIndex].textContent) + boostUpgradeAmount;
-  updateAttributeMeter(newAttributeValue, attributeIndex);
+  updateAttributeMeter(parseInt(Variables.attributeValues[attributeIndex].textContent), attributeIndex);
 }
 
 
