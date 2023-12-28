@@ -98,6 +98,11 @@ export async function applyAttributeChangesFromPhysicalChanges(buildName, previo
   }
 }
 
+/**
+ * updateAttributeMeter function used to update the attribute meter of the specified attribute
+ * @param {number} newAttributeValue the new attribute value
+ * @param {number} attributeIndex the index of the attribute being updated
+ */
 export function updateAttributeMeter(newAttributeValue, attributeIndex) {
   const attributeMeter = Variables.attributeMeters[attributeIndex];
 

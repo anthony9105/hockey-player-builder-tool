@@ -7,10 +7,13 @@
 
 import * as ListenerFunctions from "./functions/listeners.js";
 import * as InitializerFunctions from "./functions/initializers.js";
+import * as UtilityFunctions from "./functions/utility_functions.js";
 import * as Constants from "./variables/constants.js";
 import * as UpdateFunctions from "./functions/update_functions.js";
 import { attributeValues } from "./variables/global_variables.js";
+import * as PCUtilityFunctions from "./functions/playercomparison_utilityfunctions.js";
 
+PCUtilityFunctions.test();
 /**
  * ABILITIES
  */
@@ -88,4 +91,3 @@ ListenerFunctions.confirmHeightWeightButtonListener(confirmWeightButton, "Weight
  */
 // Listeners for when the + and - buttons are clicked, which are used to increase/decrease attributes
 ListenerFunctions.increasingAndDecreasingAttributesListeners();
-

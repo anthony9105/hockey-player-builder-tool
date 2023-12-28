@@ -44,6 +44,10 @@ export let attributeMeters = document.getElementsByClassName(Constants.ATTRIBUTE
 
 
 
+export let buildPosition;
+
+
+
 export let globalPreviousHeight;
 export let globalPreviousWeight;
 export let globalCurrentHeight;
