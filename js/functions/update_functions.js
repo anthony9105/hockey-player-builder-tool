@@ -235,15 +235,19 @@ export function applyBoostUpgradeOrDowngrade(attributeAffected, boostUpgradeAmou
   const attributeIndex = Constants.ALL_ATTRIBUTES_INORDER_FULLSPELLING.indexOf(attributeAffected);
 
   // boost upgrade changes
-  Variables.boostUpgradeValues[attributeIndex].textContent = parseInt(Variables.boostUpgradeValues[attributeIndex].textContent) + boostUpgradeAmount;
-  const boostUpgradeColour = boostUpgradeAmount > 0 ? Constants.BOOST_UPGRADE_VALUE_COLOUR : Constants.ZERO_UPGRADE_VALUE_COLOUR;
-  Variables.boostUpgradeValues[attributeIndex].style.color = boostUpgradeColour;
+  if (Variables.boostUpgradeValues[attributeIndex] != undefined) {
+    Variables.boostUpgradeValues[attributeIndex].textContent = parseInt(Variables.boostUpgradeValues[attributeIndex].textContent) + boostUpgradeAmount;
+    const boostUpgradeColour = boostUpgradeAmount > 0 ? Constants.BOOST_UPGRADE_VALUE_COLOUR : Constants.ZERO_UPGRADE_VALUE_COLOUR;
+    Variables.boostUpgradeValues[attributeIndex].style.color = boostUpgradeColour;
+  }
 
-  // attribute value changes
-  Variables.attributeValues[attributeIndex].textContent = parseInt(Variables.attributeValues[attributeIndex].textContent) + boostUpgradeAmount;
+  if (Variables.attributeValues[attributeIndex] != undefined) {
+    // attribute value changes
+    Variables.attributeValues[attributeIndex].textContent = parseInt(Variables.attributeValues[attributeIndex].textContent) + boostUpgradeAmount;
 
-  // attribute meter changes
-  updateAttributeMeter(parseInt(Variables.attributeValues[attributeIndex].textContent), attributeIndex);
+    // attribute meter changes
+    updateAttributeMeter(parseInt(Variables.attributeValues[attributeIndex].textContent), attributeIndex);
+  }
 }
 
 
