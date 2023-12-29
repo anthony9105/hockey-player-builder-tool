@@ -13,7 +13,7 @@ import * as UpdateFunctions from "./functions/update_functions.js";
 import { attributeValues } from "./variables/global_variables.js";
 import * as PCUtilityFunctions from "./functions/playercomparison_utilityfunctions.js";
 
-PCUtilityFunctions.test();
+PCUtilityFunctions.findSimilarPlayers();
 /**
  * ABILITIES
  */
