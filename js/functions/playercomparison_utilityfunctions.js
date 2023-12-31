@@ -1,5 +1,6 @@
 import * as Constants from "../variables/constants.js";
 import { playerTypes } from "../variables/global_variables.js";
+import * as UtilityFunctions from "../functions/utility_functions.js";
 
 // global variable for the player data
 let playerData;
@@ -136,12 +137,12 @@ function norm(vector) {
 }
 
 /**
- * cosineDistance function used to measure similarity between a and b (2 players)
+ * cosineSimilarity function used to measure similarity between a and b (2 players)
  * @param {number|object} a values of a. ex: [x: 0.3, y: 0.6, z: 0.82]
  * @param {number|object} b values of b
- * @returns {number} the cosine distance of a and b
+ * @returns {number} the cosine similarity of a and b
  */
-function cosineDistance(a, b) {
+function cosineSimilarity(a, b) {
   // if a and b are objects then they are converted to arrays
   a = Array.isArray(a) ? [...a] : selectedAttributeNames.map(attr => a[attr]);
   b = Array.isArray(b) ? [...b] : selectedAttributeNames.map(attr => b[attr]);
@@ -165,9 +166,9 @@ function cosineDistance(a, b) {
   const normA = norm(a);
   const normB = norm(b);
 
-  // return the cosine distance
-  // 1 - dot(a,b) / (|a| * |b|)
-  return {distance: 1 - dot / (normA * normB), nameA, nameB};
+  // return the cosine similarity
+  // dot(a,b) / (|a| * |b|)
+  return { distance: dot / (normA * normB), nameA, nameB };
 }
 
 /**
@@ -293,10 +294,6 @@ function meetsRequirements(playerAttributes, playerType, categoryAvgs) {
   return true;
 }
 
-function getTopAttributes() {
-
-}
-
 function calculateScore(playerAttributes, playerType, categoryAvgs, isMinimum) {
   let minimumsScore = 0;
   let count = 0;
@@ -386,7 +383,7 @@ function getPlayerType(playerAttributes) {
  */
 export function findSimilarPlayers() {
   // create a KD-tree for fast nearest neighbor search
-  const kdtree = new kdTree(playerData, cosineDistance, selectedAttributeNames);
+  const kdtree = new kdTree(playerData, cosineSimilarity, selectedAttributeNames);
 
   // sample player w/ attributes of Steven Stammkos (for testing)
   let samplePlayer = {
@@ -424,6 +421,8 @@ export function findSimilarPlayers() {
     }
   }
   samplePlayer = playerData[818];
+
+  UtilityFunctions.getAttributeObject();
   // playerData.forEach((player, index) => {
   //   if (player.Name == "Erik Karlsson") {
   //     console.log(player);
@@ -445,7 +444,11 @@ export function findSimilarPlayers() {
   const nearestNeighbors = kdtree.nearest(samplePlayer, playerData.length);
 
   // sorting by ascending order
-  nearestNeighbors.sort((a, b) => a[1].distance - b[1].distance);
+  // nearestNeighbors.sort((a, b) => a[1].distance - b[1].distance);
+  // sort by descending order
+  nearestNeighbors.sort((a, b) => b[1].distance - a[1].distance);
+
+  console.log(nearestNeighbors);
 
   // getting the top 3 nearest/most similar
   const top3Neighbors = nearestNeighbors.slice(0, 3);
@@ -459,7 +462,8 @@ export function findSimilarPlayers() {
 
   // getting the 3 least similar
   const bottom3neighbours = nearestNeighbors.slice(-3, nearestNeighbors.length);
-  bottom3neighbours.sort((a, b) => b[1].distance - a[1].distance);
+
+  bottom3neighbours.sort((a, b) => a[1].distance - b[1].distance);
 
   console.log("\n\n\nLeast Similar:");
   // 'nearestNeighbors' contains the top matches
