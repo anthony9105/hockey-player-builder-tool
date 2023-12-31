@@ -613,7 +613,7 @@ export const PLAYER_TYPES = {
         },
         Two_way_offensive_threat: {
             DisplayName: "Goalscoring Playmaking Two-way Grinder",
-            Description: "Great at practically everything especially utitlizing agility and balance along the boards",
+            Description: "Great at everything",
             minimums: {
                 Defense: {
                     DefensiveAwareness: 0.88,
