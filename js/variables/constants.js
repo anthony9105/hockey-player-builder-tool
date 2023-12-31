@@ -271,29 +271,31 @@ export const PLAYER_TYPES = {
     Forward: {
         // All around offensive threat but still specializes in goalscoring/shooting/sniping
         Sniper: {
-            DisplayName: "Sniping Offenive Threat",
+            DisplayName: "Sniper",
+            Description: "Exceptional shooting stands out above everything else but still elite in all other offensive skills",
             minimums: {
-                Shooting_AVG: 0.87,
+                Shooting_AVG: 0.9,
                 Puckskills: {
-                    Passing: 0.86,
-                    Deking: 0.86,
-                    PuckControl: 0.88,
-                    HandEye: 0.84,
-                    OffensiveAwareness: 0.87,
+                    Passing: 0.88,
+                    Deking: 0.88,
+                    PuckControl: 0.89,
+                    HandEye: 0.85,
+                    OffensiveAwareness: 0.88,
                 },
             },
             maximums: {
-                Defense_AVG: 0.83,
+                Defense_AVG: 0.85,
                 Physical: {
                     BodyChecking: 0.82,
-                    Strength: 0.83,
+                    Strength: 0.86,
                 }
             },
         },
         Pure_Sniper: {
             DisplayName: "Pure Sniper",
+            Description: "Exceptional shooting and not much else",
             minimums: {
-                Shooting_AVG: 0.87,
+                Shooting_AVG: 0.9,
             },
             maximums: {
                 Puckskills: {
@@ -309,8 +311,9 @@ export const PLAYER_TYPES = {
         },
         Sniping_pwf: {
             DisplayName: "Sniping Power Forward",
+            Description: "Exceptional shooting and good strength/power",
             minimums: {
-                Shooting_AVG: 0.87,
+                Shooting_AVG: 0.9,
                 Physical: {
                     BodyChecking: 0.85,
                     Strength: 0.84,
@@ -318,13 +321,14 @@ export const PLAYER_TYPES = {
             },
             maximums: {
                 Puckskills: {
-                    Passing: 0.86,
+                    Passing: 0.88,
                 },
-                Defense_AVG: 0.83,
+                Defense_AVG: 0.85,
             },
         },
         Pure_Playmaker: {
             DisplayName: "Pure Playmaker",
+            Description: "Elite passing and playmaking but hardly scores goals",
             minimums: {
                 Puckskills: {
                     Passing: 0.88,
@@ -343,6 +347,7 @@ export const PLAYER_TYPES = {
         },
         Physical_Playmaker: {
             DisplayName: "Playmaking Power Forward",
+            Description: "Elite passing and strength/power but hardly scores goals",
             minimums: {
                 Puckskills: {
                     Passing: 0.88,
@@ -356,12 +361,13 @@ export const PLAYER_TYPES = {
             },
             maximums: {
                 Shooting_AVG: 0.8,
-                Defense_AVG: 0.83,
+                Defense_AVG: 0.85,
             },
         },
         // Good all around offensively, good skating, weak defense, weak physicality
         Offensive_Threat: {
             DisplayName: "Offensive Threat",
+            Description: "Elite all-around offensive game, lacking on defense and physically",
             minimums: {
                 Puckskills: {
                     Passing: 0.87,
@@ -381,7 +387,7 @@ export const PLAYER_TYPES = {
                 },
             },
             maximums: {
-                Defense_AVG: 0.83,
+                Defense_AVG: 0.85,
                 Physical: {
                     BodyChecking: 0.8,
                     Strength: 0.83,
@@ -390,6 +396,7 @@ export const PLAYER_TYPES = {
         },
         Rush_offense_specialist: {
             DisplayName: "Rush Offense Specialist",
+            Description: "Possesses elite skating and decent offensive skills, not good physically or defensively",
             minimums: {
                 Puckskills: {
                     Passing: 0.81,
@@ -403,15 +410,16 @@ export const PLAYER_TYPES = {
                 },
             },
             maximums: {
-                Defense_AVG: 0.78,
+                Defense_AVG: 0.81,
                 Physical: {
                     BodyChecking: 0.8,
-                    Strength: 0.8,
+                    Strength: 0.81,
                 }
             },
         },
         High_intensity_twoway_fwd: {
             DisplayName: "High-intensity Two-way Forward",
+            Description: "Menace on the forecheck with great skating and defense.  Offensive skills are lacking.",
             minimums: {
                 Defense: {
                     StickChecking: 0.8,
@@ -433,10 +441,12 @@ export const PLAYER_TYPES = {
         },
         Penalty_kill_specialist: {
             DisplayName: "Penalty Kill Specialist", 
+            Description: "Fearless forward who will block any shot, great for killing penalties and not much else",
             minimums: {
                 Defense: {
                     StickChecking: 0.85,
-                    DefensiveAwareness: 0.85,
+                    DefensiveAwareness: 0.86,
+                    ShotBlocking: 0.87,
                 },
             },
             maximums: {
@@ -455,6 +465,7 @@ export const PLAYER_TYPES = {
         },
         Faceoff_Specialist: {
             DisplayName: "Faceoff Specialist",
+            Description: "Elite at taking faceoffs",
             minimums: {
                 Defense: {
                     Faceoffs: 0.9,
@@ -478,6 +489,7 @@ export const PLAYER_TYPES = {
         //
         Grinder: {
             DisplayName: "Grinder",
+            Description: "Uses physicality and defensive play to be effective.  Also great hand-eye for scoring deflections and rebounds",
             minimums: {
                 Defense_AVG: 0.85,
                 Physicality: {
@@ -502,6 +514,7 @@ export const PLAYER_TYPES = {
         },
         Two_way_fwd: {
             DisplayName: "Two-way Forward",
+            Description: "Well-rounded but does not stand out in any area other than defensively",
             minimums: {
                 Defense_AVG: 0.85,
             },
@@ -522,7 +535,11 @@ export const PLAYER_TYPES = {
         },
         Powerforward: {
             DisplayName: "Power Forward",
+            Description: "Utilizes elite strength and power to be effective",
             minimums: {
+                Skating: {
+                    Balance: 88,
+                },
                 Physicality: {
                     BodyChecking: 0.88,
                     Strength: 0.88,
@@ -546,26 +563,27 @@ export const PLAYER_TYPES = {
         },
         Speedy_Offensive_Threat: {
             DisplayName: "Speedy Offensive Threat",
+            Description: "Exceptional skating along with elite puck carrying, passing, and goal scoring ability",
             minimums: {
                 Puckskills: {
-                    Passing: 0.85,
-                    PuckControl: 0.85,
-                    OffensiveAwareness: 0.85,
+                    Passing: 0.87,
+                    PuckControl: 0.87,
+                    OffensiveAwareness: 0.87,
                 },
                 Shooting: {
-                    WristshotAccuracy: 0.82,
-                    WristshotPower: 0.81,
+                    WristshotAccuracy: 0.83,
+                    WristshotPower: 0.83,
                     SlapshotAccuracy: 0.82,
-                    SlapshotPower: 0.81,
+                    SlapshotPower: 0.82,
                 },
                 Skating: {
                     Speed: 0.92,
                     Acceleration: 0.92,
-                    Agility: 0.92,
+                    Agility: 0.9,
                 },
             },
             maximums: {
-                Defense_AVG: 0.78,
+                Defense_AVG: 87,
                 Physical: {
                     BodyChecking: 0.83,
                     Strength: 0.84,
@@ -574,6 +592,7 @@ export const PLAYER_TYPES = {
         },
         Two_way_powerforward: {
             DisplayName: "Two-way Power Forward",
+            Description: "Utilizing both solid defense and physicality to make an impact",
             minimums: {
                 Defense_AVG: 0.85,
                 Physical_AVG: 0.85,
@@ -592,8 +611,83 @@ export const PLAYER_TYPES = {
                 },
             },
         },
+        Two_way_offensive_threat: {
+            DisplayName: "Goalscoring Playmaking Two-way Grinder",
+            Description: "Great at practically everything especially utitlizing agility and balance along the boards",
+            minimums: {
+                Defense: {
+                    DefensiveAwareness: 0.88,
+                    StickChecking: 0.88,
+                },
+                Physical: {
+                    Strength: 0.84,
+                },
+                Skating: {
+                    Speed: 0.86,
+                    Acceleration: 0.86,
+                    Agility: 0.88,
+                    Balance: 0.88,
+                },
+                Puckskills: {
+                    PuckControl: 0.88,
+                    Passing: 0.88,
+                    OffensiveAwareness: 0.88
+                },
+                Shooting_AVG: 0.84,
+            },
+            maximums: {
+                Shooting_AVG: 0.9,
+            },
+        },
+        Undersized_finesse_forward: {
+            DisplayName: "Undersized Finesse Forward",
+            Description: "You utilize your skill to make up for the lack of size and strength",
+            minimums: {
+                Puckskills: {
+                    PuckControl: 0.87,
+                    Passing: 0.86,
+                    OffensiveAwareness: 0.87
+                },
+                Shooting_AVG: 0.8,
+                Skating: {
+                    Speed: 0.86,
+                    Acceleration: 0.86,
+                    Agility: 0.86,
+                },
+            },
+            maximums: {
+                Physical: {
+                    Strength: 0.82,
+                    BodyChecking: 0.81,
+                },
+                Skating: {
+                    Balance: 0.81
+                }
+            }
+        },
+        Mobile_depth_fwd: {
+            DisplayName: "Mobile Depth Finesse Forward",
+            Description: "Solid skater who can put up some points but doesn't really stand out anywhere",
+            minimums: {
+                Skating: {
+                    Acceleration: 0.86,
+                    Agility: 0.86,
+                    Speed: 0.86,
+                },
+                Puckskills: {
+                    Passing: 0.8,
+                    PuckControl: 0.8,
+                }
+            },
+            maximums: {
+                Puckskills_AVG: 0.86,
+                Shooting_AVG: 0.86,
+                Defense_AVG: 0.86
+            }
+        },
         Extra_fwd: {
-            DisplayName: "Complete Forward Liability",
+            DisplayName: "Two-way Liability",
+            Description: "Liability on all parts of the ice",
             maximums: {
                 Defense_AVG: 0.77,
                 Physical_AVG: 0.79,
@@ -606,69 +700,97 @@ export const PLAYER_TYPES = {
     Defense: {
         Offenisve_dman: {
             DisplayName: "Offensive Defenseman",
+            Description: "Overall offensive side of your game stands out above all else",
             minimums: {
-                Shooting_AVG: 0.82,
+                Shooting_AVG: 0.81,
                 Puckskills: {
                     PuckControl: 0.87,
-                    Passing: 0.87,
-                    OffensiveAwareness: 0.85
+                    Passing: 0.88,
+                    OffensiveAwareness: 0.88
                 },
             },
             maximums: {
-                Defense_AVG: 0.86,
+                Defense: {
+                    DefensiveAwareness: 0.89
+                },
                 Physical_AVG: 0.84,
+            },
+        },
+        Fourth_fwd_dman: {
+            DisplayName: "Fourth Forward",
+            Description: "Possesses such elite offensive skills that people wonder why you are a defenseman instead of a forward",
+            minimums: {
+                Shooting_AVG: 0.83,
+                Puckskills: {
+                    PuckControl: 0.9,
+                    Passing: 0.9,
+                    OffensiveAwareness: 0.9
+                },
+                Skating: {
+                    Acceleration: 0.87,
+                    Speed: 0.87,
+                    Agility: 0.87
+                }
+            },
+            maximums: {
+                Defense_AVG: 0.85,
+                Physical_AVG: 0.81,
             },
         },
         Defensive_dman: {
             DisplayName: "Defensive Defenseman",
+            Description: "Elite defensively but still not a liability offensively",
             minimums: {
                 Defense_AVG: 0.88,
                 Physical_AVG: 0.84,
             },
             maximums: {
                 Puckskills: {
-                    PuckControl: 0.85,
-                    Passing: 0.87,
-                    OffensiveAwareness: 0.82
+                    PuckControl: 0.86,
+                    Passing: 0.89,
+                    OffensiveAwareness: 0.85
                 },
             },
         },
         Pure_defensive_dman: {
             DisplayName: "Pure Shutdown Defenseman",
+            Description: "Elite defensively but a bit lost with the puck",
             minimums: {
                 Defense_AVG: 0.88,
                 Physical_AVG: 0.84,
             },
             maximums: {
                 Puckskills: {
-                    PuckControl: 0.82,
-                    Passing: 0.82,
-                    OffensiveAwareness: 0.8
+                    PuckControl: 0.84,
+                    Passing: 0.84,
+                    OffensiveAwareness: 0.82
                 },
             },
         },
         Tough_Defensive_dman: {
             DisplayName: "Tough Defensive Defenseman",
+            Description: "Elite in a combination of defensive skills and physicality",
             minimums: {
                 Defense_AVG: 0.88,
-                Physical_AVG: 0.88,
+                Physical_AVG: 0.87,
             },
             maximums: {
                 Puckskills: {
                     PuckControl: 0.85,
                     Passing: 0.87,
-                    OffensiveAwareness: 0.82
+                    OffensiveAwareness: 0.84
                 },
             },
         },
         Mobile_offensive_dman: {
             DisplayName: "Mobile Offensive Defenseman",
+            Description: "Exceptional skating and puck carrying, as well as offensive skills",
             minimums: {
                 Shooting_AVG: 0.82,
                 Puckskills: {
                     PuckControl: 0.87,
                     Passing: 0.87,
-                    OffensiveAwareness: 0.85
+                    OffensiveAwareness: 0.86
                 },
                 Skating: {
                     Speed: 0.91,
@@ -677,38 +799,41 @@ export const PLAYER_TYPES = {
                 },
             },
             maximums: {
-                Defense_AVG: 0.86,
-                Physical_AVG: 0.84,
+                Defense: {
+                    DefensiveAwareness: 0.9
+                },
+                Physical_AVG: 0.8,
             },
         },
         Two_way_dman: {
             DisplayName: "Two-way Defenseman",
+            Description: "A defenseman with no real weaknesses especially reliable defensively",
             minimums: {
                 Puckskills: {
                     PuckControl: 0.85,
-                    Passing: 0.87,
-                    OffensiveAwareness: 0.83
+                    Passing: 0.86,
+                    OffensiveAwareness: 0.85
                 },
                 Skating: {
-                    Speed: 0.85,
-                    Acceleration: 0.85,
-                    Agility: 0.85,
+                    Speed: 0.83,
+                    Acceleration: 0.83,
+                    Agility: 0.83,
                 },
-                Defense_AVG: 0.85,
+                Defense_AVG: 0.87,
             },
             maximums: {
-                Shooting_AVG: 0.82,
-                Defense_AVG: 0.9,
-                Physical_AVG: 0.84,
+                Defense_AVG: 0.95,
+                Physical_AVG: 0.87,
             },
         },
         Mobile_two_way_dman: {
             DisplayName: "Mobile Two-way Defenseman",
+            Description: "A defenseman with no real weaknesses, and exceptional skating",
             minimums: {
                 Puckskills: {
-                    PuckControl: 0.85,
+                    PuckControl: 0.86,
                     Passing: 0.87,
-                    OffensiveAwareness: 0.83
+                    OffensiveAwareness: 0.86
                 },
                 Skating: {
                     Speed: 0.91,
@@ -718,33 +843,38 @@ export const PLAYER_TYPES = {
                 Defense_AVG: 0.85,
             },
             maximums: {
-                Shooting_AVG: 0.82,
-                Defense_AVG: 0.9,
+                Defense_AVG: 0.95,
                 Physical_AVG: 0.84,
             },
         },
         Goal_scoring_two_way_dman: {
             DisplayName: "Goal-scoring Two-way Defenseman",
+            Description: "Well-rounded defenseman with a great shot, and average physicality at best",
             minimums: {
                 Puckskills: {
-                    PuckControl: 0.85,
+                    PuckControl: 0.86,
                     Passing: 0.87,
-                    OffensiveAwareness: 0.83
+                    OffensiveAwareness: 0.86
                 },
-                Shooting_AVG: 0.83,
-                Defense_AVG: 0.85,
+                Shooting_AVG: 0.84,
+                Defense_AVG: 0.87,
             },
             maximums: {
-                Defense_AVG: 0.9,
+                Defense_AVG: 0.95,
                 Physical_AVG: 0.84,
+                Skating: {
+                    Acceleration: 0.9,
+                    Speed: 0.9
+                }
             },
         },
         Goal_scoring_defensive_dman: {
             DisplayName: "Goal-scoring Defensive Defenseman",
+            Description: "Elite defensively with a good shot",
             minimums: {
                 Defense_AVG: 0.88,
                 Physical_AVG: 0.84,
-                Shooting_AVG: 0.83,
+                Shooting_AVG: 0.82,
             },
             maximums: {
                 Puckskills: {
@@ -754,14 +884,34 @@ export const PLAYER_TYPES = {
                 },
             },
         },
-        Seventh_dman: {
-            DisplayName: "Pilon",
+        Enforcer_dman: {
+            DisplayName: "Enforcer Defenseman",
+            Description: "Uses physicality and fighting to be effective, average at best defensively, and lacking in all other areas",
+            minimums: {
+                Physical: {
+                    BodyChecking: 0.85,
+                    Strength: 0.84,
+                    FightingSkill: 0.87
+                }
+            },
             maximums: {
-                Defense_AVG: 0.81,
-                Physical_AVG: 0.8,
-                Shooting_AVG: 0.78,
-                Skating_AVG: 0.8,
-                Puckskills_AVG: 0.78,
+                Puckskills: {
+                    PuckControl: 0.83,
+                    Passing: 0.85,
+                    OffensiveAwareness: 0.82
+                },
+                Defense_AVG: 0.88
+            },
+        },
+        Seventh_dman: {
+            DisplayName: "Pylon",
+            Description: "Liability in all aspects of the game, especially offensively and skating wise",
+            maximums: {
+                Defense_AVG: 0.85,
+                Physical_AVG: 0.84,
+                Shooting_AVG: 0.8,
+                Skating_AVG: 0.82,
+                Puckskills_AVG: 0.8,
             },
         },
     }
