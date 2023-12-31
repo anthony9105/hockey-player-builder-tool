@@ -264,6 +264,9 @@ export const ATTRIBUTE_WEIGHTS = {
     }
   };
 
+/**
+ * PLAYER TYPES
+ */
 export const PLAYER_TYPES = {
     Forward: {
         // All around offensive threat but still specializes in goalscoring/shooting/sniping
@@ -276,11 +279,11 @@ export const PLAYER_TYPES = {
                     Deking: 0.86,
                     PuckControl: 0.88,
                     HandEye: 0.84,
-                    OffensiveAwareness: 0.89,
+                    OffensiveAwareness: 0.87,
                 },
             },
             maximums: {
-                Defense_AVG: 0.79,
+                Defense_AVG: 0.83,
                 Physical: {
                     BodyChecking: 0.82,
                     Strength: 0.83,
@@ -297,14 +300,14 @@ export const PLAYER_TYPES = {
                     Passing: 0.82,
                     Deking: 0.87,
                 },
-                Defense_AVG: 0.79,
+                Defense_AVG: 0.83,
                 Physical: {
                     BodyChecking: 0.82,
                     Strength: 0.83,
                 }
             },
         },
-        Physical_Sniper: {
+        Sniping_pwf: {
             DisplayName: "Sniping Power Forward",
             minimums: {
                 Shooting_AVG: 0.87,
@@ -315,9 +318,9 @@ export const PLAYER_TYPES = {
             },
             maximums: {
                 Puckskills: {
-                    Passing: 0.82,
+                    Passing: 0.86,
                 },
-                Defense_AVG: 0.79,
+                Defense_AVG: 0.83,
             },
         },
         Pure_Playmaker: {
@@ -335,7 +338,7 @@ export const PLAYER_TYPES = {
                     BodyChecking: 0.8,
                     Strength: 0.83,
                 },
-                Defense_AVG: 0.79,
+                Defense_AVG: 0.83,
             },
         },
         Physical_Playmaker: {
@@ -353,7 +356,7 @@ export const PLAYER_TYPES = {
             },
             maximums: {
                 Shooting_AVG: 0.8,
-                Defense_AVG: 0.79,
+                Defense_AVG: 0.83,
             },
         },
         // Good all around offensively, good skating, weak defense, weak physicality
@@ -361,9 +364,9 @@ export const PLAYER_TYPES = {
             DisplayName: "Offensive Threat",
             minimums: {
                 Puckskills: {
-                    Passing: 0.85,
-                    PuckControl: 0.85,
-                    OffensiveAwareness: 0.85,
+                    Passing: 0.87,
+                    PuckControl: 0.88,
+                    OffensiveAwareness: 0.89,
                 },
                 Shooting: {
                     WristshotAccuracy: 0.82,
@@ -378,10 +381,10 @@ export const PLAYER_TYPES = {
                 },
             },
             maximums: {
-                Defense_AVG: 0.78,
+                Defense_AVG: 0.83,
                 Physical: {
                     BodyChecking: 0.8,
-                    Strength: 0.8,
+                    Strength: 0.83,
                 }
             },
         },
@@ -521,8 +524,8 @@ export const PLAYER_TYPES = {
             DisplayName: "Power Forward",
             minimums: {
                 Physicality: {
-                    BodyChecking: 0.85,
-                    Strength: 0.87,
+                    BodyChecking: 0.88,
+                    Strength: 0.88,
                 },
                 Shooting: {
                     WristshotPower: 0.83,
@@ -763,3 +766,12 @@ export const PLAYER_TYPES = {
         },
     }
 }
+
+/**
+ * ATTRIBUTE CATEGORIES
+ */
+export const skatingAttributes = ['Acceleration', 'Agility', 'Balance', 'Speed'];
+export const defenseAttributes = ['DefensiveAwareness', 'StickChecking', 'ShotBlocking'];
+export const shootingAttributes = ['SlapshotAccuracy', 'SlapshotPower', 'WristshotAccuracy', 'WristshotPower'];
+export const puckSkillsAttributes = ['Deking', 'HandEye', 'OffensiveAwareness', 'Passing', 'PuckControl']
+export const physicalityAttributes = ['BodyChecking', 'Strength', 'Durability'];
