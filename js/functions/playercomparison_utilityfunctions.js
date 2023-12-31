@@ -1,4 +1,5 @@
 import * as Constants from "../variables/constants.js";
+import { playerTypes } from "../variables/global_variables.js";
 
 // global variable for the player data
 let playerData;
@@ -76,7 +77,7 @@ function normalizePlayerData(player) {
 
   // attribute names, and attribute names selected to be used for the comparisons
   const attributeNames = Object.keys(playerData[0]);
-  const selectedAttributeNames = attributeNames.slice(2, -8);
+  const selectedAttributeNames = attributeNames.slice(2, attributeNames.length);
 
   // normalizing the numeric values to a scale of 0.0 to 1.0
   playerData = playerData.map(player => normalizePlayerData(player));
@@ -99,8 +100,12 @@ function normalizePlayerData(player) {
 
   playerData.forEach((player, index) => {
     if (player.Name == "Steven Stamkos") {
-      console.log(player);
-      console.log(index);
+      // console.log(player);
+      // console.log(index);
+    }
+    else if (player.Name == "Alex Ovechkin") {
+      // console.log(player);
+      // console.log(index);
     }
   });
 /**
@@ -166,6 +171,217 @@ function cosineDistance(a, b) {
 }
 
 /**
+ * getCategoryAverage function used to get the average of the category
+ * @param {object} playerAttributes all the attributes for the player
+ * @param {String[]} attributeNames the attribute names for the current category
+ * @returns the average
+ */
+function getCategoryAverage(playerAttributes, attributeNames) {
+  const sum = attributeNames.reduce((acc, attributeNames) => acc + playerAttributes[attributeNames], 0);
+  return sum / attributeNames.length;
+}
+
+/**
+ * getCategoryAverages function used to calculate each attribute category's average.
+ * Note: fighting skill, discipline, endurance, and faceoffs are left out of any of these averages.
+ * @param {object} playerAttributes all the attributes of the player 
+ * @returns {object} the category averages
+ */
+function getCategoryAverages(playerAttributes) {
+  const Skating_AVG = getCategoryAverage(playerAttributes, Constants.skatingAttributes);
+  const Defense_AVG = getCategoryAverage(playerAttributes, Constants.defenseAttributes);
+  const Shooting_AVG = getCategoryAverage(playerAttributes, Constants.shootingAttributes);
+  const Physicality_AVG = getCategoryAverage(playerAttributes, Constants.physicalityAttributes);
+  const Puckskills_AVG = getCategoryAverage(playerAttributes, Constants.puckSkillsAttributes);
+
+  return { Skating_AVG, Defense_AVG, Shooting_AVG, Physicality_AVG, Puckskills_AVG };
+}
+
+/**
+ * 
+ * @param {object} playerAttributes all the attributes of the player
+ * @param {object} playerType the player type and its information
+ * @param {object} categoryAvgs the attribute category averages
+ * @returns {boolean} whether the player meets the given player type requirements
+ */
+function meetsRequirements(playerAttributes, playerType, categoryAvgs) {
+
+  // checking the minimum requirements
+  if (playerType.minimums != undefined) {
+    for (const category in playerType.minimums) {
+      if (typeof playerType.minimums[category] === 'object') {
+        for (const attribute in playerType.minimums[category]) {
+          let playerAttributeToCheck;
+          if (attribute.includes("AVG")) {
+            playerAttributeToCheck = categoryAvgs[attribute];
+          }
+          else {
+            playerAttributeToCheck = playerAttributes[attribute];
+          }
+
+          const minVal = playerType.minimums[category][attribute];
+
+          if (playerAttributeToCheck < minVal) {
+            console.log("", playerType, "\n", attribute, " too low");
+            return false;
+          }
+        }
+      }
+      else {
+        let playerAttributeToCheck;
+        if (category.includes("AVG")) {
+          playerAttributeToCheck = categoryAvgs[category];
+        }
+        else {
+          playerAttributeToCheck = playerAttributes[category];
+        }
+
+        const minVal = playerType.minimums[category];
+
+        if (playerAttributeToCheck < minVal) {
+          console.log("", playerType, "\n", category, " too low");
+          return false;
+        }
+      }
+    }
+  }
+
+  // checking maximum requirements
+  if (playerType.maximums != undefined) {
+    for (const category in playerType.maximums) {
+      if (typeof playerType.maximums[category] === 'object') {
+        for (const attribute in playerType.maximums[category]) {
+          let playerAttributeToCheck;
+          if (attribute.includes("AVG")) {
+            playerAttributeToCheck = categoryAvgs[attribute];
+          }
+          else {
+            playerAttributeToCheck = playerAttributes[attribute];
+          }
+
+          const maxVal = playerType.maximums[category][attribute];
+
+          if (playerAttributeToCheck > maxVal) {
+            console.log("", playerType, "\n", attribute, " too high");
+            return false;
+          }
+        }
+      }
+      else {
+        let playerAttributeToCheck;
+        if (category.includes("AVG")) {
+          playerAttributeToCheck = categoryAvgs[category];
+        }
+        else {
+          playerAttributeToCheck = playerAttributes[category];
+        }
+
+        const maxVal = playerType.maximums[category];
+
+        if (playerAttributeToCheck > maxVal) {
+          console.log("", playerType, "\n", category, " too high");
+          return false;
+        }
+      }
+    }
+  }
+
+  console.log("\n\n\nPLAYER MEETS REQUIREMENTS FOR:");
+  console.log(playerType);
+  // if this point is reached, it means that all requirments are met,
+  // so return true.
+  return true;
+}
+
+function getTopAttributes() {
+
+}
+
+function calculateScore(playerAttributes, playerType, categoryAvgs, isMinimum) {
+  let minimumsScore = 0;
+  let count = 0;
+
+  // checking the minimum requirements
+  if (playerType.minimums != undefined) {
+    for (const category in playerType.minimums) {
+      if (typeof playerType.minimums[category] === 'object') {
+        for (const attribute in playerType.minimums[category]) {
+          let playerAttributeToCheck;
+          if (attribute.includes("AVG")) {
+            playerAttributeToCheck = categoryAvgs[attribute];
+          }
+          else {
+            playerAttributeToCheck = playerAttributes[attribute];
+          }
+
+          const minVal = playerType.minimums[category][attribute];
+
+          minimumsScore += playerAttributeToCheck - minVal;
+          count++;
+        }
+      }
+      else {
+        let playerAttributeToCheck;
+        if (category.includes("AVG")) {
+          playerAttributeToCheck = categoryAvgs[category];
+        }
+        else {
+          playerAttributeToCheck = playerAttributes[category];
+        }
+
+        const minVal = playerType.minimums[category];
+
+        minimumsScore += playerAttributeToCheck - minVal;
+        count++;
+      }
+    }
+  }
+
+  return minimumsScore / count;
+
+  // return averageScore;
+}
+
+function determineBestPlayerType(playerAttributes, playerTypes, categoryAvgs) {
+  let highestScore = null;
+  let bestPlayerTypeFit = null;
+
+  // Iterate over each player type
+  for (const typeName in playerTypes) {
+    const playerType = playerTypes[typeName];
+
+    // Check if all requirements are met
+    if (meetsRequirements(playerAttributes, playerType, categoryAvgs)) {
+
+      if (highestScore = null) {
+        highestScore = calculateScore(playerAttributes, playerType, categoryAvgs, true);
+      }
+      else {
+        const tempScore = calculateScore(playerAttributes, playerType, categoryAvgs, true);
+
+        if (tempScore > highestScore) {
+          highestScore = tempScore;
+          bestPlayerTypeFit = playerType;
+        }
+      }
+    }
+  }
+
+  return bestPlayerTypeFit;
+}
+
+/**
+ * getPlayerType function used to get the specific player type of the player.
+ * Needed for the attribute weights for the comparison.
+ * @param {object} playerAttributes all the attributes of the player
+ */
+function getPlayerType(playerAttributes) {
+  const categoryAvgs = getCategoryAverages(playerAttributes);
+  console.log(determineBestPlayerType(playerAttributes, Constants.PLAYER_TYPES.Defense, categoryAvgs));
+
+}
+
+/**
  * findSimilarPlayers function used to find the most similar and least similar players
  */
 export function findSimilarPlayers() {
@@ -199,50 +415,76 @@ export function findSimilarPlayers() {
     WristshotPower: 0.87,
   }
 
-  // Find the top 3 most similar players
-  const nearestNeighbors = kdtree.nearest(samplePlayer, 3);
+  const scalingFactor = 1.035;
+  for (let i=0; i < playerData.length; i++) {
+    for (const attribute in playerData[i]) {
+      if (typeof playerData[i][attribute] === 'number') {
+        playerData[i][attribute] = parseFloat((playerData[i][attribute] * scalingFactor).toFixed(2));
+      }
+    }
+  }
+  samplePlayer = playerData[818];
+  // playerData.forEach((player, index) => {
+  //   if (player.Name == "Erik Karlsson") {
+  //     console.log(player);
+  //     console.log(index);
+  //   }
+  //   else if (player.Name == "Alex Ovechkin") {
+  //     console.log(player);
+  //     console.log(index);
+  //   }
+  // });
+  console.log("Player being used:");
+  console.log(samplePlayer);
 
+
+  getPlayerType(samplePlayer);
+
+  // Find the top 3 most similar players
+  // (subject to change: finding 871 (all players) for nearest neighbours)
+  const nearestNeighbors = kdtree.nearest(samplePlayer, playerData.length);
+
+  // sorting by ascending order
   nearestNeighbors.sort((a, b) => a[1].distance - b[1].distance);
 
-  console.log("Most Similar:");
+  // getting the top 3 nearest/most similar
+  const top3Neighbors = nearestNeighbors.slice(0, 3);
+
+
+  console.log("\n\n\nMost Similar:");
   // 'nearestNeighbors' contains the top matches
-  nearestNeighbors.forEach((nn, index) => {
+  top3Neighbors.forEach((nn, index) => {
+    console.log("%s  %o  Distance: %f, ", index + 1, nn[0], nn[1]['distance']);
+  });
+
+  // getting the 3 least similar
+  const bottom3neighbours = nearestNeighbors.slice(-3, nearestNeighbors.length);
+  bottom3neighbours.sort((a, b) => b[1].distance - a[1].distance);
+
+  console.log("\n\n\nLeast Similar:");
+  // 'nearestNeighbors' contains the top matches
+  bottom3neighbours.forEach((nn, index) => {
     console.log("%s  %o  Distance: %f, ", index + 1, nn[0], nn[1]['distance']);
   });
   console.log("");
 
+  // // Calculate cosine distances between the query player and all players in the dataset
+  // const allDistances = playerData.map((player, index) => {
+  //   const info = cosineDistance(samplePlayer, player);
+  //   const distance = info.distance;
+  //   return { index, distance };
+  // });
 
-// Calculate cosine distances between the query player and all players in the dataset
-const allDistances = playerData.map((player, index) => {
-  const info = cosineDistance(samplePlayer, player);
-  const distance = info.distance;
-  return { index, distance };
-});
+  // // Sort all players based on distances in descending order
+  // const sortedPlayers = allDistances.sort((a, b) => b.distance - a.distance);
 
-
-// Sort all players based on distances in descending order
-const sortedPlayers = allDistances.sort((a, b) => b.distance - a.distance);
-
-
-// Display the 3 least similar players (farthest neighbors)
-// let j = 1;
-// console.log("Most Similar:");
-// for (let i = sortedPlayers.length - 1; i > sortedPlayers.length - 3 - 1; i--) {
-//   const { index, distance } = sortedPlayers[i];
-//   const nearestPlayer = playerData[index];
-//   console.log("%s %o Distance: %f", j, nearestPlayer, distance);
-//   j++;
-// }
-// console.log("");
-
-let k = 1;
-console.log("Least Similar:");
-for (let i = 0; i < 3; i++) {
-  const { index, distance } = sortedPlayers[i];
-  const farthestPlayer = playerData[index];
-  console.log("%s %o Distance: %f", k, farthestPlayer, distance);
-  k++;
-}
-
+  // let k = 1;
+  // console.log("\n\nLeast Similar:");
+  // for (let i = 0; i < 3; i++) {
+  //   const { index, distance } = sortedPlayers[i];
+  //   const farthestPlayer = playerData[index];
+  //   console.log("%s %o Distance: %f", k, farthestPlayer, distance);
+  //   k++;
+  // }
 
 } 
