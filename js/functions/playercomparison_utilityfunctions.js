@@ -206,7 +206,6 @@ function getCategoryAverages(playerAttributes) {
  * @returns {boolean} whether the player meets the given player type requirements
  */
 function meetsRequirements(playerAttributes, playerType, categoryAvgs) {
-
   // checking the minimum requirements
   if (playerType.minimums != undefined) {
     for (const category in playerType.minimums) {
@@ -295,9 +294,10 @@ function meetsRequirements(playerAttributes, playerType, categoryAvgs) {
 }
 
 /**
- * calculateScore function used to calculate the score (difference above the player
- * type minimum attribute values).  This is used when a player meets the requirements
- * of more than 1 player type, to determine which one is the best.
+ * calculateScore function used to calculate the score (average value
+ * of the important attributes for this player type (the minimum values)).  
+ * This is used when a player meets the requirements of more than 1 player 
+ * type, to determine which one is the best.
  * @param {object} playerAttributes the attributes for the player
  * @param {object} playerType the player type information
  * @param {object} categoryAvgs the attribute category averages
@@ -320,30 +320,41 @@ function calculateAttributeScore(playerAttributes, playerType, categoryAvgs) {
             playerAttributeToCheck = playerAttributes[attribute];
           }
 
-          const minVal = playerType.minimums[category][attribute];
-
+          //const minVal = playerType.minimums[category][attribute];
+          console.log(playerAttributeToCheck);
           // update the score and the count
-          minimumsScore += playerAttributeToCheck - minVal;
+          //minimumsScore += playerAttributeToCheck - minVal;
+          minimumsScore += playerAttributeToCheck;
           count++;
         }
       }
       else {
         let playerAttributeToCheck;
+        console.log(category);
         if (category.includes("AVG")) {
+          console.log("huh1");
+          console.log(categoryAvgs);
+          console.log(categoryAvgs[category]);
           playerAttributeToCheck = categoryAvgs[category];
         }
         else {
+          console.log("huh2");
           playerAttributeToCheck = playerAttributes[category];
         }
 
-        const minVal = playerType.minimums[category];
+        console.log(playerAttributeToCheck);
+
+        //const minVal = playerType.minimums[category];
 
         // update the score and the count
-        minimumsScore += playerAttributeToCheck - minVal;
+        //minimumsScore += playerAttributeToCheck - minVal;
+        minimumsScore += playerAttributeToCheck;
         count++;
       }
     }
   }
+
+  console.log(minimumsScore / count);
 
   return minimumsScore / count;
 
@@ -426,31 +437,27 @@ function calculateAbilityScore(playerType) {
  * current player
  * @param {object} playerAttributes the attributes for the player
  * @param {object} playerTypes the player type information
- * @param {object} categoryAvgs the attribute category averages
+ * @param {string} position the general position of the player ('Forward' or 'Defense')
  * @returns {object} the player type that is best fit for the current player
  */
-function determineBestPlayerType(playerAttributes, playerTypes, categoryAvgs) {
+function determineBestPlayerType(playerAttributes, categoryAvgs, position) {
   let highestScore = null;
-  let scores = [];
   let bestPlayerTypes = [];
   let bestPlayerTypeFit = null;
 
   // for each player type
-  for (const typeName in playerTypes) {
-    const playerType = playerTypes[typeName];
+  for (const typeName in Variables.playerTypesInfo[position]) {
+    const playerType = Variables.playerTypesInfo[position][typeName];
 
     // check if all requirements are met
     if (meetsRequirements(playerAttributes, playerType, categoryAvgs)) {
 
+      // determining the highest score using the ability scoring system
       if (highestScore = null) {
         highestScore = calculateAbilityScore(playerType);
-        scores.push(highestScore);
-        // highestScore = calculateAttributeScore(playerAttributes, playerType, categoryAvgs);
       }
       else {
         const tempScore = calculateAbilityScore(playerType);
-        scores.push(tempScore);
-        // const tempScore = calculateAttributeScore(playerAttributes, playerType, categoryAvgs);
 
         // update highestScore if tempScore is greater
         if (tempScore > highestScore) {
@@ -478,6 +485,7 @@ function determineBestPlayerType(playerAttributes, playerTypes, categoryAvgs) {
   else {
     let tieBreakerHighestScore = null;
     bestPlayerTypes.forEach(bestPlayerType => {
+      // determining the highest score now using the attribute scoring
       if (tieBreakerHighestScore = null) {
         tieBreakerHighestScore = calculateAttributeScore(playerAttributes, bestPlayerType, categoryAvgs);
         bestPlayerTypeFit = bestPlayerType;
@@ -501,15 +509,29 @@ function determineBestPlayerType(playerAttributes, playerTypes, categoryAvgs) {
  * getPlayerType function used to get the specific player type of the player.
  * Needed for the attribute weights for the comparison.
  * @param {object} playerAttributes all the attributes of the player
+ * @param {char} playerPosition character representing the player position 'C', 'W', or 'D' 
+ * @returns {object} the best player type fit
  */
 function getPlayerType(playerAttributes, playerPosition) {
   const categoryAvgs = getCategoryAverages(playerAttributes);
 
   // using forward ('C' or 'W') or defense ('D') player types
-  const playerTypesToUse = playerPosition == 'D' ? Constants.PLAYER_TYPES.Defense : Constants.PLAYER_TYPES.Forward;
+  const playerTypesToUse = playerPosition == 'D' ? Variables.playerTypesInfo.Defense : Variables.playerTypesInfo.Forward;
+  const position = playerPosition == 'D' ? 'Defense' : 'Forward';
 
-  console.log("\n\nBEST PLAYER TYPE FOR THIS PLAYER:", determineBestPlayerType(playerAttributes, playerTypesToUse, categoryAvgs));
+  let bestPlayerTypeFit;
+  bestPlayerTypeFit = determineBestPlayerType(playerAttributes, categoryAvgs, position);
 
+  // while bestPlayerType is null (meaning that no best player type was found)
+  while (bestPlayerTypeFit == null) {
+    // scaling down all the player type minimum requirements (by x amount.  Current attribute minimum minus x amount)
+    scalePlayerTypeRequirements(0.01, playerPosition);
+    bestPlayerTypeFit = determineBestPlayerType(playerAttributes, categoryAvgs, position);
+  }
+
+  console.log("BEST PLAYER TYPE FOR THIS PLAYER:");
+  console.log(bestPlayerTypeFit);
+  return bestPlayerTypeFit;
 }
 
 /**
@@ -524,6 +546,49 @@ function scalePlayerDataAttributes(scalingFactor) {
       }
     }
   }
+}
+
+/**
+ * scalePlayerTypeRequirements function used to scale player type requirement attributes if they are too low or high
+ * @param {number} scalingModifier scaling scalingModifier subtracted to all the player data attributes 
+ * @param {char} position the character representing the position 'D' for 'Defense', 'C' or 'W' for 'Forward'
+ */
+function scalePlayerTypeRequirements(scalingModifier, position) {
+  const positionKeyName = position == 'D' ? 'Defense' : 'Forward';
+
+  // console.log(Variables.playerTypesInfo[positionKeyName]);
+
+  // for each player type
+  Object.values(Variables.playerTypesInfo[positionKeyName]).forEach((playerType, index) => {
+    // console.log(index);
+    // console.log("\n\n\nBEFORE:\n", Object.values(Variables.playerTypesInfo[positionKeyName])[index]);
+    if (playerType.minimums != undefined) {
+      for (const category in playerType.minimums) {
+        // if playerType.minimums[category] value is an object.  Meaning both category and attribute are needed and it follows 
+        // something like this:   Skating: {Acceleration: 0.86}, so theres one more extra step before getting the 0.86 value
+        if (typeof playerType.minimums[category] === 'object') {
+          for (const attribute in playerType.minimums[category]) {
+
+            // console.log("\n\n\n\n");
+            // console.log(attribute);
+            // console.log(Object.values(Variables.playerTypesInfo[positionKeyName])[index].minimums[category][attribute]);
+            Object.values(Variables.playerTypesInfo[positionKeyName])[index].minimums[category][attribute] -= scalingModifier;
+            // console.log(Object.values(Variables.playerTypesInfo[positionKeyName])[index].minimums[category][attribute]);
+            
+          }
+        }
+        // if the playerType.minimums[category] is not an object, can just use category to get the value.  Ex: {Acceleration: 0.86}
+        else {
+          // console.log("\n\n\n\n");
+          // console.log(category);
+          // console.log(Object.values(Variables.playerTypesInfo[positionKeyName])[index].minimums[category]);
+          Object.values(Variables.playerTypesInfo[positionKeyName])[index].minimums[category] -= scalingModifier;
+          // console.log(Object.values(Variables.playerTypesInfo[positionKeyName])[index].minimums[category]);
+        }
+      }
+    }
+    // console.log("\n\n\AFTER:\n", Object.values(Variables.playerTypesInfo[positionKeyName])[index]);
+  });
 }
 
 /**
@@ -601,16 +666,16 @@ export function findSimilarPlayers() {
   });
   console.log("");
 
-    // playerData.forEach((player, index) => {
-  //   if (player.Name == "Erik Karlsson") {
-  //     console.log(player);
-  //     console.log(index);
-  //   }
-  //   else if (player.Name == "Alex Ovechkin") {
-  //     console.log(player);
-  //     console.log(index);
-  //   }
-  // });
+    playerData.forEach((player, index) => {
+    if (player.Name == "Chandler Stephenson") {
+      console.log(player);
+      console.log(index);
+    }
+    else if (player.Name == "Erik Karlsson") {
+      console.log(player);
+      console.log(index);
+    }
+  });
 
   // // Calculate cosine distances between the query player and all players in the dataset
   // const allDistances = playerData.map((player, index) => {
