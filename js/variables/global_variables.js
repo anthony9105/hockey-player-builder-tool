@@ -42,6 +42,8 @@ export let boostUpgradeValues = document.getElementsByClassName(Constants.BOOST_
 
 export let attributeMeters = document.getElementsByClassName(Constants.ATTRIBUTE_METER_CLASSNAME);
 
+export let abilityTypes = [];
+
 
 
 export let buildPosition;

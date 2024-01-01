@@ -153,6 +153,10 @@ async function setAbilityOptions() {
       Variables.abilityDescriptions[i].textContent = currentAbilityDescription;
       Variables.abilityDescriptions[i + totalAmountOfAbilities / 2].textContent = currentAbilityDescription;
 
+      // set the ability name and type description global variable
+      const abilityType = currentAbility.querySelector(Constants.XML_ABILITY_TYPE_NODE);
+      Variables.abilityTypes.push({name: currentAbilityName, type: abilityType.textContent});
+
       // increment indices
       j += 2;
       i++;

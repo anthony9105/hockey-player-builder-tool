@@ -12,6 +12,7 @@ import * as InitializerFunctions from "./initializers.js";
 import * as Variables from "../variables/global_variables.js";
 import * as UpdateFunctions from "./update_functions.js";
 import * as Constants from "../variables/constants.js";
+import { findSimilarPlayers } from "./playercomparison_utilityfunctions.js";
 
 let boostPreviousDropdown = [false];
 let abilityPreviousDropdown = {
@@ -582,5 +583,18 @@ export function increasingAndDecreasingAttributesListeners() {
         UpdateFunctions.increaseOrDecreaseAttribute("decrease", index);
       }
     });
+  });
+}
+
+
+/**
+ * COMPLETE BUILD BUTTON
+ */
+export function completeBuildButtonListener() {
+  const completeBuildButton = document.getElementById(Constants.COMPLETE_BUILD_BTTN_ID);
+
+  completeBuildButton.addEventListener("click", async function() {
+    console.log("hi");
+    findSimilarPlayers();
   });
 }

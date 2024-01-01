@@ -400,5 +400,21 @@ export function getWorstAttributes(amountOfAttributes) {
   return worstAttributes;
 }
 
-// export function loadPlayerData 
+/**
+ * getAttributeObject function used to get the attribute object from the player builder
+ * @returns {object} the attributes object for the current player build
+ */
+export function getAttributeObject() {
+  // converting html collection to array
+  const attributeValuesArray = Array.from(Variables.attributeValues);
+
+  const attributeObject = {};
+
+  attributeValuesArray.forEach((attributeValue, index) => {
+    // attribute names in order array used for the object keys, and attributeValue for the object values
+    attributeObject[Constants.ALL_ATTRIBUTES_INORDER_FULLSPELLING[index]] = parseInt(attributeValue.textContent);
+  });
+
+  return attributeObject;
+}
 

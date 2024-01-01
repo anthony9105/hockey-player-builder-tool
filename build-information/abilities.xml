@@ -5,6 +5,7 @@
         <Ability>
             <AbilityName>All Alone</AbilityName>
             <Description>Enhanced shooting power and accuracy on penalty shots and breakaways</Description>
+            <Type>Shooting</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Deking</AttributeName>
@@ -20,6 +21,7 @@
         <Ability>
             <AbilityName>Ankle Breaker</AbilityName>
             <Description>Enhanced deking ability at high speeds</Description>
+            <Type>PuckSkills</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Deking</AttributeName>
@@ -35,6 +37,7 @@
         <Ability>
             <AbilityName>Big Rig</AbilityName>
             <Description>Enhanced strength and agility when driving to the net protecting the puck</Description>
+            <Type>Physicality</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Puck Control</AttributeName>
@@ -50,6 +53,7 @@
         <Ability>
             <AbilityName>Big Tipper</AbilityName>
             <Description>Enhanced ability to deflect shots</Description>
+            <Type>HandEye</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Hand-Eye</AttributeName>
@@ -65,6 +69,7 @@
         <Ability>
             <AbilityName>Beauty Backhand</AbilityName>
             <Description>Enhanced power and accuracy on backhand shots</Description>
+            <Type>Shooting</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Wristshot Accuracy</AttributeName>
@@ -80,6 +85,7 @@
         <Ability>
             <AbilityName>Close Quarters</AbilityName>
             <Description>Enhanced power and accuracy on forehand shots close to the net</Description>
+            <Type>Shooting</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Wristshot Accuracy</AttributeName>
@@ -95,6 +101,7 @@
         <Ability>
             <AbilityName>Crease Crasher</AbilityName>
             <Description>Enhanced puck control, shooting power and accuracy off a rebound</Description>
+            <Type>Grit</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Puck Control</AttributeName>
@@ -110,6 +117,7 @@
         <Ability>
             <AbilityName>Heatseeker</AbilityName>
             <Description>Enhanced power and accuracy on forehand shots taken far away from the net</Description>
+            <Type>Shooting</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Wristshot Accuracy</AttributeName>
@@ -125,6 +133,7 @@
         <Ability>
             <AbilityName>It's Tricky</AbilityName>
             <Description>Enhanced ability to perform trick dekes, aswell as enhanced shot accuracy off trick dekes</Description>
+            <Type>PuckSkills</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Deking</AttributeName>
@@ -140,6 +149,7 @@
         <Ability>
             <AbilityName>Magnetic</AbilityName>
             <Description>Enhanced ability to recieve bouncing pucks and tough passes with speed</Description>
+            <Type>PuckSkills</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Hand-Eye</AttributeName>
@@ -155,6 +165,7 @@
         <Ability>
             <AbilityName>Make It Snappy</AbilityName>
             <Description>Enhanced power and accuracy on snapshots while skating</Description>
+            <Type>Shooting</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Wristshot Accuracy</AttributeName>
@@ -170,6 +181,7 @@
         <Ability>
             <AbilityName>Off The Rush</AbilityName>
             <Description>Enhanced power and accuracy on slapshots while skating</Description>
+            <Type>Rush</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Slapshot Power</AttributeName>
@@ -185,6 +197,7 @@
         <Ability>
             <AbilityName>One Tee</AbilityName>
             <Description>Enhanced power and accuracy on one timers, aswell as performing a one timer on an inaccurate pass</Description>
+            <Type>Shooting</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Hand-Eye</AttributeName>
@@ -200,6 +213,7 @@
         <Ability>
             <AbilityName>Puck On A String</AbilityName>
             <Description>Enhanced toe drag and stickhandling speed, aswell as other dekes at low skating speeds</Description>
+            <Type>PuckSkills</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Deking</AttributeName>
@@ -215,6 +229,7 @@
         <Ability>
             <AbilityName>Relentless</AbilityName>
             <Description>Enhanced ability to perform desperation and off balance plays with the puck, including enhanced shot and pass accuracy when performing these plays</Description>
+            <Type>PuckSkills</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Puck Control</AttributeName>
@@ -230,6 +245,7 @@
         <Ability>
             <AbilityName>Seeying Eye</AbilityName>
             <Description>Enhanced power and accuracy on shots where the goalie is screened.  Also lowers the goalies reaction time</Description>
+            <Type>Shooting</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Wristshot Accuracy</AttributeName>
@@ -245,6 +261,7 @@
         <Ability>
             <AbilityName>Send It</AbilityName>
             <Description>Enhanced pass assist and added ability to auto saucer pass long passes</Description>
+            <Type>Passing</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Passing</AttributeName>
@@ -260,6 +277,7 @@
         <Ability>
             <AbilityName>Shnipe</AbilityName>
             <Description>Enhanced power and accuracy on wristshots when the puck is settled</Description>
+            <Type>Shooting</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Wristshot Accuracy</AttributeName>
@@ -275,6 +293,7 @@
         <Ability>
             <AbilityName>Shock And Awe</AbilityName>
             <Description>Enhanced power and accuracy on shots shortly after doing a deke</Description>
+            <Type>Shooting</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Wristshot Accuracy</AttributeName>
@@ -290,6 +309,7 @@
         <Ability>
             <AbilityName>Skilled Up</AbilityName>
             <Description>Enhanced ability to perform lacrosse moves</Description>
+            <Type>PuckSkills</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Deking</AttributeName>
@@ -305,6 +325,7 @@
         <Ability>
             <AbilityName>Spin-o-rama</AbilityName>
             <Description>Enhanced speed and puck control when performing a spin-o-rama deke, aswell as enhanced pass and shot accuracy coming out of the spin</Description>
+            <Type>PuckSkills</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Deking</AttributeName>
@@ -320,6 +341,7 @@
         <Ability>
             <AbilityName>Tape To Tape</AbilityName>
             <Description>Enhanced pass power and accuracy on backhand and auto saucer passes within the player's vision</Description>
+            <Type>Passing</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Passing</AttributeName>
@@ -335,6 +357,7 @@
         <Ability>
             <AbilityName>Third Eye</AbilityName>
             <Description>Enhanced pass assist and ability to auto saucer passes out of a player's vision</Description>
+            <Type>Passing</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Passing</AttributeName>
@@ -350,6 +373,7 @@
         <Ability>
             <AbilityName>Thunderclap</AbilityName>
             <Description>Enhanced slapshot power and accuracy from the point</Description>
+            <Type>Shooting</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Slapshot Power</AttributeName>
@@ -365,6 +389,7 @@
         <Ability>
             <AbilityName>Total Eclipse</AbilityName>
             <Description>Enhanced ability to screen a goalie and block their view, reducing the goalie's reaction time</Description>
+            <Type>Grit</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Strength</AttributeName>
@@ -383,6 +408,7 @@
         <Ability>
             <AbilityName>Bouncer</AbilityName>
             <Description>Enhanced skill at battles near the net.  Stability, stick tension, and strength increased around the net, and opponents take longer to recover from these battles</Description>
+            <Type>Physicality</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Strength</AttributeName>
@@ -398,6 +424,7 @@
         <Ability>
             <AbilityName>Ice Pack</AbilityName>
             <Description>Enhanced shot blocking, recovery after blocking a shot, and reduced chance of injuries and being staggered</Description>
+            <Type>Grit</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Durability</AttributeName>
@@ -413,6 +440,7 @@
         <Ability>
             <AbilityName>No Contest</AbilityName>
             <Description>Enhanced stick tension and strength in picking up loose pucks, making battling for the puck more successful</Description>
+            <Type>Defense</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Stick Checking</AttributeName>
@@ -428,6 +456,7 @@
         <Ability>
             <AbilityName>Quick Pick</AbilityName>
             <Description>Enhanced ability to intercept pucks off the ice and the range to successfully intercept pucks</Description>
+            <Type>Defense</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Stick Checking</AttributeName>
@@ -443,6 +472,7 @@
         <Ability>
             <AbilityName>Shutdown</AbilityName>
             <Description>Enhanced poke checking against momentum or in a 1-on-1.  Also enhances body checking and shot blocking in 1-on-1s</Description>
+            <Type>Defense</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Stick Checking</AttributeName>
@@ -458,6 +488,7 @@
         <Ability>
             <AbilityName>Stick 'Em Up</AbilityName>
             <Description>Enhanced defensive stick speed, accuracy on poke checks against momentum or at speed, and reduces penalty chances</Description>
+            <Type>Defense</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Stick Checking</AttributeName>
@@ -473,6 +504,7 @@
         <Ability>
             <AbilityName>Truculence</AbilityName>
             <Description>Enhanced stability and accuracy on body checks, and enhanced chance of knocking over an opponent and reducing their energy</Description>
+            <Type>Physicality</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Acceleration</AttributeName>
@@ -488,6 +520,7 @@
         <Ability>
             <AbilityName>Yoink</AbilityName>
             <Description>Enhanced accuracy on stick lifts against momentum or at speed, aswell as opponents take longer to recover from being stick lifted</Description>
+            <Type>Defense</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Stick Checking</AttributeName>
@@ -506,6 +539,7 @@
         <Ability>
             <AbilityName>Born Leader</AbilityName>
             <Description>Provides all skater teammates a large energy boost after this player scores a goal</Description>
+            <Type>Grit</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Wristshot Accuracy</AttributeName>
@@ -521,6 +555,7 @@
         <Ability>
             <AbilityName>Bounce Back</AbilityName>
             <Description>Reduced chance of being injured and enhanced recovery when injured.  Can only be injured at most once a game</Description>
+            <Type>Physicality</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Durability</AttributeName>
@@ -536,6 +571,7 @@
         <Ability>
             <AbilityName>Elite Edges</AbilityName>
             <Description>Enhanced skating by being able to turn tight corners and still retain high speeds</Description>
+            <Type>Skating</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Agility</AttributeName>
@@ -551,6 +587,7 @@
         <Ability>
             <AbilityName>In Reverse</AbilityName>
             <Description>Enhanced speed and acceleration when back skating, including enhanced ability to pivot from forward to backward skating</Description>
+            <Type>Skating</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Agility</AttributeName>
@@ -566,6 +603,7 @@
         <Ability>
             <AbilityName>Shrug It Off</AbilityName>
             <Description>Reduces energy lost when hit and reduce chance of getting winded when knocked down</Description>
+            <Type>Physicality</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Endurance</AttributeName>
@@ -581,6 +619,7 @@
         <Ability>
             <AbilityName>Unstoppable Force</AbilityName>
             <Description>Enhanced strength with the puck and enhanced ability to retain control of the puck when off balance</Description>
+            <Type>Physicality</Type>
             <Requirements>
                 <Requirement>
                     <AttributeName>Puck Control</AttributeName>
@@ -598,6 +637,7 @@
         <Ability>
             <AbilityName>Back At Ya</AbilityName>
             <Description>Enables player to reverse hit opponents, aswell as an increased chance of knocking an opponent off balance</Description>
+            <Type>Physicality</Type>
             <IconName>keyboard_return</IconName>
         </Ability>
     </OnlyUnderMainAbilities>
