@@ -97,7 +97,7 @@ function normalizePlayerData(player) {
   const positionKey = Object.keys(playerData[0])[1];
 
   // which attribute weights to use (to be modified later)
-  let attributeWeights = Constants.ATTRIBUTE_WEIGHTS['C'];
+  let attributeWeights = Constants.ATTRIBUTE_WEIGHTS['Sniper'];
 
   playerData.forEach((player, index) => {
     if (player.Name == "Steven Stamkos") {
@@ -143,6 +143,8 @@ function norm(vector) {
  * @returns {number} the cosine similarity of a and b
  */
 function cosineSimilarity(a, b) {
+  const playerInfoCopy = b;
+
   // if a and b are objects then they are converted to arrays
   a = Array.isArray(a) ? [...a] : selectedAttributeNames.map(attr => a[attr]);
   b = Array.isArray(b) ? [...b] : selectedAttributeNames.map(attr => b[attr]);
@@ -156,8 +158,15 @@ function cosineSimilarity(a, b) {
   b = b.filter(attr => attr !== nameKey && attr !== positionKey);
 
   // apply specific attribute weights
-  a = a.map((value, i) => value * (attributeWeights[selectedAttributeNames[i]] || 1));
-  b = b.map((value, i) => value * (attributeWeights[selectedAttributeNames[i]] || 1));
+  // a = a.map((value, i) => {
+  //   console.log(attributeWeights[selectedAttributeNames[i]]);
+  //   const weight = attributeWeights[selectedAttributeNames[i]];
+  //   console.log(`Attribute: ${selectedAttributeNames[i]}, Weight: ${weight}`);
+  //   return value * weight;
+  // });
+  a = a.map((value, i) => value * (attributeWeights[selectedAttributeNames[i]]));
+  b = b.map((value, i) => value * (attributeWeights[selectedAttributeNames[i]]));
+
    
   // get the dot product of a and b
   const dot = dotProduct(a, b);
@@ -168,7 +177,7 @@ function cosineSimilarity(a, b) {
 
   // return the cosine similarity
   // dot(a,b) / (|a| * |b|)
-  return { similarity: dot / (normA * normB), nameA, nameB };
+  return { similarity: dot / (normA * normB), nameB };
 }
 
 /**
@@ -501,6 +510,17 @@ function determineBestPlayerType(playerAttributes, categoryAvgs, position) {
   return bestPlayerTypeFit;
 }
 
+function euclideanDistance(a, b) {
+  const squaredDifferences = selectedAttributeNames.reduce((sum, attr) => {
+    const diff = (a[attr] - b[attr]) * attributeWeights[attr];
+    return sum + diff * diff;
+  }, 0);
+
+  const eucDistance = Math.sqrt(squaredDifferences);
+
+  return {distance: eucDistance, player: b};
+}
+
 /**
  * getPlayerType function used to get the specific player type of the player.
  * Needed for the attribute weights for the comparison.
@@ -592,7 +612,7 @@ function scalePlayerTypeRequirements(scalingModifier, position) {
  */
 export function findSimilarPlayers() {
   // create a KD-tree for fast nearest neighbor search
-  const kdtree = new kdTree(playerData, cosineSimilarity, selectedAttributeNames);
+  // const kdtree = new kdTree(playerData, cosineSimilarity, selectedAttributeNames);
 
   // sample player w/ attributes of Steven Stammkos (for testing)
   let samplePlayer = {
@@ -621,75 +641,101 @@ export function findSimilarPlayers() {
     WristshotPower: 0.87,
   }
 
+  console.log(playerData.length);
+  playerData.forEach((player, index) => {
+    if (player.Name == "Alex Ovechkin") {
+      console.log(player);
+      console.log(index);
+    }
+    else if (player.Name == "Steven Stamkos") {
+      console.log(player);
+      console.log(index);
+    }
+  });
+
   scalePlayerDataAttributes(1.035);
-  samplePlayer = playerData[818];
+  samplePlayer = playerData[545];
 
   UtilityFunctions.getAttributeObject();
 
   console.log("Player being used:");
   console.log(samplePlayer);
 
-  getPlayerType(samplePlayer, 'D');
+  const bestPlayerType = getPlayerType(samplePlayer, 'C');
+  attributeWeights = Constants.ATTRIBUTE_WEIGHTS[bestPlayerType.DisplayName];
+  console.log(attributeWeights);
 
-  // Find the top 3 most similar players
-  // (subject to change: finding 871 (all players) for nearest neighbours)
-  const nearestNeighbors = kdtree.nearest(samplePlayer, playerData.length);
+  // console.log(euclideanDistance(samplePlayer, playerData[741]));
 
-  // sorting by ascending order
-  // nearestNeighbors.sort((a, b) => a[1].distance - b[1].distance);
-  // sort by descending order
-  nearestNeighbors.sort((a, b) => b[1].similarity - a[1].similarity);
+  // // Find the top 3 most similar players
+  // // (subject to change: finding 871 (all players) for nearest neighbours)
+  // const nearestNeighbors = kdtree.nearest(samplePlayer, playerData.length);
 
-  // getting the top 3 nearest/most similar
-  const top3Neighbors = nearestNeighbors.slice(0, 3);
+  // // sorting by ascending order
+  // // nearestNeighbors.sort((a, b) => a[1].distance - b[1].distance);
+  // // sort by descending order
+  // nearestNeighbors.sort((a, b) => b[1].similarity - a[1].similarity);
+
+  // console.log(nearestNeighbors);
+
+  // // getting the top 3 nearest/most similar
+  // const top3Neighbors = nearestNeighbors.slice(0, 10);
 
 
-  console.log("\n\n\nMost Similar:");
-  // 'nearestNeighbors' contains the top matches
-  top3Neighbors.forEach((nn, index) => {
-    console.log("%s  %o  Similarity: %f, ", index + 1, nn[0], nn[1]['similarity']);
-  });
-
-  // getting the 3 least similar
-  const bottom3neighbours = nearestNeighbors.slice(-3, nearestNeighbors.length);
-
-  bottom3neighbours.sort((a, b) => a[1].similarity - b[1].similarity);
-
-  console.log("\n\n\nLeast Similar:");
-  // 'nearestNeighbors' contains the top matches
-  bottom3neighbours.forEach((nn, index) => {
-    console.log("%s  %o  Similarity: %f, ", index + 1, nn[0], nn[1]['similarity']);
-  });
-  console.log("");
-
-    playerData.forEach((player, index) => {
-    if (player.Name == "Chandler Stephenson") {
-      console.log(player);
-      console.log(index);
-    }
-    else if (player.Name == "Erik Karlsson") {
-      console.log(player);
-      console.log(index);
-    }
-  });
-
-  // // Calculate cosine distances between the query player and all players in the dataset
-  // const allDistances = playerData.map((player, index) => {
-  //   const info = cosineDistance(samplePlayer, player);
-  //   const distance = info.distance;
-  //   return { index, distance };
+  // console.log("\n\n\nMost Similar:");
+  // // 'nearestNeighbors' contains the top matches
+  // top3Neighbors.forEach((nn, index) => {
+  //   console.log("%s  %o  Similarity: %f, ", index + 1, nn.player, nn.simi);
   // });
 
-  // // Sort all players based on distances in descending order
-  // const sortedPlayers = allDistances.sort((a, b) => b.distance - a.distance);
+  // // getting the 3 least similar
+  // const bottom3neighbours = nearestNeighbors.slice(-3, nearestNeighbors.length);
 
-  // let k = 1;
-  // console.log("\n\nLeast Similar:");
-  // for (let i = 0; i < 3; i++) {
-  //   const { index, distance } = sortedPlayers[i];
-  //   const farthestPlayer = playerData[index];
-  //   console.log("%s %o Similarity: %f", k, farthestPlayer, distance);
-  //   k++;
-  // }
+  // bottom3neighbours.sort((a, b) => a[1].similarity - b[1].similarity);
+
+  // console.log("\n\n\nLeast Similar:");
+  // // 'nearestNeighbors' contains the top matches
+  // bottom3neighbours.forEach((nn, index) => {
+  //   console.log("%s  %o  Similarity: %f, ", index + 1, nn[0], nn[1]['similarity']);
+  // });
+  // console.log("");
+
+  // // Calculate cosine distances between the query player and all players in the dataset
+  const allDistances = playerData.map((currPlayer, index) => {
+    // const info = cosineSimilarity(samplePlayer, player);
+    // const similarity = info.similarity;
+    // return { index, similarity };
+    const info = euclideanDistance(samplePlayer, currPlayer);
+    return info;
+  });
+
+  // Sort all players based on distances in descending order
+  const sortedPlayers = allDistances.sort((a, b) => a.distance - b.distance);
+
+  console.log(sortedPlayers);
+  console.log(sortedPlayers[392]);
+
+  sortedPlayers.forEach((sp, index) => {
+    if (sp.player.Name == "Alex Ovechkin") {
+      console.log(sp);
+      console.log(index);
+    }
+  });
+
+  let k = 1;
+  console.log("\n\nMost Similar:");
+  for (let i = 0; i < 50; i++) {
+    console.log("%s %o eucDistance: %f", k, sortedPlayers[i].player, sortedPlayers[i].distance);
+    k++;
+  }
+
+  const sortedPlayers2 = allDistances.sort((a, b) => b.distance - a.distance);
+
+  let j = 1;
+  console.log("\n\nLeast Similar:");
+  for (let i = 0; i < 10; i++) {
+    console.log("%s %o eucDistance: %f", j, sortedPlayers[i].player, sortedPlayers[i].distance);
+    j++;
+  }
 
 } 
