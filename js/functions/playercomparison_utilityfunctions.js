@@ -332,13 +332,9 @@ function calculateAttributeScore(playerAttributes, playerType, categoryAvgs) {
         let playerAttributeToCheck;
         console.log(category);
         if (category.includes("AVG")) {
-          console.log("huh1");
-          console.log(categoryAvgs);
-          console.log(categoryAvgs[category]);
           playerAttributeToCheck = categoryAvgs[category];
         }
         else {
-          console.log("huh2");
           playerAttributeToCheck = playerAttributes[category];
         }
 
