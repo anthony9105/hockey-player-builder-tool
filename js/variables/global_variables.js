@@ -381,7 +381,7 @@ export let playerTypesInfo = {
           SecondarySkills: ["Physicality", "Shooting", "Grit"],
           minimums: {
               Skating: {
-                  Balance: 88,
+                  Balance: 0.88,
               },
               Physicality: {
                   BodyChecking: 0.88,
