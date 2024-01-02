@@ -168,7 +168,7 @@ function cosineSimilarity(a, b) {
 
   // return the cosine similarity
   // dot(a,b) / (|a| * |b|)
-  return { distance: dot / (normA * normB), nameA, nameB };
+  return { similarity: dot / (normA * normB), nameA, nameB };
 }
 
 /**
@@ -642,7 +642,7 @@ export function findSimilarPlayers() {
   // sorting by ascending order
   // nearestNeighbors.sort((a, b) => a[1].distance - b[1].distance);
   // sort by descending order
-  nearestNeighbors.sort((a, b) => b[1].distance - a[1].distance);
+  nearestNeighbors.sort((a, b) => b[1].similarity - a[1].similarity);
 
   // getting the top 3 nearest/most similar
   const top3Neighbors = nearestNeighbors.slice(0, 3);
@@ -651,18 +651,18 @@ export function findSimilarPlayers() {
   console.log("\n\n\nMost Similar:");
   // 'nearestNeighbors' contains the top matches
   top3Neighbors.forEach((nn, index) => {
-    console.log("%s  %o  Similarity: %f, ", index + 1, nn[0], nn[1]['distance']);
+    console.log("%s  %o  Similarity: %f, ", index + 1, nn[0], nn[1]['similarity']);
   });
 
   // getting the 3 least similar
   const bottom3neighbours = nearestNeighbors.slice(-3, nearestNeighbors.length);
 
-  bottom3neighbours.sort((a, b) => a[1].distance - b[1].distance);
+  bottom3neighbours.sort((a, b) => a[1].similarity - b[1].similarity);
 
   console.log("\n\n\nLeast Similar:");
   // 'nearestNeighbors' contains the top matches
   bottom3neighbours.forEach((nn, index) => {
-    console.log("%s  %o  Similarity: %f, ", index + 1, nn[0], nn[1]['distance']);
+    console.log("%s  %o  Similarity: %f, ", index + 1, nn[0], nn[1]['similarity']);
   });
   console.log("");
 
