@@ -97,7 +97,7 @@ function normalizePlayerData(player) {
   const positionKey = Object.keys(playerData[0])[1];
 
   // which attribute weights to use (to be modified later)
-  let attributeWeights = Constants.ATTRIBUTE_WEIGHTS['Sniper'];
+  let attributeWeights = Variables.attributeWeightsInfo['Sniper'];
 
   playerData.forEach((player, index) => {
     if (player.Name == "Steven Stamkos") {
@@ -315,6 +315,8 @@ function meetsRequirements(playerAttributes, playerType, categoryAvgs) {
 function calculateAttributeScore(playerAttributes, playerType, categoryAvgs) {
   let minimumsScore = 0;
   let count = 0;
+
+  console.log(playerAttributes);
 
   // checking the minimum requirements
   if (playerType.minimums != undefined) {
@@ -558,7 +560,9 @@ function scalePlayerDataAttributes(scalingFactor) {
   for (let i=0; i < playerData.length; i++) {
     for (const attribute in playerData[i]) {
       if (typeof playerData[i][attribute] === 'number') {
-        playerData[i][attribute] = parseFloat((playerData[i][attribute] * scalingFactor).toFixed(2));
+        if (attribute != "WristshotAccuracy" && attribute != "WristshotPower" && attribute != "SlapshotAccuracy" && attribute != "SlapshotPower") {
+          playerData[i][attribute] = parseFloat((playerData[i][attribute] * scalingFactor).toFixed(2));
+        }
       }
     }
   }
@@ -653,17 +657,34 @@ export function findSimilarPlayers() {
     }
   });
 
-  scalePlayerDataAttributes(1.035);
-  samplePlayer = playerData[545];
+  scalePlayerDataAttributes(1.025);
+  samplePlayer = playerData[540];
 
-  UtilityFunctions.getAttributeObject();
+  samplePlayer = UtilityFunctions.getAttributeObject();
+  samplePlayer['Name'] = 'Created Player';
+  samplePlayer['main-position'] = 'W';
+  samplePlayer = normalizePlayerData(samplePlayer);
 
   console.log("Player being used:");
+
   console.log(samplePlayer);
 
-  const bestPlayerType = getPlayerType(samplePlayer, 'C');
-  attributeWeights = Constants.ATTRIBUTE_WEIGHTS[bestPlayerType.DisplayName];
-  console.log(attributeWeights);
+  const playerPosition = samplePlayer['main-position'];
+
+  const bestPlayerType = getPlayerType(samplePlayer, samplePlayer['main-position']);
+  attributeWeights = Variables.attributeWeightsInfo[bestPlayerType.DisplayName];
+
+  // if (playerPosition == 'C') {
+  //   if (bestPlayerType.DisplayName != "Faceoff Specialist" && bestPlayerType.DisplayName != "Two-way Liability") {
+  //     if (bestPlayerType.DisplayName.toLowerCase().includes("two-way")) {
+  //       attributeWeights.Faceoffs = 0.1;
+  //     }
+  //     else {
+  //       attributeWeights.Faceoffs = 0.01;
+  //     }
+  //   }
+  // }
+  // console.log(attributeWeights);
 
   // console.log(euclideanDistance(samplePlayer, playerData[741]));
 
@@ -700,14 +721,27 @@ export function findSimilarPlayers() {
   // });
   // console.log("");
 
+  const generalPlayerPosition = playerPosition == 'D' ? 'D' : 'F';
+
   // // Calculate cosine distances between the query player and all players in the dataset
   const allDistances = playerData.map((currPlayer, index) => {
     // const info = cosineSimilarity(samplePlayer, player);
     // const similarity = info.similarity;
     // return { index, similarity };
-    const info = euclideanDistance(samplePlayer, currPlayer);
-    return info;
-  });
+
+    // so only forwards are compares to forwards and defenseman to defenseman
+    if (generalPlayerPosition == 'F' && (currPlayer['main-position'] == 'C' || currPlayer['main-position'] == 'W')) {
+      const info = euclideanDistance(samplePlayer, currPlayer);
+      return info;
+    }
+    else if (generalPlayerPosition == 'D' && currPlayer['main-position'] == 'D')
+    {
+      const info = euclideanDistance(samplePlayer, currPlayer);
+      return info;
+    }
+    
+    return null;
+  }).filter(info => info != null);
 
   // Sort all players based on distances in descending order
   const sortedPlayers = allDistances.sort((a, b) => a.distance - b.distance);

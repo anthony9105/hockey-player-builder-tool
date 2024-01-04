@@ -412,7 +412,7 @@ export function getAttributeObject() {
 
   attributeValuesArray.forEach((attributeValue, index) => {
     // attribute names in order array used for the object keys, and attributeValue for the object values
-    attributeObject[Constants.ALL_ATTRIBUTES_INORDER_FULLSPELLING[index]] = parseInt(attributeValue.textContent);
+    attributeObject[Constants.ALL_ATTRIBUTES_INORDER_FULLSPELLING_NOSPACES[index]] = parseInt(attributeValue.textContent);
   });
 
   return attributeObject;
