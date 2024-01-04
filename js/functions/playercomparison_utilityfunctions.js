@@ -560,6 +560,7 @@ function scalePlayerDataAttributes(scalingFactor) {
   for (let i=0; i < playerData.length; i++) {
     for (const attribute in playerData[i]) {
       if (typeof playerData[i][attribute] === 'number') {
+        // applying thescaling factor to all numerical values except for the shooting attributes
         if (attribute != "WristshotAccuracy" && attribute != "WristshotPower" && attribute != "SlapshotAccuracy" && attribute != "SlapshotPower") {
           playerData[i][attribute] = parseFloat((playerData[i][attribute] * scalingFactor).toFixed(2));
         }
