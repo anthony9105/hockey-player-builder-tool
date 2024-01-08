@@ -115,70 +115,70 @@ function normalizePlayerData(player) {
 
 
 
-/**
- * dotProduct function
- * @param {number|object} a values of a (values should be from 0.0 to 1.0).
- * example: a = [x: 0.3, y: 0.6, z: 0.82]
- * @param {number|object} b values of b (values should be from 0.0 to 1.0)
- * @returns {number} the dot product of the values in a and b
- */
-function dotProduct(a, b) {
-  return a.reduce((acc, val, i) => acc + val * b[i], 0);
-}
+// /**
+//  * dotProduct function
+//  * @param {number|object} a values of a (values should be from 0.0 to 1.0).
+//  * example: a = [x: 0.3, y: 0.6, z: 0.82]
+//  * @param {number|object} b values of b (values should be from 0.0 to 1.0)
+//  * @returns {number} the dot product of the values in a and b
+//  */
+// function dotProduct(a, b) {
+//   return a.reduce((acc, val, i) => acc + val * b[i], 0);
+// }
 
-/**
- * norm function (Euclidean norm or magnitude)
- * @param {number|object} vector vector
- * @returns {number} magnitude of the vector
- */
-function norm(vector) {
-  // squaring each component, then summing the squares, then square rooting the sum
-  return Math.sqrt(vector.reduce((acc, val) => acc + val ** 2, 0));
-}
+// /**
+//  * norm function (Euclidean norm or magnitude)
+//  * @param {number|object} vector vector
+//  * @returns {number} magnitude of the vector
+//  */
+// function norm(vector) {
+//   // squaring each component, then summing the squares, then square rooting the sum
+//   return Math.sqrt(vector.reduce((acc, val) => acc + val ** 2, 0));
+// }
 
-/**
- * cosineSimilarity function used to measure similarity between a and b (2 players)
- * @param {number|object} a values of a. ex: [x: 0.3, y: 0.6, z: 0.82]
- * @param {number|object} b values of b
- * @returns {number} the cosine similarity of a and b
- */
-function cosineSimilarity(a, b) {
-  const playerInfoCopy = b;
+// /**
+//  * cosineSimilarity function used to measure similarity between a and b (2 players)
+//  * @param {number|object} a values of a. ex: [x: 0.3, y: 0.6, z: 0.82]
+//  * @param {number|object} b values of b
+//  * @returns {number} the cosine similarity of a and b
+//  */
+// function cosineSimilarity(a, b) {
+//   const playerInfoCopy = b;
 
-  // if a and b are objects then they are converted to arrays
-  a = Array.isArray(a) ? [...a] : selectedAttributeNames.map(attr => a[attr]);
-  b = Array.isArray(b) ? [...b] : selectedAttributeNames.map(attr => b[attr]);
+//   // if a and b are objects then they are converted to arrays
+//   a = Array.isArray(a) ? [...a] : selectedAttributeNames.map(attr => a[attr]);
+//   b = Array.isArray(b) ? [...b] : selectedAttributeNames.map(attr => b[attr]);
 
-  // names of a and b for later
-  const nameA = a.Name;
-  const nameB = b.Name;
+//   // names of a and b for later
+//   const nameA = a.Name;
+//   const nameB = b.Name;
 
-  // remove 'Name' and 'main-position' from the arrays
-  a = a.filter(attr => attr !== nameKey && attr !== positionKey);
-  b = b.filter(attr => attr !== nameKey && attr !== positionKey);
+//   // remove 'Name' and 'main-position' from the arrays
+//   a = a.filter(attr => attr !== nameKey && attr !== positionKey);
+//   b = b.filter(attr => attr !== nameKey && attr !== positionKey);
 
-  // apply specific attribute weights
-  // a = a.map((value, i) => {
-  //   console.log(attributeWeights[selectedAttributeNames[i]]);
-  //   const weight = attributeWeights[selectedAttributeNames[i]];
-  //   console.log(`Attribute: ${selectedAttributeNames[i]}, Weight: ${weight}`);
-  //   return value * weight;
-  // });
-  a = a.map((value, i) => value * (attributeWeights[selectedAttributeNames[i]]));
-  b = b.map((value, i) => value * (attributeWeights[selectedAttributeNames[i]]));
+//   // apply specific attribute weights
+//   // a = a.map((value, i) => {
+//   //   console.log(attributeWeights[selectedAttributeNames[i]]);
+//   //   const weight = attributeWeights[selectedAttributeNames[i]];
+//   //   console.log(`Attribute: ${selectedAttributeNames[i]}, Weight: ${weight}`);
+//   //   return value * weight;
+//   // });
+//   a = a.map((value, i) => value * (attributeWeights[selectedAttributeNames[i]]));
+//   b = b.map((value, i) => value * (attributeWeights[selectedAttributeNames[i]]));
 
    
-  // get the dot product of a and b
-  const dot = dotProduct(a, b);
+//   // get the dot product of a and b
+//   const dot = dotProduct(a, b);
 
-  // get the magnitudes/norms of a and b 
-  const normA = norm(a);
-  const normB = norm(b);
+//   // get the magnitudes/norms of a and b 
+//   const normA = norm(a);
+//   const normB = norm(b);
 
-  // return the cosine similarity
-  // dot(a,b) / (|a| * |b|)
-  return { similarity: dot / (normA * normB), nameB };
-}
+//   // return the cosine similarity
+//   // dot(a,b) / (|a| * |b|)
+//   return { similarity: dot / (normA * normB), nameB };
+// }
 
 /**
  * getCategoryAverage function used to get the average of the category
@@ -512,6 +512,15 @@ function determineBestPlayerType(playerAttributes, categoryAvgs, position) {
   return bestPlayerTypeFit;
 }
 
+/**
+ * euclideanDistance function used to calculate the euclidean distance of
+ * a and b.  Used to determine similarity.
+ * Euclidean distance formula: d(a,b) = sqrt(sum((ai - bi))^2)
+ * @param {object} a values of a. ex: {x: 0.3, y: 0.6, z: 0.82} 
+ * @param {*} b values of b
+ * @returns the distance which represents how similar a and b are 
+ * (the closer to 0 the more similar)
+ */
 function euclideanDistance(a, b) {
   const squaredDifferences = selectedAttributeNames.reduce((sum, attr) => {
     const diff = (a[attr] - b[attr]) * attributeWeights[attr];
@@ -675,16 +684,16 @@ export function findSimilarPlayers() {
   const bestPlayerType = getPlayerType(samplePlayer, samplePlayer['main-position']);
   attributeWeights = Variables.attributeWeightsInfo[bestPlayerType.DisplayName];
 
-  // if (playerPosition == 'C') {
-  //   if (bestPlayerType.DisplayName != "Faceoff Specialist" && bestPlayerType.DisplayName != "Two-way Liability") {
-  //     if (bestPlayerType.DisplayName.toLowerCase().includes("two-way")) {
-  //       attributeWeights.Faceoffs = 0.1;
-  //     }
-  //     else {
-  //       attributeWeights.Faceoffs = 0.01;
-  //     }
-  //   }
-  // }
+  if (playerPosition == 'C') {
+    if (bestPlayerType.DisplayName != "Faceoff Specialist" && bestPlayerType.DisplayName != "Two-way Liability") {
+      if (bestPlayerType.DisplayName.toLowerCase().includes("two-way")) {
+        attributeWeights.Faceoffs = 0.1;
+      }
+      else {
+        attributeWeights.Faceoffs = 0.01;
+      }
+    }
+  }
   // console.log(attributeWeights);
 
   // console.log(euclideanDistance(samplePlayer, playerData[741]));
