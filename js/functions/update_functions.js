@@ -390,7 +390,6 @@ export function hideOrRevealCompleteBuildButton(displaySetting) {
   completeBuildButton.style.display = displaySetting;
 }
 
-
 /**
  * changePlayerTypeSelectionValidity function used to change the player type selection
  * validity.  From either invalid to valid, or valid to invalid

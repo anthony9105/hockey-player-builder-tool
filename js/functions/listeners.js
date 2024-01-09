@@ -606,6 +606,8 @@ export function completeBuildButtonListener() {
   completeBuildButton.addEventListener("click", async function() {
 
     let allAbilitiesSelected = true;
+    let allAbilitiesValid = true;
+    let allBoostsValid = true;
 
     if (Variables.mainAbilityDisplayName.textContent == 'No ability currently selected') {
       allAbilitiesSelected = false;
@@ -620,7 +622,18 @@ export function completeBuildButtonListener() {
 
     console.log(allAbilitiesSelected);
     if (allAbilitiesSelected) {
-      findSimilarPlayers();
+      if (!UtilityFunctions.allAbilitiesValid() && !UtilityFunctions.allBoostsValid()) {
+        window.alert("One or more selected abilities are invalid and one or more selected boosts are invalid");
+      }
+      else if (!UtilityFunctions.allAbilitiesValid()){
+        window.alert("One or more selected abilities are invalid");
+      }
+      else if (!UtilityFunctions.allBoostsValid()) {
+        window.alert("One or more selected boosts are invalid");
+      }
+      else {
+        findSimilarPlayers();
+      }
     }
     else {
       window.alert("You must select all 3 abilities before completing the build");

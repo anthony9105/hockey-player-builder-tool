@@ -418,3 +418,32 @@ export function getAttributeObject() {
   return attributeObject;
 }
 
+/**
+ * allBoostsValid function used to check if all the selected boosts are valid or not
+ * @returns if all the boosts are valid (true for yes, false for no)
+ */
+export function allBoostsValid() {
+  // for each boost display item, if the background colour is the red like colour then it is not valid
+  for (const boostDisplayItem of Array.from(Variables.boostDisplayItems)) {
+    if (boostDisplayItem.style.backgroundColor == Constants.INVALID_BOOST_OR_ABILITY_RGBA) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+/**
+ * allBoostsValid function used to check if all the selected abilities are valid or not
+ * @returns if all the abilities are valid (true for yes, false for no)
+ */
+export function allAbilitiesValid() {
+  // for each ability display item, if the background colour is the red like colour then it is not valid
+  for (const abilityDisplayItem of Array.from(Variables.abilityDisplayItems)) {
+    if (abilityDisplayItem.style.backgroundColor == Constants.INVALID_BOOST_OR_ABILITY_RGBA) {
+      return false;
+    }
+  }
+
+  return true;
+}
