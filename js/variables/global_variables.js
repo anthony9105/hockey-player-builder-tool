@@ -104,7 +104,7 @@ export let playerTypesInfo = {
                   Passing: 0.82,
                   Deking: 0.82,
                   PuckControl: 0.84,
-                  HandEye: 0.84,
+                  HandEye: 0.8,
                   OffensiveAwareness: 0.89,
               },
           },
@@ -367,7 +367,7 @@ export let playerTypesInfo = {
           Description: "Well-rounded but does not stand out in any area other than defensively",
           MainSkills: ["Defense"],
           SecondarySkills: ["Defense"],
-          Weaknesses: ["Physicality"],
+          Weaknesses: ["None"],
           minimums: {
               Defense_AVG: 0.83,
           },
@@ -379,9 +379,9 @@ export let playerTypesInfo = {
               },
               Shooting_AVG: 0.81,
               Puckskills: {
-                  PuckControl: 0.85,
-                  Passing: 0.85,
-                  OffensiveAwareness: 0.85
+                  PuckControl: 0.87,
+                  Passing: 0.87,
+                  OffensiveAwareness: 0.87
               },
               Physical_AVG: 0.84,
           },
@@ -401,8 +401,8 @@ export let playerTypesInfo = {
                   Strength: 0.85,
               },
               Shooting: {
-                  WristshotPower: 0.81,
-                  SlapshotPower: 0.81,
+                  WristshotPower: 0.82,
+                  SlapshotPower: 0.82,
               }
           },
           maximums: {
@@ -555,6 +555,26 @@ export let playerTypesInfo = {
               Defense_AVG: 0.8
           }
       },
+      Enforcer: {
+        DisplayName: "Enforcer",
+        Description: "Utilizes physicality, especially fighting, to be effective",
+        MainSkills: ["Physicality", "Grit"],
+        SecondarySkills: ["Physicality", "Grit"],
+        Weaknesses: ["Shooting", "Defense", "PuckSkills", "Passing", "Skating"],
+        minimums: {
+            Physical: {
+                FightingSkill: 0.8,
+                Strength: 0.83,
+                BodyChecking: 0.83
+            },
+        },
+        maximums: {
+            Defense_AVG: 0.8,
+            Shooting_AVG: 0.815,
+            Skating_AVG: 0.83,
+            Puckskills_AVG: 0.8,
+        },
+    },
       Extra_fwd: {
           DisplayName: "Two-way Liability",
           Description: "Liability on all parts of the ice",
@@ -594,21 +614,16 @@ export let playerTypesInfo = {
       },
       Fourth_fwd_dman: {
           DisplayName: "Fourth Forward",
-          Description: "Possesses such elite offensive skills that people wonder why you are a defenseman instead of a forward",
+          Description: "Possesses such elite offensive skills and below average defense at best, that people wonder why you are a defenseman instead of a forward",
           MainSkills: ["PuckSkills", "Shooting", "Passing"],
           SecondarySkills: ["PuckSkills", "Shooting", "Passing", "Skating"],
           Weaknesses: ["Defense", "Physicality"],
           minimums: {
-              Shooting_AVG: 0.81,
-              Puckskills: {
-                  PuckControl: 0.88,
-                  Passing: 0.88,
-                  OffensiveAwareness: 0.88
-              },
+              Shooting_AVG: 0.8,
+              Puckskills_AVG: 0.87,
               Skating: {
-                  Acceleration: 0.87,
-                  Speed: 0.87,
-                  Agility: 0.87
+                  Acceleration: 0.85,
+                  Speed: 0.85,
               }
           },
           maximums: {
@@ -744,20 +759,19 @@ export let playerTypesInfo = {
       },
       Mobile_two_way_dman: {
           DisplayName: "Mobile Two-way Defenseman",
-          Description: "A defenseman with no real weaknesses, and exceptional skating",
+          Description: "A well-rouned defenseman with exceptional skating",
           MainSkills: ["Skating", "Defense"],
           SecondarySkills: ["Skating", "Defense", "Passing"],
-          Weaknesses: ["Shooting", "Physicality"],
+          Weaknesses: ["Shooting"],
           minimums: {
               Puckskills: {
                   PuckControl: 0.86,
-                  Passing: 0.87,
-                  OffensiveAwareness: 0.86
+                  Passing: 0.86,
+                  OffensiveAwareness: 0.84
               },
               Skating: {
-                  Speed: 0.91,
+                  Speed: 0.9,
                   Acceleration: 0.9,
-                  Agility: 0.88,
               },
               Defense_AVG: 0.85,
           },
@@ -1277,6 +1291,31 @@ export let attributeWeightsInfo = {
         WristshotAccuracy: 0.5,
         WristshotPower: 0.5,
     },
+    "Enforcer": {
+        Acceleration: 0.25,
+        Agility: 0.25,
+        Balance: 0.25,
+        BodyChecking: 0.75,
+        DefensiveAwareness: 0.25,
+        Deking: 0.25,
+        Discipline: 0.001,
+        Durability: 0.001,
+        Endurance: 0.001,
+        Faceoffs: 0,
+        FightingSkill: 2,
+        HandEye: 0.25,
+        OffensiveAwareness: 0.25,
+        Passing: 0.25,
+        PuckControl: 0.25,
+        ShotBlocking: 0.5,
+        SlapshotAccuracy: 0.25,
+        SlapshotPower: 0.25,
+        Speed: 0.25,
+        StickChecking: 0.5,
+        Strength: 1,
+        WristshotAccuracy: 0.25,
+        WristshotPower: 0.25,
+    },
     "Two-way Liability": {
         Acceleration: 1,
         Agility: 1,
@@ -1588,7 +1627,7 @@ export let attributeWeightsInfo = {
         Durability: 0.001,
         Endurance: 0.001,
         Faceoffs: 0,
-        FightingSkill: 1,
+        FightingSkill: 2,
         HandEye: 0.25,
         OffensiveAwareness: 0.25,
         Passing: 0.25,

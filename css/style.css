@@ -544,6 +544,7 @@ body {
     position: relative;
     overflow: hidden;
     background-color: white;
+    z-index: 1;
   }
   
   .attribute-meter-fill {
@@ -552,6 +553,7 @@ body {
     position: absolute;
     transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out;
     left: 0;
+    z-index: 2;
   }
   
   .state {
@@ -688,6 +690,7 @@ body {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
     overflow: auto;
+    z-index: 3;
 }
 
 .complete-build-content {
@@ -695,7 +698,7 @@ body {
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 60%;
     max-height: 70vh;
     overflow-y: auto;
 }
