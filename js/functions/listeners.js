@@ -484,6 +484,13 @@ export function confirmPlayerTypeButtonListener(confirmPlayerTypeButton) {
 
     // reset the upgrade points available
     UpdateFunctions.resetUpgradePoints();
+
+    UpdateFunctions.hideOrRevealHeightWeightPosition("block");
+    UpdateFunctions.changePlayerTypeSelectionValidity();
+    UpdateFunctions.hideOrRevealHeightWeightPosition("block");
+    UpdateFunctions.hideOrRevealAbilitiesAndBoosts("flex");
+    UpdateFunctions.hideOrRevealCompleteBuildButton("block");
+    UpdateFunctions.hideOrRevealResetButton("block");
   });
 }
 
@@ -547,7 +554,6 @@ export function confirmHeightWeightButtonListener(confirmButton, physicalAspect)
 }
 
 
-
 /**
  * ATTRIBUTES
  */
@@ -590,11 +596,52 @@ export function increasingAndDecreasingAttributesListeners() {
 /**
  * COMPLETE BUILD BUTTON
  */
+/**
+ * completeBuildButtonListener function used to add the functionality of the 
+ * complete build button when it is clicked.
+ */
 export function completeBuildButtonListener() {
   const completeBuildButton = document.getElementById(Constants.COMPLETE_BUILD_BTTN_ID);
 
   completeBuildButton.addEventListener("click", async function() {
-    console.log("hi");
-    findSimilarPlayers();
+
+    let allAbilitiesSelected = true;
+
+    if (Variables.mainAbilityDisplayName.textContent == 'No ability currently selected') {
+      allAbilitiesSelected = false;
+    }
+    
+    Array.from(Variables.abilityDisplayNames).forEach(abilityDisplayName => {
+      if (abilityDisplayName.textContent == 'No ability currently selected') {
+        allAbilitiesSelected = false;
+        return;
+      }
+    });
+
+    console.log(allAbilitiesSelected);
+    if (allAbilitiesSelected) {
+      findSimilarPlayers();
+    }
+    else {
+      window.alert("You must select all 3 abilities before completing the build");
+    }
+    // findSimilarPlayers();
+  });
+}
+
+
+/**
+ * RESET BUTTON
+ */
+/**
+ * resetButtonListener function used to add the functionality of the 
+ * reset button when it is clicked.
+ */
+export function resetButtonListener() {
+  const resetButton = document.getElementById(Constants.RESET_BUILD_BTTN_ID);
+
+  resetButton.addEventListener("click", async function() {
+    // reload the whole page (mimicking the browser's refresh button)
+    location.reload();
   });
 }

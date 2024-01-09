@@ -337,3 +337,77 @@ export function setDisplayItem(k, displayName, newName, displayDescription, newD
 
   Variables.unselectButtons[k].style.display = "inline-block";
 }
+
+/**
+ * hideOrRevealHeightWeightPosition function used to either hide or reveal the 
+ * height selection, weight selection, and position selection
+ * @param {string} displaySetting what to set the ability and boost section's styles to
+ * (ex: "none" to hide, and "block" to reveal)
+ */
+export function hideOrRevealHeightWeightPosition(displaySetting) {
+  let physicalSections = document.getElementsByClassName("physical-section");
+
+  // for each physical section (starting from the second section, since the playertype
+  // selection is the first one, and I want to skip that one for this)
+  Array.from(physicalSections).slice(1).forEach(physicalSection => {
+    physicalSection.style.display = displaySetting;
+  });
+}
+
+/**
+ * hideOrRevealAbilitiesAndBoosts function used to either hide or reveal 
+ * the abilities and boosts
+ * @param {string} displaySetting what to set the ability and boost section's styles to
+ * (ex: "none" to hide, and "block" to reveal) 
+ */
+export function hideOrRevealAbilitiesAndBoosts(displaySetting) {
+  let abilitySection = document.getElementById(Constants.ABILITY_SECTION_ID);
+  abilitySection.style.display = displaySetting;
+
+  let boostSection = document.getElementById(Constants.BOOST_SECTION_ID);
+  boostSection.style.display = displaySetting;
+}
+
+/**
+ * hideOrRevealResetButton function used to either hide or reveal 
+ * the reset button
+ * @param {string} displaySetting what to set the ability and boost section's styles to
+ * (ex: "none" to hide, and "block" to reveal)
+ */
+export function hideOrRevealResetButton(displaySetting) {
+  let resetButton = document.getElementById(Constants.RESET_BUILD_BTTN_ID);
+  resetButton.style.display = displaySetting;
+}
+
+/**
+ * hideOrRevealCompleteBuildButton function used to either hide or reveal 
+ * the complete build button
+ * @param {string} displaySetting what to set the ability and boost section's styles to
+ * (ex: "none" to hide, and "block" to reveal)
+ */
+export function hideOrRevealCompleteBuildButton(displaySetting) {
+  let completeBuildButton = document.getElementById(Constants.COMPLETE_BUILD_BTTN_ID);
+  completeBuildButton.style.display = displaySetting;
+}
+
+
+/**
+ * changePlayerTypeSelectionValidity function used to change the player type selection
+ * validity.  From either invalid to valid, or valid to invalid
+ */
+export function changePlayerTypeSelectionValidity() {
+  let playerTypeSection = document.getElementsByClassName("physical-section")[0];
+
+  // changing to valid
+  if (playerTypeSection.children[0].style.color = "orangered") {
+    playerTypeSection.children[0].textContent = "done";
+    playerTypeSection.children[0].style.color = "green";
+    playerTypeSection.children[1].textContent = "";
+  }
+  // changing to invalid
+  else {
+    playerTypeSection.children[0].textContent = "warning";
+    playerTypeSection.children[0].style.color = "orangered";
+    playerTypeSection.children[1].textContent = "In order to start you must first select one:";
+  }
+}

@@ -201,10 +201,10 @@ function getCategoryAverages(playerAttributes) {
   const Skating_AVG = getCategoryAverage(playerAttributes, Constants.skatingAttributes);
   const Defense_AVG = getCategoryAverage(playerAttributes, Constants.defenseAttributes);
   const Shooting_AVG = getCategoryAverage(playerAttributes, Constants.shootingAttributes);
-  const Physicality_AVG = getCategoryAverage(playerAttributes, Constants.physicalityAttributes);
+  const Physical_AVG = getCategoryAverage(playerAttributes, Constants.physicalityAttributes);
   const Puckskills_AVG = getCategoryAverage(playerAttributes, Constants.puckSkillsAttributes);
 
-  return { Skating_AVG, Defense_AVG, Shooting_AVG, Physicality_AVG, Puckskills_AVG };
+  return { Skating_AVG, Defense_AVG, Shooting_AVG, Physical_AVG, Puckskills_AVG };
 }
 
 /**
@@ -491,6 +491,7 @@ function determineBestPlayerType(playerAttributes, categoryAvgs, position) {
   // Use the other scoring method based off the player type's minimum requirement attributes.
   else {
     let tieBreakerHighestScore = null;
+    console.log(categoryAvgs);
     bestPlayerTypes.forEach(bestPlayerType => {
       // determining the highest score now using the attribute scoring
       if (tieBreakerHighestScore = null) {
@@ -672,7 +673,7 @@ export function findSimilarPlayers() {
 
   samplePlayer = UtilityFunctions.getAttributeObject();
   samplePlayer['Name'] = 'Created Player';
-  samplePlayer['main-position'] = 'W';
+  samplePlayer['main-position'] = document.getElementById('position-selection').value;
   samplePlayer = normalizePlayerData(samplePlayer);
 
   console.log("Player being used:");

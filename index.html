@@ -16,6 +16,10 @@
         <section id="playertype-height-weight-row">
             <!-- Player Type Selection -->
             <div class="physical-section">
+                <span class="material-icons" style="color: orangered;">
+                    warning
+                </span>
+                <div id="player-type-selection-warning">In order to start you must first select one:</div>
 
                 <!-- Selection -->
                 <select class="selection-and-input" id="player-type-selection">
@@ -38,12 +42,18 @@
                 </select>
                 
                 <!-- Button -->
-                <button class="confirm-button" id="confirm-player-type-button">Confirm player type</button>
+                <button class="confirm-button" id="confirm-player-type-button">Confirm player type template</button>
             </div>
 
 
             <!-- Player Height -->
             <div class="physical-section">
+
+                <div class="physicals-validity">
+                    <span class="material-icons" style="color: green;">
+                        done
+                    </span>
+                </div>
 
                 <!-- Selection -->
                 <select class="selection-and-input" id="height-selection">
@@ -71,16 +81,45 @@
 
             <!-- Player Weight -->
             <div class="physical-section">
+                <div class="physicals-validity">
+                    <span class="material-icons" style="color: green;">
+                        done
+                    </span>
+                </div>
                 <input type="number" class="selection-and-input" id="weight-selection" min="1" max="30"></input>
                 <button class="confirm-button" id="confirm-weight-button">
                     Confirm weight (lbs)
                 </button>
             </div>
 
+            <div class="physical-section" id="position-section">
+                <div class="physicals-validity">
+                    <span class="material-icons" style="color: green;">
+                        done
+                    </span>
+                </div>
+                <div id="position-selection-title">This player plays this position:</div>
+                <!-- Selection -->
+                <select class="selection-and-input" id="position-selection">
+                    <option value="C">Centre</option>
+                    <option value="W">Winger</option>
+                    <option value="D">Defenseman</option>
+                </select>
+            </div>
+
             <div id="other-action-buttons">
                 <button id="reset-button">Reset</button>
                 <button id="complete-build-button">Complete Build</button>
             </div>
+    
+            <div id="complete-build">
+                <div class="complete-build-content">
+                    <!-- Your scrollable content goes here -->
+                    <h1>hey</h1>
+                </div>
+                <!-- <span class="close" id="closeModalBtn">&times;</span> -->
+            </div>
+
         </section>
 
 

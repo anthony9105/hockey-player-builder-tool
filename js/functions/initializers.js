@@ -383,6 +383,17 @@ function removeAllHeights() {
 }
 
 /**
+ * initializePhysicalsSectionDisplay function used to initialize stuff in the physical
+ * section to be hidden
+ */
+export function initializePhysicalsSectionDisplay() {
+  UpdateFunctions.hideOrRevealHeightWeightPosition("none");
+  UpdateFunctions.hideOrRevealAbilitiesAndBoosts("none");
+  UpdateFunctions.hideOrRevealCompleteBuildButton("none");
+  UpdateFunctions.hideOrRevealResetButton("none");
+}
+
+/**
  * setAbilityOptionToUnselected function used to set a display slot for an ability to the default "No ability currently selected".
  * @param {number} index index of the display ability slot (0 or 1)
  */

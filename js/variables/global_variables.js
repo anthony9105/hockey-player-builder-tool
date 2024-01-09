@@ -36,6 +36,8 @@ export let boostItems = document.getElementsByClassName(Constants.BOOST_ITEM_CLA
 
 export let abilityDisplayItems = document.getElementsByClassName(Constants.ABILITY_DISPLAY_ITEM_CLASSNAME);
 export let mainAbilityDisplayItem = document.getElementsByClassName(Constants.MAIN_ABILITY_DISPLAY_ITEM_CLASSNAME)[0];
+export let abilityDisplayNames = document.getElementsByClassName(Constants.ABILITY_DISPLAY_NAME_CLASSNAME);
+export let mainAbilityDisplayName = document.getElementsByClassName(Constants.MAIN_ABILITY_DISPLAY_NAME_CLASSNAME)[0];
 
 export let unselectButtons = document.getElementsByClassName(Constants.UNSELECT_BUTTON_CLASSNAME);
 export let boostUpgradeValues = document.getElementsByClassName(Constants.BOOST_UPGRADE_VALUES_CLASSNAME);

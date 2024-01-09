@@ -81,6 +81,8 @@ export const ABILITIES_XML = "../build-information/abilities.xml";
     export const ATTRIBUTE_METER_CLASSNAME = "attribute-meter";
     export const ATTRIBUTE_METER_FILL_CLASSNAME = "attribute-meter-fill";
 
+    export const PHYSICALS_VALIDITY_CLASSNAME = "physicals-validity";
+
 
 /**
  * ID NAMES
@@ -96,11 +98,15 @@ export const ABILITIES_XML = "../build-information/abilities.xml";
 
     // other buttons
     export const COMPLETE_BUILD_BTTN_ID = "complete-build-button";
+    export const RESET_BUILD_BTTN_ID = "reset-button";
 
     // sections
     export const MAIN_ABILITY_SECTION_ID = "main-ability-section";
     export const MAIN_ABILITY_DROPDOWN_SECTION_ID = "main-ability-dropdown-section";
     export const BOOST_SECTION_ID = "boosts-row";
+    export const ABILITY_SECTION_ID = "abilities-and-boosts-row";
+
+    export const PLAYERTYPE_VALIDITY_ID = "player-type-selection-warning";
 
 
 
