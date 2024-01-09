@@ -341,32 +341,32 @@ export function getColourForMeterValue(value) {
  * @param {number} amountOfAttributes the amount of top attributes that you wanted returned
  * @returns the top attribute values
  */
-export function getTopAttributes(amountOfAttributes) {
-  if (amountOfAttributes >= Variables.attributeValues.length) {
-    console.warn("amountOfAttributes is the same or more than the total amount of attributes");
-    return Variables.attributeValues;
-  }
+// export function getTopAttributes(amountOfAttributes) {
+//   if (amountOfAttributes >= Variables.attributeValues.length) {
+//     console.warn("amountOfAttributes is the same or more than the total amount of attributes");
+//     return Variables.attributeValues;
+//   }
 
-  // initialize the topAttributes with the first x amount of attribute values, sorted in descending order. Also map is used to include both the index and the value
-  let topAttributes = Object.values(Variables.attributeValues)
-                                                              .map((value, index) => ({index, value: parseInt(value.textContent)}))
-                                                              .slice(0, amountOfAttributes).sort((a, b) => b.value - a.value);
+//   // initialize the topAttributes with the first x amount of attribute values, sorted in descending order. Also map is used to include both the index and the value
+//   let topAttributes = Object.values(Variables.attributeValues)
+//                                                               .map((value, index) => ({index, value: parseInt(value.textContent)}))
+//                                                               .slice(0, amountOfAttributes).sort((a, b) => b.value - a.value);
   
-  // if the build position is not "C" (Centre), then add the index of "Faceoffs" to excludeIndices, since it is an attribute that only matters for centres
-  let excludeIndices = Variables.buildPosition !== "C" ? [Constants.ALL_ATTRIBUTES_INORDER_FULLSPELLING.indexOf("Faceoffs")] : [];
+//   // if the build position is not "C" (Centre), then add the index of "Faceoffs" to excludeIndices, since it is an attribute that only matters for centres
+//   let excludeIndices = Variables.buildPosition !== "C" ? [Constants.ALL_ATTRIBUTES_INORDER_FULLSPELLING.indexOf("Faceoffs")] : [];
 
-  for (let i = amountOfAttributes; i < Variables.attributeValues.length; i++) {
-    // if the current attribute is greater than the last value in topAttributes (this is being compared
-    // to the last value in topAttributes since it is sorted in descending order, so the last value is the smallest)
-    if (!excludeIndices.includes(i) && parseInt(Variables.attributeValues[i].textContent) > topAttributes[amountOfAttributes - 1].value) {
-      topAttributes.pop(); // remove the smallest of the current topAttributes
-      topAttributes.push({index: i, value: parseInt(Variables.attributeValues[i].textContent)}); // add the new value
-      topAttributes.sort((a, b) => b.value - a.value); // sort in descending order again
-    }
-  }
+//   for (let i = amountOfAttributes; i < Variables.attributeValues.length; i++) {
+//     // if the current attribute is greater than the last value in topAttributes (this is being compared
+//     // to the last value in topAttributes since it is sorted in descending order, so the last value is the smallest)
+//     if (!excludeIndices.includes(i) && parseInt(Variables.attributeValues[i].textContent) > topAttributes[amountOfAttributes - 1].value) {
+//       topAttributes.pop(); // remove the smallest of the current topAttributes
+//       topAttributes.push({index: i, value: parseInt(Variables.attributeValues[i].textContent)}); // add the new value
+//       topAttributes.sort((a, b) => b.value - a.value); // sort in descending order again
+//     }
+//   }
 
-  return topAttributes;
-}
+//   return topAttributes;
+// }
 
 /**
  * getWorstAttributes function used to get the worst attributes of the current build
@@ -446,4 +446,16 @@ export function allAbilitiesValid() {
   }
 
   return true;
+}
+
+export function getPlayerWebsiteURL(playerFullName) {
+  let websiteUrl = Constants.PLAYER_LINK_INFO_START;
+
+  let firstLastName = playerFullName.toLowerCase().split(" ");
+  
+  websiteUrl += firstLastName[1].slice(0, 1) + "/";
+  websiteUrl += firstLastName[1].slice(0, 5);
+  websiteUrl += firstLastName[0].slice(0, 2) + "01.html";
+
+  return websiteUrl;
 }

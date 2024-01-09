@@ -769,18 +769,93 @@ export function findSimilarPlayers() {
 
   let k = 1;
   console.log("\n\nMost Similar:");
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < 5; i++) {
     console.log("%s %o eucDistance: %f", k, sortedPlayers[i].player, sortedPlayers[i].distance);
     k++;
   }
 
-  const sortedPlayers2 = allDistances.sort((a, b) => b.distance - a.distance);
 
   let j = 1;
   console.log("\n\nLeast Similar:");
-  for (let i = 0; i < 10; i++) {
+  for (let i = sortedPlayers.length-1; i > sortedPlayers.length - 1 - 5; i--) {
     console.log("%s %o eucDistance: %f", j, sortedPlayers[i].player, sortedPlayers[i].distance);
     j++;
   }
 
+  setCompleteBuildContent(sortedPlayers.slice(0, 3), sortedPlayers.slice(sortedPlayers.length - 3, sortedPlayers.length), bestPlayerType);
 } 
+
+
+export function setCompleteBuildContent(mostSimilarPlayers, leastSimilarPlayers, bestPlayerType) {
+  let similarPlayers = document.getElementsByClassName(Constants.SIMILAR_PLAYER_CLASSNAME);
+  let dissimilarPlayers = document.getElementsByClassName(Constants.DISSIMILAR_PLAYER_CLASSNAME);
+
+  let playerTypeName = document.getElementById(Constants.PLAYERTYPE_NAME_ID);
+  playerTypeName.textContent = bestPlayerType.DisplayName;
+
+  let playerTypeDescription = document.getElementById(Constants.PLAYERTYPE_DESC_ID);
+  playerTypeDescription.textContent = bestPlayerType.Description;
+
+  let mainSkillsList = document.getElementById(Constants.MAINSKILLS_LIST_ID);
+  let secSkillsList = document.getElementById(Constants.SECSKILLS_LIST_ID);
+  let weaknessesList = document.getElementById(Constants.WEAKNESSES_LIST_ID);
+
+
+  for (let skill of bestPlayerType.MainSkills) {
+    let newListItem = document.createElement("li");
+
+    for (let charIndex=1; charIndex < skill.length; charIndex++) {
+      if (skill[charIndex] === skill[charIndex].toUpperCase()) {
+        const lowerCaseChar = skill[charIndex].toLowerCase();
+
+        skill = skill.slice(0, charIndex) + " " + lowerCaseChar + skill.slice(charIndex + 1);
+      }
+    }
+
+    newListItem.textContent = skill;
+
+    mainSkillsList.appendChild(newListItem);
+  }
+
+  for (let skill of bestPlayerType.SecondarySkills) {
+    let newListItem = document.createElement("li");
+
+    for (let charIndex=1; charIndex < skill.length; charIndex++) {
+      if (skill[charIndex] === skill[charIndex].toUpperCase()) {
+        const lowerCaseChar = skill[charIndex].toLowerCase();
+
+        skill = skill.slice(0, charIndex) + " " + lowerCaseChar + skill.slice(charIndex + 1);
+      }
+    }
+    newListItem.textContent = skill;
+
+    secSkillsList.appendChild(newListItem);
+  }
+
+  for (let weakness of bestPlayerType.Weaknesses) {
+    let newListItem = document.createElement("li");
+
+    for (let charIndex=1; charIndex < weakness.length; charIndex++) {
+      if (weakness[charIndex] === weakness[charIndex].toUpperCase()) {
+        const lowerCaseChar = weakness[charIndex].toLowerCase();
+
+        weakness = weakness.slice(0, charIndex) + " " + lowerCaseChar + weakness.slice(charIndex + 1);
+      }
+    }
+
+    newListItem.textContent = weakness;
+
+    weaknessesList.appendChild(newListItem);
+  }
+
+
+  Array.from(similarPlayers).forEach((similarPlayer, index) => {
+    similarPlayer.children[0].textContent = index+1 + ".   ";
+    similarPlayer.children[1].href = UtilityFunctions.getPlayerWebsiteURL(mostSimilarPlayers[index].player.Name);
+    similarPlayer.children[1].textContent = mostSimilarPlayers[index].player.Name;
+
+    dissimilarPlayers[index].children[0].textContent = index+1 + ".   ";
+    dissimilarPlayers[index].children[1].href = UtilityFunctions.getPlayerWebsiteURL(leastSimilarPlayers[leastSimilarPlayers.length - index - 1].player.Name);
+    dissimilarPlayers[index].children[1].textContent = leastSimilarPlayers[leastSimilarPlayers.length - index - 1].player.Name;
+  });
+}

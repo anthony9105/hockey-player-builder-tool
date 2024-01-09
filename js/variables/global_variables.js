@@ -97,6 +97,7 @@ export let playerTypesInfo = {
           Description: "Exceptional shooting stands out above everything else but still elite in all other offensive skills",
           MainSkills: ["Shooting"],
           SecondarySkills: ["PuckSkills", "Shooting", "Skating"],
+          Weaknesses: ["Defense", "Physicality"],
           minimums: {
               Shooting_AVG: 0.825,
               Puckskills: {
@@ -120,6 +121,7 @@ export let playerTypesInfo = {
           Description: "Exceptional shooting and not much else",
           MainSkills: ["Shooting"],
           SecondarySkills: ["Shooting"],
+          Weaknesses: ["Passing", "Defense", "Physicality"],
           minimums: {
               Shooting_AVG: 0.83,
           },
@@ -140,6 +142,7 @@ export let playerTypesInfo = {
           Description: "Exceptional shooting and good strength/power",
           MainSkills: ["Shooting"],
           SecondarySkills: ["Shooting", "Physicality"],
+          Weaknesses: ["Defense"],
           minimums: {
               Shooting_AVG: 0.825,
               Physical: {
@@ -159,6 +162,7 @@ export let playerTypesInfo = {
           Description: "Elite passing and playmaking but hardly scores goals",
           MainSkills: ["Passing"],
           SecondarySkills: ["Passing", "PuckSkills", "Skating"],
+          Weaknesses: ["Shooting", "Physicality", "Defense"],
           minimums: {
               Puckskills: {
                   Passing: 0.88,
@@ -180,6 +184,7 @@ export let playerTypesInfo = {
           Description: "Elite passing and strength/power but hardly scores goals",
           MainSkills: ["Passing"],
           SecondarySkills: ["Passing", "Physicality", "PuckSkills"],
+          Weaknesses: ["Shooting", "Defense"],
           minimums: {
               Puckskills: {
                   Passing: 0.88,
@@ -202,6 +207,7 @@ export let playerTypesInfo = {
           Description: "Elite all-around offensive game, lacking on defense and physically",
           MainSkills: ["Shooting", "PuckSkills", "Passing"],
           SecondarySkills: ["Shooting", "PuckSkills", "Passing", "Skating"],
+          Weaknesses: ["Defense", "Physicality"],
           minimums: {
               Puckskills: {
                   Passing: 0.87,
@@ -228,6 +234,7 @@ export let playerTypesInfo = {
           Description: "Possesses elite skating and decent offensive skills, not good physically or defensively",
           MainSkills: ["Rush", "Skating"],
           SecondarySkills: ["PuckSkills", "Skating", "Rush"],
+          Weaknesses: ["Defense", "Physicality"],
           minimums: {
               Puckskills: {
                   Passing: 0.83,
@@ -253,6 +260,7 @@ export let playerTypesInfo = {
           Description: "Menace on the forecheck with great skating and defense.  Offensive skills are lacking.",
           MainSkills: ["Defense", "Skating"],
           SecondarySkills: ["Defense", "Skating", "Grit"],
+          Weaknesses: ["Shooting"],
           minimums: {
               Defense: {
                   StickChecking: 0.8,
@@ -277,6 +285,7 @@ export let playerTypesInfo = {
           Description: "Fearless forward who will block any shot, great for killing penalties and not much else",
           MainSkills: ["Defense", "Grit"],
           SecondarySkills: ["Defense", "Grit"],
+          Weaknesses: ["Shooting", "PuckSkills", "Passing", "Skating"],
           minimums: {
               Defense: {
                   StickChecking: 0.84,
@@ -303,6 +312,7 @@ export let playerTypesInfo = {
           Description: "Elite at taking faceoffs",
           MainSkills: ["Faceoffs"],
           SecondarySkills: ["Faceoffs"],
+          Weaknesses: ["Shooting", "PuckSkills", "Passing", "Skating", "Defense"],
           minimums: {
               Defense: {
                   Faceoffs: 0.9,
@@ -329,6 +339,7 @@ export let playerTypesInfo = {
           Description: "Uses physicality and defensive play to be effective.  Also usually have great hand-eye for scoring deflections and rebounds",
           MainSkills: ["Grit"],
           SecondarySkills: ["Grit", "Physicality", "Defense"],
+          Weaknesses: ["Shooting", "PuckSkills", "Passing"],
           minimums: {
               Defense_AVG: 0.81,
               Physicality: {
@@ -356,6 +367,7 @@ export let playerTypesInfo = {
           Description: "Well-rounded but does not stand out in any area other than defensively",
           MainSkills: ["Defense"],
           SecondarySkills: ["Defense"],
+          Weaknesses: ["Physicality"],
           minimums: {
               Defense_AVG: 0.83,
           },
@@ -379,6 +391,7 @@ export let playerTypesInfo = {
           Description: "Utilizes elite strength and power to be effective",
           MainSkills: ["Physicality"],
           SecondarySkills: ["Physicality", "Shooting", "Grit"],
+          Weaknesses: ["Defense", "Passing", "Skating"],
           minimums: {
               Skating: {
                   Balance: 0.8,
@@ -409,6 +422,7 @@ export let playerTypesInfo = {
           Description: "Exceptional skating along with elite puck carrying, passing, and goal scoring ability",
           MainSkills: ["Skating", "Rush"],
           SecondarySkills: ["Skating", "PuckSkills", "Passing", "Shooting", "Rush"],
+          Weaknesses: ["Defense", "Physicality"],
           minimums: {
               Puckskills: {
                   Passing: 0.85,
@@ -437,6 +451,7 @@ export let playerTypesInfo = {
           Description: "Utilizing both solid defense and physicality to make an impact",
           MainSkills: ["Defense"],
           SecondarySkills: ["Defense", "Physicality", "Grit"],
+          Weaknesses: ["Passing"],
           minimums: {
               Defense_AVG: 0.84,
               Physical_AVG: 0.84,
@@ -459,6 +474,7 @@ export let playerTypesInfo = {
           Description: "Great offensive and defensive skills, great skating, and decent physicality",
           MainSkills: ["Passing", "PuckSkills", "Defense"],
           SecondarySkills: ["Passing", "PuckSkills", "Defense", "Skating", "Grit", "Shooting", "Rush"],
+          Weaknesses: ["None"],
           minimums: {
               Defense: {
                   DefensiveAwareness: 0.84,
@@ -492,6 +508,7 @@ export let playerTypesInfo = {
           Description: "You utilize your skill to make up for the lack of size and strength",
           MainSkills: ["PuckSkills", "Passing"],
           SecondarySkills: ["Passing", "PuckSkills", "Skating", "Shooting"],
+          Weaknesses: ["Physicality", "Balance", "Defense"],
           minimums: {
               Puckskills: {
                   PuckControl: 0.87,
@@ -521,6 +538,7 @@ export let playerTypesInfo = {
           Description: "Solid skater who can put up some points but doesn't really stand out anywhere",
           MainSkills: ["Skating"],
           SecondarySkills: ["Passing", "Skating", "PuckSkills", "Shooting"],
+          Weaknesses: ["Defense"],
           minimums: {
               Skating: {
                   Acceleration: 0.88,
@@ -542,6 +560,7 @@ export let playerTypesInfo = {
           Description: "Liability on all parts of the ice",
           MainSkills: [],
           SecondarySkills: [],
+          Weaknesses: ["Everything"],
           maximums: {
               Defense_AVG: 0.8,
               Physical_AVG: 0.79,
@@ -557,6 +576,7 @@ export let playerTypesInfo = {
           Description: "Overall offensive side of your game stands out above all else",
           MainSkills: ["PuckSkills", "Shooting", "Passing"],
           SecondarySkills: ["PuckSkills", "Shooting", "Passing"],
+          Weaknesses: ["Defense", "Physicality"],
           minimums: {
               Shooting_AVG: 0.81,
               Puckskills: {
@@ -577,6 +597,7 @@ export let playerTypesInfo = {
           Description: "Possesses such elite offensive skills that people wonder why you are a defenseman instead of a forward",
           MainSkills: ["PuckSkills", "Shooting", "Passing"],
           SecondarySkills: ["PuckSkills", "Shooting", "Passing", "Skating"],
+          Weaknesses: ["Defense", "Physicality"],
           minimums: {
               Shooting_AVG: 0.81,
               Puckskills: {
@@ -600,6 +621,7 @@ export let playerTypesInfo = {
           Description: "Elite defensively but still not a liability offensively",
           MainSkills: ["Defense"],
           SecondarySkills: ["Defense", "Physicality", "Skating", "Passing", "Grit"],
+          Weaknesses: ["PuckSkills", "Shooting"],
           minimums: {
               Defense_AVG: 0.88,
               Physical_AVG: 0.84,
@@ -617,6 +639,7 @@ export let playerTypesInfo = {
           Description: "Elite defensively with good skating",
           MainSkills: ["Skating", "Defense"],
           SecondarySkills: ["Defense", "Physicality", "Skating", "Passing", "Grit"],
+          Weaknesses: ["PuckSkills", "Shooting"],
           minimums: {
               Defense_AVG: 0.88,
               Physical_AVG: 0.82,
@@ -638,6 +661,7 @@ export let playerTypesInfo = {
           Description: "Elite defensively but a bit lost with the puck",
           MainSkills: ["Defense"],
           SecondarySkills: ["Defense", "Physicality", "Grit"],
+          Weaknesses: ["PuckSkills", "Passing", "Shooting"],
           minimums: {
               Defense_AVG: 0.88,
               Physical_AVG: 0.84,
@@ -655,6 +679,7 @@ export let playerTypesInfo = {
           Description: "Elite in a combination of defensive skills and physicality",
           MainSkills: ["Physicality", "Grit"],
           SecondarySkills: ["Physicality", "Defense", "Grit"],
+          Weaknesses: ["PuckSkills", "Shooting"],
           minimums: {
               Defense_AVG: 0.88,
               Physical_AVG: 0.87,
@@ -672,6 +697,7 @@ export let playerTypesInfo = {
           Description: "Exceptional skating and puck carrying, as well as offensive skills",
           MainSkills: ["Skating"],
           SecondarySkills: ["Skating", "PuckSkills", "Shooting", "Passing"],
+          Weaknesses: ["Defense", "Physicality"],
           minimums: {
               Shooting_AVG: 0.82,
               Puckskills: {
@@ -697,18 +723,19 @@ export let playerTypesInfo = {
           Description: "A defenseman with no real weaknesses especially reliable defensively",
           MainSkills: ["Defense", "Passing"],
           SecondarySkills: ["Defense", "Passing", "Physicality"],
+          Weaknesses: ["Shooting"],
           minimums: {
               Puckskills: {
-                  PuckControl: 0.85,
-                  Passing: 0.86,
-                  OffensiveAwareness: 0.85
+                  PuckControl: 0.84,
+                  Passing: 0.85,
+                  OffensiveAwareness: 0.83
               },
               Skating: {
                   Speed: 0.83,
                   Acceleration: 0.83,
                   Agility: 0.83,
               },
-              Defense_AVG: 0.87,
+              Defense_AVG: 0.85,
           },
           maximums: {
               Defense_AVG: 0.95,
@@ -720,6 +747,7 @@ export let playerTypesInfo = {
           Description: "A defenseman with no real weaknesses, and exceptional skating",
           MainSkills: ["Skating", "Defense"],
           SecondarySkills: ["Skating", "Defense", "Passing"],
+          Weaknesses: ["Shooting", "Physicality"],
           minimums: {
               Puckskills: {
                   PuckControl: 0.86,
@@ -743,13 +771,14 @@ export let playerTypesInfo = {
           Description: "Well-rounded defenseman with a great shot, and average physicality at best",
           MainSkills: ["Shooting"],
           SecondarySkills: ["Shooting", "Defense", "PuckSkills"],
+          Weaknesses: ["Skating"],
           minimums: {
               Puckskills: {
-                  PuckControl: 0.86,
-                  Passing: 0.87,
-                  OffensiveAwareness: 0.86
+                  PuckControl: 0.83,
+                  Passing: 0.85,
+                  OffensiveAwareness: 0.83
               },
-              Shooting_AVG: 0.84,
+              Shooting_AVG: 0.815,
               Defense_AVG: 0.87,
           },
           maximums: {
@@ -766,16 +795,17 @@ export let playerTypesInfo = {
           Description: "Elite defensively with a good shot",
           MainSkills: ["Shooting", "Defense"],
           SecondarySkills: ["Defense", "Shooting", "Physicality"],
+          Weaknesses: ["Skating"],
           minimums: {
               Defense_AVG: 0.88,
               Physical_AVG: 0.84,
-              Shooting_AVG: 0.82,
+              Shooting_AVG: 0.815,
           },
           maximums: {
               Puckskills: {
-                  PuckControl: 0.85,
-                  Passing: 0.87,
-                  OffensiveAwareness: 0.82
+                  PuckControl: 0.83,
+                  Passing: 0.85,
+                  OffensiveAwareness: 0.83
               },
           },
       },
@@ -784,6 +814,7 @@ export let playerTypesInfo = {
           Description: "Uses physicality and fighting to be effective, average at best defensively, and lacking in all other areas",
           MainSkills: ["Physicality", "Grit"],
           SecondarySkills: ["Physicality", "Grit"],
+          Weaknesses: ["PuckSkills", "Passing", "Shooting"],
           minimums: {
               Physical: {
                   BodyChecking: 0.85,
@@ -805,6 +836,7 @@ export let playerTypesInfo = {
           Description: "Liability in all aspects of the game, especially offensively and skating wise",
           MainSkills: [],
           SecondarySkills: [],
+          Weaknesses: ["Everything"],
           maximums: {
               Defense_AVG: 0.85,
               Physical_AVG: 0.84,
@@ -1420,6 +1452,31 @@ export let attributeWeightsInfo = {
         WristshotAccuracy: 0.5,
         WristshotPower: 0.5,
     },
+    "Two-way Defenseman": {
+        Acceleration: 0.25,
+        Agility: 0.25,
+        Balance: 0.25,
+        BodyChecking: 0.5,
+        DefensiveAwareness: 1,
+        Deking: 0.25,
+        Discipline: 0.001,
+        Durability: 0.001,
+        Endurance: 0.001,
+        Faceoffs: 0,
+        FightingSkill: 0,
+        HandEye: 0.25,
+        OffensiveAwareness: 0.5,
+        Passing: 0.75,
+        PuckControl: 0.75,
+        ShotBlocking: 0.5,
+        SlapshotAccuracy: 0.25,
+        SlapshotPower: 0.25,
+        Speed: 0.25,
+        StickChecking: 1,
+        Strength: 0.5,
+        WristshotAccuracy: 0.25,
+        WristshotPower: 0.25,
+    },
     "Mobile Two-way Defenseman": {
         Acceleration: 1,
         Agility: 1,
@@ -1469,6 +1526,31 @@ export let attributeWeightsInfo = {
         Strength: 0.5,
         WristshotAccuracy: 0.5,
         WristshotPower: 0.75,
+    },
+    "Defensive Defenseman": {
+        Acceleration: 0.25,
+        Agility: 0.25,
+        Balance: 0.25,
+        BodyChecking: 0.5,
+        DefensiveAwareness: 1,
+        Deking: 0.25,
+        Discipline: 0.001,
+        Durability: 0.001,
+        Endurance: 0.001,
+        Faceoffs: 0,
+        FightingSkill: 0,
+        HandEye: 0.25,
+        OffensiveAwareness: 0.25,
+        Passing: 0.5,
+        PuckControl: 0.25,
+        ShotBlocking: 0.75,
+        SlapshotAccuracy: 0.25,
+        SlapshotPower: 0.25,
+        Speed: 0.25,
+        StickChecking: 1,
+        Strength: 0.5,
+        WristshotAccuracy: 0.25,
+        WristshotPower: 0.25,
     },
     "Goal-scoring Defensive Defenseman": {
         Acceleration: 0.25,

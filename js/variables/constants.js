@@ -82,6 +82,9 @@ export const ABILITIES_XML = "../build-information/abilities.xml";
     export const ATTRIBUTE_METER_FILL_CLASSNAME = "attribute-meter-fill";
 
     export const PHYSICALS_VALIDITY_CLASSNAME = "physicals-validity";
+    export const SIMILAR_PLAYER_CLASSNAME = "similar-player";
+    export const DISSIMILAR_PLAYER_CLASSNAME = "dissimilar-player";
+    export const PLAYERS_LIST_NUMBER_CLASSNAME = "player-list-number";
 
 
 /**
@@ -107,6 +110,11 @@ export const ABILITIES_XML = "../build-information/abilities.xml";
     export const ABILITY_SECTION_ID = "abilities-and-boosts-row";
 
     export const PLAYERTYPE_VALIDITY_ID = "player-type-selection-warning";
+    export const PLAYERTYPE_NAME_ID = "player-type-name";
+    export const PLAYERTYPE_DESC_ID = "player-type-description";
+    export const MAINSKILLS_LIST_ID = "main-skills-list";
+    export const SECSKILLS_LIST_ID = "sec-skills-list";
+    export const WEAKNESSES_LIST_ID = "weaknesses-list";
 
 
 
@@ -179,3 +187,9 @@ export const defenseAttributes = ['DefensiveAwareness', 'StickChecking', 'ShotBl
 export const shootingAttributes = ['SlapshotAccuracy', 'SlapshotPower', 'WristshotAccuracy', 'WristshotPower'];
 export const puckSkillsAttributes = ['Deking', 'HandEye', 'OffensiveAwareness', 'Passing', 'PuckControl']
 export const physicalityAttributes = ['BodyChecking', 'Strength', 'Durability'];
+
+
+/**
+ * EXTERNAL WEBSITE LINK INFO
+ */
+export const PLAYER_LINK_INFO_START = "https://www.hockey-reference.com/players/";

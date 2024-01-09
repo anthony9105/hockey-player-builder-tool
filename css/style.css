@@ -714,3 +714,12 @@ body {
     text-decoration: none;
     cursor: pointer;
 }
+
+.similar-player, .dissimilar-player {
+    display: flex;
+    flex-direction: row;
+}
+
+.player-list-number {
+    padding-right: 1%;
+}
