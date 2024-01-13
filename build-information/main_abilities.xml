@@ -155,7 +155,7 @@
         <MainAbilities>
             <Ability>
                 <AbilityName>Back At Ya</AbilityName>
-                <AbilityGroup>Not in an ability group</AbilityGroup>
+                <AbilityGroup>Defense</AbilityGroup>
             </Ability>
             <Ability>
                 <AbilityName>No Contest</AbilityName>
@@ -280,7 +280,7 @@
         <MainAbilities>
             <Ability>
                 <AbilityName>Back At Ya</AbilityName>
-                <AbilityGroup>Not in an ability group</AbilityGroup>
+                <AbilityGroup>Defense</AbilityGroup>
             </Ability>
             <Ability>
                 <AbilityName>Bouncer</AbilityName>
@@ -296,7 +296,7 @@
             </Ability>
             <Ability>
                 <AbilityName>Unstoppable Force</AbilityName>
-                <AbilityGroup>Defense</AbilityGroup>
+                <AbilityGroup>Athleticism</AbilityGroup>
             </Ability>
         </MainAbilities>
     </Build>

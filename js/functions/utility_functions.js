@@ -448,6 +448,19 @@ export function allAbilitiesValid() {
   return true;
 }
 
+/**
+ * getPlayerWebsiteURL function used to get the website URL.
+ * Right now I am using hockeyreference.com links since there
+ * is a pattern in the player URL I can easily replicate with
+ * the correct first and last name of the player.  No data from
+ * hockeyreference is used, I am only including an external link
+ * to the website.
+ * 
+ * The wesbite URL is as follows:
+ *    https://www.hockey-reference.com/players/{first letter of last name}/{first 5 letters of last name}{first 2 letters of first name}01.html
+ * @param {string} playerFullName 
+ * @returns the website url for the given player
+ */
 export function getPlayerWebsiteURL(playerFullName) {
   let websiteUrl = Constants.PLAYER_LINK_INFO_START;
 

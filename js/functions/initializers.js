@@ -60,10 +60,8 @@ async function setMainAbilityOptions(buildName) {
 
           // if the current ability's ability group is the same as the currentBuildMainAbilityGroups
           if (currentAbilityGroupName == currentBuildMainAbilityGroups[index].textContent) {
-
             // each ability from the abilities.xml file
             const abilitiesInfo = currentAbilityGroup.querySelectorAll(Constants.XML_ABILITY_NODE);
-
             // for each ability
             abilitiesInfo.forEach(currentAbilityInfo => {
               const currentAbilityName = currentAbilityInfo.querySelector(Constants.XML_ABILITY_NAME_NODE).textContent;
@@ -115,10 +113,11 @@ async function setAbilityOptions() {
     // ability info
     const allAbilityInfo = xmlDoc.querySelectorAll(Constants.XML_ABILITY_NODE);
 
-    // filter used to remove the ability "Back At Ya" from this because that ability is only used as a main ability and not a regular ability,
-    // like the rest of the abilities are.
+    // filter was originally used to remove the ability "Back At Ya" from this because that ability is only used as a main ability and not a regular ability,
+    // like the rest of the abilities are.  BUT I have now included it.  If needed this can be changed to exclude certain abilities, but the html elements
+    // that would've been used for this ability would also need to be removed (which requires more code changes to do).
     const abilityInfo = Object.values(allAbilityInfo).filter(ability => {
-      const validRegularAbility = ability.querySelector(Constants.XML_ABILITY_NAME_NODE).textContent != Constants.XML_BACKATYA_NODE;
+      const validRegularAbility = ability.querySelector(Constants.XML_ABILITY_NAME_NODE).textContent != "Fill_name_of_ability_to_exclude";
       return validRegularAbility;
     });
 

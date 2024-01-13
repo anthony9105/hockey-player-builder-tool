@@ -406,6 +406,22 @@
     <AbilityGroup>
         <GroupName>Defense</GroupName>
         <Ability>
+            <AbilityName>Back At Ya</AbilityName>
+            <Description>Enables player to reverse hit opponents, aswell as an increased chance of knocking an opponent off balance</Description>
+            <Type>Physicality</Type>
+            <Requirements>
+                <Requirement>
+                    <AttributeName>Body Checking</AttributeName>
+                    <MinimumValue>78</MinimumValue>
+                </Requirement>
+                <Requirement>
+                    <AttributeName>Balance</AttributeName>
+                    <MinimumValue>75</MinimumValue>
+                </Requirement>
+            </Requirements>
+            <IconName>keyboard_return</IconName>
+        </Ability>
+        <Ability>
             <AbilityName>Bouncer</AbilityName>
             <Description>Enhanced skill at battles near the net.  Stability, stick tension, and strength increased around the net, and opponents take longer to recover from these battles</Description>
             <Type>Physicality</Type>
@@ -633,12 +649,4 @@
             <IconName>dangerous</IconName>
         </Ability>
     </AbilityGroup>
-    <OnlyUnderMainAbilities>
-        <Ability>
-            <AbilityName>Back At Ya</AbilityName>
-            <Description>Enables player to reverse hit opponents, aswell as an increased chance of knocking an opponent off balance</Description>
-            <Type>Physicality</Type>
-            <IconName>keyboard_return</IconName>
-        </Ability>
-    </OnlyUnderMainAbilities>
 </AbilityGroups>

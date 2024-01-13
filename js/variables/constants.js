@@ -145,6 +145,7 @@ export const XML_DESCRIP_NODE = "Description";
 export const XML_BUILDNAME_NODE = "BuildName";
 export const XML_BACKATYA_NODE = "Back At Ya";
 export const XML_ABILITY_TYPE_NODE = "Type";
+export const XML_NOTINANABILITYGROUP_NODE = "OnlyUnderMainAbilities";
 
 
 /**
