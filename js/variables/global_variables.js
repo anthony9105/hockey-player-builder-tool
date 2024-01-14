@@ -506,26 +506,26 @@ export let playerTypesInfo = {
       Undersized_finesse_forward: {
           DisplayName: "Undersized Finesse Forward",
           Description: "A forward who relies on skill and finesse to make offensive contributions.  While lacking in size, you compensate that with finesse and creativity.",
-          MainSkills: ["PuckSkills", "Passing"],
+          MainSkills: ["PuckSkills"],
           SecondarySkills: ["Passing", "PuckSkills", "Skating", "Shooting"],
           Weaknesses: ["Physicality", "Balance", "Defense"],
           minimums: {
               Puckskills: {
-                  PuckControl: 0.87,
-                  Passing: 0.86,
+                  PuckControl: 0.85,
+                  Passing: 0.82,
                   OffensiveAwareness: 0.87
               },
               Shooting_AVG: 0.77,
           },
           maximums: {
               Physical: {
-                  Strength: 0.82,
-                  BodyChecking: 0.81,
+                  Strength: 0.8,
+                  BodyChecking: 0.8,
               },
               Skating: {
-                  Balance: 0.81
+                  Balance: 0.79
               },
-              Defense_AVG: 0.82
+              Defense_AVG: 0.81
           }
       },
       Mobile_depth_fwd: {
@@ -1260,7 +1260,7 @@ export let attributeWeightsInfo = {
         WristshotAccuracy: 0.5,
         WristshotPower: 0.5,
     },
-    "Mobile Depth Finesse Forward": {
+    "Mobile Finesse Forward": {
         Acceleration: 1,
         Agility: 1,
         Balance: 0.25,

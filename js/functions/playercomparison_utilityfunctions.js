@@ -658,12 +658,17 @@ export function findSimilarPlayers() {
   const bestPlayerType = getPlayerType(samplePlayer, samplePlayer['main-position']);
   attributeWeights = Variables.attributeWeightsInfo[bestPlayerType.DisplayName];
 
+  if (attributeWeights == undefined) {
+    console.warn("Attribute weights undefined.  Likely missing/typo of this player type.  The best player type currently is called: "+bestPlayerType.DisplayName);
+  }
+
   if (playerPosition == 'C') {
     if (bestPlayerType.DisplayName != "Faceoff Specialist" && bestPlayerType.DisplayName != "Two-way Liability") {
       if (bestPlayerType.DisplayName.toLowerCase().includes("two-way")) {
         attributeWeights.Faceoffs = 0.1;
       }
       else {
+        console.log(bestPlayerType);
         attributeWeights.Faceoffs = 0.01;
       }
     }
