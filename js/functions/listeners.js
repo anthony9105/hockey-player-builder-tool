@@ -138,6 +138,7 @@ export function hideMainAbilityDropdownContent() {
  * it meets the requirements.
  */
 export function abilitySelectListeners() {
+
   Object.values(Variables.abilityItems).forEach((abilityItem, index) => {
     abilityItem.addEventListener("click", function() {
       let i = 0;
@@ -147,21 +148,27 @@ export function abilitySelectListeners() {
         k = 2;
       }
 
-      let abilityDisplayName = Variables.abilityDisplayItems[i].getElementsByClassName(Constants.ABILITY_DISPLAY_NAME_CLASSNAME)[0];
+      let abilityDisplayNames = Variables.abilityDisplayNames;
       let selectedAbilityName = abilityItem.getElementsByClassName(Constants.ABILITY_NAME_CLASSNAME)[0];
       let selectedAbilityRequirements = abilityItem.getElementsByClassName(Constants.ABILITY_REQ_CLASSNAME);
       let confirmResponse = true;
-      
-      if (abilityDisplayName.textContent == selectedAbilityName.textContent) {
+
+      // if the selected ability has already been selected as a regular or main ability
+      if (abilityDisplayNames[0].textContent == selectedAbilityName.textContent || 
+          abilityDisplayNames[1].textContent == selectedAbilityName.textContent || 
+          Variables.mainAbilityDisplayName.textContent == selectedAbilityName.textContent) {
+        
         confirmResponse = false;
         window.alert("This ability is already selected");
       }
+      // if the requirements for the seleced ability are not met
       else if (!UtilityFunctions.meetsRequirement(selectedAbilityRequirements[0].textContent) || !UtilityFunctions.meetsRequirement(selectedAbilityRequirements[1].textContent)) {
         confirmResponse = false;
         window.alert("1 or more of the minimum requirements for this ability are not met");
       }
-      else if (abilityDisplayName.textContent != Constants.UNSELECTED_ABILITY_NAME) {
-        confirmResponse = window.confirm(`Are you sure you want to replace "${abilityDisplayName.textContent}" with "${selectedAbilityName.textContent}"?`);
+      // if the same ability slot is already being used but it is a different ability, give the option to replace the existing one or cancel
+      else if (abilityDisplayNames[i].textContent != Constants.UNSELECTED_ABILITY_NAME) {
+        confirmResponse = window.confirm(`Are you sure you want to replace "${abilityDisplayNames[i].textContent}" with "${selectedAbilityName.textContent}"?`);
       } 
 
       if (confirmResponse) {
@@ -173,7 +180,7 @@ export function abilitySelectListeners() {
         let abilityDisplayRequirements = Variables.abilityDisplayItems[i].getElementsByClassName(Constants.ABILITY_DISPLAY_REQ_CLASSNAME);
         let abilityDisplayIcon = Variables.abilityDisplayItems[i].getElementsByClassName(Constants.ICONS_CLASSNAME)[0];
 
-        UpdateFunctions.setDisplayItem(k, abilityDisplayName, selectedAbilityName, abilityDisplayDescription, selectedAbilityDescription, 
+        UpdateFunctions.setDisplayItem(k, abilityDisplayNames[i], selectedAbilityName, abilityDisplayDescription, selectedAbilityDescription, 
           abilityDisplayIcon, selectedAbilityIcon, abilityDisplayRequirements, selectedAbilityRequirements
         );
 
@@ -191,16 +198,25 @@ export function mainAbilitySelectListeners() {
   Object.values(Variables.mainAbilityItems).forEach((mainAbilityItem) => {
     mainAbilityItem.addEventListener("click", function() {
       
-      let abilityDisplayName = Variables.mainAbilityDisplayItem.getElementsByClassName(Constants.MAIN_ABILITY_DISPLAY_NAME_CLASSNAME)[0];
+      let mainAbilityDisplayName = Variables.mainAbilityDisplayItem.getElementsByClassName(Constants.MAIN_ABILITY_DISPLAY_NAME_CLASSNAME)[0];
       let selectedAbilityName = mainAbilityItem.getElementsByClassName(Constants.MAIN_ABILITY_NAME_CLASSNAME)[0];
+      const abilityDisplayNames = Variables.abilityDisplayNames;
+
       let confirmResponse = true;
+
+      console.log();
       
-      if (abilityDisplayName.textContent == selectedAbilityName.textContent) {
+      // if the selected main ability has already been selected as a regular or main ability
+      if (mainAbilityDisplayName.textContent == selectedAbilityName.textContent || 
+          abilityDisplayNames[0].textContent == selectedAbilityName.textContent || 
+          abilityDisplayNames[1].textContent == selectedAbilityName.textContent) {
+
         confirmResponse = false;
         window.alert("This main ability is already selected");
       }
-      else if (abilityDisplayName.textContent != Constants.UNSELECTED_ABILITY_NAME) {
-        confirmResponse = window.confirm(`Are you sure you want to replace "${abilityDisplayName.textContent}" with "${selectedAbilityName.textContent}"?`);
+      // if the same ability slot is already being used but it is a different ability, give the option to replace the existing one or cancel
+      else if (mainAbilityDisplayName.textContent != Constants.UNSELECTED_ABILITY_NAME) {
+        confirmResponse = window.confirm(`Are you sure you want to replace "${mainAbilityDisplayName.textContent}" with "${selectedAbilityName.textContent}"?`);
       } 
 
       if (confirmResponse) {
@@ -213,7 +229,7 @@ export function mainAbilitySelectListeners() {
         let abilityDisplayDescription = Variables.mainAbilityDisplayItem.getElementsByClassName(Constants.MAIN_ABILITY_DISPLAY_DESC_CLASSNAME)[0];
         let abilityDisplayIcon = Variables.mainAbilityDisplayItem.getElementsByClassName(Constants.ICONS_CLASSNAME)[0];
 
-        UpdateFunctions.setDisplayItem(k, abilityDisplayName, selectedAbilityName, abilityDisplayDescription, selectedAbilityDescription, abilityDisplayIcon, selectedAbilityIcon);
+        UpdateFunctions.setDisplayItem(k, mainAbilityDisplayName, selectedAbilityName, abilityDisplayDescription, selectedAbilityDescription, abilityDisplayIcon, selectedAbilityIcon);
       }
     });
   });
@@ -638,7 +654,6 @@ export function completeBuildButtonListener() {
     else {
       window.alert("You must select all 3 abilities before completing the build");
     }
-    // findSimilarPlayers();
   });
 }
 
