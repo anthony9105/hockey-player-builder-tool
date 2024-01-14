@@ -94,7 +94,7 @@ export let playerTypesInfo = {
       // All around offensive threat but still specializes in goalscoring/shooting/sniping
       Sniper: {
           DisplayName: "Sniper",
-          Description: "Exceptional shooting stands out above everything else but still elite in all other offensive skills",
+          Description: "A forward possessing impressive offensive skills in all aspects but your shooting and goal scoring ability stands out above everything else.",
           MainSkills: ["Shooting"],
           SecondarySkills: ["PuckSkills", "Shooting", "Skating"],
           Weaknesses: ["Defense", "Physicality"],
@@ -118,7 +118,7 @@ export let playerTypesInfo = {
       },
       Pure_Sniper: {
           DisplayName: "Pure Sniper",
-          Description: "Exceptional shooting and not much else",
+          Description: "A forward with excellent shooting and goal scoring prowess; passing up a shooting opportunity is likely a rare occurance.",
           MainSkills: ["Shooting"],
           SecondarySkills: ["Shooting"],
           Weaknesses: ["Passing", "Defense", "Physicality"],
@@ -139,7 +139,7 @@ export let playerTypesInfo = {
       },
       Sniping_pwf: {
           DisplayName: "Sniping Power Forward",
-          Description: "Exceptional shooting and good strength/power",
+          Description: "A forward with powerful offensive force who excels in shooting and goal scoring.",
           MainSkills: ["Shooting"],
           SecondarySkills: ["Shooting", "Physicality"],
           Weaknesses: ["Defense"],
@@ -159,7 +159,7 @@ export let playerTypesInfo = {
       },
       Pure_Playmaker: {
           DisplayName: "Pure Playmaker",
-          Description: "Elite passing and playmaking but hardly scores goals",
+          Description: "A forward possessing exceptional playmaking abilities; you are selfless on the ice, prioritizing setting up your teammates to score.",
           MainSkills: ["Passing"],
           SecondarySkills: ["Passing", "PuckSkills", "Skating"],
           Weaknesses: ["Shooting", "Physicality", "Defense"],
@@ -181,7 +181,7 @@ export let playerTypesInfo = {
       },
       Physical_Playmaker: {
           DisplayName: "Playmaking Power Forward",
-          Description: "Elite passing and strength/power but hardly scores goals",
+          Description: "A forward demonstrating a combination of playmaking finesse and power; you excel in setting up your teammates to score and utilizing your strength.",
           MainSkills: ["Passing"],
           SecondarySkills: ["Passing", "Physicality", "PuckSkills"],
           Weaknesses: ["Shooting", "Defense"],
@@ -204,7 +204,7 @@ export let playerTypesInfo = {
       // Good all around offensively, good skating, weak defense, weak physicality
       Offensive_Threat: {
           DisplayName: "Offensive Threat",
-          Description: "Elite all-around offensive game, lacking on defense and physically",
+          Description: "A forward owning potent offensive threat with skills across the board; defense and physicality may not be your focus, but the offensive threat is undeniable.",
           MainSkills: ["Shooting", "PuckSkills", "Passing"],
           SecondarySkills: ["Shooting", "PuckSkills", "Passing", "Skating"],
           Weaknesses: ["Defense", "Physicality"],
@@ -231,7 +231,7 @@ export let playerTypesInfo = {
       },
       Rush_offense_specialist: {
           DisplayName: "Rush Offense Specialist",
-          Description: "Possesses elite skating and decent offensive skills, not good physically or defensively",
+          Description: "A forward who is a specialist in rush offense with elite skating and solid offensive skills; falls short in defensive and physical aspects.",
           MainSkills: ["Rush", "Skating"],
           SecondarySkills: ["PuckSkills", "Skating", "Rush"],
           Weaknesses: ["Defense", "Physicality"],
@@ -257,7 +257,7 @@ export let playerTypesInfo = {
       },
       High_intensity_twoway_fwd: {
           DisplayName: "High-intensity Two-way Forward",
-          Description: "Menace on the forecheck with great skating and defense.  Offensive skills are lacking.",
+          Description: "A forward who plays with a high intensity with great skating and defensive prowess, though offensive skills are not as prominent.",
           MainSkills: ["Defense", "Skating"],
           SecondarySkills: ["Defense", "Skating", "Grit"],
           Weaknesses: ["Shooting"],
@@ -282,7 +282,7 @@ export let playerTypesInfo = {
       },
       Penalty_kill_specialist: {
           DisplayName: "Penalty Kill Specialist", 
-          Description: "Fearless forward who will block any shot, great for killing penalties and not much else",
+          Description: "A forward who is a specialist in penalty killing. You are fearless and willing to block any shot but does not contribute much in the other aspects of the game.",
           MainSkills: ["Defense", "Grit"],
           SecondarySkills: ["Defense", "Grit"],
           Weaknesses: ["Shooting", "PuckSkills", "Passing", "Skating"],
@@ -309,7 +309,7 @@ export let playerTypesInfo = {
       },
       Faceoff_Specialist: {
           DisplayName: "Faceoff Specialist",
-          Description: "Elite at taking faceoffs",
+          Description: "A forward who is a faceoff specialist that dominates the circle with expertise and precision in securing possession for your team.  Despite this, you do not contribute much in other aspects of the game.",
           MainSkills: ["Faceoffs"],
           SecondarySkills: ["Faceoffs"],
           Weaknesses: ["Shooting", "PuckSkills", "Passing", "Skating", "Defense"],
@@ -336,7 +336,7 @@ export let playerTypesInfo = {
       //
       Grinder: {
           DisplayName: "Grinder",
-          Description: "Uses physicality and defensive play to be effective.  Also usually have great hand-eye for scoring deflections and rebounds",
+          Description: "A forward, exemplifying tenacity and relentlessness in physical play and creating disruptions on the ice, often relying on determination and grit to make an impact.  Often has excellent hand-eye ability to deflect shots and score loose pucks.",
           MainSkills: ["Grit"],
           SecondarySkills: ["Grit", "Physicality", "Defense"],
           Weaknesses: ["Shooting", "PuckSkills", "Passing"],
@@ -364,7 +364,7 @@ export let playerTypesInfo = {
       },
       Two_way_fwd: {
           DisplayName: "Two-way Forward",
-          Description: "Well-rounded but does not stand out in any area other than defensively",
+          Description: "A forward that is consistently reliable, maintaining above average defensive ability while still contributing reliably offensively; a truly balanced and reliable player on all ends of the ice.",
           MainSkills: ["Defense"],
           SecondarySkills: ["Defense"],
           Weaknesses: ["None"],
@@ -388,7 +388,7 @@ export let playerTypesInfo = {
       },
       Powerforward: {
           DisplayName: "Power Forward",
-          Description: "Utilizes elite strength and power to be effective",
+          Description: "A powerful forward, dominating opponents with strength and aggressiveness; known for driving to the net and creating opportunities through force and determination.",
           MainSkills: ["Physicality"],
           SecondarySkills: ["Physicality", "Shooting", "Grit"],
           Weaknesses: ["Defense", "Passing", "Skating"],
@@ -419,7 +419,7 @@ export let playerTypesInfo = {
       },
       Speedy_Offensive_Threat: {
           DisplayName: "Speedy Offensive Threat",
-          Description: "Exceptional skating along with elite puck carrying, passing, and goal scoring ability",
+          Description: "A forward that is a fast and dynamic offensive threat with skills across the board; defense and physicality may not be your focus, but the offensive threat and skating ability is undeniable.",
           MainSkills: ["Skating", "Rush"],
           SecondarySkills: ["Skating", "PuckSkills", "Passing", "Shooting", "Rush"],
           Weaknesses: ["Defense", "Physicality"],
@@ -448,7 +448,7 @@ export let playerTypesInfo = {
       },
       Two_way_powerforward: {
           DisplayName: "Two-way Power Forward",
-          Description: "Utilizing both solid defense and physicality to make an impact",
+          Description: "A forward combining physical dominance with a well-rounded and reliable style.",
           MainSkills: ["Defense"],
           SecondarySkills: ["Defense", "Physicality", "Grit"],
           Weaknesses: ["Passing"],
@@ -471,7 +471,7 @@ export let playerTypesInfo = {
       },
       Two_way_offensive_threat: {
           DisplayName: "Two-way Offensive Threat",
-          Description: "Great offensive and defensive skills, great skating, and decent physicality",
+          Description: "A versatile forward, who is not only decent, but excels in offensive, defensive, and skating ability.  Not a dominant physical force but can definitely hold his own physically.",
           MainSkills: ["Passing", "PuckSkills", "Defense"],
           SecondarySkills: ["Passing", "PuckSkills", "Defense", "Skating", "Grit", "Shooting", "Rush"],
           Weaknesses: ["None"],
@@ -505,7 +505,7 @@ export let playerTypesInfo = {
       },
       Undersized_finesse_forward: {
           DisplayName: "Undersized Finesse Forward",
-          Description: "You utilize your skill to make up for the lack of size and strength",
+          Description: "A forward who relies on skill and finesse to make offensive contributions.  While lacking in size, you compensate that with finesse and creativity.",
           MainSkills: ["PuckSkills", "Passing"],
           SecondarySkills: ["Passing", "PuckSkills", "Skating", "Shooting"],
           Weaknesses: ["Physicality", "Balance", "Defense"],
@@ -516,11 +516,6 @@ export let playerTypesInfo = {
                   OffensiveAwareness: 0.87
               },
               Shooting_AVG: 0.77,
-              Skating: {
-                  Speed: 0.86,
-                  Acceleration: 0.86,
-                  Agility: 0.86,
-              },
           },
           maximums: {
               Physical: {
@@ -534,8 +529,8 @@ export let playerTypesInfo = {
           }
       },
       Mobile_depth_fwd: {
-          DisplayName: "Mobile Depth Finesse Forward",
-          Description: "Solid skater who can put up some points but doesn't really stand out anywhere",
+          DisplayName: "Mobile Finesse Forward",
+          Description: "A forward who relies on great skating, skill, and finesse to make offensive contributions.  While lacking in size, you compensate that with great skating, finesse, and creativity.",
           MainSkills: ["Skating"],
           SecondarySkills: ["Passing", "Skating", "PuckSkills", "Shooting"],
           Weaknesses: ["Defense"],
@@ -557,7 +552,7 @@ export let playerTypesInfo = {
       },
       Enforcer: {
         DisplayName: "Enforcer",
-        Description: "Utilizes physicality, especially fighting, to be effective",
+        Description: "A forward recognized for formidable strength and toughness. Your role is to intimidate the opposition and protect your teammates by utilizing your strength, often willing to confront opponents and fight them to achieve this intimidation and protection.",
         MainSkills: ["Physicality", "Grit"],
         SecondarySkills: ["Physicality", "Grit"],
         Weaknesses: ["Shooting", "Defense", "PuckSkills", "Passing", "Skating"],
@@ -577,7 +572,7 @@ export let playerTypesInfo = {
     },
       Extra_fwd: {
           DisplayName: "Two-way Liability",
-          Description: "Liability on all parts of the ice",
+          Description: "A forward who often faces challenges on both offense and defense.  Your performance often presents difficulties for your team, showcasing your struggles in all aspects of the game.",
           MainSkills: [],
           SecondarySkills: [],
           Weaknesses: ["Everything"],
@@ -593,7 +588,7 @@ export let playerTypesInfo = {
   Defense: {
       Offenisve_dman: {
           DisplayName: "Offensive Defenseman",
-          Description: "Overall offensive side of your game stands out above all else",
+          Description: "A defenseman renowned for exceptional offensive contributions.",
           MainSkills: ["PuckSkills", "Shooting", "Passing"],
           SecondarySkills: ["PuckSkills", "Shooting", "Passing"],
           Weaknesses: ["Defense", "Physicality"],
@@ -614,7 +609,7 @@ export let playerTypesInfo = {
       },
       Fourth_fwd_dman: {
           DisplayName: "Fourth Forward",
-          Description: "Possesses such elite offensive skills and below average defense at best, that people wonder why you are a defenseman instead of a forward",
+          Description: "Defenseman possessing such elite offensive skills, while displaying below average defense at best.  This makes others wonder why you play as a defenseman instead of a forward, given your elite offensive skills",
           MainSkills: ["PuckSkills", "Shooting", "Passing"],
           SecondarySkills: ["PuckSkills", "Shooting", "Passing", "Skating"],
           Weaknesses: ["Defense", "Physicality"],
@@ -633,7 +628,7 @@ export let playerTypesInfo = {
       },
       Defensive_dman: {
           DisplayName: "Defensive Defenseman",
-          Description: "Elite defensively but still not a liability offensively",
+          Description: "A defenseman recognized for reliability on the ice, particularly standing out defensively. You contribute significantly to your teams stability in the defensive zone.",
           MainSkills: ["Defense"],
           SecondarySkills: ["Defense", "Physicality", "Skating", "Passing", "Grit"],
           Weaknesses: ["PuckSkills", "Shooting"],
@@ -651,7 +646,7 @@ export let playerTypesInfo = {
       },
       Mobile_defensive_dman: {
           DisplayName: "Mobile Defensive Defenseman",
-          Description: "Elite defensively with good skating",
+          Description: "A defenseman recognized for great skating ability, reliability, and stand out defensive skills. You contribute significantly to your teams stability in the defensive zone and in thwarting rush chances.",
           MainSkills: ["Skating", "Defense"],
           SecondarySkills: ["Defense", "Physicality", "Skating", "Passing", "Grit"],
           Weaknesses: ["PuckSkills", "Shooting"],
@@ -673,7 +668,7 @@ export let playerTypesInfo = {
       },
       Pure_defensive_dman: {
           DisplayName: "Pure Shutdown Defenseman",
-          Description: "Elite defensively but a bit lost with the puck",
+          Description: "A defenseman renowned for shutting down the oponnents' offensive efforts with exceptional defensive skills.  While excelling in preventing scoring opportunities, your offensive contributions are lacking and unreliable, solidifying your role as a purely defensive stalwart.",
           MainSkills: ["Defense"],
           SecondarySkills: ["Defense", "Physicality", "Grit"],
           Weaknesses: ["PuckSkills", "Passing", "Shooting"],
@@ -691,7 +686,7 @@ export let playerTypesInfo = {
       },
       Tough_Defensive_dman: {
           DisplayName: "Tough Defensive Defenseman",
-          Description: "Elite in a combination of defensive skills and physicality",
+          Description: "A defenseman recognized for a combination of physicality, resilience, and defensive skills.  You blend toughness with defensive prowess that deters opponents and boslters your team's defense.",
           MainSkills: ["Physicality", "Grit"],
           SecondarySkills: ["Physicality", "Defense", "Grit"],
           Weaknesses: ["PuckSkills", "Shooting"],
@@ -709,7 +704,7 @@ export let playerTypesInfo = {
       },
       Mobile_offensive_dman: {
           DisplayName: "Mobile Offensive Defenseman",
-          Description: "Exceptional skating and puck carrying, as well as offensive skills",
+          Description: "A defenseman renowned for exceptional skating, breakouts, puck carrying, and offensive contributions.  With your dynamic movement and creativity, you add an extra dimension to your team's attack.",
           MainSkills: ["Skating"],
           SecondarySkills: ["Skating", "PuckSkills", "Shooting", "Passing"],
           Weaknesses: ["Defense", "Physicality"],
@@ -734,7 +729,7 @@ export let playerTypesInfo = {
       },
       Two_way_dman: {
           DisplayName: "Two-way Defenseman",
-          Description: "A defenseman with no real weaknesses especially reliable defensively",
+          Description: "A well-rounded defenseman with decent skating and passing, lacking a standout shot but good defensively.  You contribute fine on both ends of the ice but your true strength lies in being impactful and reliable defensively.",
           MainSkills: ["Defense", "Passing"],
           SecondarySkills: ["Defense", "Passing", "Physicality"],
           Weaknesses: ["Shooting"],
@@ -758,7 +753,7 @@ export let playerTypesInfo = {
       },
       Mobile_two_way_dman: {
           DisplayName: "Mobile Two-way Defenseman",
-          Description: "A well-rouned defenseman with exceptional skating",
+          Description: "A well-rounded defenseman with great skating and breakout ability, lacking a standout shot but good defensively.  You contribute fine on both ends of the ice but your true strength lies in being impactful and reliable defensively and utilizing your speed to make a difference in various situations.",
           MainSkills: ["Skating", "Defense"],
           SecondarySkills: ["Skating", "Defense", "Passing"],
           Weaknesses: ["Shooting"],
@@ -781,7 +776,7 @@ export let playerTypesInfo = {
       },
       Goal_scoring_two_way_dman: {
           DisplayName: "Goal-scoring Two-way Defenseman",
-          Description: "Well-rounded defenseman with a great shot, and average physicality at best",
+          Description: "A well-rounded defenseman with decent skating and passing along with good shooting and defense.  You contribute fine on both ends of the ice but your true strength lies in being impactful and reliable defensively, and being a goal threat with your shot from the blueline.",
           MainSkills: ["Shooting"],
           SecondarySkills: ["Shooting", "Defense", "PuckSkills"],
           Weaknesses: ["Skating"],
@@ -805,7 +800,7 @@ export let playerTypesInfo = {
       },
       Goal_scoring_defensive_dman: {
           DisplayName: "Goal-scoring Defensive Defenseman",
-          Description: "Elite defensively with a good shot",
+          Description: "A defenseman recognized for reliability on the ice, particularly standing out defensively, and also having a powerful shot that challenges goalies to stop. You contribute significantly to your teams stability in the defensive zone and although you are not skilled offensvely, when provided the opportunity, your powerful shot from the blueline often poses a threat to the opposing goalie.",
           MainSkills: ["Shooting", "Defense"],
           SecondarySkills: ["Defense", "Shooting", "Physicality"],
           Weaknesses: ["Skating"],
@@ -824,7 +819,7 @@ export let playerTypesInfo = {
       },
       Enforcer_dman: {
           DisplayName: "Enforcer Defenseman",
-          Description: "Uses physicality and fighting to be effective, average at best defensively, and lacking in all other areas",
+          Description: "A defenseman recognized for formidable strength and toughness. Your role is to intimidate the opposition and protect your teammates by utilizing your strength, often willing to confront opponents and fight them to achieve this intimidation and protection.",
           MainSkills: ["Physicality", "Grit"],
           SecondarySkills: ["Physicality", "Grit"],
           Weaknesses: ["PuckSkills", "Passing", "Shooting"],
@@ -846,7 +841,7 @@ export let playerTypesInfo = {
       },
       Pylon_dman: {
           DisplayName: "Pylon",
-          Description: "Liability in all aspects of the game, especially offensively and skating wise",
+          Description: "A defenseman often labeled as a 'pylon', emphasizing shortcomings offensively, defensively, and especially in skating.  Your performance often presents difficulties for your team, showcasing your struggles in all aspects of the game.",
           MainSkills: [],
           SecondarySkills: [],
           Weaknesses: ["Everything"],

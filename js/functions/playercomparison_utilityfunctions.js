@@ -629,33 +629,6 @@ export function findSimilarPlayers() {
   // create a KD-tree for fast nearest neighbor search
   // const kdtree = new kdTree(playerData, cosineSimilarity, selectedAttributeNames);
 
-  // sample player w/ attributes of Steven Stammkos (for testing)
-  let samplePlayer = {
-    Acceleration: 0.91,
-    Agility: 0.88,
-    Balance: 0.83,
-    BodyChecking: 0.78,
-    DefensiveAwareness: 0.83,
-    Deking: 0.88,
-    Discipline: 0.79,
-    Durability: 0.7,
-    Endurance: 0.82,
-    Faceoffs: 0.81,
-    FightingSkill: 0.77,
-    HandEye: 0.85,
-    OffensiveAwareness: 0.88,
-    Passing: 0.88,
-    PuckControl: 0.88,
-    ShotBlocking: 0.75,
-    SlapshotAccuracy: 0.87,
-    SlapshotPower: 0.89,
-    Speed: 0.89,
-    StickChecking: 0.83,
-    Strength: 0.83,
-    WristshotAccuracy: 0.85,
-    WristshotPower: 0.87,
-  }
-
   console.log(playerData.length);
   playerData.forEach((player, index) => {
     if (player.Name == "Alex Ovechkin") {
@@ -669,9 +642,9 @@ export function findSimilarPlayers() {
   });
 
   scalePlayerDataAttributes(1.025);
-  samplePlayer = playerData[540];
+  // samplePlayer = playerData[540];
 
-  samplePlayer = UtilityFunctions.getAttributeObject();
+  let samplePlayer = UtilityFunctions.getAttributeObject();
   samplePlayer['Name'] = 'Created Player';
   samplePlayer['main-position'] = document.getElementById('position-selection').value;
   samplePlayer = normalizePlayerData(samplePlayer);
@@ -695,42 +668,6 @@ export function findSimilarPlayers() {
       }
     }
   }
-  // console.log(attributeWeights);
-
-  // console.log(euclideanDistance(samplePlayer, playerData[741]));
-
-  // // Find the top 3 most similar players
-  // // (subject to change: finding 871 (all players) for nearest neighbours)
-  // const nearestNeighbors = kdtree.nearest(samplePlayer, playerData.length);
-
-  // // sorting by ascending order
-  // // nearestNeighbors.sort((a, b) => a[1].distance - b[1].distance);
-  // // sort by descending order
-  // nearestNeighbors.sort((a, b) => b[1].similarity - a[1].similarity);
-
-  // console.log(nearestNeighbors);
-
-  // // getting the top 3 nearest/most similar
-  // const top3Neighbors = nearestNeighbors.slice(0, 10);
-
-
-  // console.log("\n\n\nMost Similar:");
-  // // 'nearestNeighbors' contains the top matches
-  // top3Neighbors.forEach((nn, index) => {
-  //   console.log("%s  %o  Similarity: %f, ", index + 1, nn.player, nn.simi);
-  // });
-
-  // // getting the 3 least similar
-  // const bottom3neighbours = nearestNeighbors.slice(-3, nearestNeighbors.length);
-
-  // bottom3neighbours.sort((a, b) => a[1].similarity - b[1].similarity);
-
-  // console.log("\n\n\nLeast Similar:");
-  // // 'nearestNeighbors' contains the top matches
-  // bottom3neighbours.forEach((nn, index) => {
-  //   console.log("%s  %o  Similarity: %f, ", index + 1, nn[0], nn[1]['similarity']);
-  // });
-  // console.log("");
 
   const generalPlayerPosition = playerPosition == 'D' ? 'D' : 'F';
 
@@ -758,7 +695,6 @@ export function findSimilarPlayers() {
   const sortedPlayers = allDistances.sort((a, b) => a.distance - b.distance);
 
   console.log(sortedPlayers);
-  console.log(sortedPlayers[392]);
 
   sortedPlayers.forEach((sp, index) => {
     if (sp.player.Name == "Alex Ovechkin") {
