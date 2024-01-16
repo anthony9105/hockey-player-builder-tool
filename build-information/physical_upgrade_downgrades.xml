@@ -55,7 +55,7 @@
                 <FightingSkill>1</FightingSkill>
             </Weight>
             <Weight>
-                <value>195</value>
+                <value>200</value>
                 <Speed>-1</Speed>
                 <Balance>1</Balance>
                 <Agility>-1</Agility>
@@ -67,7 +67,7 @@
                 <FightingSkill>1</FightingSkill>
             </Weight>
             <Weight>
-                <value>200</value>
+                <value>205</value>
                 <Speed>-1</Speed>
                 <Balance>1</Balance>
                 <Agility>-1</Agility>
