@@ -65,7 +65,7 @@
         </Height>
         <Weight>
             <minimum>160</minimum>
-            <maximum>200</maximum>
+            <maximum>205</maximum>
             <default>185</default>
         </Weight>
         <DefaultPosition>Forward</DefaultPosition>
@@ -73,35 +73,35 @@
             <Technique>
                 <WristshotAcc>83</WristshotAcc>
                 <SlapshotAcc>82</SlapshotAcc>
-                <Speed>85</Speed>
-                <Balance>72</Balance>
-                <Aglity>85</Aglity>
+                <Speed>88</Speed>
+                <Balance>77</Balance>
+                <Aglity>89</Aglity>
             </Technique>
             <Power>
                 <WristshotPower>79</WristshotPower>
                 <SlapshotPower>79</SlapshotPower>
-                <Acceleration>85</Acceleration>
+                <Acceleration>88</Acceleration>
                 <PuckControl>87</PuckControl>
-                <Endurance>83</Endurance>
+                <Endurance>88</Endurance>
             </Power>
             <Playstyle>
                 <Passing>82</Passing>
                 <OffensiveAwareness>88</OffensiveAwareness>
-                <BodyChecking>72</BodyChecking>
+                <BodyChecking>78</BodyChecking>
                 <StickChecking>75</StickChecking>
                 <DefensiveAwareness>73</DefensiveAwareness>
             </Playstyle>
             <Tenacity>
                 <Handeye>82</Handeye>
-                <Strength>73</Strength>
-                <Durability>72</Durability>
+                <Strength>78</Strength>
+                <Durability>78</Durability>
                 <ShotBlocking>73</ShotBlocking>
             </Tenacity>
             <Tactics>
                 <Deking>90</Deking>
                 <Faceoffs>85</Faceoffs>
                 <Discipline>82</Discipline>
-                <FightingSkill>72</FightingSkill>
+                <FightingSkill>77</FightingSkill>
             </Tactics>
         </DefaultAttributes>
         <ZoneAbilities>
@@ -115,12 +115,12 @@
     <Build>
         <Name>Enforcer</Name>
         <Height>
-            <minimum>6'2</minimum>
+            <minimum>6'0</minimum>
             <maximum>6'9</maximum>
             <default>6'6</default>
         </Height>
         <Weight>
-            <minimum>210</minimum>
+            <minimum>195</minimum>
             <maximum>270</maximum>
             <default>230</default>
         </Weight>
@@ -129,35 +129,35 @@
             <Technique>
                 <WristshotAcc>80</WristshotAcc>
                 <SlapshotAcc>78</SlapshotAcc>
-                <Speed>80</Speed>
-                <Balance>85</Balance>
-                <Aglity>81</Aglity>
+                <Speed>85</Speed>
+                <Balance>80</Balance>
+                <Aglity>85</Aglity>
             </Technique>
             <Power>
                 <WristshotPower>82</WristshotPower>
                 <SlapshotPower>83</SlapshotPower>
-                <Acceleration>80</Acceleration>
+                <Acceleration>85</Acceleration>
                 <PuckControl>82</PuckControl>
-                <Endurance>80</Endurance>
+                <Endurance>85</Endurance>
             </Power>
             <Playstyle>
                 <Passing>80</Passing>
                 <OffensiveAwareness>80</OffensiveAwareness>
-                <BodyChecking>86</BodyChecking>
+                <BodyChecking>81</BodyChecking>
                 <StickChecking>75</StickChecking>
                 <DefensiveAwareness>75</DefensiveAwareness>
             </Playstyle>
             <Tenacity>
                 <Handeye>79</Handeye>
-                <Strength>86</Strength>
-                <Durability>86</Durability>
+                <Strength>81</Strength>
+                <Durability>81</Durability>
                 <ShotBlocking>80</ShotBlocking>
             </Tenacity>
             <Tactics>
                 <Deking>70</Deking>
                 <Faceoffs>85</Faceoffs>
                 <Discipline>80</Discipline>
-                <FightingSkill>85</FightingSkill>
+                <FightingSkill>80</FightingSkill>
             </Tactics>
         </DefaultAttributes>
         <ZoneAbilities>
@@ -171,12 +171,12 @@
     <Build>
         <Name>Enforcer Defenseman</Name>
         <Height>
-            <minimum>6'2</minimum>
+            <minimum>6'0</minimum>
             <maximum>6'9</maximum>
             <default>6'6</default>
         </Height>
         <Weight>
-            <minimum>210</minimum>
+            <minimum>195</minimum>
             <maximum>270</maximum>
             <default>230</default>
         </Weight>
@@ -185,35 +185,35 @@
             <Technique>
                 <WristshotAcc>79</WristshotAcc>
                 <SlapshotAcc>79</SlapshotAcc>
-                <Speed>80</Speed>
-                <Balance>85</Balance>
-                <Aglity>81</Aglity>
+                <Speed>85</Speed>
+                <Balance>80</Balance>
+                <Aglity>85</Aglity>
             </Technique>
             <Power>
                 <WristshotPower>81</WristshotPower>
                 <SlapshotPower>84</SlapshotPower>
-                <Acceleration>80</Acceleration>
+                <Acceleration>85</Acceleration>
                 <PuckControl>82</PuckControl>
-                <Endurance>80</Endurance>
+                <Endurance>85</Endurance>
             </Power>
             <Playstyle>
                 <Passing>80</Passing>
                 <OffensiveAwareness>78</OffensiveAwareness>
-                <BodyChecking>86</BodyChecking>
+                <BodyChecking>81</BodyChecking>
                 <StickChecking>80</StickChecking>
                 <DefensiveAwareness>82</DefensiveAwareness>
             </Playstyle>
             <Tenacity>
                 <Handeye>79</Handeye>
-                <Strength>86</Strength>
-                <Durability>86</Durability>
+                <Strength>81</Strength>
+                <Durability>81</Durability>
                 <ShotBlocking>80</ShotBlocking>
             </Tenacity>
             <Tactics>
                 <Deking>70</Deking>
                 <Faceoffs>80</Faceoffs>
                 <Discipline>78</Discipline>
-                <FightingSkill>85</FightingSkill>
+                <FightingSkill>80</FightingSkill>
             </Tactics>
         </DefaultAttributes>
         <ZoneAbilities>
@@ -241,35 +241,35 @@
             <Technique>
                 <WristshotAcc>82</WristshotAcc>
                 <SlapshotAcc>82</SlapshotAcc>
-                <Speed>85</Speed>
-                <Balance>80</Balance>
-                <Aglity>85</Aglity>
+                <Speed>88</Speed>
+                <Balance>77</Balance>
+                <Aglity>89</Aglity>
             </Technique>
             <Power>
                 <WristshotPower>78</WristshotPower>
                 <SlapshotPower>79</SlapshotPower>
-                <Acceleration>85</Acceleration>
+                <Acceleration>88</Acceleration>
                 <PuckControl>88</PuckControl>
-                <Endurance>85</Endurance>
+                <Endurance>88</Endurance>
             </Power>
             <Playstyle>
                 <Passing>90</Passing>
                 <OffensiveAwareness>90</OffensiveAwareness>
-                <BodyChecking>81</BodyChecking>
+                <BodyChecking>78</BodyChecking>
                 <StickChecking>78</StickChecking>
                 <DefensiveAwareness>78</DefensiveAwareness>
             </Playstyle>
             <Tenacity>
                 <Handeye>84</Handeye>
-                <Strength>81</Strength>
-                <Durability>81</Durability>
+                <Strength>78</Strength>
+                <Durability>78</Durability>
                 <ShotBlocking>78</ShotBlocking>
             </Tenacity>
             <Tactics>
                 <Deking>83</Deking>
                 <Faceoffs>85</Faceoffs>
                 <Discipline>82</Discipline>
-                <FightingSkill>80</FightingSkill>
+                <FightingSkill>77</FightingSkill>
             </Tactics>
         </DefaultAttributes>
         <ZoneAbilities>
@@ -297,35 +297,35 @@
             <Technique>
                 <WristshotAcc>81</WristshotAcc>
                 <SlapshotAcc>82</SlapshotAcc>
-                <Speed>85</Speed>
-                <Balance>80</Balance>
-                <Aglity>85</Aglity>
+                <Speed>88</Speed>
+                <Balance>77</Balance>
+                <Aglity>89</Aglity>
             </Technique>
             <Power>
                 <WristshotPower>79</WristshotPower>
                 <SlapshotPower>80</SlapshotPower>
-                <Acceleration>85</Acceleration>
+                <Acceleration>88</Acceleration>
                 <PuckControl>88</PuckControl>
-                <Endurance>85</Endurance>
+                <Endurance>88</Endurance>
             </Power>
             <Playstyle>
                 <Passing>87</Passing>
                 <OffensiveAwareness>87</OffensiveAwareness>
-                <BodyChecking>81</BodyChecking>
+                <BodyChecking>78</BodyChecking>
                 <StickChecking>82</StickChecking>
                 <DefensiveAwareness>85</DefensiveAwareness>
             </Playstyle>
             <Tenacity>
                 <Handeye>82</Handeye>
-                <Strength>81</Strength>
-                <Durability>81</Durability>
+                <Strength>78</Strength>
+                <Durability>78</Durability>
                 <ShotBlocking>80</ShotBlocking>
             </Tenacity>
             <Tactics>
                 <Deking>84</Deking>
                 <Faceoffs>80</Faceoffs>
                 <Discipline>82</Discipline>
-                <FightingSkill>80</FightingSkill>
+                <FightingSkill>77</FightingSkill>
             </Tactics>
         </DefaultAttributes>
         <ZoneAbilities>
@@ -339,12 +339,12 @@
     <Build>
         <Name>Two-way Forward</Name>
         <Height>
-            <minimum>5'10</minimum>
+            <minimum>5'8</minimum>
             <maximum>6'4</maximum>
             <default>6'0</default>
         </Height>
         <Weight>
-            <minimum>185</minimum>
+            <minimum>175</minimum>
             <maximum>230</maximum>
             <default>200</default>
         </Weight>
@@ -353,35 +353,35 @@
             <Technique>
                 <WristshotAcc>83</WristshotAcc>
                 <SlapshotAcc>82</SlapshotAcc>
-                <Speed>83</Speed>
-                <Balance>82</Balance>
-                <Aglity>83</Aglity>
+                <Speed>87</Speed>
+                <Balance>78</Balance>
+                <Aglity>87</Aglity>
             </Technique>
             <Power>
                 <WristshotPower>81</WristshotPower>
                 <SlapshotPower>81</SlapshotPower>
-                <Acceleration>83</Acceleration>
+                <Acceleration>87</Acceleration>
                 <PuckControl>84</PuckControl>
-                <Endurance>83</Endurance>
+                <Endurance>87</Endurance>
             </Power>
             <Playstyle>
                 <Passing>85</Passing>
                 <OffensiveAwareness>86</OffensiveAwareness>
-                <BodyChecking>83</BodyChecking>
+                <BodyChecking>79</BodyChecking>
                 <StickChecking>85</StickChecking>
                 <DefensiveAwareness>88</DefensiveAwareness>
             </Playstyle>
             <Tenacity>
                 <Handeye>83</Handeye>
-                <Strength>83</Strength>
-                <Durability>83</Durability>
+                <Strength>79</Strength>
+                <Durability>79</Durability>
                 <ShotBlocking>85</ShotBlocking>
             </Tenacity>
             <Tactics>
                 <Deking>80</Deking>
                 <Faceoffs>85</Faceoffs>
                 <Discipline>84</Discipline>
-                <FightingSkill>82</FightingSkill>
+                <FightingSkill>78</FightingSkill>
             </Tactics>
         </DefaultAttributes>
         <ZoneAbilities>
@@ -395,12 +395,12 @@
     <Build>
         <Name>Two-way Defenseman</Name>
         <Height>
-            <minimum>5'10</minimum>
+            <minimum>5'8</minimum>
             <maximum>6'4</maximum>
             <default>6'2</default>
         </Height>
         <Weight>
-            <minimum>185</minimum>
+            <minimum>175</minimum>
             <maximum>230</maximum>
             <default>205</default>
         </Weight>
@@ -409,35 +409,35 @@
             <Technique>
                 <WristshotAcc>82</WristshotAcc>
                 <SlapshotAcc>82</SlapshotAcc>
-                <Speed>83</Speed>
-                <Balance>82</Balance>
-                <Aglity>83</Aglity>
+                <Speed>87</Speed>
+                <Balance>78</Balance>
+                <Aglity>87</Aglity>
             </Technique>
             <Power>
                 <WristshotPower>81</WristshotPower>
                 <SlapshotPower>82</SlapshotPower>
-                <Acceleration>83</Acceleration>
+                <Acceleration>87</Acceleration>
                 <PuckControl>84</PuckControl>
-                <Endurance>83</Endurance>
+                <Endurance>87</Endurance>
             </Power>
             <Playstyle>
                 <Passing>85</Passing>
                 <OffensiveAwareness>83</OffensiveAwareness>
-                <BodyChecking>83</BodyChecking>
+                <BodyChecking>79</BodyChecking>
                 <StickChecking>85</StickChecking>
                 <DefensiveAwareness>88</DefensiveAwareness>
             </Playstyle>
             <Tenacity>
                 <Handeye>82</Handeye>
-                <Strength>83</Strength>
-                <Durability>83</Durability>
+                <Strength>79</Strength>
+                <Durability>79</Durability>
                 <ShotBlocking>88</ShotBlocking>
             </Tenacity>
             <Tactics>
                 <Deking>75</Deking>
                 <Faceoffs>80</Faceoffs>
                 <Discipline>87</Discipline>
-                <FightingSkill>82</FightingSkill>
+                <FightingSkill>78</FightingSkill>
             </Tactics>
         </DefaultAttributes>
         <ZoneAbilities>
@@ -451,12 +451,12 @@
     <Build>
         <Name>Power Forward</Name>
         <Height>
-            <minimum>6'2</minimum>
+            <minimum>6'0</minimum>
             <maximum>6'7</maximum>
             <default>6'4</default>
         </Height>
         <Weight>
-            <minimum>210</minimum>
+            <minimum>195</minimum>
             <maximum>260</maximum>
             <default>220</default>
         </Weight>
@@ -465,35 +465,35 @@
             <Technique>
                 <WristshotAcc>81</WristshotAcc>
                 <SlapshotAcc>83</SlapshotAcc>
-                <Speed>80</Speed>
-                <Balance>85</Balance>
-                <Aglity>81</Aglity>
+                <Speed>85</Speed>
+                <Balance>80</Balance>
+                <Aglity>85</Aglity>
             </Technique>
             <Power>
                 <WristshotPower>83</WristshotPower>
                 <SlapshotPower>86</SlapshotPower>
-                <Acceleration>80</Acceleration>
+                <Acceleration>85</Acceleration>
                 <PuckControl>87</PuckControl>
-                <Endurance>80</Endurance>
+                <Endurance>85</Endurance>
             </Power>
             <Playstyle>
                 <Passing>80</Passing>
                 <OffensiveAwareness>86</OffensiveAwareness>
-                <BodyChecking>85</BodyChecking>
+                <BodyChecking>81</BodyChecking>
                 <StickChecking>80</StickChecking>
                 <DefensiveAwareness>77</DefensiveAwareness>
             </Playstyle>
             <Tenacity>
                 <Handeye>80</Handeye>
-                <Strength>86</Strength>
-                <Durability>86</Durability>
+                <Strength>81</Strength>
+                <Durability>81</Durability>
                 <ShotBlocking>85</ShotBlocking>
             </Tenacity>
             <Tactics>
                 <Deking>78</Deking>
                 <Faceoffs>85</Faceoffs>
                 <Discipline>84</Discipline>
-                <FightingSkill>85</FightingSkill>
+                <FightingSkill>80</FightingSkill>
             </Tactics>
         </DefaultAttributes>
         <ZoneAbilities>
@@ -507,12 +507,12 @@
     <Build>
         <Name>Grinder</Name>
         <Height>
-            <minimum>5'10</minimum>
+            <minimum>5'8</minimum>
             <maximum>6'4</maximum>
             <default>6'1</default>
         </Height>
         <Weight>
-            <minimum>185</minimum>
+            <minimum>175</minimum>
             <maximum>230</maximum>
             <default>205</default>
         </Weight>
@@ -521,35 +521,35 @@
             <Technique>
                 <WristshotAcc>80</WristshotAcc>
                 <SlapshotAcc>80</SlapshotAcc>
-                <Speed>83</Speed>
-                <Balance>82</Balance>
-                <Aglity>83</Aglity>
+                <Speed>87</Speed>
+                <Balance>78</Balance>
+                <Aglity>87</Aglity>
             </Technique>
             <Power>
                 <WristshotPower>82</WristshotPower>
                 <SlapshotPower>82</SlapshotPower>
-                <Acceleration>83</Acceleration>
+                <Acceleration>87</Acceleration>
                 <PuckControl>83</PuckControl>
-                <Endurance>83</Endurance>
+                <Endurance>87</Endurance>
             </Power>
             <Playstyle>
                 <Passing>80</Passing>
                 <OffensiveAwareness>83</OffensiveAwareness>
-                <BodyChecking>83</BodyChecking>
+                <BodyChecking>79</BodyChecking>
                 <StickChecking>88</StickChecking>
                 <DefensiveAwareness>85</DefensiveAwareness>
             </Playstyle>
             <Tenacity>
                 <Handeye>86</Handeye>
-                <Strength>83</Strength>
-                <Durability>83</Durability>
+                <Strength>79</Strength>
+                <Durability>79</Durability>
                 <ShotBlocking>90</ShotBlocking>
             </Tenacity>
             <Tactics>
                 <Deking>75</Deking>
                 <Faceoffs>85</Faceoffs>
                 <Discipline>88</Discipline>
-                <FightingSkill>82</FightingSkill>
+                <FightingSkill>78</FightingSkill>
             </Tactics>
         </DefaultAttributes>
         <ZoneAbilities>
@@ -563,12 +563,12 @@
     <Build>
         <Name>Defensive Defenseman</Name>
         <Height>
-            <minimum>6'2</minimum>
+            <minimum>6'0</minimum>
             <maximum>6'7</maximum>
             <default>6'4</default>
         </Height>
         <Weight>
-            <minimum>210</minimum>
+            <minimum>195</minimum>
             <maximum>260</maximum>
             <default>220</default>
         </Weight>
@@ -577,35 +577,35 @@
             <Technique>
                 <WristshotAcc>79</WristshotAcc>
                 <SlapshotAcc>80</SlapshotAcc>
-                <Speed>80</Speed>
-                <Balance>85</Balance>
-                <Aglity>81</Aglity>
+                <Speed>85</Speed>
+                <Balance>80</Balance>
+                <Aglity>85</Aglity>
             </Technique>
             <Power>
                 <WristshotPower>81</WristshotPower>
                 <SlapshotPower>85</SlapshotPower>
-                <Acceleration>80</Acceleration>
+                <Acceleration>85</Acceleration>
                 <PuckControl>83</PuckControl>
-                <Endurance>80</Endurance>
+                <Endurance>85</Endurance>
             </Power>
             <Playstyle>
                 <Passing>80</Passing>
                 <OffensiveAwareness>80</OffensiveAwareness>
-                <BodyChecking>86</BodyChecking>
+                <BodyChecking>81</BodyChecking>
                 <StickChecking>90</StickChecking>
                 <DefensiveAwareness>90</DefensiveAwareness>
             </Playstyle>
             <Tenacity>
                 <Handeye>80</Handeye>
-                <Strength>86</Strength>
-                <Durability>86</Durability>
+                <Strength>81</Strength>
+                <Durability>81</Durability>
                 <ShotBlocking>90</ShotBlocking>
             </Tenacity>
             <Tactics>
                 <Deking>70</Deking>
                 <Faceoffs>80</Faceoffs>
                 <Discipline>90</Discipline>
-                <FightingSkill>85</FightingSkill>
+                <FightingSkill>80</FightingSkill>
             </Tactics>
         </DefaultAttributes>
         <ZoneAbilities>
@@ -619,12 +619,12 @@
     <Build>
         <Name>Offensive Defenseman</Name>
         <Height>
-            <minimum>5'10</minimum>
+            <minimum>5'8</minimum>
             <maximum>6'4</maximum>
             <default>6'1</default>
         </Height>
         <Weight>
-            <minimum>185</minimum>
+            <minimum>175</minimum>
             <maximum>230</maximum>
             <default>200</default>
         </Weight>
@@ -633,35 +633,35 @@
             <Technique>
                 <WristshotAcc>83</WristshotAcc>
                 <SlapshotAcc>87</SlapshotAcc>
-                <Speed>83</Speed>
-                <Balance>82</Balance>
-                <Aglity>83</Aglity>
+                <Speed>87</Speed>
+                <Balance>78</Balance>
+                <Aglity>87</Aglity>
             </Technique>
             <Power>
                 <WristshotPower>83</WristshotPower>
                 <SlapshotPower>87</SlapshotPower>
-                <Acceleration>83</Acceleration>
+                <Acceleration>87</Acceleration>
                 <PuckControl>85</PuckControl>
-                <Endurance>83</Endurance>
+                <Endurance>87</Endurance>
             </Power>
             <Playstyle>
                 <Passing>82</Passing>
                 <OffensiveAwareness>88</OffensiveAwareness>
-                <BodyChecking>83</BodyChecking>
+                <BodyChecking>79</BodyChecking>
                 <StickChecking>80</StickChecking>
                 <DefensiveAwareness>82</DefensiveAwareness>
             </Playstyle>
             <Tenacity>
                 <Handeye>83</Handeye>
-                <Strength>83</Strength>
-                <Durability>83</Durability>
+                <Strength>79</Strength>
+                <Durability>79</Durability>
                 <ShotBlocking>80</ShotBlocking>
             </Tenacity>
             <Tactics>
                 <Deking>78</Deking>
                 <Faceoffs>80</Faceoffs>
                 <Discipline>82</Discipline>
-                <FightingSkill>82</FightingSkill>
+                <FightingSkill>78</FightingSkill>
             </Tactics>
         </DefaultAttributes>
         <ZoneAbilities>
