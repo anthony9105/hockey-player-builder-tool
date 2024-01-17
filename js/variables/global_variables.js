@@ -105,14 +105,14 @@ export let playerTypesInfo = {
                   Deking: 0.82,
                   PuckControl: 0.84,
                   HandEye: 0.8,
-                  OffensiveAwareness: 0.89,
+                  OffensiveAwareness: 0.87,
               },
           },
           maximums: {
-              Defense_AVG: 0.83,
+              Defense_AVG: 0.82,
               Physical: {
                   BodyChecking: 0.82,
-                  Strength: 0.84,
+                  Strength: 0.83,
               }
           },
       },
@@ -130,7 +130,7 @@ export let playerTypesInfo = {
                   Passing: 0.82,
                   Deking: 0.88,
               },
-              Defense_AVG: 0.83,
+              Defense_AVG: 0.82,
               Physical: {
                   BodyChecking: 0.82,
                   Strength: 0.83,
@@ -148,11 +148,12 @@ export let playerTypesInfo = {
               Physical: {
                   BodyChecking: 0.85,
                   Strength: 0.84,
-              }
+              },
+              Balance: 0.8,
           },
           maximums: {
               Puckskills: {
-                  Passing: 0.89,
+                  Passing: 0.87,
               },
               Defense_AVG: 0.82,
           },
@@ -195,6 +196,7 @@ export let playerTypesInfo = {
                   BodyChecking: 0.85,
                   Strength: 0.84,
               },
+              Balance: 0.77,
           },
           maximums: {
               Shooting_AVG: 0.8,
@@ -212,7 +214,7 @@ export let playerTypesInfo = {
               Puckskills: {
                   Passing: 0.87,
                   PuckControl: 0.87,
-                  OffensiveAwareness: 0.89,
+                  OffensiveAwareness: 0.87,
               },
               Shooting_AVG: 0.78,
               Skating: {
@@ -222,7 +224,7 @@ export let playerTypesInfo = {
               },
           },
           maximums: {
-              Defense_AVG: 0.83,
+              Defense_AVG: 0.825,
               Physical: {
                   BodyChecking: 0.81,
                   Strength: 0.84,
@@ -299,11 +301,11 @@ export let playerTypesInfo = {
                   Acceleration: 0.88,
                   Agility: 0.88,
               },
-              Shooting_AVG: 0.78,
+              Shooting_AVG: 0.775,
               Puckskills: {
-                  PuckControl: 0.84,
-                  Passing: 0.84,
-                  OffensiveAwareness: 0.84
+                  PuckControl: 0.83,
+                  Passing: 0.83,
+                  OffensiveAwareness: 0.83
               }
           },
       },
@@ -324,7 +326,7 @@ export let playerTypesInfo = {
                   Acceleration: 0.85,
                   Agility: 0.85,
               },
-              Shooting_AVG: 0.78,
+              Shooting_AVG: 0.775,
               Puckskills: {
                   PuckControl: 0.81,
                   Passing: 0.81,
@@ -354,9 +356,9 @@ export let playerTypesInfo = {
                   Acceleration: 0.89,
                   Agility: 0.89,
               },
-              Shooting_AVG: 0.78,
+              Shooting_AVG: 0.785,
               Puckskills: {
-                  PuckControl: 0.83,
+                  PuckControl: 0.84,
                   Passing: 0.84,
                   OffensiveAwareness: 0.84
               },
@@ -369,15 +371,15 @@ export let playerTypesInfo = {
           SecondarySkills: ["Defense"],
           Weaknesses: ["None"],
           minimums: {
-              Defense_AVG: 0.83,
+              Defense_AVG: 0.835,
           },
           maximums: {
               Skating: {
-                  Speed: 0.89,
-                  Acceleration: 0.89,
-                  Agility: 0.89,
+                  Speed: 0.9,
+                  Acceleration: 0.9,
+                  Agility: 0.9,
               },
-              Shooting_AVG: 0.81,
+              Shooting_AVG: 0.82499,
               Puckskills: {
                   PuckControl: 0.87,
                   Passing: 0.87,
@@ -400,10 +402,7 @@ export let playerTypesInfo = {
                   BodyChecking: 0.85,
                   Strength: 0.85,
               },
-              Shooting: {
-                  WristshotPower: 0.82,
-                  SlapshotPower: 0.82,
-              }
+              OffensiveAwareness: 0.85,
           },
           maximums: {
               Skating: {
@@ -430,12 +429,12 @@ export let playerTypesInfo = {
                   OffensiveAwareness: 0.87,
               },
               Shooting: {
-                  WristshotAccuracy: 0.8,
+                  WristshotAccuracy: 0.79,
               },
               Skating: {
                   Speed: 0.9,
                   Acceleration: 0.9,
-                  Agility: 0.88,
+                  Agility: 0.87,
               },
           },
           maximums: {
@@ -453,8 +452,8 @@ export let playerTypesInfo = {
           SecondarySkills: ["Defense", "Physicality", "Grit"],
           Weaknesses: ["Passing"],
           minimums: {
-              Defense_AVG: 0.84,
-              Physical_AVG: 0.84,
+              Defense_AVG: 0.825,
+              Physical_AVG: 0.835,
           },
           maximums: {
               Skating: {
@@ -462,10 +461,9 @@ export let playerTypesInfo = {
                   Acceleration: 0.9,
                   Agility: 0.9,
               },
-              Shooting_AVG: 0.8,
+              Shooting_AVG: 0.82499,
               Puckskills: {
                   Passing: 0.85,
-                  OffensiveAwareness: 0.85
               },
           },
       },
@@ -477,8 +475,8 @@ export let playerTypesInfo = {
           Weaknesses: ["None"],
           minimums: {
               Defense: {
-                  DefensiveAwareness: 0.84,
-                  StickChecking: 0.84,
+                  DefensiveAwareness: 0.83,
+                  StickChecking: 0.83,
               },
               Physical: {
                   Strength: 0.8,
@@ -494,7 +492,7 @@ export let playerTypesInfo = {
                   Passing: 0.86,
                   OffensiveAwareness: 0.86
               },
-              Shooting_AVG: 0.84,
+              Shooting_AVG: 0.8,
           },
           maximums: {
               Shooting_AVG: 0.83,
@@ -513,7 +511,7 @@ export let playerTypesInfo = {
               Puckskills: {
                   PuckControl: 0.85,
                   Passing: 0.82,
-                  OffensiveAwareness: 0.87
+                  OffensiveAwareness: 0.86
               },
               Shooting_AVG: 0.77,
           },
@@ -523,7 +521,7 @@ export let playerTypesInfo = {
                   BodyChecking: 0.8,
               },
               Skating: {
-                  Balance: 0.79
+                  Balance: 0.77
               },
               Defense_AVG: 0.81
           }
@@ -541,13 +539,15 @@ export let playerTypesInfo = {
               },
               Puckskills: {
                   Passing: 0.8,
-                  PuckControl: 0.8,
+                  PuckControl: 0.84,
+                  Deking: 0.84,
               }
           },
           maximums: {
-              Puckskills_AVG: 0.88,
-              Shooting_AVG: 0.82,
-              Defense_AVG: 0.8
+              Shooting_AVG: 0.81,
+              Defense_AVG: 0.8,
+              Balance: 0.78,
+              Physical_AVG: 0.81
           }
       },
       Enforcer: {
@@ -558,7 +558,7 @@ export let playerTypesInfo = {
         Weaknesses: ["Shooting", "Defense", "PuckSkills", "Passing", "Skating"],
         minimums: {
             Physical: {
-                FightingSkill: 0.8,
+                FightingSkill: 0.82,
                 Strength: 0.83,
                 BodyChecking: 0.83
             },
@@ -593,11 +593,11 @@ export let playerTypesInfo = {
           SecondarySkills: ["PuckSkills", "Shooting", "Passing"],
           Weaknesses: ["Defense", "Physicality"],
           minimums: {
-              Shooting_AVG: 0.81,
+              Shooting_AVG: 0.8,
               Puckskills: {
                   PuckControl: 0.85,
                   Passing: 0.85,
-                  OffensiveAwareness: 0.87
+                  OffensiveAwareness: 0.86
               },
           },
           maximums: {
@@ -615,7 +615,7 @@ export let playerTypesInfo = {
           Weaknesses: ["Defense", "Physicality"],
           minimums: {
               Shooting_AVG: 0.8,
-              Puckskills_AVG: 0.87,
+              Puckskills_AVG: 0.86,
               Skating: {
                   Acceleration: 0.85,
                   Speed: 0.85,
@@ -651,17 +651,17 @@ export let playerTypesInfo = {
           SecondarySkills: ["Defense", "Physicality", "Skating", "Passing", "Grit"],
           Weaknesses: ["PuckSkills", "Shooting"],
           minimums: {
-              Defense_AVG: 0.88,
+              Defense_AVG: 0.87,
               Physical_AVG: 0.82,
               Skating: {
-                  Acceleration: 0.89,
-                  Speed: 0.89
+                  Acceleration: 0.9,
+                  Speed: 0.9
               }
           },
           maximums: {
               Puckskills: {
-                  PuckControl: 0.88,
-                  Passing: 0.91,
+                  PuckControl: 0.87,
+                  Passing: 0.9,
                   OffensiveAwareness: 0.87
               },
           },
@@ -673,8 +673,8 @@ export let playerTypesInfo = {
           SecondarySkills: ["Defense", "Physicality", "Grit"],
           Weaknesses: ["PuckSkills", "Passing", "Shooting"],
           minimums: {
-              Defense_AVG: 0.88,
-              Physical_AVG: 0.84,
+              Defense_AVG: 0.87,
+              Physical_AVG: 0.83,
           },
           maximums: {
               Puckskills: {
@@ -691,8 +691,8 @@ export let playerTypesInfo = {
           SecondarySkills: ["Physicality", "Defense", "Grit"],
           Weaknesses: ["PuckSkills", "Shooting"],
           minimums: {
-              Defense_AVG: 0.88,
-              Physical_AVG: 0.87,
+              Defense_AVG: 0.87,
+              Physical_AVG: 0.86,
           },
           maximums: {
               Puckskills: {
@@ -709,7 +709,7 @@ export let playerTypesInfo = {
           SecondarySkills: ["Skating", "PuckSkills", "Shooting", "Passing"],
           Weaknesses: ["Defense", "Physicality"],
           minimums: {
-              Shooting_AVG: 0.81,
+              Shooting_AVG: 0.8,
               Puckskills: {
                   PuckControl: 0.85,
                   Passing: 0.85,
@@ -722,7 +722,7 @@ export let playerTypesInfo = {
           },
           maximums: {
               Defense: {
-                  DefensiveAwareness: 0.9
+                  DefensiveAwareness: 0.87
               },
               Physical_AVG: 0.8,
           },
@@ -737,17 +737,17 @@ export let playerTypesInfo = {
               Puckskills: {
                   PuckControl: 0.83,
                   Passing: 0.85,
-                  OffensiveAwareness: 0.83
+                  OffensiveAwareness: 0.82
               },
               Skating: {
-                  Speed: 0.83,
-                  Acceleration: 0.83,
-                  Agility: 0.83,
+                  Speed: 0.82,
+                  Acceleration: 0.82,
+                  Agility: 0.8,
               },
               Defense_AVG: 0.85,
           },
           maximums: {
-              Defense_AVG: 0.95,
+              Defense_AVG: 0.9,
               Physical_AVG: 0.87,
           },
       },
@@ -759,9 +759,9 @@ export let playerTypesInfo = {
           Weaknesses: ["Shooting"],
           minimums: {
               Puckskills: {
-                  PuckControl: 0.84,
+                  PuckControl: 0.83,
                   Passing: 0.86,
-                  OffensiveAwareness: 0.84
+                  OffensiveAwareness: 0.82
               },
               Skating: {
                   Speed: 0.9,
@@ -770,7 +770,7 @@ export let playerTypesInfo = {
               Defense_AVG: 0.85,
           },
           maximums: {
-              Defense_AVG: 0.95,
+              Defense_AVG: 0.9,
               Physical_AVG: 0.84,
           },
       },
@@ -784,13 +784,13 @@ export let playerTypesInfo = {
               Puckskills: {
                   PuckControl: 0.83,
                   Passing: 0.85,
-                  OffensiveAwareness: 0.83
+                  OffensiveAwareness: 0.82
               },
-              Shooting_AVG: 0.815,
+              Shooting_AVG: 0.81,
               Defense_AVG: 0.85,
           },
           maximums: {
-              Defense_AVG: 0.95,
+              Defense_AVG: 0.9,
               Physical_AVG: 0.84,
               Skating: {
                   Acceleration: 0.9,
@@ -805,9 +805,9 @@ export let playerTypesInfo = {
           SecondarySkills: ["Defense", "Shooting", "Physicality"],
           Weaknesses: ["Skating"],
           minimums: {
-              Defense_AVG: 0.88,
+              Defense_AVG: 0.87,
               Physical_AVG: 0.84,
-              Shooting_AVG: 0.815,
+              Shooting_AVG: 0.81,
           },
           maximums: {
               Puckskills: {
@@ -825,7 +825,7 @@ export let playerTypesInfo = {
           Weaknesses: ["PuckSkills", "Passing", "Shooting"],
           minimums: {
               Physical: {
-                  BodyChecking: 0.85,
+                  BodyChecking: 0.83,
                   Strength: 0.84,
                   FightingSkill: 0.82
               }
@@ -836,7 +836,7 @@ export let playerTypesInfo = {
                   Passing: 0.85,
                   OffensiveAwareness: 0.82
               },
-              Defense_AVG: 0.88
+              Defense_AVG: 0.87
           },
       },
       Pylon_dman: {
