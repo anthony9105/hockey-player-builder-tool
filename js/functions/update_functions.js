@@ -95,6 +95,10 @@ export async function applyAttributeChangesFromPhysicalChanges(buildName, previo
   }
   catch (error) {
     console.error(error);
+
+    if (error instanceof TypeError) {
+      console.warn("Possible spelling error of 1 or more node names in physical_upgrade_downgrade.xml that is causing this TypeError");
+    }
   }
 }
 
