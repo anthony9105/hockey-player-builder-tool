@@ -694,14 +694,32 @@ body {
 }
 
 .complete-build-content {
-    background-color: #fefefe;
+    background-color: rgb(57, 57, 57);
+    /* margin: 15% auto;
+    padding: 20px; */
     margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
+    padding: 0;
+    /* border: 1px solid #888; */
     width: 60%;
     max-height: 70vh;
     overflow-y: auto;
+    border-radius: 16px;
+    box-shadow: 2px 2px 30px black;
+    scroll-padding-left: 5px;
 }
+
+.complete-build-content::-webkit-scrollbar {
+    width: 20px;
+  }
+.complete-build-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.complete-build-content::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 16px;
+    border: inset rgba(255, 255, 255, 0.479);
+  }
 
 .close {
     color: #aaa;
@@ -721,8 +739,93 @@ body {
 .similar-player, .dissimilar-player {
     display: flex;
     flex-direction: row;
+    font-family: 'Verdana', 'Helvetica', sans-serif;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.5)
+}
+
+a {
+    color: rgba(255, 166, 0, 0.534);
 }
 
 .player-list-number {
-    padding-right: 1%;
+    padding-right: 4%;
+}
+
+#player-type-name {
+    font-family: 'Verdana', 'Helvetica', sans-serif;
+    font-size: 250%;
+    font-weight: bold;
+    font-style: italic;
+    color: rgba(255, 166, 0, 0.534);
+    text-shadow: 2px 2.5px 5px rgb(57, 57, 57);
+    padding-bottom: 2%;
+}
+
+.title-1 {
+    color: rgb(57, 57, 57);
+    font-size: 120%;
+    /* text-shadow: 1px 1px 2px orange; */
+    font-family: 'Helvetica', sans-serif;
+    margin-bottom: -2.5%;
+}
+
+.strengths-weaknesses-title {
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'Helvetica', sans-serif;
+}
+
+ul {
+    margin-top: -1.5%;
+    margin-bottom: 4%;
+    list-style-type: none;
+}
+
+li {
+    padding: none;
+    font-family: 'Helvetica', sans-serif;
+    color: rgba(255, 166, 0, 0.534);
+}
+
+#complete-build-top-section {
+    padding-top: 4%;
+    padding-bottom: 3%;
+    background: linear-gradient(to bottom, rgba(255, 181, 10, 0.815), rgb(57, 57, 57));
+}
+
+h2 {
+    padding: 0;
+    margin-top: 0;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+h3 {
+    font-family: 'Helvetica', sans-serif;
+    color: rgba(255, 255, 255, 0.5)
+}
+
+p {
+    margin-left: 20px;
+    margin-right: 10px;
+    font-family: 'Helvetica', sans-serif;
+    color:rgba(255, 255, 255, 0.5);
+    font-weight: bold;
+}
+
+#complete-build-bottom-section {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+}
+
+
+#complete-build-bottom-left-section {
+    margin-left: 15%;
+    margin-bottom: 4%;
+}
+#complete-build-bottom-right-section {
+    margin-right: 15%;
 }
