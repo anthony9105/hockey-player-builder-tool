@@ -468,7 +468,16 @@ export function getPlayerWebsiteURL(playerFullName) {
   
   websiteUrl += firstLastName[1].slice(0, 1) + "/";
   websiteUrl += firstLastName[1].slice(0, 5);
-  websiteUrl += firstLastName[0].slice(0, 2) + "01.html";
+  websiteUrl += firstLastName[0].slice(0, 2);
+
+  // exception in the URL pattern (probably because there is another Matt Martin
+  // there, but that is not the one I have in the player attributes CSV)
+  if (playerFullName == "Matt Martin") {
+    websiteUrl += "02.html";
+  }
+  else {
+    websiteUrl += "01.html";
+  }
 
   return websiteUrl;
 }
