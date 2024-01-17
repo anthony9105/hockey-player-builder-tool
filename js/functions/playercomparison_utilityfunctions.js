@@ -460,19 +460,22 @@ function determineBestPlayerType(playerAttributes, categoryAvgs, position) {
     if (meetsRequirements(playerAttributes, playerType, categoryAvgs)) {
 
       // determining the highest score using the ability scoring system
-      if (highestScore = null) {
+      if (highestScore == null) {
         highestScore = calculateAbilityScore(playerType);
+        bestPlayerTypes.push(playerType);
+        console.log(highestScore);
       }
       else {
         const tempScore = calculateAbilityScore(playerType);
 
-        // update highestScore if tempScore is greater
-        if (tempScore > highestScore) {
-          highestScore = tempScore;
+        // if tempScore is the same as highestScore, or its only greater than highest score by 3 or less, consider this a "tie"
+        if (tempScore == highestScore || (tempScore > highestScore && tempScore - highestScore <= 3)) {
+          highestScore = "tied";
           bestPlayerTypes.push(playerType);
         }
-        else if (tempScore == highestScore) {
-          highestScore = "tied";
+        // update highestScore if tempScore is greater than highestScore by 4 or more
+        else if (tempScore > highestScore + 3) {
+          highestScore = tempScore;
           bestPlayerTypes.push(playerType);
         }
       }
@@ -494,7 +497,7 @@ function determineBestPlayerType(playerAttributes, categoryAvgs, position) {
     console.log(categoryAvgs);
     bestPlayerTypes.forEach(bestPlayerType => {
       // determining the highest score now using the attribute scoring
-      if (tieBreakerHighestScore = null) {
+      if (tieBreakerHighestScore == null) {
         tieBreakerHighestScore = calculateAttributeScore(playerAttributes, bestPlayerType, categoryAvgs);
         bestPlayerTypeFit = bestPlayerType;
       }
@@ -550,11 +553,14 @@ function getPlayerType(playerAttributes, playerPosition) {
   let bestPlayerTypeFit;
   bestPlayerTypeFit = determineBestPlayerType(playerAttributes, categoryAvgs, position);
 
+  let count = 0;
+
   // while bestPlayerType is null (meaning that no best player type was found)
-  while (bestPlayerTypeFit == null) {
+  while (bestPlayerTypeFit == null && count < 3) {
     // scaling down all the player type minimum requirements (by x amount.  Current attribute minimum minus x amount)
     scalePlayerTypeRequirements(0.01, playerPosition);
     bestPlayerTypeFit = determineBestPlayerType(playerAttributes, categoryAvgs, position);
+    count++;
   }
 
   console.log("BEST PLAYER TYPE FOR THIS PLAYER:");

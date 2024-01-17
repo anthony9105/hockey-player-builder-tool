@@ -751,6 +751,55 @@ export let playerTypesInfo = {
               Physical_AVG: 0.87,
           },
       },
+      Tough_off_dman: {
+        DisplayName: "Tough Offensive Defenseman",
+        Description: "A defenseman renowned for a combination of offensive contributions and physical dominance.",
+        MainSkills: ["Physicality"],
+        SecondarySkills: ["Physicality", "PuckSkills", "Shooting", "Passing"],
+        Weaknesses: ["Defense"],
+        minimums: {
+            Shooting_AVG: 0.785,
+            Puckskills: {
+                PuckControl: 0.85,
+                Passing: 0.85,
+                OffensiveAwareness: 0.86
+            },
+            Physical_AVG: 0.83
+        },
+        maximums: {
+            Skating: {
+                Speed: 0.9,
+                Acceleration: 0.9,
+            },
+            Defense: {
+                DefensiveAwareness: 0.86
+            },
+        },
+      },
+      Tough_twoway_dman: {
+        DisplayName: "Tough Two-way Defenseman",
+        Description: "A well-rounded defenseman with decent passing, lacking a standout shot but good defensively and physically dominant.  You contribute fine on both ends of the ice but your true strength lies in being impactful and reliable defensively and physically.",
+        MainSkills: ["Physicality", "Grit"],
+        SecondarySkills: ["Physicality", "Defense", "Passing", "Grit"],
+        Weaknesses: ["Shooting"],
+        minimums: {
+            Puckskills: {
+                Passing: 0.85,
+                OffensiveAwareness: 0.82
+            },
+            Physical_AVG: 0.83
+        },
+        maximums: {
+            Skating: {
+                Speed: 0.9,
+                Acceleration: 0.9,
+            },
+            Defense: {
+                DefensiveAwareness: 0.9
+            },
+            Shooting_AVG: 0.8,
+        },
+      },
       Mobile_two_way_dman: {
           DisplayName: "Mobile Two-way Defenseman",
           Description: "A well-rounded defenseman with great skating and breakout ability, lacking a standout shot but good defensively.  You contribute fine on both ends of the ice but your true strength lies in being impactful and reliable defensively and utilizing your speed to make a difference in various situations.",
@@ -1452,6 +1501,56 @@ export let attributeWeightsInfo = {
         Passing: 0.25,
         PuckControl: 0.25,
         ShotBlocking: 1,
+        SlapshotAccuracy: 0.25,
+        SlapshotPower: 0.25,
+        Speed: 0.25,
+        StickChecking: 1,
+        Strength: 1,
+        WristshotAccuracy: 0.25,
+        WristshotPower: 0.25,
+    },
+    "Tough Offensive Defenseman": {
+        Acceleration: 0.25,
+        Agility: 0.25,
+        Balance: 0.75,
+        BodyChecking: 1,
+        DefensiveAwareness: 0.5,
+        Deking: 0.75,
+        Discipline: 0.001,
+        Durability: 0.001,
+        Endurance: 0.001,
+        Faceoffs: 0,
+        FightingSkill: 0,
+        HandEye: 0.25,
+        OffensiveAwareness: 1,
+        Passing: 1,
+        PuckControl: 1,
+        ShotBlocking: 0.25,
+        SlapshotAccuracy: 0.25,
+        SlapshotPower: 0.5,
+        Speed: 0.25,
+        StickChecking: 0.25,
+        Strength: 1,
+        WristshotAccuracy: 0.25,
+        WristshotPower: 0.5, 
+    },
+    "Tough Two-way Defenseman": {
+        Acceleration: 0.25,
+        Agility: 0.25,
+        Balance: 0.75,
+        BodyChecking: 1,
+        DefensiveAwareness: 1,
+        Deking: 0.25,
+        Discipline: 0.001,
+        Durability: 0.001,
+        Endurance: 0.001,
+        Faceoffs: 0,
+        FightingSkill: 0,
+        HandEye: 0.25,
+        OffensiveAwareness: 0.5,
+        Passing: 0.75,
+        PuckControl: 0.75,
+        ShotBlocking: 0.75,
         SlapshotAccuracy: 0.25,
         SlapshotPower: 0.25,
         Speed: 0.25,
