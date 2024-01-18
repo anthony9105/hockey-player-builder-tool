@@ -623,20 +623,6 @@ function scalePlayerTypeRequirements(scalingModifier, position) {
  * findSimilarPlayers function used to find the most similar and least similar players
  */
 export function findSimilarPlayers() {
-  // create a KD-tree for fast nearest neighbor search
-  // const kdtree = new kdTree(playerData, cosineSimilarity, selectedAttributeNames);
-
-  // console.log(playerData.length);
-  // playerData.forEach((player, index) => {
-  //   if (player.Name == "Alex Ovechkin") {
-  //     console.log(player);
-  //     console.log(index);
-  //   }
-  //   else if (player.Name == "Steven Stamkos") {
-  //     console.log(player);
-  //     console.log(index);
-  //   }
-  // });
 
   let samplePlayer = UtilityFunctions.getAttributeObject();
   samplePlayer['Name'] = 'Created Player';
@@ -692,13 +678,6 @@ export function findSimilarPlayers() {
   const sortedPlayers = allDistances.sort((a, b) => a.distance - b.distance);
   console.log(sortedPlayers);
 
-
-  // sortedPlayers.forEach((sp, index) => {
-  //   if (sp.player.Name == "Alex Ovechkin") {
-  //     console.log(sp);
-  //     console.log(index);
-  //   }
-  // });
 
   let k = 1;
   console.log("\n\nMost Similar:");
