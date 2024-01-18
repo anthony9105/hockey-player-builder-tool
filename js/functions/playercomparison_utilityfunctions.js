@@ -99,16 +99,8 @@ function normalizePlayerData(player) {
   // which attribute weights to use (to be modified later)
   let attributeWeights = Variables.attributeWeightsInfo['Sniper'];
 
-  playerData.forEach((player, index) => {
-    if (player.Name == "Steven Stamkos") {
-      // console.log(player);
-      // console.log(index);
-    }
-    else if (player.Name == "Alex Ovechkin") {
-      // console.log(player);
-      // console.log(index);
-    }
-  });
+  // scaling up the player data attributes
+  scalePlayerDataAttributes(1.025);
 /**
  * 
  */
@@ -634,20 +626,17 @@ export function findSimilarPlayers() {
   // create a KD-tree for fast nearest neighbor search
   // const kdtree = new kdTree(playerData, cosineSimilarity, selectedAttributeNames);
 
-  console.log(playerData.length);
-  playerData.forEach((player, index) => {
-    if (player.Name == "Alex Ovechkin") {
-      console.log(player);
-      console.log(index);
-    }
-    else if (player.Name == "Steven Stamkos") {
-      console.log(player);
-      console.log(index);
-    }
-  });
-
-  scalePlayerDataAttributes(1.025);
-  // samplePlayer = playerData[540];
+  // console.log(playerData.length);
+  // playerData.forEach((player, index) => {
+  //   if (player.Name == "Alex Ovechkin") {
+  //     console.log(player);
+  //     console.log(index);
+  //   }
+  //   else if (player.Name == "Steven Stamkos") {
+  //     console.log(player);
+  //     console.log(index);
+  //   }
+  // });
 
   let samplePlayer = UtilityFunctions.getAttributeObject();
   samplePlayer['Name'] = 'Created Player';
@@ -655,7 +644,6 @@ export function findSimilarPlayers() {
   samplePlayer = normalizePlayerData(samplePlayer);
 
   console.log("Player being used:");
-
   console.log(samplePlayer);
 
   const playerPosition = samplePlayer['main-position'];
@@ -667,6 +655,7 @@ export function findSimilarPlayers() {
     console.warn("Attribute weights undefined.  Likely missing/typo of this player type.  The best player type currently is called: "+bestPlayerType.DisplayName);
   }
 
+  // setting a small weight to faceoffs if its necessary (otherwise it stays at 0 since it shouldnt matter for wingers and defenseman)
   if (playerPosition == 'C') {
     if (bestPlayerType.DisplayName != "Faceoff Specialist" && bestPlayerType.DisplayName != "Two-way Liability") {
       if (bestPlayerType.DisplayName.toLowerCase().includes("two-way")) {
@@ -681,11 +670,8 @@ export function findSimilarPlayers() {
 
   const generalPlayerPosition = playerPosition == 'D' ? 'D' : 'F';
 
-  // // Calculate cosine distances between the query player and all players in the dataset
-  const allDistances = playerData.map((currPlayer, index) => {
-    // const info = cosineSimilarity(samplePlayer, player);
-    // const similarity = info.similarity;
-    // return { index, similarity };
+  // Calculate euclidean distances between the query player and all players in the dataset
+  const allDistances = playerData.map(currPlayer => {
 
     // so only forwards are compares to forwards and defenseman to defenseman
     if (generalPlayerPosition == 'F' && (currPlayer['main-position'] == 'C' || currPlayer['main-position'] == 'W')) {
@@ -701,17 +687,18 @@ export function findSimilarPlayers() {
     return null;
   }).filter(info => info != null);
 
+
   // Sort all players based on distances in descending order
   const sortedPlayers = allDistances.sort((a, b) => a.distance - b.distance);
-
   console.log(sortedPlayers);
 
-  sortedPlayers.forEach((sp, index) => {
-    if (sp.player.Name == "Alex Ovechkin") {
-      console.log(sp);
-      console.log(index);
-    }
-  });
+
+  // sortedPlayers.forEach((sp, index) => {
+  //   if (sp.player.Name == "Alex Ovechkin") {
+  //     console.log(sp);
+  //     console.log(index);
+  //   }
+  // });
 
   let k = 1;
   console.log("\n\nMost Similar:");
@@ -728,6 +715,7 @@ export function findSimilarPlayers() {
     j++;
   }
 
+  // setting the complete build modal/popup
   setCompleteBuildContent(sortedPlayers.slice(0, 5), sortedPlayers.slice(sortedPlayers.length - 3, sortedPlayers.length), bestPlayerType);
 } 
 
@@ -816,4 +804,14 @@ export function setCompleteBuildContent(mostSimilarPlayers, leastSimilarPlayers,
       dissimilarPlayers[index].children[1].textContent = leastSimilarPlayers[leastSimilarPlayers.length - index - 1].player.Name;
     }
   });
+}
+
+export function resetCompleteBuildContent() {
+  let mainSkillsList = document.getElementById(Constants.MAINSKILLS_LIST_ID);
+  let secSkillsList = document.getElementById(Constants.SECSKILLS_LIST_ID);
+  let weaknessesList = document.getElementById(Constants.WEAKNESSES_LIST_ID);
+
+  mainSkillsList.innerHTML = '';
+  secSkillsList.innerHTML = '';
+  weaknessesList.innerHTML = '';
 }

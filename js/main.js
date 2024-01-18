@@ -28,6 +28,7 @@ import * as PCUtilityFunctions from "./functions/playercomparison_utilityfunctio
   window.addEventListener('click', function (event) {
       if (event.target === completeBuildSection) {
         completeBuildSection.style.display = 'none';
+        PCUtilityFunctions.resetCompleteBuildContent();
       }
   });
 
