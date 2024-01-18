@@ -633,8 +633,8 @@ export let playerTypesInfo = {
           SecondarySkills: ["Defense", "Physicality", "Skating", "Passing", "Grit"],
           Weaknesses: ["PuckSkills", "Shooting"],
           minimums: {
-              Defense_AVG: 0.88,
-              Physical_AVG: 0.84,
+              Defense_AVG: 0.86,
+              Physical_AVG: 0.8,
           },
           maximums: {
               Puckskills: {
@@ -648,11 +648,11 @@ export let playerTypesInfo = {
           DisplayName: "Mobile Defensive Defenseman",
           Description: "A defenseman recognized for great skating ability, reliability, and stand out defensive skills. You contribute significantly to your teams stability in the defensive zone and in thwarting rush chances.",
           MainSkills: ["Skating", "Defense"],
-          SecondarySkills: ["Defense", "Physicality", "Skating", "Passing", "Grit"],
+          SecondarySkills: ["Defense", "Skating", "Passing", "Grit"],
           Weaknesses: ["PuckSkills", "Shooting"],
           minimums: {
-              Defense_AVG: 0.87,
-              Physical_AVG: 0.82,
+              Defense_AVG: 0.86,
+              Physical_AVG: 0.78,
               Skating: {
                   Acceleration: 0.9,
                   Speed: 0.9
@@ -673,8 +673,8 @@ export let playerTypesInfo = {
           SecondarySkills: ["Defense", "Physicality", "Grit"],
           Weaknesses: ["PuckSkills", "Passing", "Shooting"],
           minimums: {
-              Defense_AVG: 0.87,
-              Physical_AVG: 0.83,
+              Defense_AVG: 0.86,
+              Physical_AVG: 0.81,
           },
           maximums: {
               Puckskills: {
@@ -691,7 +691,7 @@ export let playerTypesInfo = {
           SecondarySkills: ["Physicality", "Defense", "Grit"],
           Weaknesses: ["PuckSkills", "Shooting"],
           minimums: {
-              Defense_AVG: 0.87,
+              Defense_AVG: 0.86,
               Physical_AVG: 0.86,
           },
           maximums: {
@@ -706,10 +706,9 @@ export let playerTypesInfo = {
           DisplayName: "Mobile Offensive Defenseman",
           Description: "A defenseman renowned for exceptional skating, breakouts, puck carrying, and offensive contributions.  With your dynamic movement and creativity, you add an extra dimension to your team's attack.",
           MainSkills: ["Skating"],
-          SecondarySkills: ["Skating", "PuckSkills", "Shooting", "Passing"],
+          SecondarySkills: ["Skating", "PuckSkills", "Passing"],
           Weaknesses: ["Defense", "Physicality"],
           minimums: {
-              Shooting_AVG: 0.8,
               Puckskills: {
                   PuckControl: 0.85,
                   Passing: 0.85,
@@ -737,18 +736,17 @@ export let playerTypesInfo = {
               Puckskills: {
                   PuckControl: 0.83,
                   Passing: 0.85,
-                  OffensiveAwareness: 0.82
-              },
-              Skating: {
-                  Speed: 0.82,
-                  Acceleration: 0.82,
-                  Agility: 0.8,
+                  OffensiveAwareness: 0.8
               },
               Defense_AVG: 0.85,
           },
           maximums: {
               Defense_AVG: 0.9,
               Physical_AVG: 0.87,
+              Skating: {
+                Speed: 0.91,
+                Acceleration: 0.91
+              }
           },
       },
       Tough_off_dman: {
@@ -785,7 +783,7 @@ export let playerTypesInfo = {
         minimums: {
             Puckskills: {
                 Passing: 0.85,
-                OffensiveAwareness: 0.82
+                OffensiveAwareness: 0.8
             },
             Physical_AVG: 0.83
         },
@@ -810,13 +808,13 @@ export let playerTypesInfo = {
               Puckskills: {
                   PuckControl: 0.83,
                   Passing: 0.86,
-                  OffensiveAwareness: 0.82
+                  OffensiveAwareness: 0.8
               },
               Skating: {
                   Speed: 0.9,
                   Acceleration: 0.9,
               },
-              Defense_AVG: 0.85,
+              Defense_AVG: 0.83,
           },
           maximums: {
               Defense_AVG: 0.9,
@@ -833,10 +831,10 @@ export let playerTypesInfo = {
               Puckskills: {
                   PuckControl: 0.83,
                   Passing: 0.85,
-                  OffensiveAwareness: 0.82
+                  OffensiveAwareness: 0.81
               },
-              Shooting_AVG: 0.81,
-              Defense_AVG: 0.85,
+              Shooting_AVG: 0.8,
+              Defense_AVG: 0.83,
           },
           maximums: {
               Defense_AVG: 0.9,
@@ -854,9 +852,9 @@ export let playerTypesInfo = {
           SecondarySkills: ["Defense", "Shooting", "Physicality"],
           Weaknesses: ["Skating"],
           minimums: {
-              Defense_AVG: 0.87,
-              Physical_AVG: 0.84,
-              Shooting_AVG: 0.81,
+              Defense_AVG: 0.85,
+              Physical_AVG: 0.81,
+              Shooting_AVG: 0.8,
           },
           maximums: {
               Puckskills: {
@@ -895,9 +893,9 @@ export let playerTypesInfo = {
           SecondarySkills: [],
           Weaknesses: ["Everything"],
           maximums: {
-              Defense_AVG: 0.85,
+              Defense_AVG: 0.83,
               Physical_AVG: 0.84,
-              Shooting_AVG: 0.8,
+              Shooting_AVG: 0.78,
               Skating_AVG: 0.82,
               Puckskills_AVG: 0.8,
           },

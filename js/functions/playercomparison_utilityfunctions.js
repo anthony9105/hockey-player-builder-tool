@@ -331,10 +331,8 @@ function calculateAttributeScore(playerAttributes, playerType, categoryAvgs) {
             playerAttributeToCheck = playerAttributes[attribute];
           }
 
-          //const minVal = playerType.minimums[category][attribute];
-          console.log(playerAttributeToCheck);
+          // console.log(playerAttributeToCheck);
           // update the score and the count
-          //minimumsScore += playerAttributeToCheck - minVal;
           minimumsScore += playerAttributeToCheck;
           count++;
         }
@@ -349,12 +347,9 @@ function calculateAttributeScore(playerAttributes, playerType, categoryAvgs) {
           playerAttributeToCheck = playerAttributes[category];
         }
 
-        console.log(playerAttributeToCheck);
-
-        //const minVal = playerType.minimums[category];
+        // console.log(playerAttributeToCheck);
 
         // update the score and the count
-        //minimumsScore += playerAttributeToCheck - minVal;
         minimumsScore += playerAttributeToCheck;
         count++;
       }
@@ -449,8 +444,8 @@ function calculateAbilityScore(playerType) {
  */
 function determineBestPlayerType(playerAttributes, categoryAvgs, position) {
   let highestScore = null;
-  let bestPlayerTypes = [];
   let bestPlayerTypeFit = null;
+  let bestPlayerTypeOptions = [];
 
   // for each player type
   for (const typeName in Variables.playerTypesInfo[position]) {
@@ -462,40 +457,44 @@ function determineBestPlayerType(playerAttributes, categoryAvgs, position) {
       // determining the highest score using the ability scoring system
       if (highestScore == null) {
         highestScore = calculateAbilityScore(playerType);
-        bestPlayerTypes.push(playerType);
+        bestPlayerTypeOptions.push(playerType);
         console.log(highestScore);
       }
       else {
         const tempScore = calculateAbilityScore(playerType);
 
+        console.log(tempScore);
+        console.log(highestScore);
+
         // if tempScore is the same as highestScore, or its only greater than highest score by 3 or less, consider this a "tie"
         if (tempScore == highestScore || (tempScore > highestScore && tempScore - highestScore <= 3)) {
           highestScore = "tied";
-          bestPlayerTypes.push(playerType);
+          bestPlayerTypeOptions.push(playerType);
         }
         // update highestScore if tempScore is greater than highestScore by 4 or more
         else if (tempScore > highestScore + 3) {
           highestScore = tempScore;
-          bestPlayerTypes.push(playerType);
+          bestPlayerTypeOptions = [];
+          bestPlayerTypeOptions.push(playerType);
         }
       }
     }
   }
 
   // if no player type requirements were met
-  if (bestPlayerTypes.length == 0) {
+  if (bestPlayerTypeOptions.length == 0) {
     console.log("No player type requirements were met");
   }
   // if 1 player type was determined as the best from the abilities scoring method
-  else if (bestPlayerTypes.length == 1) {
-    bestPlayerTypeFit = bestPlayerTypes[0];
+  else if (bestPlayerTypeOptions.length == 1) {
+    bestPlayerTypeFit = bestPlayerTypeOptions[0];
   }
   // if theres still multiple eligible player types because the previous scoring resulted in a tie.
   // Use the other scoring method based off the player type's minimum requirement attributes.
   else {
     let tieBreakerHighestScore = null;
     console.log(categoryAvgs);
-    bestPlayerTypes.forEach(bestPlayerType => {
+    bestPlayerTypeOptions.forEach(bestPlayerType => {
       // determining the highest score now using the attribute scoring
       if (tieBreakerHighestScore == null) {
         tieBreakerHighestScore = calculateAttributeScore(playerAttributes, bestPlayerType, categoryAvgs);
