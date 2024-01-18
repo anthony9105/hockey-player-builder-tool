@@ -481,3 +481,43 @@ export function getPlayerWebsiteURL(playerFullName) {
 
   return websiteUrl;
 }
+
+
+/**
+ * allAbilitiesAndBoostsValid function used to check if all abilities and boosts are valid
+ * @returns if all abilities and boosts are valid (true) or if not all the all abilities and boosts are valid (false)
+ */
+export function allAbilitiesAndBoostsValid() {
+  if (!allAbilitiesValid() && !allBoostsValid()) {
+    window.alert("One or more selected abilities are invalid and one or more selected boosts are invalid");
+    return false;
+  }
+  else if (!allAbilitiesValid()){
+    window.alert("One or more selected abilities are invalid");
+    return false;
+  }
+  else if (!allBoostsValid()) {
+    window.alert("One or more selected boosts are invalid");
+    return false;
+  }
+
+  return true;
+}
+
+/**
+ * allAbilitiesSelected function used to check if all abilities are selected
+ * @returns if all abilities are selected (true) or if not all the abilities are selected (false)
+ */
+export function allAbilitiesSelected() {
+  if (Variables.mainAbilityDisplayName.textContent == 'No ability currently selected') {
+    return false;
+  }
+  
+  Array.from(Variables.abilityDisplayNames).forEach(abilityDisplayName => {
+    if (abilityDisplayName.textContent == 'No ability currently selected') {
+      return false;
+    }
+  });
+
+  return true;
+}

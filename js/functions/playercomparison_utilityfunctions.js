@@ -806,6 +806,10 @@ export function setCompleteBuildContent(mostSimilarPlayers, leastSimilarPlayers,
   });
 }
 
+/**
+ * resetCompleteBuildContent function used to remove the all the list items ("li")
+ * from complete-build-content, so that when another build is being made, the old ones are removed already
+ */
 export function resetCompleteBuildContent() {
   let mainSkillsList = document.getElementById(Constants.MAINSKILLS_LIST_ID);
   let secSkillsList = document.getElementById(Constants.SECSKILLS_LIST_ID);

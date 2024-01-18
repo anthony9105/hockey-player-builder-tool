@@ -724,7 +724,7 @@ body {
     padding: 0;
     /* border: 1px solid #888; */
     width: 60%;
-    max-height: 70vh;
+    max-height: 60vh;
     overflow-y: auto;
     border-radius: 16px;
     box-shadow: 2px 2px 30px black;
@@ -843,13 +843,14 @@ p {
     display: flex;
     flex-direction: row;
     justify-content:space-between;
+    padding-bottom: 5%;
 }
 
 
 #complete-build-bottom-left-section {
-    margin-left: 15%;
+    margin-left: 10%;
     margin-bottom: 4%;
 }
 #complete-build-bottom-right-section {
-    margin-right: 15%;
+    margin-right: 10%;
 }

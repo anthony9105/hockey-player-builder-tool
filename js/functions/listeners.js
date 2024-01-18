@@ -12,7 +12,7 @@ import * as InitializerFunctions from "./initializers.js";
 import * as Variables from "../variables/global_variables.js";
 import * as UpdateFunctions from "./update_functions.js";
 import * as Constants from "../variables/constants.js";
-import { findSimilarPlayers } from "./playercomparison_utilityfunctions.js";
+import * as PCUtilityFunctions from "./playercomparison_utilityfunctions.js";
 
 let boostPreviousDropdown = [false];
 let abilityPreviousDropdown = {
@@ -616,45 +616,29 @@ export function increasingAndDecreasingAttributesListeners() {
  * completeBuildButtonListener function used to add the functionality of the 
  * complete build button when it is clicked.
  */
-export function completeBuildButtonListener() {
+export function completeBuildButtonListeners() {
   const completeBuildButton = document.getElementById(Constants.COMPLETE_BUILD_BTTN_ID);
+  let completeBuildSection = document.getElementById('complete-build');
 
   completeBuildButton.addEventListener("click", async function() {
 
-    let allAbilitiesSelected = true;
-    let allAbilitiesValid = true;
-    let allBoostsValid = true;
-
-    if (Variables.mainAbilityDisplayName.textContent == 'No ability currently selected') {
-      allAbilitiesSelected = false;
-    }
-    
-    Array.from(Variables.abilityDisplayNames).forEach(abilityDisplayName => {
-      if (abilityDisplayName.textContent == 'No ability currently selected') {
-        allAbilitiesSelected = false;
-        return;
-      }
-    });
-
-    console.log(allAbilitiesSelected);
-    if (allAbilitiesSelected) {
-      if (!UtilityFunctions.allAbilitiesValid() && !UtilityFunctions.allBoostsValid()) {
-        window.alert("One or more selected abilities are invalid and one or more selected boosts are invalid");
-      }
-      else if (!UtilityFunctions.allAbilitiesValid()){
-        window.alert("One or more selected abilities are invalid");
-      }
-      else if (!UtilityFunctions.allBoostsValid()) {
-        window.alert("One or more selected boosts are invalid");
-      }
-      else {
-        findSimilarPlayers();
+    if (UtilityFunctions.allAbilitiesSelected()) {
+      if (UtilityFunctions.allAbilitiesAndBoostsValid()) {
+        PCUtilityFunctions.findSimilarPlayers();
+        completeBuildSection.style.display = "block";
       }
     }
     else {
       window.alert("You must select all 3 abilities before completing the build");
     }
   });
+
+  window.addEventListener('click', function (event) {
+    if (event.target === completeBuildSection) {
+      completeBuildSection.style.display = 'none';
+      PCUtilityFunctions.resetCompleteBuildContent();
+    }
+});
 }
 
 

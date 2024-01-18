@@ -13,28 +13,7 @@ import * as UpdateFunctions from "./functions/update_functions.js";
 import { attributeValues } from "./variables/global_variables.js";
 import * as PCUtilityFunctions from "./functions/playercomparison_utilityfunctions.js";
 
-  var openModalBtn = document.getElementById('complete-build-button');
-  var closeModalBtn = document.getElementById('closeModalBtn');
-  var completeBuildSection = document.getElementById('complete-build');
-
-  openModalBtn.addEventListener('click', function () {
-    completeBuildSection.style.display = 'block';
-  });
-
-  // closeModalBtn.addEventListener('click', function () {
-  //     modal.style.display = 'none';
-  // });
-
-  window.addEventListener('click', function (event) {
-      if (event.target === completeBuildSection) {
-        completeBuildSection.style.display = 'none';
-        PCUtilityFunctions.resetCompleteBuildContent();
-      }
-  });
-
 InitializerFunctions.initializePhysicalsSectionDisplay();
-
-// PCUtilityFunctions.findSimilarPlayers();
 /**
  * ABILITIES
  */
@@ -117,5 +96,5 @@ ListenerFunctions.increasingAndDecreasingAttributesListeners();
 /**
  * COMPLETE BUILD
  */
-ListenerFunctions.completeBuildButtonListener();
+ListenerFunctions.completeBuildButtonListeners();
 ListenerFunctions.resetButtonListener();
