@@ -199,7 +199,7 @@ function changeUpgradeOptionColour(i) {
     Variables.upgradeValues[i].style.color = 'green';
   }
   else if (Variables.upgradeValues[i].innerHTML == 0) {
-    Variables.upgradeValues[i].style.color = '#3a379c';
+    Variables.upgradeValues[i].style.color = 'transparent';
   }
   else {
     Variables.upgradeValues[i].style.color = 'red';
@@ -303,7 +303,7 @@ export function revealDropdown(dropdownContent, i) {
 export function resetUpgrades(upgradeValues) {
   for (var i = 0; i < Variables.upgradeValues.length; i++) {
     Variables.upgradeValues[i].innerHTML = 0;
-    Variables.upgradeValues[i].style.color = '#3a379c';
+    Variables.upgradeValues[i].style.color = 'transparent';
   }
 }
 
