@@ -728,17 +728,26 @@ export function findSimilarPlayers() {
     j++;
   }
 
-  setCompleteBuildContent(sortedPlayers.slice(0, 3), sortedPlayers.slice(sortedPlayers.length - 3, sortedPlayers.length), bestPlayerType);
+  setCompleteBuildContent(sortedPlayers.slice(0, 5), sortedPlayers.slice(sortedPlayers.length - 3, sortedPlayers.length), bestPlayerType);
 } 
 
 
+/**
+ * setCompleteBuildContent function used to set the completed build screen.  (Where the best player
+ * type is displayed, described, and similiar/dissimilar players are shown)
+ * @param {Object[]} mostSimilarPlayers an array of objects for the most similar players to the current player build
+ * @param {Object[]} leastSimilarPlayers an array of objects for the least similar players to the current player build
+ * @param {Object} bestPlayerType the best player type for the current player build
+ */
 export function setCompleteBuildContent(mostSimilarPlayers, leastSimilarPlayers, bestPlayerType) {
   let similarPlayers = document.getElementsByClassName(Constants.SIMILAR_PLAYER_CLASSNAME);
   let dissimilarPlayers = document.getElementsByClassName(Constants.DISSIMILAR_PLAYER_CLASSNAME);
 
+  // set the best player type name
   let playerTypeName = document.getElementById(Constants.PLAYERTYPE_NAME_ID);
   playerTypeName.textContent = bestPlayerType.DisplayName;
 
+  // set the player type description
   let playerTypeDescription = document.getElementById(Constants.PLAYERTYPE_DESC_ID);
   playerTypeDescription.textContent = bestPlayerType.Description;
 
@@ -747,6 +756,7 @@ export function setCompleteBuildContent(mostSimilarPlayers, leastSimilarPlayers,
   let weaknessesList = document.getElementById(Constants.WEAKNESSES_LIST_ID);
 
 
+  // fill in the main skills list
   for (let skill of bestPlayerType.MainSkills) {
     let newListItem = document.createElement("li");
 
@@ -759,10 +769,10 @@ export function setCompleteBuildContent(mostSimilarPlayers, leastSimilarPlayers,
     }
 
     newListItem.textContent = skill;
-
     mainSkillsList.appendChild(newListItem);
   }
 
+  // fill in the secondary skills list
   for (let skill of bestPlayerType.SecondarySkills) {
     let newListItem = document.createElement("li");
 
@@ -774,10 +784,10 @@ export function setCompleteBuildContent(mostSimilarPlayers, leastSimilarPlayers,
       }
     }
     newListItem.textContent = skill;
-
     secSkillsList.appendChild(newListItem);
   }
 
+  // fill in the weaknesses list
   for (let weakness of bestPlayerType.Weaknesses) {
     let newListItem = document.createElement("li");
 
@@ -790,18 +800,20 @@ export function setCompleteBuildContent(mostSimilarPlayers, leastSimilarPlayers,
     }
 
     newListItem.textContent = weakness;
-
     weaknessesList.appendChild(newListItem);
   }
 
 
+  // set the similar and dissimilar players (order number, name, external website url link)
   Array.from(similarPlayers).forEach((similarPlayer, index) => {
     similarPlayer.children[0].textContent = index+1 + ".   ";
     similarPlayer.children[1].href = UtilityFunctions.getPlayerWebsiteURL(mostSimilarPlayers[index].player.Name);
     similarPlayer.children[1].textContent = mostSimilarPlayers[index].player.Name;
 
-    dissimilarPlayers[index].children[0].textContent = index+1 + ".   ";
-    dissimilarPlayers[index].children[1].href = UtilityFunctions.getPlayerWebsiteURL(leastSimilarPlayers[leastSimilarPlayers.length - index - 1].player.Name);
-    dissimilarPlayers[index].children[1].textContent = leastSimilarPlayers[leastSimilarPlayers.length - index - 1].player.Name;
+    if (dissimilarPlayers[index] != undefined) {
+      dissimilarPlayers[index].children[0].textContent = index+1 + ".   ";
+      dissimilarPlayers[index].children[1].href = UtilityFunctions.getPlayerWebsiteURL(leastSimilarPlayers[leastSimilarPlayers.length - index - 1].player.Name);
+      dissimilarPlayers[index].children[1].textContent = leastSimilarPlayers[leastSimilarPlayers.length - index - 1].player.Name;
+    }
   });
 }
