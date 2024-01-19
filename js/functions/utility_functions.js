@@ -192,33 +192,7 @@ export function meetsRequirement(requirementMessage, upgradeAmount) {
  */
 export async function checkSelectedRequirementsIfAttributeChangeDone(upgradeAmount, indexOfAttribute) {
   let continueWithAttributeChange;
-  // Object.values(Variables.abilityDisplayItems).forEach(abilityDisplayItem => {
-  //   let requirements = abilityDisplayItem.getElementsByClassName(Constants.ABILITY_DISPLAY_REQ_CLASSNAME);
 
-  //   Object.values(requirements).forEach(requirement => {
-  //     const requirementInfo = getRequirementValueAndAttributeName(requirement.textContent);
-
-  //     // if the requirement is not empty (unused display slots will have empty requirements) and if the current requirement is the same
-  //     // as the attribute to be modified
-  //     if (requirement.textContent != "" && requirementInfo[1] == Constants.ALL_ATTRIBUTES_INORDER_FULLSPELLING[indexOfAttribute]) {
-  //       const reqValid = meetsRequirement(requirement.textContent, upgradeAmount);
-
-  //       // if requirements are not met
-  //       if (!reqValid) {
-  //         // so that the window pop-up is not constantly repeatedly
-  //         if (continueWithAttributeChange == undefined && abilityDisplayItem.style.backgroundColor != Constants.INVALID_BOOST_OR_ABILITY_RGBA) {
-  //           continueWithAttributeChange = window.confirm("This attribute changes causes 1 or more selected abilities to no longer meet minimum requirement(s).  Continue with attribute change or cancel?");
-  //         }
-
-  //         // if continuing with attribute change set the selected ability to be a red shade so it is clear that ability is now invalid
-  //         if (continueWithAttributeChange != false) {
-  //           abilityDisplayItem.style.backgroundColor = Constants.INVALID_BOOST_OR_ABILITY_RGBA;
-  //           requirement.style.color = "red";
-  //         }
-  //       }
-  //     }
-  //   });
-  // });
   for (const abilityDisplayItem of Object.values(Variables.abilityDisplayItems)) {
     let requirements = abilityDisplayItem.getElementsByClassName(Constants.ABILITY_DISPLAY_REQ_CLASSNAME);
   
@@ -271,31 +245,6 @@ export async function checkSelectedRequirementsIfAttributeChangeDone(upgradeAmou
       }
     }
   }
-
-  // Object.values(Variables.boostDisplayItems).forEach(boostDisplayItem => {
-  //   let requirements = boostDisplayItem.getElementsByClassName(Constants.BOOST_DISPLAY_REQ_CLASSNAME);
-
-  //   Object.values(requirements).forEach(requirement => {
-  //     const requirementInfo = getRequirementValueAndAttributeName(requirement.textContent);
-  //     if (requirement.textContent != "" && requirementInfo[1] == Constants.ALL_ATTRIBUTES_INORDER_FULLSPELLING[indexOfAttribute]) {
-  //       const reqValid = meetsRequirement(requirement.textContent, upgradeAmount);
-
-  //       // if requirements are not met
-  //       if (!reqValid) {
-  //         if (continueWithAttributeChange == undefined && boostDisplayItem.style.backgroundColor != Constants.INVALID_BOOST_OR_ABILITY_RGBA) {
-  //           continueWithAttributeChange = confirmModal("This attribute changes causes 1 or more selected abilities to no longer meet minimum requirement(s).  Continue with attribute change?");
-  //           // continueWithAttributeChange = window.confirm("This attribute changes causes 1 or more selected abilities to no longer meet minimum requirement(s).  Continue with attribute change or cancel?");
-  //         }
-
-  //         // if continuing with attribute change set the selected ability to be a red shade so it is clear that ability is now invalid
-  //         if (continueWithAttributeChange != false) {
-  //           boostDisplayItem.style.backgroundColor = Constants.INVALID_BOOST_OR_ABILITY_RGBA;
-  //           requirement.style.color = "red";
-  //         }
-  //       }
-  //     }
-  //   });
-  // });
 
   continueWithAttributeChange = continueWithAttributeChange == undefined ? true : continueWithAttributeChange;
 

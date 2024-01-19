@@ -89,6 +89,10 @@ export const ABILITIES_XML = "../build-information/abilities.xml";
 
     export const MORE_INFO_LISTITEM_CLASSNAME = "help-li-extra";
 
+    export const MODAL_INFO_CLASSNAME = "modal-info";
+    export const CANCEL_BUTTON_CLASSNAME = "cancel-button";
+    export const OK_BUTTON_CLASSNAME = "ok-button";
+
 
 /**
  * ID NAMES
@@ -122,6 +126,10 @@ export const ABILITIES_XML = "../build-information/abilities.xml";
 
     export const COMPLETE_BUILD_SECTION_ID= "complete-build";
     export const HELP_SECTION_ID = "help-and-instructions";
+
+    // confirm/alert modals
+    export const CONFIRM_MODAL_ID = "confirm-modal";
+    export const ALERT_MODAL_ID = "alert-modal";
 
 
 

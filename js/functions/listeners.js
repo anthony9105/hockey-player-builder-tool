@@ -140,7 +140,7 @@ export function hideMainAbilityDropdownContent() {
 export function abilitySelectListeners() {
 
   Object.values(Variables.abilityItems).forEach((abilityItem, index) => {
-    abilityItem.addEventListener("click", function() {
+    abilityItem.addEventListener("click", async function() {
       let i = 0;
       let k = 0;
       if (index >= Variables.abilityItems.length / 2) {
@@ -159,16 +159,16 @@ export function abilitySelectListeners() {
           Variables.mainAbilityDisplayName.textContent == selectedAbilityName.textContent) {
         
         confirmResponse = false;
-        window.alert("This ability is already selected");
+        await UtilityFunctions.alertModal("This ability is already selected");
       }
       // if the requirements for the seleced ability are not met
       else if (!UtilityFunctions.meetsRequirement(selectedAbilityRequirements[0].textContent) || !UtilityFunctions.meetsRequirement(selectedAbilityRequirements[1].textContent)) {
         confirmResponse = false;
-        window.alert("1 or more of the minimum requirements for this ability are not met");
+        await UtilityFunctions.alertModal("1 or more of the minimum requirements for this ability are not met");
       }
       // if the same ability slot is already being used but it is a different ability, give the option to replace the existing one or cancel
       else if (abilityDisplayNames[i].textContent != Constants.UNSELECTED_ABILITY_NAME) {
-        confirmResponse = window.confirm(`Are you sure you want to replace "${abilityDisplayNames[i].textContent}" with "${selectedAbilityName.textContent}"?`);
+        confirmResponse = await UtilityFunctions.confirmModal(`Are you sure you want to replace "${abilityDisplayNames[i].textContent}" with "${selectedAbilityName.textContent}"?`, "Yes");
       } 
 
       if (confirmResponse) {
@@ -196,15 +196,13 @@ export function abilitySelectListeners() {
  */
 export function mainAbilitySelectListeners() {
   Object.values(Variables.mainAbilityItems).forEach((mainAbilityItem) => {
-    mainAbilityItem.addEventListener("click", function() {
+    mainAbilityItem.addEventListener("click", async function() {
       
       let mainAbilityDisplayName = Variables.mainAbilityDisplayItem.getElementsByClassName(Constants.MAIN_ABILITY_DISPLAY_NAME_CLASSNAME)[0];
       let selectedAbilityName = mainAbilityItem.getElementsByClassName(Constants.MAIN_ABILITY_NAME_CLASSNAME)[0];
       const abilityDisplayNames = Variables.abilityDisplayNames;
 
       let confirmResponse = true;
-
-      console.log();
       
       // if the selected main ability has already been selected as a regular or main ability
       if (mainAbilityDisplayName.textContent == selectedAbilityName.textContent || 
@@ -212,11 +210,11 @@ export function mainAbilitySelectListeners() {
           abilityDisplayNames[1].textContent == selectedAbilityName.textContent) {
 
         confirmResponse = false;
-        window.alert("This main ability is already selected");
+        await UtilityFunctions.alertModal("This main ability is already selected");
       }
       // if the same ability slot is already being used but it is a different ability, give the option to replace the existing one or cancel
       else if (mainAbilityDisplayName.textContent != Constants.UNSELECTED_ABILITY_NAME) {
-        confirmResponse = window.confirm(`Are you sure you want to replace "${mainAbilityDisplayName.textContent}" with "${selectedAbilityName.textContent}"?`);
+        confirmResponse = await UtilityFunctions.confirmModal(`Are you sure you want to replace "${mainAbilityDisplayName.textContent}" with "${selectedAbilityName.textContent}"?`, "Yes");
       } 
 
       if (confirmResponse) {
@@ -239,9 +237,9 @@ export function mainAbilitySelectListeners() {
  * unselectButtonListeners function used to unselect/remove a selected ability, 
  * main ability, or boost.
  */
-export function unselectButtonListeners() {
-  Object.values(Variables.unselectButtons).forEach((unselectButton, index) => {
-    unselectButton.addEventListener("click", function() {
+export async function unselectButtonListeners() {
+  for (const [index, unselectButton] of Object.entries(Variables.unselectButtons)) {
+    unselectButton.addEventListener("click", async function() {
 
       // unselect main ability
       if (index == 1) {
@@ -257,23 +255,57 @@ export function unselectButtonListeners() {
       }
       // unselect boost
       else {
-
+  
         const selectedBoostIndex = index - 3;
-
+  
         const selectedBoostName = document.getElementsByClassName(Constants.BOOST_DISPLAY_VALUE_CLASSNAME)[selectedBoostIndex].textContent;
         const selectedBoostInfo = UtilityFunctions.getBoostUpgradeInfo(selectedBoostName);
-        selectedBoostInfo[0] = parseInt(selectedBoostInfo[0]) * -1; // multiply value by -1 since the boost is being unapplyed/unselected here
-
-        // taking into account that if this boost is unselected it might cause already selected abilities or boosts to become unvalid
-        const continueWithAttributeChange = UtilityFunctions.checkSelectedRequirementsIfAttributeChangeDone(selectedBoostInfo[0], Constants.ALL_ATTRIBUTES_INORDER_FULLSPELLING.indexOf(selectedBoostInfo[1]));
+        selectedBoostInfo[0] = parseInt(selectedBoostInfo[0]) * -1; // multiply value by -1 since the boost is being unapplied/unselected here
+  
+        // taking into account that if this boost is unselected it might cause already selected abilities or boosts to become invalid
+        const continueWithAttributeChange = await UtilityFunctions.checkSelectedRequirementsIfAttributeChangeDone(selectedBoostInfo[0], Constants.ALL_ATTRIBUTES_INORDER_FULLSPELLING.indexOf(selectedBoostInfo[1]));
+        console.log(continueWithAttributeChange);
         if (continueWithAttributeChange) {
           UpdateFunctions.applyBoostUpgradeOrDowngrade(selectedBoostInfo[1], selectedBoostInfo[0]);
           InitializerFunctions.setBoostToUnselected(selectedBoostIndex);
         }
       }
-
     });
-  });
+  }
+  // Object.values(Variables.unselectButtons).forEach((unselectButton, index) => {
+  //   unselectButton.addEventListener("click", async function() {
+
+  //     // unselect main ability
+  //     if (index == 1) {
+  //       InitializerFunctions.setMainAbilityOptionToUnselected();
+  //     }
+  //     // unselect regular ability
+  //     else if (index == 0 || index == 2) {
+  //       let j = 0;
+  //       if (index == 2) {
+  //         j = 1;
+  //       }
+  //       InitializerFunctions.setAbilityOptionToUnselected(j);
+  //     }
+  //     // unselect boost
+  //     else {
+
+  //       const selectedBoostIndex = index - 3;
+
+  //       const selectedBoostName = document.getElementsByClassName(Constants.BOOST_DISPLAY_VALUE_CLASSNAME)[selectedBoostIndex].textContent;
+  //       const selectedBoostInfo = UtilityFunctions.getBoostUpgradeInfo(selectedBoostName);
+  //       selectedBoostInfo[0] = parseInt(selectedBoostInfo[0]) * -1; // multiply value by -1 since the boost is being unapplyed/unselected here
+
+  //       // taking into account that if this boost is unselected it might cause already selected abilities or boosts to become unvalid
+  //       const continueWithAttributeChange = await UtilityFunctions.checkSelectedRequirementsIfAttributeChangeDone(selectedBoostInfo[0], Constants.ALL_ATTRIBUTES_INORDER_FULLSPELLING.indexOf(selectedBoostInfo[1]));
+  //       if (continueWithAttributeChange) {
+  //         UpdateFunctions.applyBoostUpgradeOrDowngrade(selectedBoostInfo[1], selectedBoostInfo[0]);
+  //         InitializerFunctions.setBoostToUnselected(selectedBoostIndex);
+  //       }
+  //     }
+
+  //   });
+  // });
 }
 
 /**
@@ -386,7 +418,7 @@ export function attributeSectionBoostDropdownButtonListeners(attributeSectionBoo
  */
 export function boostSelectListeners() {
   Object.values(Variables.boostItems).forEach((boostItem, index) => {
-    boostItem.addEventListener("click", function() {
+    boostItem.addEventListener("click", async function() {
       // i used as the boost section index (0 for the first half and 1 for the second half)
       let i = 0;
       if (index >= Variables.boostItems.length / 2) {
@@ -414,23 +446,24 @@ export function boostSelectListeners() {
       // if the boost item is already selected in the current slot
       if ((boostDisplayName.textContent == selectedBoostName.textContent && displayIconColour == selectedIconColour)) {
         confirmResponse = false;
-        window.alert("This boost is already selected");
+        await UtilityFunctions.alertModal("This boost is already selected");
       }
       // if the boost item in the other boost slot is the same or is upgrading the same attribute
       else if (otherBoostDisplayName.textContent == selectedBoostName.textContent) {
         confirmResponse = false;
-        window.alert("This boost cannot be selected at this time because the other selected boost is already upgrading the same attribute");
+        await UtilityFunctions.alertModal("This boost cannot be selected at this time because the other selected boost is already upgrading the same attribute");
       }
       // if both the boost requirements are not met
       else if (!UtilityFunctions.meetsRequirement(selectedBoostRequirement[0].textContent)) {
         confirmResponse = false;
-        window.alert("The minimum requirement for this boost is not met");
+        await UtilityFunctions.alertModal("The minimum requirement for this boost is not met");
       }
       // if another boost is already selected but it is not the same boost as just clicked right now
       else if (boostDisplayName.textContent != Constants.UNSELECTED_BOOST_NAME || (boostDisplayName.textContent == selectedBoostName.textContent && displayIconColour != selectedIconColour)) {
-        confirmResponse = window.confirm(
-          `Are you sure you want to replace "${boostDisplayName.textContent} (${displayIconColour})" with "${selectedBoostName.textContent} (${selectedIconColour})"?`
-        );
+        confirmResponse = await UtilityFunctions.confirmModal(
+          `Are you sure you want to replace "${boostDisplayName.textContent} (${displayIconColour})" with "${selectedBoostName.textContent} (${selectedIconColour})"?`,
+          "Yes"
+          );
         replacingAnotherBoost = true;
       } 
 
@@ -517,8 +550,8 @@ export function confirmPlayerTypeButtonListener(confirmPlayerTypeButton) {
  * @param {String} physicalAspect string keyword which is either "Height" or "Weight"
  */
 export function confirmHeightWeightButtonListener(confirmButton, physicalAspect) {
-  confirmButton.addEventListener('click', function() {
-    const continueWithChanges = window.confirm("Any abilities or boosts selected will be reset by changing the height or weight");
+  confirmButton.addEventListener('click', async function() {
+    const continueWithChanges = await UtilityFunctions.confirmModal("Any abilities or boosts selected will be reset by changing the height or weight", "Ok");
 
     if (continueWithChanges) {
       if (physicalAspect == "Height") {
@@ -626,13 +659,13 @@ export function completeBuildButtonListeners() {
     if (UtilityFunctions.allAbilitiesSelected()) {
       // if all abilities and boosts are valid, and all attribute upgrade points available are positive (0 or higher, not less than 0)
       // then continue with completing the build
-      if (UtilityFunctions.allAbilitiesAndBoostsValid() && UtilityFunctions.allAttributePointsPositive()) {
+      if (await UtilityFunctions.allAbilitiesAndBoostsValid() && await UtilityFunctions.allAttributePointsPositive()) {
         PCUtilityFunctions.findSimilarPlayers();
         completeBuildSection.style.display = "block";
       }
     }
     else {
-      window.alert("You must select all 3 abilities before completing the build");
+      await UtilityFunctions.alertModal("You must select all 3 abilities before completing the build");
     }
   });
 
@@ -658,7 +691,7 @@ export function resetButtonListener() {
 
   resetButton.addEventListener("click", async function() {
 
-    let response = window.confirm("Are you sure you want to reset everything and start again?  This cannot be undone.");
+    let response = await UtilityFunctions.confirmModal("Are you sure you want to reset everything and start again?  This cannot be undone.", "Yes");
 
     // reload the whole page (mimicking the browser's refresh button)
     if (response) {

@@ -143,7 +143,7 @@ export async function increaseOrDecreaseAttribute(upgradeType, i) {
     console.error("Invalid value for variable: upgradeType");
   }
 
-  const continueWithAttributeChange = UtilityFunctions.checkSelectedRequirementsIfAttributeChangeDone(upgradeAmount, i);
+  const continueWithAttributeChange = await UtilityFunctions.checkSelectedRequirementsIfAttributeChangeDone(upgradeAmount, i);
 
   if (continueWithAttributeChange) {
     // increase/decrease the attribute and the current upgrade modifier
