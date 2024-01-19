@@ -721,7 +721,7 @@ body {
 
 
 
-#complete-build, #help-and-instructions, #alert-modal, #confirm-modal {
+#complete-build, #help-and-instructions, #alert-modal, #confirm-modal, #about-section {
     display: none;
     position: fixed;
     top: 0;
@@ -734,7 +734,7 @@ body {
 }
 
 
-.complete-build-content, #help-content, #confirm-content, #alert-content {
+.complete-build-content, #help-content, #confirm-content, #alert-content, #about-content {
     background-color: rgb(57, 57, 57);
     /* margin: 15% auto;
     padding: 20px; */
@@ -753,14 +753,14 @@ body {
     width: 25%;
 }
 
-.complete-build-content::-webkit-scrollbar, #help-content::-webkit-scrollbar {
+.complete-build-content::-webkit-scrollbar, #help-content::-webkit-scrollbar, #about-content::-webkit-scrollbar {
     width: 20px;
   }
-.complete-build-content::-webkit-scrollbar-track, #help-content::-webkit-scrollbar-track {
+.complete-build-content::-webkit-scrollbar-track, #help-content::-webkit-scrollbar-track, #about-content::-webkit-scrollbar-track {
     background: transparent;
 }
 
-.complete-build-content::-webkit-scrollbar-thumb, #help-content::-webkit-scrollbar-thumb {
+.complete-build-content::-webkit-scrollbar-thumb, #help-content::-webkit-scrollbar-thumb, #about-content::-webkit-scrollbar-thumb {
     background-color: transparent;
     border-radius: 16px;
     border: inset rgba(255, 255, 255, 0.479);
@@ -832,7 +832,7 @@ li {
     color: rgba(255, 166, 0, 0.534);
 }
 
-#complete-build-top-section, #help-content-top-section, #confirm-modal-top-section, #alert-modal-top-section {
+#complete-build-top-section, #help-content-top-section, #confirm-modal-top-section, #alert-modal-top-section, #about-content-top-section {
     padding-top: 4%;
     padding-bottom: 3%;
     background: linear-gradient(to bottom, var(--orange-background-colour), rgb(57, 57, 57));
@@ -866,14 +866,14 @@ p {
     text-align: center;
 }
 
-#complete-build-bottom-section, #help-content-bottom-section, #confirm-modal-bottom-section {
+#complete-build-bottom-section, #help-content-bottom-section, #confirm-modal-bottom-section, #about-content-bottom-section {
     display: flex;
     flex-direction: row;
     justify-content:space-between;
     padding-bottom: 5%;
 }
 
-#help-content-bottom-section, #confirm-modal-bottom-section, #alert-modal-bottom-section {
+#help-content-bottom-section, #confirm-modal-bottom-section, #alert-modal-bottom-section, #about-content-bottom-section {
     flex-direction: column;
 }
 
@@ -955,7 +955,7 @@ p {
     color: rgba(139, 0, 0, 0.622);
 }
 
-#close-help-button, #close-compbuild-button {
+#close-help-button, #close-compbuild-button, #about-close-button {
     position: absolute;
     right: 0;
     top: 0;
@@ -964,7 +964,7 @@ p {
     background: linear-gradient(to bottom, rgba(75, 0, 0, 0.9), var(--button-hover-light-colour));
 }
 
-#close-help-button:hover, #close-compbuild-button:hover {
+#close-help-button:hover, #close-compbuild-button:hover, #about-close-button:hover {
     background: linear-gradient(to bottom, rgb(33, 0, 0), rgba(119, 1, 1, 0.244));
 }
 
@@ -979,4 +979,8 @@ p {
 
 #main-subtitle {
     font-size: 100%;
+}
+
+#about-button {
+    width: fit-content;
 }

@@ -91,7 +91,7 @@ export const ABILITIES_XML = "../build-information/abilities.xml";
 
     export const MODAL_INFO_CLASSNAME = "modal-info";
     export const CANCEL_BUTTON_CLASSNAME = "cancel-button";
-    export const OK_BUTTON_CLASSNAME = "ok-button";
+    export const OK_BUTTON_CLASSNAME = "ok-button"; 
 
 
 /**
@@ -110,6 +110,7 @@ export const ABILITIES_XML = "../build-information/abilities.xml";
     export const COMPLETE_BUILD_BTTN_ID = "complete-build-button";
     export const RESET_BUILD_BTTN_ID = "reset-button";
     export const HELP_BUTTON_ID = "help-button";
+    export const ABOUT_BUTTON_ID = "about-button";
 
     // sections
     export const MAIN_ABILITY_SECTION_ID = "main-ability-section";
@@ -126,6 +127,7 @@ export const ABILITIES_XML = "../build-information/abilities.xml";
 
     export const COMPLETE_BUILD_SECTION_ID= "complete-build";
     export const HELP_SECTION_ID = "help-and-instructions";
+    export const ABOUT_SECTION_ID = "about-section";
 
     // confirm/alert modals
     export const CONFIRM_MODAL_ID = "confirm-modal";

@@ -660,7 +660,7 @@ export function resetButtonListener() {
 
 
 /**
- * HELP / INSTRUCTIONS
+ * HELP / INSTRUCTIONS / ABOUT/LEGAL
  */
 /**
  * helpButtonListener function used to add the functionality of the "Help & Instructions" button
@@ -710,12 +710,15 @@ export function moreInfoButtonListeners() {
  * helpAndCompleteBuildOkButtonListeners function used to set the functionality of the "Ok" and "x" buttons
  * found in the help modal and complete build modal
  */
-export function helpAndCompleteBuildOkButtonListeners() {
+export function helpCompBuildAndAboutOkButtonListeners() {
   let helpSection = document.getElementById(Constants.HELP_SECTION_ID);
   let helpOkButtons = helpSection.getElementsByClassName(Constants.OK_BUTTON_CLASSNAME);
   
   let compBuildSection = document.getElementById(Constants.COMPLETE_BUILD_SECTION_ID);
   let compBuildOkButtons = compBuildSection.getElementsByClassName(Constants.OK_BUTTON_CLASSNAME);
+
+  let aboutSection = document.getElementById(Constants.ABOUT_SECTION_ID);
+  let aboutOkButtons = aboutSection.getElementsByClassName(Constants.OK_BUTTON_CLASSNAME);
 
   Array.from(helpOkButtons).forEach(helpOkButton => {
     helpOkButton.addEventListener("click", function() {
@@ -727,5 +730,20 @@ export function helpAndCompleteBuildOkButtonListeners() {
     compBuildOkButton.addEventListener("click", function() {
       compBuildSection.style.display = "none";
     });
+  });
+
+  Array.from(aboutOkButtons).forEach(aboutOkButton => {
+    aboutOkButton.addEventListener("click", function() {
+      aboutSection.style.display = "none";
+    });
+  });
+}
+
+export function aboutAndTermsButton() {
+  let aboutButton = document.getElementById(Constants.ABOUT_BUTTON_ID);
+  let aboutSection = document.getElementById(Constants.ABOUT_SECTION_ID);
+
+  aboutButton.addEventListener("click", function() {
+    aboutSection.style.display = "block";
   });
 }

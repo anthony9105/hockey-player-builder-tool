@@ -105,4 +105,5 @@ ListenerFunctions.resetButtonListener();
 ListenerFunctions.helpButtonListener();
 ListenerFunctions.moreInfoButtonListeners();
 
-ListenerFunctions.helpAndCompleteBuildOkButtonListeners();
+ListenerFunctions.helpCompBuildAndAboutOkButtonListeners();
+ListenerFunctions.aboutAndTermsButton();
