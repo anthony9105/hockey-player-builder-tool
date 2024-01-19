@@ -477,7 +477,7 @@ body {
     height: 50% !important; */
     /* margin-top: 8%;
     margin-left: 7.5%; */
-    font-size: 200%;
+    font-size: 250%;
     padding-right: 1%;
     background-size: 120%;
     text-shadow: 2px 2px 2px black;
@@ -485,6 +485,7 @@ body {
 
 .main-ability-display-item > .material-icons {
     text-shadow: 2px 2px 2px black;
+    font-size: 250%;
 }
 
 .boost-item-value, .ability-name, .ability-display-name {
@@ -523,6 +524,7 @@ body {
 
 .boost-display-item > .material-icons, .boost-item > .material-icons {
     text-shadow: 1px 1px 1px var(--button-hover-light-colour);
+    font-size: 200%;
 }
   
   /* #dropdown-content a {

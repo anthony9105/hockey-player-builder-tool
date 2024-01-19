@@ -70,7 +70,7 @@ async function setMainAbilityOptions(buildName) {
                 // set main ability icon
                 const currentAbilityIcon = currentAbilityInfo.querySelector(Constants.XML_ICON_NAME_NODE).textContent;
                 Variables.mainAbilityIcons[index + 1].textContent = currentAbilityIcon;
-                Variables.mainAbilityIcons[index + 1].style.color = "rgb(190, 171, 0)";
+                Variables.mainAbilityIcons[index + 1].style.color = Constants.MAIN_ABILITY_ICON_COLOUR;
 
                 // set main ability description
                 const currentAbilityDescription = currentAbilityInfo.querySelector(Constants.XML_DESCRIP_NODE).textContent;

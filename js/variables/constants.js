@@ -185,6 +185,7 @@ export const SOLID_ATTRIBUTE_COLOUR = "rgb(90, 128, 0)";
 export const VERY_EXCELLENT_ATTRIBUTE_COLOUR = "rgb(0, 255, 0)";
 export const AVG_ATTRIBUTE_COLOUR = "rgb(206, 206, 1)";
 export const BELOW_AVG_ATTRIBUTE_COLOUR = "rgb(194, 126, 0)";
+export const MAIN_ABILITY_ICON_COLOUR = "rgba(175, 150, 5, 0.95)";
 
 
 /**
