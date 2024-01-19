@@ -657,8 +657,13 @@ export function resetButtonListener() {
   const resetButton = document.getElementById(Constants.RESET_BUILD_BTTN_ID);
 
   resetButton.addEventListener("click", async function() {
+
+    let response = window.confirm("Are you sure you want to reset everything and start again?  This cannot be undone.");
+
     // reload the whole page (mimicking the browser's refresh button)
-    location.reload();
+    if (response) {
+      location.reload();
+    }
   });
 }
 
