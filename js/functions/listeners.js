@@ -264,7 +264,7 @@ export async function unselectButtonListeners() {
   
         // taking into account that if this boost is unselected it might cause already selected abilities or boosts to become invalid
         const continueWithAttributeChange = await UtilityFunctions.checkSelectedRequirementsIfAttributeChangeDone(selectedBoostInfo[0], Constants.ALL_ATTRIBUTES_INORDER_FULLSPELLING.indexOf(selectedBoostInfo[1]));
-        console.log(continueWithAttributeChange);
+
         if (continueWithAttributeChange) {
           UpdateFunctions.applyBoostUpgradeOrDowngrade(selectedBoostInfo[1], selectedBoostInfo[0]);
           InitializerFunctions.setBoostToUnselected(selectedBoostIndex);
@@ -716,6 +716,30 @@ export function moreInfoButtonListeners() {
           extraInfoListItem.style.display = "none";
         }
       });
+    });
+  });
+}
+
+/**
+ * helpAndCompleteBuildOkButtonListeners function used to set the functionality of the "Ok" and "x" buttons
+ * found in the help modal and complete build modal
+ */
+export function helpAndCompleteBuildOkButtonListeners() {
+  let helpSection = document.getElementById(Constants.HELP_SECTION_ID);
+  let helpOkButtons = helpSection.getElementsByClassName(Constants.OK_BUTTON_CLASSNAME);
+  
+  let compBuildSection = document.getElementById(Constants.COMPLETE_BUILD_SECTION_ID);
+  let compBuildOkButtons = compBuildSection.getElementsByClassName(Constants.OK_BUTTON_CLASSNAME);
+
+  Array.from(helpOkButtons).forEach(helpOkButton => {
+    helpOkButton.addEventListener("click", function() {
+      helpSection.style.display = "none";
+    });
+  });
+
+  Array.from(compBuildOkButtons).forEach(compBuildOkButton => {
+    compBuildOkButton.addEventListener("click", function() {
+      compBuildSection.style.display = "none";
     });
   });
 }
