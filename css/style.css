@@ -64,9 +64,11 @@ body {
 #playertype-height-weight-row, #abilities-and-boosts-row {
     display: flex;
     justify-content: space-evenly;
+    align-items:stretch;
 }
 #playertype-height-weight-row {
     margin-top: 1%;
+    margin-right: 1%;
 }
 
 
@@ -964,4 +966,17 @@ p {
 
 #close-help-button:hover, #close-compbuild-button:hover {
     background: linear-gradient(to bottom, rgb(33, 0, 0), rgba(119, 1, 1, 0.244));
+}
+
+#main-title {
+    font-family: 'Verdana', 'Helvetica', sans-serif;
+    font-size: 250%;
+    font-weight: bold;
+    font-style: italic;
+    color: rgba(187, 122, 1, 0.8);
+    text-shadow: 3px 3px 5px var(--dark-background-colour);
+}
+
+#main-subtitle {
+    font-size: 100%;
 }
