@@ -46,6 +46,8 @@ export let attributeMeters = document.getElementsByClassName(Constants.ATTRIBUTE
 
 export let abilityTypes = [];
 
+export let attributePointsAvailable = document.getElementsByClassName(Constants.POINTS_AVAIL_CLASSNAME);
+
 
 
 export let buildPosition;

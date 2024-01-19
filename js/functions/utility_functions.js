@@ -521,3 +521,21 @@ export function allAbilitiesSelected() {
 
   return true;
 }
+
+/**
+ * allAttributePointsPositive function used to check if all the attribute points available for each section is not negative
+ * @returns if all the attribute section is valid (if the available points is 0 or higher, not negative) (true for valid, false for not valid)
+ */
+export function allAttributePointsPositive() {
+  let result = true;
+
+  Array.from(Variables.attributePointsAvailable).forEach(attributeSectionPointsAvailable => {
+    if (parseInt(attributeSectionPointsAvailable.textContent) < 0) {
+      window.alert("You must not have negative attribute points available.  You can lower some attributes, or not upgrade certain attributes as high in order to fix this");
+      result = false;
+      return;
+    }
+  });
+
+  return result;
+}

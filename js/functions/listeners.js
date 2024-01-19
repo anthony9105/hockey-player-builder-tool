@@ -622,8 +622,11 @@ export function completeBuildButtonListeners() {
 
   completeBuildButton.addEventListener("click", async function() {
 
+    // if all abilities are selected
     if (UtilityFunctions.allAbilitiesSelected()) {
-      if (UtilityFunctions.allAbilitiesAndBoostsValid()) {
+      // if all abilities and boosts are valid, and all attribute upgrade points available are positive (0 or higher, not less than 0)
+      // then continue with completing the build
+      if (UtilityFunctions.allAbilitiesAndBoostsValid() && UtilityFunctions.allAttributePointsPositive()) {
         PCUtilityFunctions.findSimilarPlayers();
         completeBuildSection.style.display = "block";
       }
@@ -633,6 +636,7 @@ export function completeBuildButtonListeners() {
     }
   });
 
+  // if the outside part is clicked, close the modal/popup
   window.addEventListener('click', function (event) {
     if (event.target === completeBuildSection) {
       completeBuildSection.style.display = 'none';
@@ -662,6 +666,9 @@ export function resetButtonListener() {
 /**
  * HELP / INSTRUCTIONS
  */
+/**
+ * helpButtonListener function used to add the functionality of the "Help & Instructions" button
+ */
 export function helpButtonListener() {
   const helpButton = document.getElementById(Constants.HELP_BUTTON_ID);
   let helpSection = document.getElementById(Constants.HELP_SECTION_ID);
@@ -677,6 +684,10 @@ export function helpButtonListener() {
   });
 }
 
+/**
+ * moreInfoButtonListeners function used to add the functionality of the "More Info" / "Less Info"  button found 
+ * in the Help and Instructions section.
+ */
 export function moreInfoButtonListeners() {
   let moreInfoButtons = document.getElementsByClassName(Constants.MORE_INFO_BUTTON_CLASSNAME);
 
