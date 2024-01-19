@@ -106,72 +106,6 @@ function normalizePlayerData(player) {
  */
 
 
-
-// /**
-//  * dotProduct function
-//  * @param {number|object} a values of a (values should be from 0.0 to 1.0).
-//  * example: a = [x: 0.3, y: 0.6, z: 0.82]
-//  * @param {number|object} b values of b (values should be from 0.0 to 1.0)
-//  * @returns {number} the dot product of the values in a and b
-//  */
-// function dotProduct(a, b) {
-//   return a.reduce((acc, val, i) => acc + val * b[i], 0);
-// }
-
-// /**
-//  * norm function (Euclidean norm or magnitude)
-//  * @param {number|object} vector vector
-//  * @returns {number} magnitude of the vector
-//  */
-// function norm(vector) {
-//   // squaring each component, then summing the squares, then square rooting the sum
-//   return Math.sqrt(vector.reduce((acc, val) => acc + val ** 2, 0));
-// }
-
-// /**
-//  * cosineSimilarity function used to measure similarity between a and b (2 players)
-//  * @param {number|object} a values of a. ex: [x: 0.3, y: 0.6, z: 0.82]
-//  * @param {number|object} b values of b
-//  * @returns {number} the cosine similarity of a and b
-//  */
-// function cosineSimilarity(a, b) {
-//   const playerInfoCopy = b;
-
-//   // if a and b are objects then they are converted to arrays
-//   a = Array.isArray(a) ? [...a] : selectedAttributeNames.map(attr => a[attr]);
-//   b = Array.isArray(b) ? [...b] : selectedAttributeNames.map(attr => b[attr]);
-
-//   // names of a and b for later
-//   const nameA = a.Name;
-//   const nameB = b.Name;
-
-//   // remove 'Name' and 'main-position' from the arrays
-//   a = a.filter(attr => attr !== nameKey && attr !== positionKey);
-//   b = b.filter(attr => attr !== nameKey && attr !== positionKey);
-
-//   // apply specific attribute weights
-//   // a = a.map((value, i) => {
-//   //   console.log(attributeWeights[selectedAttributeNames[i]]);
-//   //   const weight = attributeWeights[selectedAttributeNames[i]];
-//   //   console.log(`Attribute: ${selectedAttributeNames[i]}, Weight: ${weight}`);
-//   //   return value * weight;
-//   // });
-//   a = a.map((value, i) => value * (attributeWeights[selectedAttributeNames[i]]));
-//   b = b.map((value, i) => value * (attributeWeights[selectedAttributeNames[i]]));
-
-   
-//   // get the dot product of a and b
-//   const dot = dotProduct(a, b);
-
-//   // get the magnitudes/norms of a and b 
-//   const normA = norm(a);
-//   const normB = norm(b);
-
-//   // return the cosine similarity
-//   // dot(a,b) / (|a| * |b|)
-//   return { similarity: dot / (normA * normB), nameB };
-// }
-
 /**
  * getCategoryAverage function used to get the average of the category
  * @param {object} playerAttributes all the attributes for the player
@@ -623,22 +557,34 @@ function scalePlayerTypeRequirements(scalingModifier, position) {
  * findSimilarPlayers function used to find the most similar and least similar players
  */
 export function findSimilarPlayers() {
+  // resetting the complete build modal contents
+  resetCompleteBuildContent();
 
+  // getting the player build object
   let samplePlayer = UtilityFunctions.getAttributeObject();
+
+  // setting the player's name to 'Created Player' (this does not actually effect anything as it is now)
   samplePlayer['Name'] = 'Created Player';
+
+  // setting the player main position to whatever has been selected by the user
   samplePlayer['main-position'] = document.getElementById('position-selection').value;
   samplePlayer = normalizePlayerData(samplePlayer);
 
-  console.log("Player being used:");
-  console.log(samplePlayer);
+  // console.log("Player being used:");
+  // console.log(samplePlayer);
 
   const playerPosition = samplePlayer['main-position'];
 
+  // getting the best player type for the user's created player
   const bestPlayerType = getPlayerType(samplePlayer, samplePlayer['main-position']);
+
+  // getting the attribute weights depending on what the bestPlayerType is
   attributeWeights = Variables.attributeWeightsInfo[bestPlayerType.DisplayName];
 
   if (attributeWeights == undefined) {
     console.warn("Attribute weights undefined.  Likely missing/typo of this player type.  The best player type currently is called: "+bestPlayerType.DisplayName);
+    UtilityFunctions.alertModal("Something went wrong when doing player type and comparison");
+    return;
   }
 
   // setting a small weight to faceoffs if its necessary (otherwise it stays at 0 since it shouldnt matter for wingers and defenseman)
@@ -648,7 +594,6 @@ export function findSimilarPlayers() {
         attributeWeights.Faceoffs = 0.1;
       }
       else {
-        console.log(bestPlayerType);
         attributeWeights.Faceoffs = 0.01;
       }
     }
@@ -676,23 +621,23 @@ export function findSimilarPlayers() {
 
   // Sort all players based on distances in descending order
   const sortedPlayers = allDistances.sort((a, b) => a.distance - b.distance);
-  console.log(sortedPlayers);
+  // console.log(sortedPlayers);
 
 
-  let k = 1;
-  console.log("\n\nMost Similar:");
-  for (let i = 0; i < 5; i++) {
-    console.log("%s %o eucDistance: %f", k, sortedPlayers[i].player, sortedPlayers[i].distance);
-    k++;
-  }
+  // let k = 1;
+  // console.log("\n\nMost Similar:");
+  // for (let i = 0; i < 5; i++) {
+  //   console.log("%s %o eucDistance: %f", k, sortedPlayers[i].player, sortedPlayers[i].distance);
+  //   k++;
+  // }
 
 
-  let j = 1;
-  console.log("\n\nLeast Similar:");
-  for (let i = sortedPlayers.length-1; i > sortedPlayers.length - 1 - 5; i--) {
-    console.log("%s %o eucDistance: %f", j, sortedPlayers[i].player, sortedPlayers[i].distance);
-    j++;
-  }
+  // let j = 1;
+  // console.log("\n\nLeast Similar:");
+  // for (let i = sortedPlayers.length-1; i > sortedPlayers.length - 1 - 5; i--) {
+  //   console.log("%s %o eucDistance: %f", j, sortedPlayers[i].player, sortedPlayers[i].distance);
+  //   j++;
+  // }
 
   // setting the complete build modal/popup
   setCompleteBuildContent(sortedPlayers.slice(0, 5), sortedPlayers.slice(sortedPlayers.length - 3, sortedPlayers.length), bestPlayerType);
