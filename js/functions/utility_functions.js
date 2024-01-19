@@ -306,6 +306,12 @@ export function getBoostUpgradeInfo(boostName) {
   return temp.split(/ (.*)/);
 }
 
+/**
+ * getColourForMeterValue function used to get the appropriate colour
+ * for the attribute meter
+ * @param {number} value attribute value
+ * @returns the appropriate colour for the attribute meter
+ */
 export function getColourForMeterValue(value) {
   // extremely excellent attribute
   if (value >= 94) {
@@ -335,70 +341,6 @@ export function getColourForMeterValue(value) {
   else {
     return "red";
   }
-}
-
-/**
- * getTopAttributes function used to get the top attributes of the current build
- * @param {number} amountOfAttributes the amount of top attributes that you wanted returned
- * @returns the top attribute values
- */
-// export function getTopAttributes(amountOfAttributes) {
-//   if (amountOfAttributes >= Variables.attributeValues.length) {
-//     console.warn("amountOfAttributes is the same or more than the total amount of attributes");
-//     return Variables.attributeValues;
-//   }
-
-//   // initialize the topAttributes with the first x amount of attribute values, sorted in descending order. Also map is used to include both the index and the value
-//   let topAttributes = Object.values(Variables.attributeValues)
-//                                                               .map((value, index) => ({index, value: parseInt(value.textContent)}))
-//                                                               .slice(0, amountOfAttributes).sort((a, b) => b.value - a.value);
-  
-//   // if the build position is not "C" (Centre), then add the index of "Faceoffs" to excludeIndices, since it is an attribute that only matters for centres
-//   let excludeIndices = Variables.buildPosition !== "C" ? [Constants.ALL_ATTRIBUTES_INORDER_FULLSPELLING.indexOf("Faceoffs")] : [];
-
-//   for (let i = amountOfAttributes; i < Variables.attributeValues.length; i++) {
-//     // if the current attribute is greater than the last value in topAttributes (this is being compared
-//     // to the last value in topAttributes since it is sorted in descending order, so the last value is the smallest)
-//     if (!excludeIndices.includes(i) && parseInt(Variables.attributeValues[i].textContent) > topAttributes[amountOfAttributes - 1].value) {
-//       topAttributes.pop(); // remove the smallest of the current topAttributes
-//       topAttributes.push({index: i, value: parseInt(Variables.attributeValues[i].textContent)}); // add the new value
-//       topAttributes.sort((a, b) => b.value - a.value); // sort in descending order again
-//     }
-//   }
-
-//   return topAttributes;
-// }
-
-/**
- * getWorstAttributes function used to get the worst attributes of the current build
- * @param {number} amountOfAttributes the amount of top attributes that you wanted returned
- * @returns the worst attribute values
- */
-export function getWorstAttributes(amountOfAttributes) {
-  if (amountOfAttributes >= Variables.attributeValues.length) {
-    console.warn("amountOfAttributes is the same or more than the total amount of attributes");
-    return Variables.attributeValues;
-  }
-
-  // initialize the worstAttributes with the first x amount of attribute values, sorted in ascending order
-  let worstAttributes = Object.values(Variables.attributeValues)
-                                                              .map((value, index) => ({index, value: parseInt(value.textContent)}))
-                                                              .slice(0, amountOfAttributes).sort((a, b) => a.value - b.value);
-
-  // if the build position is not "C" (Centre), then add the index of "Faceoffs" to excludeIndices, since it is an attribute that only matters for centres
-  let excludeIndices = Variables.buildPosition !== "C" ? [Constants.ALL_ATTRIBUTES_INORDER_FULLSPELLING.indexOf("Faceoffs")] : [];
-
-  for (let i = amountOfAttributes; i < Variables.attributeValues.length; i++) {
-    // if the current attribute is less than the last value in topAttributes (this is being compared
-    // to the last value in topAttributes since it is sorted in descending order, so the last value is the largest)
-    if (!excludeIndices.includes(i) && parseInt(Variables.attributeValues[i].textContent) < worstAttributes[amountOfAttributes - 1]) {
-      worstAttributes.pop(); // remove the largest of the current worstAttributes
-      worstAttributes.push({index: i, value: parseInt(Variables.attributeValues[i].textContent)}); // add the new value
-      worstAttributes.sort((a, b) => a.value - b.value); // sort in ascending order again
-    }
-  }
-
-  return worstAttributes;
 }
 
 /**
