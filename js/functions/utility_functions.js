@@ -209,7 +209,6 @@ export async function checkSelectedRequirementsIfAttributeChangeDone(upgradeAmou
           // so that the window pop-up is not constantly repeatedly
           if (continueWithAttributeChange == undefined && abilityDisplayItem.style.backgroundColor != Constants.INVALID_BOOST_OR_ABILITY_RGBA) {
             continueWithAttributeChange = await confirmModal("This attribute changes causes 1 or more selected abilities to no longer meet minimum requirement(s). Continue with attribute change?", "Yes");
-            // continueWithAttributeChange = window.confirm("This attribute changes causes 1 or more selected abilities to no longer meet minimum requirement(s).  Continue with attribute change or cancel?");
           }
   
           // if continuing with attribute change set the selected ability to be a red shade so it is clear that ability is now invalid

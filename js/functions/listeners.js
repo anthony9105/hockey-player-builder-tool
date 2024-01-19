@@ -272,40 +272,6 @@ export async function unselectButtonListeners() {
       }
     });
   }
-  // Object.values(Variables.unselectButtons).forEach((unselectButton, index) => {
-  //   unselectButton.addEventListener("click", async function() {
-
-  //     // unselect main ability
-  //     if (index == 1) {
-  //       InitializerFunctions.setMainAbilityOptionToUnselected();
-  //     }
-  //     // unselect regular ability
-  //     else if (index == 0 || index == 2) {
-  //       let j = 0;
-  //       if (index == 2) {
-  //         j = 1;
-  //       }
-  //       InitializerFunctions.setAbilityOptionToUnselected(j);
-  //     }
-  //     // unselect boost
-  //     else {
-
-  //       const selectedBoostIndex = index - 3;
-
-  //       const selectedBoostName = document.getElementsByClassName(Constants.BOOST_DISPLAY_VALUE_CLASSNAME)[selectedBoostIndex].textContent;
-  //       const selectedBoostInfo = UtilityFunctions.getBoostUpgradeInfo(selectedBoostName);
-  //       selectedBoostInfo[0] = parseInt(selectedBoostInfo[0]) * -1; // multiply value by -1 since the boost is being unapplyed/unselected here
-
-  //       // taking into account that if this boost is unselected it might cause already selected abilities or boosts to become unvalid
-  //       const continueWithAttributeChange = await UtilityFunctions.checkSelectedRequirementsIfAttributeChangeDone(selectedBoostInfo[0], Constants.ALL_ATTRIBUTES_INORDER_FULLSPELLING.indexOf(selectedBoostInfo[1]));
-  //       if (continueWithAttributeChange) {
-  //         UpdateFunctions.applyBoostUpgradeOrDowngrade(selectedBoostInfo[1], selectedBoostInfo[0]);
-  //         InitializerFunctions.setBoostToUnselected(selectedBoostIndex);
-  //       }
-  //     }
-
-  //   });
-  // });
 }
 
 /**
