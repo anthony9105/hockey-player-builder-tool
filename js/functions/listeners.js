@@ -634,14 +634,6 @@ export function completeBuildButtonListeners() {
       await UtilityFunctions.alertModal("You must select all 3 abilities before completing the build");
     }
   });
-
-  // if the outside part is clicked, close the modal/popup
-  window.addEventListener('click', function (event) {
-    if (event.target === completeBuildSection) {
-      completeBuildSection.style.display = 'none';
-      PCUtilityFunctions.resetCompleteBuildContent();
-    }
-  });
 }
 
 
@@ -679,12 +671,6 @@ export function helpButtonListener() {
 
   helpButton.addEventListener("click", async function() {
     helpSection.style.display = "block";
-  });
-
-  window.addEventListener('click', function (event) {
-    if (event.target === helpSection) {
-      helpSection.style.display = 'none';
-    }
   });
 }
 
