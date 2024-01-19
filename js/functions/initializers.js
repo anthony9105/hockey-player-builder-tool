@@ -218,7 +218,6 @@ export async function setupNewBuild(buildName) {
  * @param {string} nameValue the name of the build
  */
 function setDefaultAttributes(build, nameValue) {
-  console.log(nameValue);
   let attributeIndex = 0;
 
   // get the default attributes of this build

@@ -10,7 +10,7 @@ let playerData;
  * @returns the data in an array of objects
  */
 async function loadCSV() {
-  const response = await fetch("../../player-information/NHL23-HUT-Base-PlayerAttributes.csv");
+  const response = await fetch("../../player-information/realPlayerAttributes.csv");
   const text = await response.text();
 
   // split the CSV into rows and extract header (first row)
@@ -157,7 +157,7 @@ function meetsRequirements(playerAttributes, playerType, categoryAvgs) {
           const minVal = playerType.minimums[category][attribute];
 
           if (playerAttributeToCheck < minVal) {
-            console.log("", playerType, "\n", attribute, " too low");
+            // console.log("", playerType, "\n", attribute, " too low");
             return false;
           }
         }
@@ -174,7 +174,7 @@ function meetsRequirements(playerAttributes, playerType, categoryAvgs) {
         const minVal = playerType.minimums[category];
 
         if (playerAttributeToCheck < minVal) {
-          console.log("", playerType, "\n", category, " too low");
+          // console.log("", playerType, "\n", category, " too low");
           return false;
         }
       }
@@ -197,7 +197,7 @@ function meetsRequirements(playerAttributes, playerType, categoryAvgs) {
           const maxVal = playerType.maximums[category][attribute];
 
           if (playerAttributeToCheck > maxVal) {
-            console.log("", playerType, "\n", attribute, " too high");
+            // console.log("", playerType, "\n", attribute, " too high");
             return false;
           }
         }
@@ -214,15 +214,16 @@ function meetsRequirements(playerAttributes, playerType, categoryAvgs) {
         const maxVal = playerType.maximums[category];
 
         if (playerAttributeToCheck > maxVal) {
-          console.log("", playerType, "\n", category, " too high");
+          // console.log("", playerType, "\n", category, " too high");
           return false;
         }
       }
     }
   }
 
-  console.log("\n\n\nPLAYER MEETS REQUIREMENTS FOR:");
-  console.log(playerType);
+  // console.log("\n\n\nPLAYER MEETS REQUIREMENTS FOR:");
+  // console.log(playerType);
+
   // if this point is reached, it means that all requirments are met,
   // so return true.
   return true;
@@ -242,7 +243,7 @@ function calculateAttributeScore(playerAttributes, playerType, categoryAvgs) {
   let minimumsScore = 0;
   let count = 0;
 
-  console.log(playerAttributes);
+  // console.log(playerAttributes);
 
   // checking the minimum requirements
   if (playerType.minimums != undefined) {
@@ -282,7 +283,7 @@ function calculateAttributeScore(playerAttributes, playerType, categoryAvgs) {
     }
   }
 
-  console.log(minimumsScore / count);
+  // console.log(minimumsScore / count);
 
   return minimumsScore / count;
 
@@ -354,8 +355,8 @@ function calculateAbilityScore(playerType) {
     });
   });
 
-  console.log("SCORE FOR: ", playerType, " below:");
-  console.log(abilityScore);
+  // console.log("SCORE FOR: ", playerType, " below:");
+  // console.log(abilityScore);
 
   return abilityScore;
 }
@@ -384,13 +385,13 @@ function determineBestPlayerType(playerAttributes, categoryAvgs, position) {
       if (highestScore == null) {
         highestScore = calculateAbilityScore(playerType);
         bestPlayerTypeOptions.push(playerType);
-        console.log(highestScore);
+        // console.log(highestScore);
       }
       else {
         const tempScore = calculateAbilityScore(playerType);
 
-        console.log(tempScore);
-        console.log(highestScore);
+        // console.log(tempScore);
+        // console.log(highestScore);
 
         // if tempScore is the same as highestScore, or its only greater than highest score by 3 or less, consider this a "tie"
         if (tempScore == highestScore || (tempScore > highestScore && tempScore - highestScore <= 3)) {
@@ -409,7 +410,7 @@ function determineBestPlayerType(playerAttributes, categoryAvgs, position) {
 
   // if no player type requirements were met
   if (bestPlayerTypeOptions.length == 0) {
-    console.log("No player type requirements were met");
+    // console.log("No player type requirements were met");
   }
   // if 1 player type was determined as the best from the abilities scoring method
   else if (bestPlayerTypeOptions.length == 1) {
@@ -419,7 +420,6 @@ function determineBestPlayerType(playerAttributes, categoryAvgs, position) {
   // Use the other scoring method based off the player type's minimum requirement attributes.
   else {
     let tieBreakerHighestScore = null;
-    console.log(categoryAvgs);
     bestPlayerTypeOptions.forEach(bestPlayerType => {
       // determining the highest score now using the attribute scoring
       if (tieBreakerHighestScore == null) {
@@ -488,8 +488,8 @@ function getPlayerType(playerAttributes, playerPosition) {
     count++;
   }
 
-  console.log("BEST PLAYER TYPE FOR THIS PLAYER:");
-  console.log(bestPlayerTypeFit);
+  // console.log("BEST PLAYER TYPE FOR THIS PLAYER:");
+  // console.log(bestPlayerTypeFit);
   return bestPlayerTypeFit;
 }
 
@@ -518,7 +518,6 @@ function scalePlayerDataAttributes(scalingFactor) {
 function scalePlayerTypeRequirements(scalingModifier, position) {
   const positionKeyName = position == 'D' ? 'Defense' : 'Forward';
 
-  // console.log(Variables.playerTypesInfo[positionKeyName]);
 
   // for each player type
   Object.values(Variables.playerTypesInfo[positionKeyName]).forEach((playerType, index) => {
@@ -530,26 +529,15 @@ function scalePlayerTypeRequirements(scalingModifier, position) {
         // something like this:   Skating: {Acceleration: 0.86}, so theres one more extra step before getting the 0.86 value
         if (typeof playerType.minimums[category] === 'object') {
           for (const attribute in playerType.minimums[category]) {
-
-            // console.log("\n\n\n\n");
-            // console.log(attribute);
-            // console.log(Object.values(Variables.playerTypesInfo[positionKeyName])[index].minimums[category][attribute]);
             Object.values(Variables.playerTypesInfo[positionKeyName])[index].minimums[category][attribute] -= scalingModifier;
-            // console.log(Object.values(Variables.playerTypesInfo[positionKeyName])[index].minimums[category][attribute]);
-            
           }
         }
         // if the playerType.minimums[category] is not an object, can just use category to get the value.  Ex: {Acceleration: 0.86}
         else {
-          // console.log("\n\n\n\n");
-          // console.log(category);
-          // console.log(Object.values(Variables.playerTypesInfo[positionKeyName])[index].minimums[category]);
           Object.values(Variables.playerTypesInfo[positionKeyName])[index].minimums[category] -= scalingModifier;
-          // console.log(Object.values(Variables.playerTypesInfo[positionKeyName])[index].minimums[category]);
         }
       }
     }
-    // console.log("\n\n\AFTER:\n", Object.values(Variables.playerTypesInfo[positionKeyName])[index]);
   });
 }
 
