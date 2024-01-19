@@ -190,26 +190,54 @@ export function meetsRequirement(requirementMessage, upgradeAmount) {
  * @returns true if the attribute change is to be done with or false if the attribute change is not to be done.
  * (default is true)
  */
-export function checkSelectedRequirementsIfAttributeChangeDone(upgradeAmount, indexOfAttribute) {
+export async function checkSelectedRequirementsIfAttributeChangeDone(upgradeAmount, indexOfAttribute) {
   let continueWithAttributeChange;
-  Object.values(Variables.abilityDisplayItems).forEach(abilityDisplayItem => {
+  // Object.values(Variables.abilityDisplayItems).forEach(abilityDisplayItem => {
+  //   let requirements = abilityDisplayItem.getElementsByClassName(Constants.ABILITY_DISPLAY_REQ_CLASSNAME);
+
+  //   Object.values(requirements).forEach(requirement => {
+  //     const requirementInfo = getRequirementValueAndAttributeName(requirement.textContent);
+
+  //     // if the requirement is not empty (unused display slots will have empty requirements) and if the current requirement is the same
+  //     // as the attribute to be modified
+  //     if (requirement.textContent != "" && requirementInfo[1] == Constants.ALL_ATTRIBUTES_INORDER_FULLSPELLING[indexOfAttribute]) {
+  //       const reqValid = meetsRequirement(requirement.textContent, upgradeAmount);
+
+  //       // if requirements are not met
+  //       if (!reqValid) {
+  //         // so that the window pop-up is not constantly repeatedly
+  //         if (continueWithAttributeChange == undefined && abilityDisplayItem.style.backgroundColor != Constants.INVALID_BOOST_OR_ABILITY_RGBA) {
+  //           continueWithAttributeChange = window.confirm("This attribute changes causes 1 or more selected abilities to no longer meet minimum requirement(s).  Continue with attribute change or cancel?");
+  //         }
+
+  //         // if continuing with attribute change set the selected ability to be a red shade so it is clear that ability is now invalid
+  //         if (continueWithAttributeChange != false) {
+  //           abilityDisplayItem.style.backgroundColor = Constants.INVALID_BOOST_OR_ABILITY_RGBA;
+  //           requirement.style.color = "red";
+  //         }
+  //       }
+  //     }
+  //   });
+  // });
+  for (const abilityDisplayItem of Object.values(Variables.abilityDisplayItems)) {
     let requirements = abilityDisplayItem.getElementsByClassName(Constants.ABILITY_DISPLAY_REQ_CLASSNAME);
-
-    Object.values(requirements).forEach(requirement => {
+  
+    for (const requirement of Object.values(requirements)) {
       const requirementInfo = getRequirementValueAndAttributeName(requirement.textContent);
-
+  
       // if the requirement is not empty (unused display slots will have empty requirements) and if the current requirement is the same
       // as the attribute to be modified
       if (requirement.textContent != "" && requirementInfo[1] == Constants.ALL_ATTRIBUTES_INORDER_FULLSPELLING[indexOfAttribute]) {
         const reqValid = meetsRequirement(requirement.textContent, upgradeAmount);
-
+  
         // if requirements are not met
         if (!reqValid) {
           // so that the window pop-up is not constantly repeatedly
           if (continueWithAttributeChange == undefined && abilityDisplayItem.style.backgroundColor != Constants.INVALID_BOOST_OR_ABILITY_RGBA) {
-            continueWithAttributeChange = window.confirm("This attribute changes causes 1 or more selected abilities to no longer meet minimum requirement(s).  Continue with attribute change or cancel?");
+            continueWithAttributeChange = await confirmModal("This attribute changes causes 1 or more selected abilities to no longer meet minimum requirement(s). Continue with attribute change?", "Yes");
+            // continueWithAttributeChange = window.confirm("This attribute changes causes 1 or more selected abilities to no longer meet minimum requirement(s).  Continue with attribute change or cancel?");
           }
-
+  
           // if continuing with attribute change set the selected ability to be a red shade so it is clear that ability is now invalid
           if (continueWithAttributeChange != false) {
             abilityDisplayItem.style.backgroundColor = Constants.INVALID_BOOST_OR_ABILITY_RGBA;
@@ -217,32 +245,57 @@ export function checkSelectedRequirementsIfAttributeChangeDone(upgradeAmount, in
           }
         }
       }
-    });
-  });
+    }
+  }
 
-  Object.values(Variables.boostDisplayItems).forEach(boostDisplayItem => {
+  for (const boostDisplayItem of Object.values(Variables.boostDisplayItems)) {
     let requirements = boostDisplayItem.getElementsByClassName(Constants.BOOST_DISPLAY_REQ_CLASSNAME);
-
-    Object.values(requirements).forEach(requirement => {
+  
+    for (const requirement of Object.values(requirements)) {
       const requirementInfo = getRequirementValueAndAttributeName(requirement.textContent);
       if (requirement.textContent != "" && requirementInfo[1] == Constants.ALL_ATTRIBUTES_INORDER_FULLSPELLING[indexOfAttribute]) {
         const reqValid = meetsRequirement(requirement.textContent, upgradeAmount);
-
+  
         // if requirements are not met
         if (!reqValid) {
           if (continueWithAttributeChange == undefined && boostDisplayItem.style.backgroundColor != Constants.INVALID_BOOST_OR_ABILITY_RGBA) {
-            continueWithAttributeChange = window.confirm("This attribute changes causes 1 or more selected abilities to no longer meet minimum requirement(s).  Continue with attribute change or cancel?");
+            continueWithAttributeChange = await confirmModal("This attribute change causes 1 or more selected abilities to no longer meet minimum requirement(s). Continue with the attribute change?", "Yes");
           }
-
-          // if continuing with attribute change set the selected ability to be a red shade so it is clear that ability is now invalid
+  
+          // if continuing with attribute change set the selected ability to be a red shade so it is clear that the ability is now invalid
           if (continueWithAttributeChange != false) {
             boostDisplayItem.style.backgroundColor = Constants.INVALID_BOOST_OR_ABILITY_RGBA;
             requirement.style.color = "red";
           }
         }
       }
-    });
-  });
+    }
+  }
+
+  // Object.values(Variables.boostDisplayItems).forEach(boostDisplayItem => {
+  //   let requirements = boostDisplayItem.getElementsByClassName(Constants.BOOST_DISPLAY_REQ_CLASSNAME);
+
+  //   Object.values(requirements).forEach(requirement => {
+  //     const requirementInfo = getRequirementValueAndAttributeName(requirement.textContent);
+  //     if (requirement.textContent != "" && requirementInfo[1] == Constants.ALL_ATTRIBUTES_INORDER_FULLSPELLING[indexOfAttribute]) {
+  //       const reqValid = meetsRequirement(requirement.textContent, upgradeAmount);
+
+  //       // if requirements are not met
+  //       if (!reqValid) {
+  //         if (continueWithAttributeChange == undefined && boostDisplayItem.style.backgroundColor != Constants.INVALID_BOOST_OR_ABILITY_RGBA) {
+  //           continueWithAttributeChange = confirmModal("This attribute changes causes 1 or more selected abilities to no longer meet minimum requirement(s).  Continue with attribute change?");
+  //           // continueWithAttributeChange = window.confirm("This attribute changes causes 1 or more selected abilities to no longer meet minimum requirement(s).  Continue with attribute change or cancel?");
+  //         }
+
+  //         // if continuing with attribute change set the selected ability to be a red shade so it is clear that ability is now invalid
+  //         if (continueWithAttributeChange != false) {
+  //           boostDisplayItem.style.backgroundColor = Constants.INVALID_BOOST_OR_ABILITY_RGBA;
+  //           requirement.style.color = "red";
+  //         }
+  //       }
+  //     }
+  //   });
+  // });
 
   continueWithAttributeChange = continueWithAttributeChange == undefined ? true : continueWithAttributeChange;
 
@@ -487,17 +540,17 @@ export function getPlayerWebsiteURL(playerFullName) {
  * allAbilitiesAndBoostsValid function used to check if all abilities and boosts are valid
  * @returns if all abilities and boosts are valid (true) or if not all the all abilities and boosts are valid (false)
  */
-export function allAbilitiesAndBoostsValid() {
+export async function allAbilitiesAndBoostsValid() {
   if (!allAbilitiesValid() && !allBoostsValid()) {
-    window.alert("One or more selected abilities are invalid and one or more selected boosts are invalid");
+    await alertModal("One or more selected abilities are invalid and one or more selected boosts are invalid");
     return false;
   }
   else if (!allAbilitiesValid()){
-    window.alert("One or more selected abilities are invalid");
+    await alertModal("One or more selected abilities are invalid");
     return false;
   }
   else if (!allBoostsValid()) {
-    window.alert("One or more selected boosts are invalid");
+    await alertModal("One or more selected boosts are invalid");
     return false;
   }
 
@@ -526,16 +579,94 @@ export function allAbilitiesSelected() {
  * allAttributePointsPositive function used to check if all the attribute points available for each section is not negative
  * @returns if all the attribute section is valid (if the available points is 0 or higher, not negative) (true for valid, false for not valid)
  */
-export function allAttributePointsPositive() {
+export async function allAttributePointsPositive() {
   let result = true;
 
-  Array.from(Variables.attributePointsAvailable).forEach(attributeSectionPointsAvailable => {
+  for (const attributeSectionPointsAvailable of Array.from(Variables.attributePointsAvailable)) {
     if (parseInt(attributeSectionPointsAvailable.textContent) < 0) {
-      window.alert("You must not have negative attribute points available.  You can lower some attributes, or not upgrade certain attributes as high in order to fix this");
+      await alertModal("You must not have negative attribute points available. You can lower some attributes, or not upgrade certain attributes as high in order to fix this");
       result = false;
       return;
     }
-  });
+  }
 
   return result;
+}
+
+
+/**
+ * confirmModal function used to reveal a modal to the user, and get
+ * their response back.
+ * @param {String} message the message to put in the modal 
+ * @param {String} confirmButtonText the text for the Ok/Yes/confirm button to use (usually "Yes" or "Ok" makes sense but it depends)
+ * @returns {Promise<Boolean>} a promise that resolves with true/false for if the
+ * user clicked the "Ok/Yes" button (true) or the "No" button (false)
+ */
+export function confirmModal(message, confirmButtonText) {
+
+  // return the result once the "Ok/Yes" button or "No" button are clicked
+  return new Promise(resolve => {
+    let confirmModal = document.getElementById(Constants.CONFIRM_MODAL_ID);
+    let okButton = confirmModal.getElementsByClassName(Constants.OK_BUTTON_CLASSNAME)[0];
+    let noButton = confirmModal.getElementsByClassName(Constants.CANCEL_BUTTON_CLASSNAME)[0];
+    let modalInfo = confirmModal.getElementsByClassName(Constants.MODAL_INFO_CLASSNAME)[0];
+
+    // fill in the message
+    modalInfo.textContent = message;
+
+    // fill okButton text (should be "Ok" or "Yes")
+    okButton.textContent = confirmButtonText;
+
+    // reveal the confirm modal
+    confirmModal.style.display = "block";
+
+    // if ok button is clicked
+    okButton.addEventListener("click", () => {
+      // close the confirm modal
+      confirmModal.style.display = "none";
+
+      // resolve the promise with true
+      resolve(true);
+    });
+
+    // if no button is clicked
+    noButton.addEventListener("click", () => {
+      // close the confirm modal
+      confirmModal.style.display = "none";
+
+      // resolve the promise with false
+      resolve(false);
+    });
+  });
+}
+
+/**
+ * alertModal function used to reveal a modal to the user, and wait until
+ * they click the "Ok" button
+ * @param {String} message the message to put in the modal 
+ * @returns {Promise<void>} a promise that resolves without a value once the "Ok" button is clicked
+ */
+export function alertModal(message) {
+    // return the result once the "Ok" button is clicked
+    return new Promise(resolve => {
+      let alertModal = document.getElementById(Constants.ALERT_MODAL_ID);
+      let okButton = alertModal.getElementsByClassName(Constants.OK_BUTTON_CLASSNAME)[0];
+      let modalInfo = alertModal.getElementsByClassName(Constants.MODAL_INFO_CLASSNAME)[0];
+  
+      // fill in the message
+      modalInfo.textContent = message;
+  
+      // reveal the confirm modal
+      alertModal.style.display = "block";
+  
+      // if ok button is clicked
+      okButton.addEventListener("click", () => {
+        // close the confirm modal
+        alertModal.style.display = "none";
+  
+        // resolve the promise with no value
+        resolve();
+      });
+
+    });
 }
