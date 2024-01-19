@@ -626,7 +626,10 @@ export function completeBuildButtonListeners() {
       // if all abilities and boosts are valid, and all attribute upgrade points available are positive (0 or higher, not less than 0)
       // then continue with completing the build
       if (await UtilityFunctions.allAbilitiesAndBoostsValid() && await UtilityFunctions.allAttributePointsPositive()) {
+        // find similar players and get player type
         PCUtilityFunctions.findSimilarPlayers();
+
+        // reveal the completeBuildSection
         completeBuildSection.style.display = "block";
       }
     }
@@ -707,8 +710,8 @@ export function moreInfoButtonListeners() {
 }
 
 /**
- * helpAndCompleteBuildOkButtonListeners function used to set the functionality of the "Ok" and "x" buttons
- * found in the help modal and complete build modal
+ * helpCompBuildAndAboutOkButtonListeners function used to set the functionality of the "Ok" and "x" buttons
+ * found in the help modal, complete build modal, and about/terms of service modal
  */
 export function helpCompBuildAndAboutOkButtonListeners() {
   let helpSection = document.getElementById(Constants.HELP_SECTION_ID);
@@ -739,6 +742,9 @@ export function helpCompBuildAndAboutOkButtonListeners() {
   });
 }
 
+/**
+ * aboutAndTermsButton used to set the functionality of the "About & Terms of Service" button
+ */
 export function aboutAndTermsButton() {
   let aboutButton = document.getElementById(Constants.ABOUT_BUTTON_ID);
   let aboutSection = document.getElementById(Constants.ABOUT_SECTION_ID);
