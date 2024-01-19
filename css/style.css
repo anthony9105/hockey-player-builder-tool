@@ -704,7 +704,7 @@ body {
 
 
 
-#complete-build {
+#complete-build, #help-and-instructions {
     display: none;
     position: fixed;
     top: 0;
@@ -716,7 +716,7 @@ body {
     z-index: 3;
 }
 
-.complete-build-content {
+.complete-build-content, #help-content {
     background-color: rgb(57, 57, 57);
     /* margin: 15% auto;
     padding: 20px; */
@@ -731,14 +731,14 @@ body {
     scroll-padding-left: 5px;
 }
 
-.complete-build-content::-webkit-scrollbar {
+.complete-build-content::-webkit-scrollbar, #help-content::-webkit-scrollbar {
     width: 20px;
   }
-.complete-build-content::-webkit-scrollbar-track {
+.complete-build-content::-webkit-scrollbar-track, #help-content::-webkit-scrollbar-track {
     background: transparent;
 }
 
-.complete-build-content::-webkit-scrollbar-thumb {
+.complete-build-content::-webkit-scrollbar-thumb, #help-content::-webkit-scrollbar-thumb {
     background-color: transparent;
     border-radius: 16px;
     border: inset rgba(255, 255, 255, 0.479);
@@ -810,7 +810,7 @@ li {
     color: rgba(255, 166, 0, 0.534);
 }
 
-#complete-build-top-section {
+#complete-build-top-section, #help-content-top-section {
     padding-top: 4%;
     padding-bottom: 3%;
     background: linear-gradient(to bottom, var(--orange-background-colour), rgb(57, 57, 57));
@@ -839,11 +839,15 @@ p {
     text-align: center;
 }
 
-#complete-build-bottom-section {
+#complete-build-bottom-section, #help-content-bottom-section {
     display: flex;
     flex-direction: row;
     justify-content:space-between;
     padding-bottom: 5%;
+}
+
+#help-content-bottom-section {
+    flex-direction: column;
 }
 
 
@@ -853,4 +857,39 @@ p {
 }
 #complete-build-bottom-right-section {
     margin-right: 10%;
+}
+
+.help-li, .help-li-extra, .arrow {
+    color: var(--button-hover-light-colour);
+    margin-bottom: 2%;
+    font-size: small;
+}
+.help-ul, .help-ul-extra {
+    margin: 0;
+    padding: 0;
+    margin-left: 4%;
+    list-style-type: disc;
+}
+
+.help-li-extra {
+    display: none;
+    margin-bottom: 2%;
+}
+
+.moreinfo-button {
+    backdrop-filter: blur(5.5px);
+    -webkit-backdrop-filter: blur(5.5px);
+    background: linear-gradient(to bottom, rgba(157, 148, 107, 0.2), rgba(211, 205, 155, 0.2), rgba(255, 255, 255, 0.2));
+    border-radius: 10px;
+    padding: 7px 5px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-style: italic;
+    font-size: 60%;  
+    cursor: pointer;
+}
+
+.moreinfo-button:hover {
+    background: linear-gradient(to bottom, var(--button-hover-semidark-colour), var(--button-hover-light-colour));
 }

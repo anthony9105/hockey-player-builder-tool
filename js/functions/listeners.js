@@ -618,7 +618,7 @@ export function increasingAndDecreasingAttributesListeners() {
  */
 export function completeBuildButtonListeners() {
   const completeBuildButton = document.getElementById(Constants.COMPLETE_BUILD_BTTN_ID);
-  let completeBuildSection = document.getElementById('complete-build');
+  let completeBuildSection = document.getElementById(Constants.COMPLETE_BUILD_SECTION_ID);
 
   completeBuildButton.addEventListener("click", async function() {
 
@@ -638,7 +638,7 @@ export function completeBuildButtonListeners() {
       completeBuildSection.style.display = 'none';
       PCUtilityFunctions.resetCompleteBuildContent();
     }
-});
+  });
 }
 
 
@@ -655,5 +655,52 @@ export function resetButtonListener() {
   resetButton.addEventListener("click", async function() {
     // reload the whole page (mimicking the browser's refresh button)
     location.reload();
+  });
+}
+
+
+/**
+ * HELP / INSTRUCTIONS
+ */
+export function helpButtonListener() {
+  const helpButton = document.getElementById(Constants.HELP_BUTTON_ID);
+  let helpSection = document.getElementById(Constants.HELP_SECTION_ID);
+
+  helpButton.addEventListener("click", async function() {
+    helpSection.style.display = "block";
+  });
+
+  window.addEventListener('click', function (event) {
+    if (event.target === helpSection) {
+      helpSection.style.display = 'none';
+    }
+  });
+}
+
+export function moreInfoButtonListeners() {
+  let moreInfoButtons = document.getElementsByClassName(Constants.MORE_INFO_BUTTON_CLASSNAME);
+
+  Array.from(moreInfoButtons).forEach(moreInfoButton => {
+    moreInfoButton.addEventListener("click", async function() {
+      let extraInfoListItems = moreInfoButton.parentNode.getElementsByClassName(Constants.MORE_INFO_LISTITEM_CLASSNAME);
+
+      // if the button says more info when clicked, change it to less info.  And vice versa
+      if (moreInfoButton.textContent == "More Info") {
+        moreInfoButton.textContent = "Less Info";
+      }
+      else {
+        moreInfoButton.textContent = "More Info";
+      }
+
+      // for each extra li, if its hidden, show it.  If its shown, hide it.
+      Array.from(extraInfoListItems).forEach(extraInfoListItem => {
+        if (extraInfoListItem.style.display == "none" || extraInfoListItem.style.display == "") {
+          extraInfoListItem.style.display = "block";
+        }
+        else {
+          extraInfoListItem.style.display = "none";
+        }
+      });
+    });
   });
 }

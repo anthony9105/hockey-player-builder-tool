@@ -98,3 +98,9 @@ ListenerFunctions.increasingAndDecreasingAttributesListeners();
  */
 ListenerFunctions.completeBuildButtonListeners();
 ListenerFunctions.resetButtonListener();
+
+/**
+ * HELP / INSTRUCTIONS BUTTON
+ */
+ListenerFunctions.helpButtonListener();
+ListenerFunctions.moreInfoButtonListeners();

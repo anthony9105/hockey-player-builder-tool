@@ -14,6 +14,10 @@
 <body>
     <div class="wrapper">
         <section id="playertype-height-weight-row">
+            <div id="help-section">
+                <button class="confirm-button" id="help-button">Help & Instructions</button>
+            </div>
+
             <!-- Player Type Selection -->
             <div class="physical-section">
                 <span class="material-icons" style="color: orangered;">
@@ -170,6 +174,125 @@
                     </div>
                 </div>
                 <!-- <span class="close" id="closeModalBtn">&times;</span> -->
+            </div>
+            <div id="help-and-instructions">
+                <div id="help-content">
+                    <div id="help-content-top-section">
+                        <h2>Help, Information, and Instructions:</h2>
+                    </div>
+                    <div id="help-content-bottom-section">
+                        <ol>
+                            <li class="help-li">
+                                Select a player type and then click the "Confirm player type template" 
+                                button.  After this more options will appear on the screen.  Each player type has its own starting attributes, height and weight ranges, and their own
+                                 5 main abilities you can choose.
+                            </li>
+                            <li class="help-li">
+                                You can change the default height for your player (this may effect certain attributes).  REMEMBER TO CLICK THE
+                                "Confirm Height" BUTTON OR ELSE ANY CHANGES WILL NOT BE APPLIED. 
+                                <ul class="help-ul">
+                                    <button class="moreinfo-button">More Info</button>
+                                    <li class="help-li-extra">
+                                        Lowering the height can increase Speed, Agility, and Acceleration while decreasing 
+                                        Balance, Body Checking, Durability, and Fighting Skill. Conversly, increasing height may have the opposite effects.
+                                    </li>
+                                    <li class="help-li-extra">
+                                        Small adjustments to height might not necessarily result in noticeable changes to any attributes, but such variations are possible.  
+                                    </li>
+                                    <li class="help-li-extra">
+                                        (Note: It is recommended to try different heights and see what is best for your player before applying any boosts or abilities.
+                                        You can change the height later but it will reset any abilities and boosts you may have selected)
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="help-li">
+                                You can also change the default weight for your player (this may effect certain attributes). REMEMBER TO CLICK THE
+                                "Confirm Weight" BUTTON OR ELSE ANY CHANGES WILL NOT BE APPLIED. 
+                                <ul class="help-ul">
+                                    <button class="moreinfo-button">More Info</button>
+                                    <li class="help-li-extra">
+                                        Lowering the weight can increase Speed, Agility, Acceleration, and Endurance while decreasing 
+                                        Balance, Body Checking, Durability, Fighting Skill, and Strength. Conversly, increasing weight may have the opposite effects.
+                                    </li>
+                                    <li class="help-li-extra">
+                                        For this, the weight value will automatically not allow for values below the build minimum or maximum value.
+                                    </li>
+                                    <li class="help-li-extra">
+                                        For example: Sniper can only be 160lbs to 205lbs, trying to go lower or higher
+                                        than this will just do nothing and stay at the maximum/minimum value.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="help-li">
+                                Make sure you select what position your player would play before completing the build (the default is "Centre").  
+                                <ul class="help-ul">
+                                    <button class="moreinfo-button">More Info</button>
+                                    <li class="help-li-extra">
+                                        This is will matter later when doing the real NHL player comparisons.  Selecting "Centre" or "Winger"
+                                        will give your player a forward player type and compare it to only forwards.  Selecting "Defenseman"
+                                        will give your player a defenseman player type and compare it to only defenseman.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="help-li">
+                                Modify the attributes of your player which will be a big part of defining your player.  Clicking the + button 
+                                will increase the attribute by one and use attribute points for that attribute section.  Clicking the - button will decrease the attribute by one and give you back some attribute points to that attribute section. 
+                                You can increase or decrease attributes at most +5 or -5 for each.
+                                <ul class="help-ul">
+                                    <button class="moreinfo-button">More Info</button>
+                                    <li class="help-li-extra">
+                                        When increasing attributes, the amount of points spent depends on which attribute is being increased (some cost more than others), and also it depends
+                                        on which increase it is.  Attributes increases often cost more when they are the 4th (+4) or 5th (+5) increase, for instance.
+                                    </li>
+                                    <li class="help-li-extra">
+                                        Decreasing attributes works the same way but instead of taking away points, it gives attribute points back.  This way you are able to make sacrifices to certain
+                                        attributes in order to afford upgrading other areas.
+                                    </li>
+                                    <li class="help-li-extra">
+                                        In order to complete the build, you must not have a negative number of points available in any attribute section.  You can see this above each attribute column.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="help-li">
+                                You must select a specific ability for each ability slot.  The main gold ability is specific to your player type template chosen, and it is most important.
+                                <ul class="help-ul">
+                                    <button class="moreinfo-button">More Info</button>
+                                    <li class="help-li-extra">
+                                        In order to complete the build, you must have 3 abilities selected and they must be valid (if they are invalid they will be red).
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="help-li">
+                                You may select 2 unique boosts.  The boosts increase certain attributes and have certain attribute requirements in order to use them, that are shown when you
+                                hover over them.
+                                <ul class="help-ul">
+                                    <button class="moreinfo-button">More Info</button>
+                                    <li class="help-li-extra">
+                                        The attribute boosts do not count towards the +5 attribute upgrade cap since this is seperate.  For example: if you have increased Speed by +5 by upgrading it, and then use
+                                        a +2 speed boost, this is valid. 
+                                    </li>
+                                    <li class="help-li-extra">
+                                        You cannot have 2 boosts that are the same or 2 boosts that both upgrade the exact same attributes.  You will not be able to try this.
+                                    </li>
+                                    <li class="help-li-extra">
+                                        In order to complete the build, you must not have any invalid boosts selected (if they are invalid they will be in red).
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="help-li">
+                                Finally, click the "Complete Build" button to see the details of player you made, and which real NHL players are most similar and least similar to your player.
+                                You may click on each player's name to see more information about them.
+                            </li>
+                            <li class="help-li">
+                                If at any time you would like to reset everything and start over from the beginning, click the "Reset" button.
+                            </li>
+                            <li class="help-li">
+                                The starting attributes, heights, weights, abilities, and boosts follow the same restrictions as EA Sports NHL player building, so you would be able to make the same exact build here
+                                to see what real NHL players are similar to your player.
+                            </li>
+                        </ol>
+                    </div>
+                </div>
             </div>
 
         </section>

@@ -31,6 +31,7 @@ export const ABILITIES_XML = "../build-information/abilities.xml";
     export const MINUS_BUTTONS_CLASSNAME = "minus-button";
     export const ABILITY_BUTTON_CLASSNAME = "dropdownbutton";
     export const MAIN_BOOST_BUTTON_CLASSNAME = "main-boost-dropdownbutton";
+    export const MORE_INFO_BUTTON_CLASSNAME = "moreinfo-button";
 
     // dropdown button content sections
     export const BOOST_BUTTONS_DROPDOWN_CLASSNAME = "boost-buttons-content";
@@ -86,6 +87,8 @@ export const ABILITIES_XML = "../build-information/abilities.xml";
     export const DISSIMILAR_PLAYER_CLASSNAME = "dissimilar-player";
     export const PLAYERS_LIST_NUMBER_CLASSNAME = "player-list-number";
 
+    export const MORE_INFO_LISTITEM_CLASSNAME = "help-li-extra";
+
 
 /**
  * ID NAMES
@@ -102,6 +105,7 @@ export const ABILITIES_XML = "../build-information/abilities.xml";
     // other buttons
     export const COMPLETE_BUILD_BTTN_ID = "complete-build-button";
     export const RESET_BUILD_BTTN_ID = "reset-button";
+    export const HELP_BUTTON_ID = "help-button";
 
     // sections
     export const MAIN_ABILITY_SECTION_ID = "main-ability-section";
@@ -115,6 +119,9 @@ export const ABILITIES_XML = "../build-information/abilities.xml";
     export const MAINSKILLS_LIST_ID = "main-skills-list";
     export const SECSKILLS_LIST_ID = "sec-skills-list";
     export const WEAKNESSES_LIST_ID = "weaknesses-list";
+
+    export const COMPLETE_BUILD_SECTION_ID= "complete-build";
+    export const HELP_SECTION_ID = "help-and-instructions";
 
 
 
