@@ -97,7 +97,7 @@ export async function applyAttributeChangesFromPhysicalChanges(buildName, previo
     console.error(error);
 
     if (error instanceof TypeError) {
-      console.warn("Possible spelling error of 1 or more node names in physical_upgrade_downgrade.xml that is causing this TypeError");
+      // console.warn("Possible spelling error of 1 or more node names in physical_upgrade_downgrade.xml that is causing this TypeError");
     }
   }
 }
@@ -140,7 +140,7 @@ export async function increaseOrDecreaseAttribute(upgradeType, i) {
     upgradeAmount = -1;
   }
   else {
-    console.error("Invalid value for variable: upgradeType");
+    // console.error("Invalid value for variable: upgradeType");
   }
 
   const continueWithAttributeChange = await UtilityFunctions.checkSelectedRequirementsIfAttributeChangeDone(upgradeAmount, i);

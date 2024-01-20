@@ -529,11 +529,11 @@ export function confirmHeightWeightButtonListener(confirmButton, physicalAspect)
       else {
         if (Variables.weights.value < Variables.weights.min) {
           Variables.weights.value = Variables.weights.min;
-          console.warn("Invalid weight entered.  (This value was below the minimum weight).  The value has now been set to the minimum value instead of what was entered.");
+          await UtilityFunctions.alertModal("Invalid weight entered.  (This value was either below the minimum weight or an invalid character).  The value has now been set to the minimum value instead of what was entered.");
         }
         else if (Variables.weights.value > Variables.weights.max) {
           Variables.weights.value = Variables.weights.max;
-          console.warn("Invalid weight entered.  (This value was above the maximum weight).  The value has now been set the maximum value instead of what was entered.");
+          await UtilityFunctions.alertModal("Invalid weight entered.  (This value was either below the minimum weight or an invalid character).  The value has now been set the maximum value instead of what was entered.");
         }
   
         // set global variables for previous and current weights
