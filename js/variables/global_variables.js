@@ -503,8 +503,8 @@ export let playerTypesInfo = {
               }
           },
       },
-      Undersized_finesse_forward: {
-          DisplayName: "Undersized Finesse Forward",
+      Finesse_forward: {
+          DisplayName: "Finesse Forward",
           Description: "A forward who relies on skill and finesse to make offensive contributions.  While lacking in size, you compensate that with finesse and creativity.",
           MainSkills: ["PuckSkills"],
           SecondarySkills: ["Passing", "PuckSkills", "Skating", "Shooting"],
@@ -1284,7 +1284,7 @@ export let attributeWeightsInfo = {
         WristshotAccuracy: 0.5,
         WristshotPower: 0.5,
     },
-    "Undersized Finesse Forward": {
+    "Finesse Forward": {
         Acceleration: 0.25,
         Agility: 0.25,
         Balance: 0.25,
