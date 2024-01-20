@@ -241,7 +241,7 @@ export function applyBoostUpgradeOrDowngrade(attributeAffected, boostUpgradeAmou
   // boost upgrade changes
   if (Variables.boostUpgradeValues[attributeIndex] != undefined) {
     Variables.boostUpgradeValues[attributeIndex].textContent = parseInt(Variables.boostUpgradeValues[attributeIndex].textContent) + boostUpgradeAmount;
-    const boostUpgradeColour = boostUpgradeAmount > 0 ? Constants.BOOST_UPGRADE_VALUE_COLOUR : Constants.ZERO_UPGRADE_VALUE_COLOUR;
+    const boostUpgradeColour = boostUpgradeAmount > 0 ? Constants.BOOST_UPGRADE_VALUE_COLOUR : "transparent";
     Variables.boostUpgradeValues[attributeIndex].style.color = boostUpgradeColour;
   }
 
