@@ -886,7 +886,7 @@ p {
     margin-right: 10%;
 }
 
-.help-li, .help-li-extra, .arrow {
+.help-li, .help-li-extra, .help-li-2, .arrow {
     color: var(--button-hover-light-colour);
     margin-bottom: 2%;
     font-size: small;
@@ -900,6 +900,11 @@ p {
 
 .help-li-extra {
     display: none;
+    margin-bottom: 2%;
+}
+.help-li-2 {
+    list-style: circle;
+    margin-left: 4%;
     margin-bottom: 2%;
 }
 
