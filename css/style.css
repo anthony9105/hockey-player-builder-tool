@@ -660,6 +660,7 @@ body {
     background-color: rgba(0, 0, 0, 0.7);
     overflow: none;
     z-index: 3;
+    font-size: 150%;
 }
 .complete-build-content, #help-content, #confirm-content, #alert-content, #about-content {
     background-color: rgb(57, 57, 57);
@@ -1079,6 +1080,9 @@ p {
     .complete-build-content {
         width: 60%;
     }
+    #complete-build {
+        font-size: 110%;
+    }
 }
 
 /* Small screen */
@@ -1196,5 +1200,8 @@ p {
     }
     .complete-build-content {
         width: 90%;
+    }
+    #complete-build {
+        font-size: 120%;
     }
 }
