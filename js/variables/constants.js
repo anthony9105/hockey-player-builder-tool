@@ -11,14 +11,13 @@
  */
 const websiteUrl = "https://anthony9105.github.io/hockey-player-builder-tool/";
 
-export const BUILD_DATA_XML = "../../build-information/build_data.xml";
-export const UPGRADE_POINTS_XML = "../../build-information/upgrade_points.xml";
-export const PHYS_UPGRADE_DOWNGRADE_XML = "../../build-information/physical_upgrade_downgrades.xml";
-export const BOOSTS_XML = "../../build-information/boosts.xml";
-export const MAIN_ABILITIES_XML = "../../build-information/main_abilities.xml";
-export const ABILITIES_XML = "../../build-information/abilities.xml";
-// export const NHL_PLAYER_ATTRIBUTES_CSV = "../../player-information/realPlayerAttributes.csv"; 
-export const NHL_PLAYER_ATTRIBUTES_CSV = websiteUrl + "/player-information/realPlayerAttributes.csv"; 
+export const BUILD_DATA_XML = websiteUrl + "build-information/build_data.xml";
+export const UPGRADE_POINTS_XML = websiteUrl + "build-information/upgrade_points.xml";
+export const PHYS_UPGRADE_DOWNGRADE_XML = websiteUrl + "build-information/physical_upgrade_downgrades.xml";
+export const BOOSTS_XML = websiteUrl + "build-information/boosts.xml";
+export const MAIN_ABILITIES_XML = websiteUrl + "build-information/main_abilities.xml";
+export const ABILITIES_XML = websiteUrl + "build-information/abilities.xml";
+export const NHL_PLAYER_ATTRIBUTES_CSV = websiteUrl + "player-information/realPlayerAttributes.csv"; 
 
 
 /**
