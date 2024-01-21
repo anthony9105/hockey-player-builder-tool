@@ -1,10 +1,9 @@
-/**
- * 2022-2023
- * Anthony Liscio
- * 
- * update_functions.js
- * 
- *    Used for functions that update or change parts of the website.
+/*
+ * MIT License
+ *
+ * Copyright (c) 2024 Anthony Liscio
+ *
+ * For more details, see the LICENSE file in the root directory.
  */
 
 

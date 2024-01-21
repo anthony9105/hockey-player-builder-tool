@@ -1,10 +1,17 @@
+/*
+ * style.css
+ * Anthony Liscio
+ * Main stylesheet for the website.
+ * License: MIT (for more details, see the LICENSE file)
+ */
+
 html {
-    /* box-sizing: border-box; */
     margin: 0;
     width: 100%;
     min-height: 100%;
 }
 
+/* colour variables */
 :root {
     --orange-background-colour: rgba(255, 181, 10, 0.815);
     --dark-background-colour: rgb(57, 57, 57);
@@ -339,7 +346,6 @@ body {
     color: black;
     padding: 10px;
     font-size: 100%;
-    /* border: none; */
     cursor: pointer;
     border-radius: 10px;
     margin-top: 4%;

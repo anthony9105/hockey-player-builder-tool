@@ -1,10 +1,9 @@
-/**
- * 2022-2023
- * Anthony Liscio
- * 
- * listeners.js
- * 
- *    Used for the functions used to create event listeners for the website.
+/*
+ * MIT License
+ *
+ * Copyright (c) 2024 Anthony Liscio
+ *
+ * For more details, see the LICENSE file in the root directory.
  */
 
 import * as UtilityFunctions from "./utility_functions.js";

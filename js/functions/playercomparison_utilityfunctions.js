@@ -1,3 +1,11 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2024 Anthony Liscio
+ *
+ * For more details, see the LICENSE file in the root directory.
+ */
+
 import * as Constants from "../variables/constants.js";
 import * as Variables from "../variables/global_variables.js";
 import * as UtilityFunctions from "../functions/utility_functions.js";

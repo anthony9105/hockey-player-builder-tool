@@ -1,11 +1,9 @@
-/**
- * 2022-2023
- * Anthony Liscio
- * 
- * utility_functions.js
- * 
- *    Used for other functions that are useful and are used throughout the other js files
- *    but don't specifically fit with the other js files.
+/*
+ * MIT License
+ *
+ * Copyright (c) 2024 Anthony Liscio
+ *
+ * For more details, see the LICENSE file in the root directory.
  */
 
 

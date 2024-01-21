@@ -1,8 +1,9 @@
-/**
- * 2022-2023
- * Anthony Liscio
- * 
- * main.js
+/*
+ * MIT License
+ *
+ * Copyright (c) 2024 Anthony Liscio
+ *
+ * For more details, see the LICENSE file in the root directory.
  */
 
 import * as ListenerFunctions from "./functions/listeners.js";

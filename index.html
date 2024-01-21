@@ -1,3 +1,9 @@
+<!--
+index.html
+Anthony Liscio
+Main HTML file for the website.
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,19 +16,23 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <!-- <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Round"
       rel="stylesheet"> -->
-    <title>Anthony's Hockey Player Builder Tool</title>
+    <title>Anthony's Hockey Player Builder</title>
 </head>
 <body>
     <div class="wrapper">
+        <!-- Title -->
         <h1 id="main-title">Anthony's Hockey Player Builder</h1>
         <h2 id="main-subtitle">Create your hockey player and see which real NHL players it is most and least similar to!</h2>
         <h3 id="device-disclaimer">(Note: for a better experience use a computer/laptop)</h3>
+
+        <!-- Row that contains: Help & Instructions, Player Type Template, Height, Weight, position select, reset/complete build, confirm modal, alert modal -->
         <section id="playertype-height-weight-row">
+            <!-- Help & Instructions button -->
             <div id="help-section">
                 <button class="confirm-button" id="help-button">Help & Instructions</button>
             </div>
 
-            <!-- Player Type Selection -->
+            <!-- Player Type Template Selection -->
             <div class="physical-section">
                 <div class="physicals-validity">
                     <span class="material-icons" style="color: orangered;">
@@ -55,10 +65,10 @@
                 <button class="confirm-button" id="confirm-player-type-button">Confirm player type template</button>
             </div>
 
-
             <!-- Player Height -->
             <div class="physical-section">
 
+                <!-- Validity Icon -->
                 <div class="physicals-validity">
                     <span class="material-icons" style="color: green;">
                         done
@@ -84,31 +94,41 @@
                     <option value="6'9">6'9</option>
                 </select>
 
-                <!-- Button -->
+                <!-- Confirm Button -->
                 <button class="confirm-button" id="confirm-height-button">Confirm height</button>
             </div>
 
 
             <!-- Player Weight -->
             <div class="physical-section">
+                <!-- Validity Icon -->
                 <div class="physicals-validity">
                     <span class="material-icons" style="color: green;">
                         done
                     </span>
                 </div>
+
+                <!-- Input -->
                 <input type="number" class="selection-and-input" id="weight-selection" min="1" max="30"></input>
+
+                <!-- Confirm Button -->
                 <button class="confirm-button" id="confirm-weight-button">
                     Confirm weight (lbs)
                 </button>
             </div>
 
+            <!-- Position Select -->
             <div class="physical-section" id="position-section">
+                <!-- Validity Icon -->
                 <div class="physicals-validity">
                     <span class="material-icons" style="color: green;">
                         done
                     </span>
                 </div>
+
+                <!-- Title/prompt -->
                 <div id="position-selection-title">This player plays this position:</div>
+
                 <!-- Selection -->
                 <select class="selection-and-input" id="position-selection">
                     <option value="C">Centre</option>
@@ -117,14 +137,18 @@
                 </select>
             </div>
 
+
+            <!-- Reset and Complete Build Buttons -->
             <div id="other-action-buttons">
                 <button id="reset-button">Reset</button>
                 <button id="complete-build-button">Complete Build</button>
             </div>
     
+            <!-- Complete Build Modal -->
             <div id="complete-build">
                 <div class="complete-build-content">
 
+                    <!-- Top section of the content -->
                     <div id="complete-build-top-section">
                         <button id="close-compbuild-button" class="ok-button">x</button>
                         <h2 class="title-1">You have built a:</h2>
@@ -132,7 +156,9 @@
                         <p id="player-type-description"></p>
                     </div>
 
+                    <!-- Bottom section of the content -->
                     <div id="complete-build-bottom-section">
+                        <!-- Bottom left section of the content -->
                         <div id="complete-build-bottom-left-section">
                             <h3 class="strengths-weaknesses-title">Main Strengths:</h3>
                             <ul id="main-skills-list"></ul>
@@ -142,7 +168,9 @@
                             <ul id="weaknesses-list"></ul>
                         </div>
     
+                        <!-- Bottom right section of the content -->
                         <div id="complete-build-bottom-right-section">
+                            <!-- Most similar players -->
                             <h3>Most similar players:</h3>
                             <div class="similar-player">
                                 <div class="player-list-number">1.</div>
@@ -164,6 +192,8 @@
                                 <div class="player-list-number">1.</div>
                                 <a href="" target="_blank"></a>
                             </div>
+
+                            <!-- Least similar players -->
                             <h3>Least similar players:</h3>
                             <div class="dissimilar-player">
                                 <div class="player-list-number">1.</div>
@@ -179,18 +209,25 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Ok button -->
                     <div class="yes-cancel-button-section">
                         <button class="ok-button">Ok</button>
                     </div>
                 </div>
                 <!-- <span class="close" id="closeModalBtn">&times;</span> -->
             </div>
+
+            <!-- Help and Instructions Modal -->
             <div id="help-and-instructions">
                 <div id="help-content">
+                    <!-- Top section of the content -->
                     <div id="help-content-top-section">
                         <button id="close-help-button" class="ok-button">x</button>
                         <h2>Help, Information, and Instructions:</h2>
                     </div>
+
+                    <!-- Bottom section of the content -->
                     <div id="help-content-bottom-section">
                         <ol>
                             <li class="help-li">
@@ -312,14 +349,19 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Confirm modal (used to get confirmation for various things from the user) -->
             <div id="confirm-modal">
                 <div id="confirm-content">
+                    <!-- Top section of the content -->
                     <div id="confirm-modal-top-section">
                         <span class="material-icons">
                             help
                         </span>
                         <h2>Please confirm</h2>
                     </div>
+
+                    <!-- Bottom section of the content -->
                     <div id="confirm-modal-bottom-section">
                         <p class="modal-info">doioedienifnenf</p>
                         <div class="yes-cancel-button-section">
@@ -329,14 +371,19 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Alert modal (used to alert/tell the user about various different things) -->
             <div id="alert-modal">
                 <div id="alert-content">
+                    <!-- Top section of the content -->
                     <div id="alert-modal-top-section">
                         <span class="material-icons">
                             warning
                         </span>
                         <h2>Attention</h2>
                     </div>
+
+                    <!-- Bottom section of the content -->
                     <div id="alert-modal-bottom-section">
                         <p class="modal-info">doioedienifnenf</p>
                         <div class="yes-cancel-button-section">
@@ -349,10 +396,13 @@
         </section>
 
 
+        <!-- Row that contains all 3 abilities -->
         <section id="abilities-and-boosts-row">
 
+            <!-- First regular ability section -->
             <div class="ability-section">
                 <div class="dropdown">
+                    <!-- The display item (the spot where the first selected ability goes) (values are filled in later) -->
                     <div class="ability-display-item">
                         <span class="material-icons">
                         </span>
@@ -369,13 +419,21 @@
                         </div>
                         <button class="unselect-button">x</button>
                     </div>
+
+                    <!-- The "Ability" button which is to reveal the next set of buttons -->
                     <button class="dropdownbutton">Ability</button>
+
+                    <!-- The next set of buttons: "Offense", "Defense", "Athleticism" -->
                     <div class="ability-button-content">
                         <button class="ability-dropdownbutton">Offense</button>
                         <button class="ability-dropdownbutton">Defense</button>
                         <button class="ability-dropdownbutton">Athleticism</button>
                     </div>
+
+                    <!-- First ability section: "Offense" (which contains the "Offense" ability items to choose from) -->
                     <div class="ability-dropdown-section" id="offensive-abilities-1">
+
+                        <!-- The first column of ability items (values are filled in later) -->
                         <div class="dropdown-content">
                             <div class="ability-item">
                                 <span class="material-icons">
@@ -549,6 +607,8 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- The second column of ability items (values are filled in later) -->
                         <div class="dropdown-content">
                             <div class="ability-item">
                                 <span class="material-icons">
@@ -703,6 +763,8 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- The third column of ability items (values are filled in later) -->
                         <div class="dropdown-content">
                             <div class="ability-item">
                                 <span class="material-icons">
@@ -858,6 +920,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Second ability section: "Defense" (which contains the "Defense" ability items to choose from) -->
                     <div class="ability-dropdown-section" id="defensive-abilities-1">
                         <div class="dropdown-content">
                             <div class="ability-item">
@@ -1035,6 +1099,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Third ability section: "Athleticism" (which contains the "Athleticism" ability items to choose from) -->
                     <div class="ability-dropdown-section" id="athleticism-abilities-1">
                         <div class="dropdown-content">
                             <div class="ability-item">
@@ -1158,6 +1224,7 @@
                 </div>
             </div>
 
+            <!-- Main ability section -->
             <div id="main-ability-section">
                 <div class="dropdown">
                     <div class="main-ability-display-item">
@@ -1250,6 +1317,7 @@
                 </div>
             </div>
 
+            <!-- Second regular ability section (identical structure to the first) -->
             <div class="ability-section">
                 <div class="dropdown">
                     <div class="ability-display-item">
@@ -2060,8 +2128,11 @@
 
         </section>
 
+        <!-- Row that contains the boosts -->
         <section id="boosts-row">
+            <!-- First boost -->
             <div class="dropdown">
+                <!-- Boost display item -->
                 <div class="boost-display-item">
                     <span class="material-icons" >
                         ice_skating
@@ -2074,7 +2145,11 @@
                     </div>
                     <button class="unselect-button">x</button>
                 </div>
+
+                <!-- "Boost" button -->
                 <button class="main-boost-dropdownbutton">Boost</button>
+
+                <!-- Bosost category buttons: "Technique", "Power", "Playstyle", "Tenacity", "Tactics" -->
                 <div class="boost-buttons-content" id="horizontal-dropdown">
                     <button class="boost-dropdownbutton">Technique</button>
                     <button class="boost-dropdownbutton">Power</button>
@@ -2082,6 +2157,8 @@
                     <button class="boost-dropdownbutton">Tenacity</button>
                     <button class="boost-dropdownbutton">Tactics</button>
                 </div>
+
+                <!-- The "Technique" boost items to choose from (values to be filled later) -->
                 <div class="boost-dropdown-content">
                     <div class="boost-item">
                         <span class="material-icons" >
@@ -2187,6 +2264,8 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- The "Power" boost items to choose from (values to be filled later) -->
                 <div class="boost-dropdown-content">
                     <div class="boost-item">
                         <span class="material-icons" >
@@ -2292,6 +2371,8 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- The "Playstyle" boost items to choose from (values to be filled later) -->
                 <div class="boost-dropdown-content">
                     <div class="boost-item">
                         <span class="material-icons" >
@@ -2397,6 +2478,8 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- The "Tenacity" boost items to choose from (values to be filled later) -->
                 <div class="boost-dropdown-content">
                     <div class="boost-item">
                         <span class="material-icons" >
@@ -2462,6 +2545,8 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- The "Tactics" boost items to choose from (values to be filled later) -->
                 <div class="boost-dropdown-content">
                     <div class="boost-item">
                         <span class="material-icons" >
@@ -2519,6 +2604,7 @@
                 </div>
             </div>
 
+            <!-- Second boost (identical structure to the first) -->
             <div class="dropdown">
                 <div class="boost-display-item">
                     <span class="material-icons" >
@@ -2980,17 +3066,20 @@
         </section>
 
 
+        <!-- Attribute and points available section -->
         <section id="main-body-section">
-
             <section id="attribute-area">
-
                 <!-- "Technique" Attribute Section (column)-->
                 <section class="attribute-section">
+                    <!-- Points available -->
                     <div class="points-available">
                         <div class="points-available-title">Points Available:</div>
                         <div class="points-available-value">0</div>
                     </div>
+
+                    <!-- Attribute card -->
                     <div class="attribute">
+                        <!-- Attribute info -->
                         <div class="attribute-info">
                             <div class="attribute-name">Wristshot Accuracy</div>
                             <div class="attribute-value">0</div>
@@ -2999,6 +3088,8 @@
                             <div class="upgrade-value">0</div>
                             <div class="boost-value">0</div>
                         </div>
+
+                        <!-- Attribute meter -->
                         <div class="custom-attribute-meter">
                             <div class="attribute-meter-fill"></div>
                             <div class="state state-75"></div>
@@ -3440,15 +3531,21 @@
             </section>
         </section>
 
+        <!-- About and Terms of Service button -->
         <div class="yes-cancel-button-section">
             <button id="about-button" class="confirm-button">About & Terms of Service</button>
         </div>
+
+        <!-- About and Terms of Service section -->
         <div id="about-section">
             <div id="about-content">
+                <!-- Top section of the content -->
                 <div id="about-content-top-section">
                     <button id="about-close-button" class="ok-button">x</button>
                     <h2>About & Terms of Service:</h2>
                 </div>
+
+                <!-- Bottom section of the content -->
                 <div id="about-content-bottom-section">
                     <p>Created in 2023-2024 by Anthony Liscio as a personal project for developing Web Development skills and the passion for hockey.</p>
                     <ul class="help-ul">Privacy Policy & Cookies Policy:

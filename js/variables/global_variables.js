@@ -1,10 +1,9 @@
-/**
- * 2022-2023
- * Anthony Liscio
- * 
- * global_variables.js
- * 
- *    Used to store variables which are used and changed throughout the other js files.
+/*
+ * MIT License
+ *
+ * Copyright (c) 2024 Anthony Liscio
+ *
+ * For more details, see the LICENSE file in the root directory.
  */
 
 import * as Constants from "./constants.js";
