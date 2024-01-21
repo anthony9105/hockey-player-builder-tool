@@ -4,7 +4,10 @@ by Anthony Liscio
 
 Used to build a hockey player.  The player is given a player type and real NHL player comparisons.
 
-### The process and instructions are provided on the website but it involves:
+## Demo Video:
+https://youtu.be/RTB7aZkrak8?si=TbcI3TJw3_wvYzI5
+
+## The process and instructions are provided on the website but it involves:
 - Choosing a player type template.  Each template has:
   - default starting attributes
   - minimum, maximum, and default starting height
@@ -27,3 +30,14 @@ Used to build a hockey player.  The player is given a player type and real NHL p
     - The distance calculation is weighted based off what the "best player type" is.  For example: a "Sniper" created player will use a higher weight for attributes like "Wristshot Power" and less on things such as "Defensive Awareness" because this better reflects the strengths and weaknesses of the player type.
   - When clicking on the 5 most similar players and 3 least similar players, you will be taken to an external website that provides more information about that player, just as an added bonus if users are interested.  ![](assets/complete-build.png)
 - The "reset" button is self-explanatory
+
+
+## Progress Visualizations:
+- start:
+![original version](assets/version1.png)
+
+- later:
+![second version](assets/version-2.png)
+
+- final:
+![final version](assets/final-version.png)
