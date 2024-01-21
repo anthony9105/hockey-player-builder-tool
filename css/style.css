@@ -126,12 +126,13 @@ body {
     box-shadow: 0 4px 30px gold;
     font-size: larger;
 }
-/* .ability-section:nth-child(2) > .dropdown > .dropdownbutton:hover{ */
+
 #main-ability-section > .dropdown > .dropdownbutton:hover {
-    background: linear-gradient(to bottom right, var(--button-hover-dark-colour), var(--button-hover-light-colour));
+    background: linear-gradient(to bottom right, var(--button-hover-dark-colour), var(--button-hover-light-colour), rgba(255, 217, 0, 0.347));
     box-shadow: 0 4px 30px gold;
     font-size: larger;
 }
+
 .dropdownbutton:hover, .main-boost-dropdownbutton:hover, .boost-dropdownbutton:hover, .ability-dropdownbutton:hover {
     background: linear-gradient(to bottom right, var(--button-hover-dark-colour), var(--button-hover-light-colour));
 }
@@ -159,7 +160,7 @@ body {
     margin: 1% 1%;
     cursor: pointer;
     font-size: 100%;
-
+    color: black;
     /* appearance: none;
     background-image: url(assets/skate.svg);
     background-repeat: no-repeat;
@@ -204,6 +205,7 @@ body {
     margin-right: 2%;
     font-style: italic;
     font-size: 75%;
+    color: black;
 }
 
 .confirm-button:hover {
@@ -347,14 +349,17 @@ body {
     margin-top: 4px;
     cursor: pointer;
     background: inherit; */
-    width: 10%;
+    width: 22px;
+    height: 22px;
     margin-top: 1%;
     margin-bottom: 1%;
-    padding: 1% 3% 1% 3%;
-    aspect-ratio: 1 / 1;
     cursor: pointer;
     background: inherit;
     font-weight: bold;
+    aspect-ratio: 1 / 1;
+    text-align: center;
+    color: black;
+    text-shadow: 0px 0px 1px var(--button-hover-light-colour);
 }
 
 .minus-button:hover {
@@ -363,14 +368,16 @@ body {
 }
 
 .plus-button {
-    font-weight: bold;
-    font-size: 80%;
-    width: 10%;
+    width: 22px;
+    height: 22px;
     margin-top: 1%;
     margin-bottom: 1%;
     aspect-ratio: 1 / 1;
     cursor: pointer;
     background: inherit;
+    text-align: center;
+    color: black;
+    text-shadow: 0px 0px 1px var(--button-hover-light-colour);
     /* border: 1px solid green; */
 }
 
@@ -428,12 +435,14 @@ body {
     border: 1px solid black;
     box-shadow: 0 4px 30px rgb(215, 215, 215);
     color: black;
-    padding: 8%;
     font-size: 80%;
     /* border: none; */
     cursor: pointer;
     border-radius: 10px;
     margin: 0%;
+}
+.main-boost-dropdownbutton {
+    padding: 4%;
 }
 .boost-dropdownbutton {
     padding: 3%;
@@ -545,24 +554,6 @@ body {
     padding-left: 5%;
     font-size: 0;
     color: white;
-}
-
-.ability-item:hover > .ability-text > .ability-description,
-.ability-display-item:hover > .ability-display-text > .ability-display-description,
-.main-ability-item:hover > .main-ability-text > .main-ability-description {
-    font-size: 80%;
-    max-width: 150px;
-}
- 
-.boost-item:hover > .boost-item-text > .boost-item-requirement,
-.ability-item:hover > .ability-text > .ability-requirement,
-.ability-display-item:hover > .ability-display-text > .ability-display-requirement,
-.boost-display-item:hover > .boost-display-item-text > .boost-display-item-requirement {
-    font-size: 75%;
-    color: yellow;
-}
-.boost-display-item:hover > .boost-display-item-text > .boost-display-item-requirement {
-    font-size: 70%;
 }
 
 .boost-item-text, .ability-text, .main-ability-text {
@@ -703,13 +694,6 @@ body {
     display: none;
 }
 
-.main-ability-display-item:hover > .main-ability-display-text > .main-ability-display-description {
-    display: flex;
-    max-width: 220px;
-    font-size: x-small;
-    color: rgb(59, 59, 59);
-}
-
 .ability-display-name {
     text-align: center;
     font-size: 120%;
@@ -723,8 +707,9 @@ body {
     background-color: rgba(255, 0, 0, 0.15);
     display: none;
     margin: 8px;
-    font-size: 130%;
+    font-size: 125%;
     border-radius: 8px;
+    color: black;
 }
 
 .unselect-button:hover {
@@ -742,6 +727,7 @@ body {
     width: fit-content;
     padding: 5% 10% 5% 10%;
     margin: 2%;
+    color: black;
 }
 #complete-build-button:hover {
     cursor: pointer;
@@ -756,7 +742,8 @@ body {
     height: fit-content;
     width: fit-content;
     padding: 5% 10% 5% 10%;
-    margin: 2%
+    margin: 2%;
+    color: black;
 }
 #reset-button:hover {
     cursor: pointer;
@@ -800,7 +787,7 @@ body {
     margin: 15% auto;
     padding: 0;
     /* border: 1px solid #888; */
-    width: 60%;
+    width: 80%;
     max-height: 60vh;
     overflow-y: auto;
     border-radius: 16px;
@@ -809,7 +796,7 @@ body {
 }
 
 #confirm-content, #alert-content {
-    width: 25%;
+    width: 30%;
 }
 
 .complete-build-content::-webkit-scrollbar, #help-content::-webkit-scrollbar, #about-content::-webkit-scrollbar {
@@ -972,18 +959,19 @@ p {
     -webkit-backdrop-filter: blur(5.5px);
     background: linear-gradient(to bottom, rgba(157, 148, 107, 0.2), rgba(211, 205, 155, 0.2), rgba(255, 255, 255, 0.2));
     border-radius: 10px;
-    padding: 7px 5px;
+    padding: 8px 5px;
     margin-bottom: 10px;
     margin-left: 10px;
     margin-right: 10px;
     font-style: italic;
-    font-size: 60%;  
+    font-size: 65%;  
     cursor: pointer;
+    color: black;
 }
 
 .ok-button, .cancel-button {
-    padding-right: 2%;
-    padding-left: 2%;
+    padding-right: 4%;
+    padding-left: 4%;
     padding-top: 2%;
     padding-bottom: 2%;
     width: max-content;
@@ -1065,7 +1053,76 @@ p {
     margin-right: 1%;
 }   
 
+/* For devices that do have a cusor/pointer, these hover features will work properly */
+@media (pointer: fine) {
+    .ability-item:hover > .ability-text > .ability-description,
+    .ability-display-item:hover > .ability-display-text > .ability-display-description,
+    .main-ability-item:hover > .main-ability-text > .main-ability-description {
+    font-size: 80%;
+    max-width: 150px;
+}
 
+.boost-item:hover > .boost-item-text > .boost-item-requirement,
+.ability-item:hover > .ability-text > .ability-requirement,
+.ability-display-item:hover > .ability-display-text > .ability-display-requirement,
+.boost-display-item:hover > .boost-display-item-text > .boost-display-item-requirement {
+    font-size: 75%;
+    color: yellow;
+}
+.boost-display-item:hover > .boost-display-item-text > .boost-display-item-requirement {
+    font-size: 70%;
+}
+.main-ability-display-item:hover > .main-ability-display-text > .main-ability-display-description {
+    display: flex;
+    max-width: 220px;
+    font-size: x-small;
+    color: rgb(59, 59, 59);
+}
+}
+
+
+/* For devices without a cursor (such as mobile devices) since the hover feaure won't work properly */
+@media (hover:none) {
+        .ability-item > .ability-text > .ability-description,
+        .ability-display-item > .ability-display-text > .ability-display-description,
+        .main-ability-item > .main-ability-text > .main-ability-description {
+        font-size: 80%;
+        max-width: 150px;
+    }
+
+    .boost-item > .boost-item-text > .boost-item-requirement,
+    .ability-item > .ability-text > .ability-requirement,
+    .ability-display-item > .ability-display-text > .ability-display-requirement,
+    .boost-display-item > .boost-display-item-text > .boost-display-item-requirement {
+        font-size: 75%;
+        color: yellow;
+    }
+    .boost-display-item > .boost-display-item-text > .boost-display-item-requirement {
+        font-size: 70%;
+    }
+    .main-ability-display-description {
+        display: flex;
+        max-width: 220px;
+        font-size: x-small;
+    }
+}
+
+/* semi-big size screen */
+@media only screen and (max-width: 1169px) {
+    #attribute-area {
+        flex-wrap: wrap;
+    }
+    .attribute-section {
+        flex: 0 0 25%;
+        margin-right: 1%;
+        align-items: center;
+    }
+    .attribute {
+        width: 100%
+    }
+}
+
+/* Medium size screen */
 @media only screen and (max-width: 972px) {
     #attribute-area {
         flex-wrap: wrap;
@@ -1084,11 +1141,11 @@ p {
         margin-bottom: 9%;
     } 
     .physical-section {
+        align-items: center;
         flex: 0 0 40%;
     }
     #help-section {
         flex: 0 0 100%;
-        text-align: center;
     }  
     #other-action-buttons {
         flex-direction: row;
@@ -1102,33 +1159,57 @@ p {
         flex-direction: column;
         align-items: center;
     }
+    .wrapper {
+        align-items: center;
+    }
+    #boosts-row {
+        width: 100%;
+    }
 }
 
+/* Small screen */
 @media only screen and (max-width: 600px) {
-    /* Styles for small screens */
-    #attribute-area {
-        flex-direction: column;
-        width: fit-content;
-    }
-    .attribute {
-        height: 10%;
-    }
+    #playertype-height-weight-row {
+        flex-wrap: wrap;
+        margin-bottom: 9%;
+    } 
     .physical-section {
-        max-height: fit-content;
+        align-items: center;
+        flex: 0 0 40%;
+    }
+    #help-section {
+        flex: 0 0 100%;
+    }  
+    #other-action-buttons {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        font-size: 80%;
+    }
+    #abilities-and-boosts-row {
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: center;
+    }
+    /* Styles for small screens */
+    /* #attribute-area {
+        flex-direction: column;
+        background-color: red;
+        width: 200%;
+    } */
+    .attribute {
+        width: 100%;
+        height: fit-content;
     }
     #main-body-section {
         align-items: center;
     }
-    #playertype-height-weight-row {
-        height: 30%;
-        flex-direction: column;
-        width: fit-content;
-    }
-    #abilities-and-boosts-row {
+    /* #abilities-and-boosts-row {
         flex-direction: column;
         width: 20%;
         height: 20%;
-    }
+    } */
     .wrapper {
        align-items: center;
     }
@@ -1138,23 +1219,26 @@ p {
     }
 
     .physicals-validity {
-        margin-bottom: -3%;
+        margin-bottom: -2%;
         display: none;
+    }
+    .physicals-validity:first-child {
+        display: block;
     }
     .selection-and-input {
         margin-bottom: 1%;
         margin-top: 1%;
-        font-size: 70%;
+        font-size: 90%;
     }
-    .physical-section {
+    /* .physical-section {
         margin-bottom: 2.5%;
-    }
+    } */
     #other-action-buttons {
         width: 100%;
-        justify-content: space-evenly;
+        justify-content: center;
     }
     #reset-button, #complete-build-button {
-        font-size: 85%;
+        font-size: 150%;
         height: fit-content;
         width: fit-content;
         padding: 2% 2% 2% 2%;
@@ -1170,26 +1254,37 @@ p {
     .ability-button-content, .boost-buttons-content {
         justify-content: center;
         align-items: center;
-        width: 70%;
+        width: 100%;
     }
     #boosts-row {
         flex-direction: column;
         width: 100%;
     }
-    .dropdown {
-        width: 100%;
+    .attribute-section {
+        margin-bottom: 2%;
     }
-    .ability-display-item {
-        font-size: 80%;
-        width: 250%;
-        justify-content: center;
+    #confirm-content, #alert-content {
+        width: 80%;
     }
-    .ability-display-text {
+    #help-content {
+        width: 80%;
+    }
+    .help-li {
+        margin-left: 3%;
+        margin-right: 3%;
+    }
+    .help-li-2 {
+        margin-left: 10%;
+        margin-right: 3%;
+    }
+    .ability-dropdownbutton {
+        margin-bottom: 1%;
+    }
+    #weight-selection {
+        width: 20%;
         text-align: center;
-        width: 100%;
     }
-    .ability-display-description {
-        text-align: center;
-        margin-left: 8%;
+    #abilities-and-boosts-row {
+        margin-bottom: 10%;
     }
 }

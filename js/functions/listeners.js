@@ -280,20 +280,39 @@ export async function unselectButtonListeners() {
  * if the requirements are met or red if the requirements are not met.
  */
 export function abilityHoverListeners() {
-  Object.values(Variables.abilityItems).forEach((abilityItem) => {
-    abilityItem.addEventListener("mouseenter", function() {
-      let abilityRequirements = abilityItem.getElementsByClassName(Constants.ABILITY_REQ_CLASSNAME);
-      Object.values(abilityRequirements).forEach(abilityRequirement => {
-        if (UtilityFunctions.meetsRequirement(abilityRequirement.textContent)) {
-          abilityRequirement.style.color = "green";
-        }
-        else {
-          abilityRequirement.style.color = "red";
-        }
-      });
+  const supportsHover = window.matchMedia('(hover: hover').matches;
 
+  if (supportsHover) {
+    Object.values(Variables.abilityItems).forEach((abilityItem) => {
+      abilityItem.addEventListener("mouseenter", function() {
+        let abilityRequirements = abilityItem.getElementsByClassName(Constants.ABILITY_REQ_CLASSNAME);
+        Object.values(abilityRequirements).forEach(abilityRequirement => {
+          if (UtilityFunctions.meetsRequirement(abilityRequirement.textContent)) {
+            abilityRequirement.style.color = "green";
+          }
+          else {
+            abilityRequirement.style.color = "red";
+          }
+        });
+  
+      });
+    });  
+  }
+  else {
+    document.addEventListener("click", function() {
+      Object.values(Variables.abilityItems).forEach((abilityItem) => {
+        let abilityRequirements = abilityItem.getElementsByClassName(Constants.ABILITY_REQ_CLASSNAME);
+        Object.values(abilityRequirements).forEach(abilityRequirement => {
+          if (UtilityFunctions.meetsRequirement(abilityRequirement.textContent)) {
+            abilityRequirement.style.color = "green";
+          }
+          else {
+            abilityRequirement.style.color = "red";
+          }
+        });
+      });  
     });
-  });  
+  }
 }
 
 
@@ -465,18 +484,37 @@ export function boostSelectListeners() {
  */
 export function boostHoverListeners() {
   Object.values(Variables.boostItems).forEach((boostItem) => {
-    boostItem.addEventListener("mouseenter", function() {
-      let boostRequirements = boostItem.getElementsByClassName(Constants.BOOST_REQ_CLASSNAME);
-      Object.values(boostRequirements).forEach(boostRequirement => {
-        if (UtilityFunctions.meetsRequirement(boostRequirement.textContent)) {
-          boostRequirement.style.color = "green";
-        }
-        else {
-          boostRequirement.style.color = "red";
-        }
-      });
+    const supportsHover = window.matchMedia('(hover: hover').matches;
 
-    });
+    // if hover is supported add this hover listener
+    if (supportsHover) {
+      boostItem.addEventListener("mouseenter", function() {
+        let boostRequirements = boostItem.getElementsByClassName(Constants.BOOST_REQ_CLASSNAME);
+        Object.values(boostRequirements).forEach(boostRequirement => {
+          if (UtilityFunctions.meetsRequirement(boostRequirement.textContent)) {
+            boostRequirement.style.color = "green";
+          }
+          else {
+            boostRequirement.style.color = "red";
+          }
+        });
+  
+      });
+    } 
+    // if hover isnt suppoted (ex: mobile device) then just update whenever something is clicked anywhere
+    else {  
+      document.addEventListener("click", function() {
+        let boostRequirements = boostItem.getElementsByClassName(Constants.BOOST_REQ_CLASSNAME);
+        Object.values(boostRequirements).forEach(boostRequirement => {
+          if (UtilityFunctions.meetsRequirement(boostRequirement.textContent)) {
+            boostRequirement.style.color = "green";
+          }
+          else {
+            boostRequirement.style.color = "red";
+          }
+        });
+      });
+    }
   });  
 }
 
