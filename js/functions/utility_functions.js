@@ -560,3 +560,13 @@ export function alertModal(message) {
 
     });
 }
+
+/**
+ * containsNonNumericCharacters function used to check if a string has 
+ * non-numeric characters
+ * @param {String} value the string to check
+ * @returns true or false
+ */
+export function containsNonNumericCharacters(value) {
+  return /[^0-9\s]/g.test(value);
+}

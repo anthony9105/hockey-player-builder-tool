@@ -595,13 +595,19 @@ export function confirmHeightWeightButtonListener(confirmButton, physicalAspect)
         UpdateFunctions.applyAttributeChangesFromPhysicalChanges(Variables.playerTypes.value, Variables.globalPreviousHeight, Variables.globalCurrentHeight, "Height");
       }
       else {
-        if (Variables.weights.value < Variables.weights.min) {
+        const weightValue = parseInt(Variables.weights.value);
+
+        if (UtilityFunctions.containsNonNumericCharacters(Variables.weights.value) || Variables.weights.value == "") {
           Variables.weights.value = Variables.weights.min;
-          await UtilityFunctions.alertModal("Invalid weight entered.  (This value was either below the minimum weight or an invalid character).  The value has now been set to the minimum value instead of what was entered.");
+          await UtilityFunctions.alertModal("Invalid weight entered.  Entered value had at least 1 invalid character so the value has now been set to the minimum value instead of what was entered.");
         }
-        else if (Variables.weights.value > Variables.weights.max) {
+        else if (weightValue < parseInt(Variables.weights.min)) {
+          Variables.weights.value = Variables.weights.min;
+          await UtilityFunctions.alertModal("Invalid weight entered.  This value was below the minimum weight so the value has now been set to the minimum value instead of what was entered.");
+        }
+        else if (weightValue > parseInt(Variables.weights.max)) {
           Variables.weights.value = Variables.weights.max;
-          await UtilityFunctions.alertModal("Invalid weight entered.  (This value was either below the minimum weight or an invalid character).  The value has now been set the maximum value instead of what was entered.");
+          await UtilityFunctions.alertModal("Invalid weight entered.  This value was above the maximum weight so the value has now been set to the maximum value instead of what was entered.");
         }
   
         // set global variables for previous and current weights
