@@ -400,17 +400,18 @@ export function hideOrRevealCompleteBuildButton(displaySetting) {
  */
 export function changePlayerTypeSelectionValidity() {
   let playerTypeSection = document.getElementsByClassName("physical-section")[0];
+  let playeyrTypeValidityIcon = playerTypeSection.children[0].children[0];
 
   // changing to valid
-  if (playerTypeSection.children[0].style.color = "orangered") {
-    playerTypeSection.children[0].textContent = "done";
-    playerTypeSection.children[0].style.color = "green";
+  if (playeyrTypeValidityIcon.style.color = "orangered") {
+    playeyrTypeValidityIcon.textContent = "done";
+    playeyrTypeValidityIcon.style.color = "green";
     playerTypeSection.children[1].textContent = "";
   }
   // changing to invalid
   else {
-    playerTypeSection.children[0].textContent = "warning";
-    playerTypeSection.children[0].style.color = "orangered";
+    playeyrTypeValidityIcon.textContent = "warning";
+    playeyrTypeValidityIcon.style.color = "orangered";
     playerTypeSection.children[1].textContent = "In order to start you must first select one:";
   }
 }

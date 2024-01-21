@@ -750,6 +750,7 @@ export function aboutAndTermsButton() {
   let aboutSection = document.getElementById(Constants.ABOUT_SECTION_ID);
 
   aboutButton.addEventListener("click", function() {
+    window.scrollTo(0,0);
     aboutSection.style.display = "block";
   });
 }

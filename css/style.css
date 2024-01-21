@@ -65,10 +65,18 @@ body {
     display: flex;
     justify-content: space-evenly;
     align-items:stretch;
+    width: 100%;
+    height: 10%;
+    font-size: 65%;
+    margin-bottom: 0%;
 }
 #playertype-height-weight-row {
     margin-top: 1%;
     margin-right: 1%;
+}
+#abilities-and-boosts-row {
+    height: fit-content;
+    margin-bottom: 0%;
 }
 
 
@@ -79,11 +87,12 @@ body {
     border: 1px solid black;
     border-radius: 16px;
     box-shadow: 0 4px 30px black;
-    padding: 10px 5px;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-bottom: 30px;
+    padding: 0.5% 1%;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 1%;
     text-align: center;
+    height: fit-content;
 }
 
 .ability-section, #main-ability-section {
@@ -93,10 +102,11 @@ body {
     border: 1px solid black;
     border-radius: 4px;
     box-shadow: 0 4px 30px black; */
-    padding: 10px 5px;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-bottom: -10px;
+    padding: 2% 1%;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 2%;
+    width: fit-content;
 }
 
 /* changes based off the ability-section child */
@@ -143,11 +153,12 @@ body {
     /* background: linear-gradient(to top, white, rgb(211, 205, 155), rgb(157, 148, 107)); */
     border: 1px solid black;
     border-radius: 10px;
-    box-shadow: 0 4px 30px black;
-    padding: 7px 5px;
+    box-shadow: 0 1% 5% black;
+    padding: 3% 4%;
     font-family: 'Dosis', sans-serif;
-    margin: 10px 10px;
+    margin: 1% 1%;
     cursor: pointer;
+    font-size: 100%;
 
     /* appearance: none;
     background-image: url(assets/skate.svg);
@@ -188,9 +199,9 @@ body {
     background: linear-gradient(to bottom, rgb(157, 148, 107), rgb(211, 205, 155), white);
     border-radius: 10px;
     padding: 7px 5px;
-    margin-bottom: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-bottom: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
     font-style: italic;
     font-size: 75%;
 }
@@ -204,6 +215,7 @@ body {
 
 .points-available{
     display: flex;
+    color: var(--button-hover-light-colour);
 }
 
 
@@ -217,7 +229,7 @@ body {
 /* Overall atribute area */
 #attribute-area {
     display:flex;
-    margin-bottom: 20px;
+    margin-bottom: 5%;
     justify-content: space-around;
 }
 
@@ -226,7 +238,9 @@ body {
 .attribute-section {
     display: flex;
     flex-direction: column;
-    margin: 5px;
+    margin: 0.2%;
+    width: 100%;
+    margin-top: 3%;
 }
 
 
@@ -245,10 +259,11 @@ body {
 .attribute-info {
     display: flex;
     justify-content: end;
-    margin-top: 10px;
+    margin-top: 4%;
     background:  linear-gradient(to right,rgba(255, 187, 0, 0.5), rgba(57, 57, 57, 0.588), rgba(33, 33, 33));
     /* background: linear-gradient(to right, #726fdc, #3a379c, #363460); */
     border-radius: 16px;
+    width: 100%;
 }
 
 .attribute-meter-div {
@@ -257,17 +272,17 @@ body {
 }
 
 .attribute-meter {
-    margin-top: 10px;
-    height: 30px;
-    width: 200px;
+    margin-top: 2%;
+    height: 2%;
+    width: 10%;
 }
 
 .attribute-name {
     color:  black;
-    padding-left: 10px;
-    padding-top: 8px;
-    padding-right: 0px;
-    font-size: 96%;
+    padding-left: 2%;
+    padding-top: 3.5%;
+    padding-right: 1%;
+    font-size: 80%;
     font-weight: bold;
     /* background: #3a379c; */
     /* background: linear-gradient(to right, #726fdc, #3a379c, #1a193d); */
@@ -279,27 +294,31 @@ body {
     display: flex;
     font-weight: bold;
     /* background: linear-gradient(to left, #726fdc, #3a379c, #1a193d); */
-    padding: 4.5px;
-    margin-left: 5px;
-    margin-right: 5px;
-    font-size: larger;
+    padding: 3% 1% 1% 1%;
+    margin-left: 2%;
+    margin-right: 2%;
+    font-size: 100%;
 }
 
 .attribute {
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-bottom: 20px;
-    margin-top: 8px;
+    width: 100%;
+    font-size: 80%;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 5%;
+    margin-top: 2%;
     /* background: linear-gradient(to bottom right, rgb(130, 150, 251),#5473ef, rgb(39, 59, 119) ) ; */
     /* background: linear-gradient(to bottom right, rgb(130, 150, 251),#5473ef, rgb(39, 59, 119) ) ; */
     border-radius: 16px;
     box-shadow: 0 4px 30px black;
 }
 
+
 .upgrade-value {
-    padding: 5px;
-    margin-left: 5px;
-    margin-top: 3px;
+    font-size: 80%;
+    padding: 2%;
+    margin-left: 1%;
+    margin-top: 2%;
     color: transparent;
     /* color:#3a379c; */
     /* background:  #3a379c; */
@@ -307,10 +326,10 @@ body {
 }
 
 .boost-value {
-    padding-right: 15px;
-    padding-top: 5px;
-    padding-left: 5px;
-    margin-top: 3px;
+    padding: 2%;
+    margin-right: 2%;
+    margin-top: 2%;
+    font-size: 80%;
     color: transparent;
     /* color: #3634607b; */
     /* color:#3a379c ; */
@@ -323,12 +342,19 @@ body {
 
 /* Plus and minus buttons */
 .minus-button {
-    width: 25px;
+    /* width: 25px;
     height: 25px;
     margin-top: 4px;
     cursor: pointer;
+    background: inherit; */
+    width: 10%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding: 1% 3% 1% 3%;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
     background: inherit;
-    /* border: 1px solid red; */
+    font-weight: bold;
 }
 
 .minus-button:hover {
@@ -337,9 +363,12 @@ body {
 }
 
 .plus-button {
-    width: 25px;
-    height: 25px;
-    margin-top: 4px;
+    font-weight: bold;
+    font-size: 80%;
+    width: 10%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    aspect-ratio: 1 / 1;
     cursor: pointer;
     background: inherit;
     /* border: 1px solid green; */
@@ -382,14 +411,13 @@ body {
     border: 1px solid black;
     box-shadow: 0 4px 30px rgb(215, 215, 215);
     color: black;
-    padding: 16px;
-    font-size: 16px;
+    padding: min(15px, 9%);
+    font-size: 100%;
     /* border: none; */
     cursor: pointer;
     border-radius: 10px;
-    margin-top: 7%;
+    margin-top: 4%;
 }
-
 
 
 .boost-dropdownbutton, .main-boost-dropdownbutton {
@@ -400,15 +428,19 @@ body {
     border: 1px solid black;
     box-shadow: 0 4px 30px rgb(215, 215, 215);
     color: black;
-    padding: 13px;
-    font-size: 13px;
+    padding: 8%;
+    font-size: 80%;
     /* border: none; */
     cursor: pointer;
     border-radius: 10px;
-    margin-top: 7%;
+    margin: 0%;
+}
+.boost-dropdownbutton {
+    padding: 3%;
 }
 
 .dropdown {
+    margin: 2%;
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
@@ -420,13 +452,14 @@ body {
 .dropdown-content, .boost-dropdown-content, .boost-buttons-content, .ability-button-content {
     /* background-color: #f1f1f1; */
     background: transparent;
-    min-width: 220px;
+    min-width: 180px;
     /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
     z-index: 1;
     flex-direction: column;
     display: none;
     border-radius: 4px;
-    font-size: small
+    font-size: small;
+    justify-content: center;
     /* align-items: end;
     justify-items: end; */
 }
@@ -436,10 +469,17 @@ body {
     flex-direction: row;
     justify-items: end;
     align-items: end;
+    justify-content: center;
+    width: 100%;
 }
 
 .ability-button-content > .ability-dropdownbutton, .boost-buttons-content > .boost-dropdownbutton {
     box-shadow: none;
+}
+
+.boost-buttons-content {
+    width: 200%;
+    font-size: 70%;
 }
 
 .dropdown-content {
@@ -449,10 +489,13 @@ body {
 }
 
 .ability-dropdownbutton {
-    font-size: small;
+    padding: min(10px, 5%);
+    margin-top: 0.5%;
+    font-size: xx-small;
 }
 
 .main-ability-item, .boost-item, .ability-item {
+    font-size: 80%;
     display: flex;
 }
 
@@ -461,7 +504,7 @@ body {
 }
 
 .ability-description {
-    max-width: 220px;
+    max-width: 180px;
 }
 
 .boost-item:hover, .ability-item:hover, .ability-display-item, .boost-display-item {
@@ -507,7 +550,7 @@ body {
 .ability-item:hover > .ability-text > .ability-description,
 .ability-display-item:hover > .ability-display-text > .ability-display-description,
 .main-ability-item:hover > .main-ability-text > .main-ability-description {
-    font-size: x-small;
+    font-size: 80%;
     max-width: 150px;
 }
  
@@ -515,8 +558,11 @@ body {
 .ability-item:hover > .ability-text > .ability-requirement,
 .ability-display-item:hover > .ability-display-text > .ability-display-requirement,
 .boost-display-item:hover > .boost-display-item-text > .boost-display-item-requirement {
-    font-size: xx-small;
+    font-size: 75%;
     color: yellow;
+}
+.boost-display-item:hover > .boost-display-item-text > .boost-display-item-requirement {
+    font-size: 70%;
 }
 
 .boost-item-text, .ability-text, .main-ability-text {
@@ -548,12 +594,12 @@ body {
     border: 1px solid black;
     border-radius: 4px; */
     /* box-shadow: 0 4px 30px black; */
-    padding: 10px 5px;
+    padding: 2% 1%;
     margin-left: 12%;
     margin-right: 12%;
-    margin-bottom: 2%;
     display: flex;
     justify-content: space-around;
+    height: fit-content;
 }
 
 #horizontal-dropdown {
@@ -563,6 +609,7 @@ body {
 .ability-dropdown-section, #main-ability-dropdown-section {
     display: flex;
     flex-direction: row;
+    margin-bottom: auto;
 }
 
 
@@ -628,11 +675,16 @@ body {
     box-shadow: 0px 0px 50px rgba(116, 116, 116, 0.7);
     color: rgb(50, 50, 50);
     padding-bottom: 7%;
-    padding-right: 10%;
-    padding-left: 2%;;
+    padding-right: 4%;
+    padding-left: 4%;;
+    margin: 2% 2% 2% 2%;
     text-align: center;
     border-radius: 12px;
+    font-size: 75%;
     cursor: default;
+}
+.ability-display-item {
+    font-size: 90%;
 }
 
 .main-ability-display-item {
@@ -644,6 +696,7 @@ body {
     padding-left: 2%;
     text-align: center;
     border-radius: 12px;
+    font-size: 120%;
 }
 
 .main-ability-display-description {
@@ -659,6 +712,7 @@ body {
 
 .ability-display-name {
     text-align: center;
+    font-size: 120%;
 }
 
 .ability-display-name, .boost-display-name {
@@ -683,9 +737,11 @@ body {
     font-style: italic;
     background: linear-gradient(to right, rgba(255, 255, 0, 0.5), rgba(83, 154, 16, 0.5));
     border-radius: 12px;
-    font-size: large;
-    height: 50px;
-    width: 180px;
+    font-size: 150%;
+    height: fit-content;
+    width: fit-content;
+    padding: 5% 10% 5% 10%;
+    margin: 2%;
 }
 #complete-build-button:hover {
     cursor: pointer;
@@ -696,9 +752,11 @@ body {
     font-style: italic;
     background: linear-gradient(to right, rgba(255, 208, 0, 0.5), rgba(154, 32, 16, 0.5));
     border-radius: 12px;
-    font-size: large;
-    height: 50px;
-    width: 180px;
+    font-size: 150%;
+    height: fit-content;
+    width: fit-content;
+    padding: 5% 10% 5% 10%;
+    margin: 2%
 }
 #reset-button:hover {
     cursor: pointer;
@@ -706,8 +764,9 @@ body {
 }
 
 #other-action-buttons {
-    margin-left: 8%;
     display: flex;
+    flex-direction: column;
+    margin-right: 1%;
 }
 
 
@@ -975,7 +1034,7 @@ p {
 
 #main-title {
     font-family: 'Verdana', 'Helvetica', sans-serif;
-    font-size: 250%;
+    font-size: 200%;
     font-weight: bold;
     font-style: italic;
     color: rgba(187, 122, 1, 0.8);
@@ -983,9 +1042,154 @@ p {
 }
 
 #main-subtitle {
-    font-size: 100%;
+    font-size: min(80%, 100px);
 }
 
 #about-button {
     width: fit-content;
+}
+
+.physicals-validity > .material-icons {
+    font-size: 140%;
+}
+
+#attribute-area {
+    flex-wrap: wrap;
+}
+.attribute-section {
+    flex: 0 0 15%;
+    margin-right: 1%;
+}
+.attribute {
+    margin-left: 1%;
+    margin-right: 1%;
+}   
+
+
+@media only screen and (max-width: 972px) {
+    #attribute-area {
+        flex-wrap: wrap;
+        width: 97%;
+    }
+    .attribute-section {
+        flex: 0 0 45%;
+        margin-right: 1%;
+        align-items: center;
+    }
+    .attribute {
+        width: 70%;
+    }
+    #playertype-height-weight-row {
+        flex-wrap: wrap;
+        margin-bottom: 9%;
+    } 
+    .physical-section {
+        flex: 0 0 40%;
+    }
+    #help-section {
+        flex: 0 0 100%;
+        text-align: center;
+    }  
+    #other-action-buttons {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        font-size: 80%;
+    }
+    #abilities-and-boosts-row {
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    /* Styles for small screens */
+    #attribute-area {
+        flex-direction: column;
+        width: fit-content;
+    }
+    .attribute {
+        height: 10%;
+    }
+    .physical-section {
+        max-height: fit-content;
+    }
+    #main-body-section {
+        align-items: center;
+    }
+    #playertype-height-weight-row {
+        height: 30%;
+        flex-direction: column;
+        width: fit-content;
+    }
+    #abilities-and-boosts-row {
+        flex-direction: column;
+        width: 20%;
+        height: 20%;
+    }
+    .wrapper {
+       align-items: center;
+    }
+    .points-available {
+        font-size: 120%;
+        text-shadow: 2px 2px 2px black;
+    }
+
+    .physicals-validity {
+        margin-bottom: -3%;
+        display: none;
+    }
+    .selection-and-input {
+        margin-bottom: 1%;
+        margin-top: 1%;
+        font-size: 70%;
+    }
+    .physical-section {
+        margin-bottom: 2.5%;
+    }
+    #other-action-buttons {
+        width: 100%;
+        justify-content: space-evenly;
+    }
+    #reset-button, #complete-build-button {
+        font-size: 85%;
+        height: fit-content;
+        width: fit-content;
+        padding: 2% 2% 2% 2%;
+    }
+    .confirm-button {
+        font-size: xx-small;
+    }
+    .dropdown-button, .ability-dropdownbutton, .boost-dropdownbutton {
+        font-size: x-small;
+        padding: 3% 3% 3% 3%;
+        margin-top: 0.5%;
+    }
+    .ability-button-content, .boost-buttons-content {
+        justify-content: center;
+        align-items: center;
+        width: 70%;
+    }
+    #boosts-row {
+        flex-direction: column;
+        width: 100%;
+    }
+    .dropdown {
+        width: 100%;
+    }
+    .ability-display-item {
+        font-size: 80%;
+        width: 250%;
+        justify-content: center;
+    }
+    .ability-display-text {
+        text-align: center;
+        width: 100%;
+    }
+    .ability-display-description {
+        text-align: center;
+        margin-left: 8%;
+    }
 }
