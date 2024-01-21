@@ -577,7 +577,7 @@ export function findSimilarPlayers() {
   attributeWeights = Variables.attributeWeightsInfo[bestPlayerType.DisplayName];
 
   if (attributeWeights == undefined) {
-    console.warn("Attribute weights undefined.  Likely missing/typo of this player type.  The best player type currently is called: "+bestPlayerType.DisplayName);
+    // console.warn("Attribute weights undefined.  Likely missing/typo of this player type.  The best player type currently is called: "+bestPlayerType.DisplayName);
     UtilityFunctions.alertModal("Something went wrong when doing player type and comparison");
     return;
   }
