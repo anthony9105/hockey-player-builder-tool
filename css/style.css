@@ -124,13 +124,13 @@ body {
 #main-ability-section > .dropdown > .dropdownbutton {
     background: linear-gradient(to right, rgb(144, 125, 20), gold, rgb(209, 205, 180));
     box-shadow: 0 4px 30px gold;
-    font-size: larger;
+    font-size: 160%;
 }
 
 #main-ability-section > .dropdown > .dropdownbutton:hover {
     background: linear-gradient(to bottom right, var(--button-hover-dark-colour), var(--button-hover-light-colour), rgba(255, 217, 0, 0.347));
     box-shadow: 0 4px 30px gold;
-    font-size: larger;
+    font-size: 160%;
 }
 
 .dropdownbutton:hover, .main-boost-dropdownbutton:hover, .boost-dropdownbutton:hover, .ability-dropdownbutton:hover {
@@ -343,42 +343,26 @@ body {
 
 
 /* Plus and minus buttons */
-.minus-button {
-    /* width: 25px;
-    height: 25px;
-    margin-top: 4px;
-    cursor: pointer;
-    background: inherit; */
+.plus-button, .minus-button {
     width: 22px;
     height: 22px;
     margin-top: 1%;
     margin-bottom: 1%;
+    aspect-ratio: 1 / 1;
+    vertical-align: middle;
+    box-sizing: border-box;
     cursor: pointer;
     background: inherit;
-    font-weight: bold;
-    aspect-ratio: 1 / 1;
     text-align: center;
     color: black;
+    font-weight: bold;
     text-shadow: 0px 0px 1px var(--button-hover-light-colour);
+    /* border: 1px solid green; */
 }
 
 .minus-button:hover {
     background: linear-gradient(to bottom right, rgb(237, 185, 185),rgb(211, 114, 114) ,rgb(56, 32, 32));
     transition: 0.2s;
-}
-
-.plus-button {
-    width: 22px;
-    height: 22px;
-    margin-top: 1%;
-    margin-bottom: 1%;
-    aspect-ratio: 1 / 1;
-    cursor: pointer;
-    background: inherit;
-    text-align: center;
-    color: black;
-    text-shadow: 0px 0px 1px var(--button-hover-light-colour);
-    /* border: 1px solid green; */
 }
 
 .plus-button:hover {
@@ -418,7 +402,7 @@ body {
     border: 1px solid black;
     box-shadow: 0 4px 30px rgb(215, 215, 215);
     color: black;
-    padding: min(15px, 9%);
+    padding: 10px;
     font-size: 100%;
     /* border: none; */
     cursor: pointer;
@@ -1052,32 +1036,46 @@ p {
     margin-left: 1%;
     margin-right: 1%;
 }   
+.main-boost-dropdownbutton, .dropdownbutton {
+    padding: 12%;
+    font-size: 80%;
+}
+.dropdownbutton {
+    font-size: 150%;
+    padding: 20px;
+}
+#device-disclaimer {
+    margin-top: 0%;
+    font-size: 80%;
+    display: none;
+    text-align: center;
+}
 
 /* For devices that do have a cusor/pointer, these hover features will work properly */
 @media (pointer: fine) {
-    .ability-item:hover > .ability-text > .ability-description,
-    .ability-display-item:hover > .ability-display-text > .ability-display-description,
-    .main-ability-item:hover > .main-ability-text > .main-ability-description {
-    font-size: 80%;
-    max-width: 150px;
-}
+        .ability-item:hover > .ability-text > .ability-description,
+        .ability-display-item:hover > .ability-display-text > .ability-display-description,
+        .main-ability-item:hover > .main-ability-text > .main-ability-description {
+        font-size: 80%;
+        max-width: 150px;
+    }
 
-.boost-item:hover > .boost-item-text > .boost-item-requirement,
-.ability-item:hover > .ability-text > .ability-requirement,
-.ability-display-item:hover > .ability-display-text > .ability-display-requirement,
-.boost-display-item:hover > .boost-display-item-text > .boost-display-item-requirement {
-    font-size: 75%;
-    color: yellow;
-}
-.boost-display-item:hover > .boost-display-item-text > .boost-display-item-requirement {
-    font-size: 70%;
-}
-.main-ability-display-item:hover > .main-ability-display-text > .main-ability-display-description {
-    display: flex;
-    max-width: 220px;
-    font-size: x-small;
-    color: rgb(59, 59, 59);
-}
+    .boost-item:hover > .boost-item-text > .boost-item-requirement,
+    .ability-item:hover > .ability-text > .ability-requirement,
+    .ability-display-item:hover > .ability-display-text > .ability-display-requirement,
+    .boost-display-item:hover > .boost-display-item-text > .boost-display-item-requirement {
+        font-size: 75%;
+        color: yellow;
+    }
+    .boost-display-item:hover > .boost-display-item-text > .boost-display-item-requirement {
+        font-size: 70%;
+    }
+    .main-ability-display-item:hover > .main-ability-display-text > .main-ability-display-description {
+        display: flex;
+        max-width: 220px;
+        font-size: x-small;
+        color: rgb(59, 59, 59);
+    }
 }
 
 
@@ -1105,6 +1103,9 @@ p {
         max-width: 220px;
         font-size: x-small;
     }
+    #device-disclaimer {
+        display: block;
+    }
 }
 
 /* semi-big size screen */
@@ -1119,6 +1120,9 @@ p {
     }
     .attribute {
         width: 100%
+    }
+    .main-boost-dropdownbutton {
+        padding: 8%;
     }
 }
 
@@ -1164,6 +1168,9 @@ p {
     }
     #boosts-row {
         width: 100%;
+    }
+    .main-boost-dropdownbutton {
+        padding: 8%;
     }
 }
 
@@ -1286,5 +1293,12 @@ p {
     }
     #abilities-and-boosts-row {
         margin-bottom: 10%;
+    }
+    .attribute-info {
+        justify-content: center;
+        align-items: center;
+    }
+    .main-boost-dropdownbutton {
+        padding: 3%;
     }
 }
