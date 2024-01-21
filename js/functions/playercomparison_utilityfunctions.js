@@ -477,15 +477,18 @@ function getPlayerType(playerAttributes, playerPosition) {
 
   let bestPlayerTypeFit;
   bestPlayerTypeFit = determineBestPlayerType(playerAttributes, categoryAvgs, position);
-
-  let count = 0;
+  let count = 1;
 
   // while bestPlayerType is null (meaning that no best player type was found)
-  while (bestPlayerTypeFit == null && count < 3) {
+  while (bestPlayerTypeFit == null) {
     // scaling down all the player type minimum requirements (by x amount.  Current attribute minimum minus x amount)
     scalePlayerTypeRequirements(0.01, playerPosition);
     bestPlayerTypeFit = determineBestPlayerType(playerAttributes, categoryAvgs, position);
-    count++;
+
+    if (count > 50) {
+      UtilityFunctions.alertModal("There was an issue getting the best player type.");
+      return;
+    }
   }
 
   // console.log("BEST PLAYER TYPE FOR THIS PLAYER:");
@@ -565,6 +568,10 @@ export function findSimilarPlayers() {
 
   // getting the best player type for the user's created player
   const bestPlayerType = getPlayerType(samplePlayer, samplePlayer['main-position']);
+
+  if (bestPlayerType == null || bestPlayerType == undefined) {
+    return;
+  }
 
   // getting the attribute weights depending on what the bestPlayerType is
   attributeWeights = Variables.attributeWeightsInfo[bestPlayerType.DisplayName];
