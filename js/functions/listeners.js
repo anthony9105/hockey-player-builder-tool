@@ -159,15 +159,18 @@ export function abilitySelectListeners() {
           Variables.mainAbilityDisplayName.textContent == selectedAbilityName.textContent) {
         
         confirmResponse = false;
+        window.scrollTo(0,0);
         await UtilityFunctions.alertModal("This ability is already selected");
       }
       // if the requirements for the seleced ability are not met
       else if (!UtilityFunctions.meetsRequirement(selectedAbilityRequirements[0].textContent) || !UtilityFunctions.meetsRequirement(selectedAbilityRequirements[1].textContent)) {
         confirmResponse = false;
+        window.scrollTo(0,0);
         await UtilityFunctions.alertModal("1 or more of the minimum requirements for this ability are not met");
       }
       // if the same ability slot is already being used but it is a different ability, give the option to replace the existing one or cancel
       else if (abilityDisplayNames[i].textContent != Constants.UNSELECTED_ABILITY_NAME) {
+        window.scrollTo(0,0);
         confirmResponse = await UtilityFunctions.confirmModal(`Are you sure you want to replace "${abilityDisplayNames[i].textContent}" with "${selectedAbilityName.textContent}"?`, "Yes");
       } 
 
@@ -214,6 +217,7 @@ export function mainAbilitySelectListeners() {
       }
       // if the same ability slot is already being used but it is a different ability, give the option to replace the existing one or cancel
       else if (mainAbilityDisplayName.textContent != Constants.UNSELECTED_ABILITY_NAME) {
+        window.scrollTo(0,0);
         confirmResponse = await UtilityFunctions.confirmModal(`Are you sure you want to replace "${mainAbilityDisplayName.textContent}" with "${selectedAbilityName.textContent}"?`, "Yes");
       } 
 
@@ -431,20 +435,24 @@ export function boostSelectListeners() {
       // if the boost item is already selected in the current slot
       if ((boostDisplayName.textContent == selectedBoostName.textContent && displayIconColour == selectedIconColour)) {
         confirmResponse = false;
+        window.scrollTo(0,0);
         await UtilityFunctions.alertModal("This boost is already selected");
       }
       // if the boost item in the other boost slot is the same or is upgrading the same attribute
       else if (otherBoostDisplayName.textContent == selectedBoostName.textContent) {
         confirmResponse = false;
+        window.scrollTo(0,0);
         await UtilityFunctions.alertModal("This boost cannot be selected at this time because the other selected boost is already upgrading the same attribute");
       }
       // if both the boost requirements are not met
       else if (!UtilityFunctions.meetsRequirement(selectedBoostRequirement[0].textContent)) {
         confirmResponse = false;
+        window.scrollTo(0,0);
         await UtilityFunctions.alertModal("The minimum requirement for this boost is not met");
       }
       // if another boost is already selected but it is not the same boost as just clicked right now
       else if (boostDisplayName.textContent != Constants.UNSELECTED_BOOST_NAME || (boostDisplayName.textContent == selectedBoostName.textContent && displayIconColour != selectedIconColour)) {
+        window.scrollTo(0,0);
         confirmResponse = await UtilityFunctions.confirmModal(
           `Are you sure you want to replace "${boostDisplayName.textContent} (${displayIconColour})" with "${selectedBoostName.textContent} (${selectedIconColour})"?`,
           "Yes"
@@ -528,22 +536,44 @@ export function boostHoverListeners() {
  * @param {Object} confirmPlayerTypeButton the "Confirm Player Type" button
  */
 export function confirmPlayerTypeButtonListener(confirmPlayerTypeButton) {
-  confirmPlayerTypeButton.addEventListener('click', function() {
-    // set the default attributes to the html table
-    InitializerFunctions.setupNewBuild(Variables.playerTypes.value);
+  confirmPlayerTypeButton.addEventListener('click', async function() {
 
-    // reset the upgrades
-    UpdateFunctions.resetUpgrades(Variables.upgradeValues);
+    let physicalSections = document.getElementsByClassName("physical-section");
+    let response = true;
 
-    // reset the upgrade points available
-    UpdateFunctions.resetUpgradePoints();
+    if (physicalSections[1].style.display != "none") {
+      response = await UtilityFunctions.confirmModal("Any abilities or boosts selected and attribute changes will be reset by changing the player type. Continue?", "Yes");
+    }
 
-    UpdateFunctions.hideOrRevealHeightWeightPosition("block");
-    UpdateFunctions.changePlayerTypeSelectionValidity();
-    UpdateFunctions.hideOrRevealHeightWeightPosition("block");
-    UpdateFunctions.hideOrRevealAbilitiesAndBoosts("flex");
-    UpdateFunctions.hideOrRevealCompleteBuildButton("block");
-    UpdateFunctions.hideOrRevealResetButton("block");
+    if (response) {
+      // reset all the abilities and boosts
+      InitializerFunctions.setAbilityOptionToUnselected(0);
+      InitializerFunctions.setAbilityOptionToUnselected(1);
+      InitializerFunctions.setMainAbilityOptionToUnselected();
+
+      for (let i = 0; i < 2; i++) {
+        let boostDisplayName = Variables.boostDisplayItems[i].getElementsByClassName(Constants.BOOST_DISPLAY_VALUE_CLASSNAME)[0];
+        const boostAttributeUprgadeInfo = UtilityFunctions.getRequirementValueAndAttributeName(boostDisplayName.textContent);
+        boostAttributeUprgadeInfo[0] *= -1;
+        UpdateFunctions.applyBoostUpgradeOrDowngrade(boostAttributeUprgadeInfo[1], boostAttributeUprgadeInfo[0]);
+        InitializerFunctions.setBoostToUnselected(i);
+      }
+      // set the default attributes to the html table
+      InitializerFunctions.setupNewBuild(Variables.playerTypes.value);
+
+      // reset the upgrades
+      UpdateFunctions.resetUpgrades(Variables.upgradeValues);
+
+      // reset the upgrade points available
+      UpdateFunctions.resetUpgradePoints();
+
+      UpdateFunctions.hideOrRevealHeightWeightPosition("block");
+      UpdateFunctions.changePlayerTypeSelectionValidity();
+      UpdateFunctions.hideOrRevealHeightWeightPosition("block");
+      UpdateFunctions.hideOrRevealAbilitiesAndBoosts("flex");
+      UpdateFunctions.hideOrRevealCompleteBuildButton("block");
+      UpdateFunctions.hideOrRevealResetButton("block");
+    }
   });
 }
 
@@ -555,7 +585,7 @@ export function confirmPlayerTypeButtonListener(confirmPlayerTypeButton) {
  */
 export function confirmHeightWeightButtonListener(confirmButton, physicalAspect) {
   confirmButton.addEventListener('click', async function() {
-    const continueWithChanges = await UtilityFunctions.confirmModal("Any abilities or boosts selected will be reset by changing the height or weight", "Ok");
+    const continueWithChanges = await UtilityFunctions.confirmModal("Any abilities or boosts selected will be reset by changing the height or weight.  Continue?", "Yes");
 
     if (continueWithChanges) {
       if (physicalAspect == "Height") {
