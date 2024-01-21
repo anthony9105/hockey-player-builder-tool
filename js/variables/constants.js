@@ -9,12 +9,13 @@
 /**
  * FILE PATHS
  */
-export const BUILD_DATA_XML = "../build-information/build_data.xml";
-export const UPGRADE_POINTS_XML = "../build-information/upgrade_points.xml";
-export const PHYS_UPGRADE_DOWNGRADE_XML = "../build-information/physical_upgrade_downgrades.xml";
-export const BOOSTS_XML = "../build-information/boosts.xml";
-export const MAIN_ABILITIES_XML = "../build-information/main_abilities.xml";
-export const ABILITIES_XML = "../build-information/abilities.xml";
+export const BUILD_DATA_XML = "../../build-information/build_data.xml";
+export const UPGRADE_POINTS_XML = "../../build-information/upgrade_points.xml";
+export const PHYS_UPGRADE_DOWNGRADE_XML = "../../build-information/physical_upgrade_downgrades.xml";
+export const BOOSTS_XML = "../../build-information/boosts.xml";
+export const MAIN_ABILITIES_XML = "../../build-information/main_abilities.xml";
+export const ABILITIES_XML = "../../build-information/abilities.xml";
+export const NHL_PLAYER_ATTRIBUTES_CSV = "../../player-information/realPlayerAttributes.csv"; 
 
 
 /**

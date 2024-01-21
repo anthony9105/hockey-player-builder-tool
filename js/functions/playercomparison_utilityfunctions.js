@@ -18,7 +18,7 @@ let playerData;
  * @returns the data in an array of objects
  */
 async function loadCSV() {
-  const response = await fetch("../../player-information/realPlayerAttributes.csv");
+  const response = await fetch(Constants.NHL_PLAYER_ATTRIBUTES_CSV);
   const text = await response.text();
 
   // split the CSV into rows and extract header (first row)
