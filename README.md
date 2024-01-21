@@ -1,7 +1,6 @@
 # Anthony's Hockey Player Builder
 by Anthony Liscio
 <br></br>
-<br></br>
 
 Used to build a hockey player.  The player is given a player type and real NHL player comparisons.
 
