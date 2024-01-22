@@ -9,7 +9,7 @@
 /**
  * FILE PATHS
  */
-const websiteUrl = "https://www.hockeyplayerbuilder.com/";
+const websiteUrl = "https://hockeyplayerbuilder.com/";
 
 export const BUILD_DATA_XML = websiteUrl + "build-information/build_data.xml";
 export const UPGRADE_POINTS_XML = websiteUrl + "build-information/upgrade_points.xml";
